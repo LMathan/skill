@@ -1,5 +1,24 @@
 const FEEDBACK_STORAGE_KEY = "skillforge_feedbacks_v1";
 
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBbhj-utyG5F0PmANrYak52amMutJEa540",
+  authDomain: "skillforge-6601a.firebaseapp.com",
+  projectId: "skillforge-6601a",
+  storageBucket: "skillforge-6601a.firebasestorage.app",
+  messagingSenderId: "1075697671756",
+  appId: "1:1075697671756:web:6e89c6970ed2de870f5ee9"
+};
+
+const firebaseState = {
+  isReady: false,
+  db: null,
+  collection: null,
+  addDoc: null,
+  getDocs: null,
+  query: null,
+  serverTimestamp: null
+};
+
 const defaultFeedbacks = [
   {
     customerName: "Karthik R.",
@@ -307,6 +326,27 @@ function initScrollReveal() {
   revealItems.forEach((item) => revealObserver.observe(item));
 }
 
+async function initFirebase() {
+  try {
+    const [{ initializeApp }, firestoreModule] = await Promise.all([
+      import("https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js"),
+      import("https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js")
+    ]);
+
+    const app = initializeApp(FIREBASE_CONFIG);
+    firebaseState.db = firestoreModule.getFirestore(app);
+    firebaseState.collection = firestoreModule.collection;
+    firebaseState.addDoc = firestoreModule.addDoc;
+    firebaseState.getDocs = firestoreModule.getDocs;
+    firebaseState.query = firestoreModule.query;
+    firebaseState.serverTimestamp = firestoreModule.serverTimestamp;
+    firebaseState.isReady = true;
+  } catch (error) {
+    firebaseState.isReady = false;
+    console.error("Firebase initialization failed. Falling back to local storage.", error);
+  }
+}
+
 function getStoredFeedbacks() {
   const data = localStorage.getItem(FEEDBACK_STORAGE_KEY);
   if (!data) {
@@ -323,6 +363,44 @@ function getStoredFeedbacks() {
 
 function saveFeedbacks(feedbacks) {
   localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify(feedbacks));
+}
+
+function sortFeedbacksByCreatedTime(feedbacks) {
+  return [...feedbacks].sort((first, second) => {
+    const firstTime = first.createdAt?.seconds || 0;
+    const secondTime = second.createdAt?.seconds || 0;
+    return secondTime - firstTime;
+  });
+}
+
+async function getFeedbacks() {
+  if (!firebaseState.isReady) {
+    return getStoredFeedbacks();
+  }
+
+  try {
+    const feedbackCollection = firebaseState.collection(firebaseState.db, "feedbacks");
+    const snapshot = await firebaseState.getDocs(firebaseState.query(feedbackCollection));
+    const feedbacks = snapshot.docs.map((documentRef) => {
+      const data = documentRef.data();
+      return {
+        customerName: data.customerName || "Anonymous",
+        projectName: data.projectName || "Project",
+        message: data.message || "",
+        rating: Number(data.rating) || 5,
+        createdAt: data.createdAt || null
+      };
+    });
+
+    if (!feedbacks.length) {
+      return [...defaultFeedbacks];
+    }
+
+    return sortFeedbacksByCreatedTime(feedbacks);
+  } catch (error) {
+    console.error("Failed to fetch feedbacks from Firestore. Falling back to local storage.", error);
+    return getStoredFeedbacks();
+  }
 }
 
 function getStars(rating) {
@@ -343,13 +421,13 @@ function getProjectImagePath(title) {
   return `images/projects/${slugifyProjectTitle(title)}.svg`;
 }
 
-function renderTestimonials() {
+async function renderTestimonials() {
   const container = document.getElementById("testimonialsContainer");
   if (!container) {
     return;
   }
 
-  const feedbacks = getStoredFeedbacks();
+  const feedbacks = await getFeedbacks();
   container.innerHTML = feedbacks
     .map((entry) => `
       <div class="col-md-6 col-lg-4 reveal active">
@@ -398,7 +476,7 @@ function initFeedbackForm() {
     return;
   }
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const customerName = document.getElementById("customerName")?.value.trim();
@@ -412,10 +490,29 @@ function initFeedbackForm() {
       return;
     }
 
-    const feedbacks = getStoredFeedbacks();
-    feedbacks.unshift({ customerName, projectName, message, rating });
-    saveFeedbacks(feedbacks);
-    renderTestimonials();
+    if (firebaseState.isReady) {
+      try {
+        const feedbackCollection = firebaseState.collection(firebaseState.db, "feedbacks");
+        await firebaseState.addDoc(feedbackCollection, {
+          customerName,
+          projectName,
+          message,
+          rating,
+          createdAt: firebaseState.serverTimestamp()
+        });
+      } catch (error) {
+        console.error("Failed to submit feedback to Firestore. Saving locally.", error);
+        const localFeedbacks = getStoredFeedbacks();
+        localFeedbacks.unshift({ customerName, projectName, message, rating });
+        saveFeedbacks(localFeedbacks);
+      }
+    } else {
+      const localFeedbacks = getStoredFeedbacks();
+      localFeedbacks.unshift({ customerName, projectName, message, rating });
+      saveFeedbacks(localFeedbacks);
+    }
+
+    await renderTestimonials();
 
     form.reset();
     notice.textContent = "Thank you! Your feedback has been submitted successfully.";
@@ -442,11 +539,13 @@ function initContactForm() {
 window.addEventListener("load", hidePreloader);
 
 document.addEventListener("DOMContentLoaded", () => {
-  setYear();
-  initScrollReveal();
-  animateStats();
-  renderProjects();
-  renderTestimonials();
-  initFeedbackForm();
-  initContactForm();
+  initFirebase().then(() => {
+    setYear();
+    initScrollReveal();
+    animateStats();
+    renderProjects();
+    renderTestimonials();
+    initFeedbackForm();
+    initContactForm();
+  });
 });
