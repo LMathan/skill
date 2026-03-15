@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Smart Emergency Vehicle Traffic Control</title>
+  <desc id="desc">Placeholder image for emergency traffic optimization project.</desc>
+  <defs>
+    <linearGradient id="bg5" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#3a1616"/>
+      <stop offset="100%" stop-color="#130b14"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#bg5)"/>
+  <rect x="220" y="470" width="760" height="80" rx="10" fill="#4a2020"/>
+  <line x1="600" y1="470" x2="600" y2="550" stroke="#c07a7a" stroke-width="10" stroke-dasharray="24 14"/>
+  <circle cx="360" cy="300" r="46" fill="#ffce4a" opacity="0.35"/>
+  <text x="600" y="330" fill="#ffe8e8" font-family="Inter, Arial" font-size="38" text-anchor="middle">Emergency Traffic Control</text>
+  <text x="600" y="380" fill="#ffc2c2" font-family="Inter, Arial" font-size="24" text-anchor="middle">AI Signal Priority Engine</text>
+</svg>

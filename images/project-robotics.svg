@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Robotics and Embedded Projects</title>
+  <desc id="desc">Placeholder image for robotics and embedded control systems.</desc>
+  <defs>
+    <linearGradient id="bg8" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#17302f"/>
+      <stop offset="100%" stop-color="#091515"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#bg8)"/>
+  <rect x="460" y="240" width="280" height="220" rx="24" fill="#2d5552"/>
+  <circle cx="530" cy="320" r="28" fill="#8bf8d1"/>
+  <circle cx="670" cy="320" r="28" fill="#8bf8d1"/>
+  <rect x="535" y="380" width="130" height="20" rx="10" fill="#8bf8d1"/>
+  <text x="600" y="560" fill="#e3fff5" font-family="Inter, Arial" font-size="38" text-anchor="middle">Robotics &amp; Embedded Systems</text>
+</svg>

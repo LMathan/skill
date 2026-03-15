@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Smart Home and IoT Automation</title>
+  <desc id="desc">Placeholder image for smart home automation and IoT systems.</desc>
+  <defs>
+    <linearGradient id="bg6" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0e3553"/>
+      <stop offset="100%" stop-color="#0a1524"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#bg6)"/>
+  <polygon points="380,450 600,270 820,450" fill="#2a5e82"/>
+  <rect x="440" y="450" width="320" height="120" fill="#224862"/>
+  <circle cx="220" cy="180" r="52" fill="#53e4ff" opacity="0.35"/>
+  <text x="600" y="610" fill="#e8f7ff" font-family="Inter, Arial" font-size="38" text-anchor="middle">Smart Home Automation</text>
+</svg>

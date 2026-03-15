@@ -1,0 +1,16 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">AI Based Driver Drowsiness Detection System</title>
+  <desc id="desc">Custom placeholder image for AI Based Driver Drowsiness Detection System project.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#103722"/>
+      <stop offset="100%" stop-color="#0a1a12"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#bg)"/>
+  <circle cx="210" cy="150" r="54" fill="#9df5bf" opacity="0.35"/>
+  <rect x="130" y="500" width="940" height="70" rx="12" fill="#9df5bf" opacity="0.15"/>
+  <text x="600" y="330" fill="#edf5ff" font-family="Inter, Arial" font-size="42" text-anchor="middle">AI Based Driver Drowsiness</text>
+  <text x="600" y="385" fill="#cde3ff" font-family="Inter, Arial" font-size="34" text-anchor="middle">Detection System</text>
+  <text x="600" y="545" fill="#d9ebff" font-family="Inter, Arial" font-size="24" text-anchor="middle">Electronics • IoT • AI • Embedded Systems</text>
+</svg>

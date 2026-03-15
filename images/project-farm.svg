@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">Smart Farm Security System</title>
+  <desc id="desc">Placeholder image for farm security and surveillance project.</desc>
+  <defs>
+    <linearGradient id="bg4" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#103722"/>
+      <stop offset="100%" stop-color="#0a1a12"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#bg4)"/>
+  <polygon points="120,560 1080,560 1080,620 120,620" fill="#204f33"/>
+  <rect x="520" y="230" width="160" height="220" rx="14" fill="#315d42"/>
+  <circle cx="600" cy="330" r="32" fill="#8bffc0" opacity="0.35"/>
+  <text x="600" y="500" fill="#e8ffee" font-family="Inter, Arial" font-size="42" text-anchor="middle">Smart Farm Security</text>
+  <text x="600" y="548" fill="#9df5bf" font-family="Inter, Arial" font-size="24" text-anchor="middle">IoT Sensors + Vision Surveillance</text>
+</svg>
