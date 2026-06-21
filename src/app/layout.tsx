@@ -47,6 +47,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/"
   },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
   robots: {
     index: true,
     follow: true,
@@ -58,7 +64,7 @@ export const metadata: Metadata = {
     siteName: "SkillForge Technology",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "SkillForge Technology Showcase"
@@ -71,7 +77,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SkillForge Technology | Engineering Prototyping",
     description: "Certified projects and internships in IoT, AI/ML, and Robotics.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   }
 }
 
