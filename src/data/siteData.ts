@@ -358,74 +358,10 @@ export const servicesData: Service[] = [
   }
 ];
 
-export const blogData: Blog[] = [
-  {
-    id: "iot-microcontrollers-guide",
-    title: "How to Choose the Right Microcontroller for Your IoT Project",
-    summary: "A detailed comparison of popular microcontrollers including ESP32, Arduino, Raspberry Pi, and STM32, focusing on power, connectivity, and hardware capability.",
-    content: `Choosing the right microcontroller is the foundation of any successful Internet of Things (IoT) project. With dozens of options in the market, selecting one that aligns with your project's power consumption, processing needs, and wireless connectivity can save hours of redesigning.
+import { blogData as generatedBlogData } from "./blogData"
 
-### 1. Arduino Uno / Nano: The Prototyping Classic
-If you are just getting started or building an offline automation prototype, Arduino is the gold standard. 
-* **Pros**: Simple programming model, massive community libraries, operates on 5V.
-* **Cons**: No native Wi-Fi/Bluetooth, limited RAM (2KB), slow 16MHz clock speed.
-* **Best For**: Basic robotics, offline sensors, and mini projects.
+export const blogData: Blog[] = generatedBlogData;
 
-### 2. ESP8266 (NodeMCU): Low-Cost Wi-Fi
-The ESP8266 changed the IoT landscape by bringing onboard Wi-Fi to a microchip costing under $4.
-* **Pros**: Built-in 802.11 b/g/n Wi-Fi, affordable pricing, fully compatible with Arduino IDE.
-* **Cons**: Single analog pin, less GPIO pins compared to Arduino.
-* **Best For**: Simple smart home projects, weather stations, and basic cloud syncing.
-
-### 3. ESP32: The IoT Powerhouse
-For modern projects requiring Bluetooth, higher speeds, and multiple sensors, the ESP32 is our top recommendation.
-* **Pros**: Dual-core processor, Wi-Fi & Bluetooth (BLE), touch pins, rich GPIO, hardware encryption.
-* **Cons**: Higher power consumption than Arduino, operates strictly on 3.3V.
-* **Best For**: Smart agriculture, healthcare monitoring, and audio streaming.
-
-### 4. Raspberry Pi: Single Board Computing
-Unlike microcontrollers that execute a single firmware file, the Raspberry Pi runs a full operating system (Linux).
-* **Pros**: Multi-threading, USB support, heavy computation, OpenCV vision libraries support.
-* **Cons**: High power requirements, storage corruption issues on power failure, boot delay.
-* **Best For**: AI Object detection, deep learning, server hosting, and smart gateways.
-
-### Summary Checklist:
-* Choose **ESP32** if you require Wi-Fi/Bluetooth and analog sensors.
-* Choose **Arduino** if your project requires simple mechanical logic and runs off a small battery.
-* Choose **Raspberry Pi** if you are processing camera feeds or hosting web dashboards locally.`,
-    author: "Engr. Mathan Kumar",
-    date: "June 18, 2026",
-    readTime: "5 min read",
-    tags: ["IoT", "Microcontrollers", "Arduino", "ESP32"]
-  },
-  {
-    id: "edge-ml-embedded-systems",
-    title: "Integrating AI and Edge ML in Embedded Systems",
-    summary: "Discover how Edge AI and TinyML are transforming electronics. Learn to deploy neural networks directly on microcontrollers.",
-    content: `Historically, machine learning models required heavy GPU cloud infrastructure. Today, a paradigm shift called **TinyML** allows running neural network inference on ultra-low-power microcontrollers. Let's see how this transforms modern electronics.
-
-### Why Edge ML?
-1. **Zero Latency**: Decisions are made locally. For example, a driver drowsiness detector must alert the driver instantly without waiting for a round-trip network ping.
-2. **Privacy**: Sensor and video data do not need to be transmitted to third-party servers.
-3. **Power Efficiency**: Transmitting wireless data via GSM or Wi-Fi is incredibly power-intensive. Running calculations locally saves battery.
-
-### How TinyML Works:
-To compress a model from gigabytes to kilobytes:
-1. **Collect Data**: Capture sensor readings (vibrations, acoustics, image pixels).
-2. **Train Model**: Use a high-level language like Python with TensorFlow to train your model on a desktop.
-3. **Quantize & Prune**: Convert float weights (32-bit) to integers (8-bit) using tools like TensorFlow Lite.
-4. **Deploy**: Generate a C++ library array representing the network structure and flash it to your microcontroller.
-
-### Popular Edge ML Platforms:
-* **Edge Impulse**: A low-code platform for building TinyML pipelines.
-* **Arduino Nano 33 BLE Sense**: Features onboard accelerometer, microphone, and gesture sensors perfect for ML prototyping.
-* **Raspberry Pi Coral**: Accelerates tensor networks using specialized TPU chips.`,
-    author: "AI Developer, SkillForge",
-    date: "May 24, 2026",
-    readTime: "7 min read",
-    tags: ["AI", "EdgeML", "TinyML", "RaspberryPi"]
-  }
-];
 
 export const faqData: FAQ[] = [
   {

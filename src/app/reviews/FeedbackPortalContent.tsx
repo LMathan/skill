@@ -13,6 +13,7 @@ import Particles from "@/components/magicui/particles"
 import BorderBeam from "@/components/magicui/border-beam"
 import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, Timestamp } from "firebase/firestore"
 import { db } from "@/lib/firebase"
+import { siteConfig } from "@/data/siteConfig"
 
 const LOCAL_KEY = "skillforge_feedbacks_v1"
 
@@ -270,6 +271,10 @@ export default function FeedbackPortalContent() {
     ? (feedbacks.reduce((sum, item) => sum + item.rating, 0) / feedbacks.length).toFixed(1)
     : "5.0"
 
+  const totalReviewsDisplay = feedbacks.length > DEFAULT_FEEDBACKS.length 
+    ? feedbacks.length 
+    : siteConfig.reviewsBaselineCount
+
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
       {/* Background patterns */}
@@ -359,7 +364,7 @@ export default function FeedbackPortalContent() {
           <motion.div variants={statsItemVariants}>
             <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center text-center">
               <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Total Reviews</h4>
-              <div className="text-4xl font-extrabold text-brand-cyan">{feedbacks.length}</div>
+              <div className="text-4xl font-extrabold text-brand-cyan">{totalReviewsDisplay}</div>
               <p className="text-xs text-slate-500 mt-2 font-medium">Stored and verified on Google Cloud Firestore</p>
             </Card>
           </motion.div>

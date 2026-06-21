@@ -10,7 +10,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import Particles from "@/components/magicui/particles"
 import BorderBeam from "@/components/magicui/border-beam"
 import Spotlight from "@/components/magicui/spotlight"
-import { SEOPageData } from "./page"
+import { SEOPageData } from "@/data/seoLandingData"
 import { projectsData } from "@/data/siteData"
 
 interface LocalLandingClientProps {
@@ -230,6 +230,57 @@ export default function LocalLandingClient({ content, slug }: LocalLandingClient
             </div>
           </div>
         </section>
+
+        {/* Detailed Technical Roadmap & Core Engineering Guidelines (SEO Long-Form Content) */}
+        {content.longContent && (
+          <section className="mb-20 glass-panel p-8 sm:p-12 rounded-3xl border-white/20 dark:border-white/5 bg-slate-900/5 dark:bg-slate-950/20 text-left">
+            <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-950 dark:text-white mb-6">
+              Detailed Technical Roadmap & Core Engineering Guidelines
+            </h2>
+            <div className="prose dark:prose-invert max-w-none text-sm sm:text-base text-slate-600 dark:text-slate-400 space-y-6 leading-relaxed">
+              {content.longContent.split("\n\n").map((paragraph, index) => {
+                if (paragraph.startsWith("###")) {
+                  return (
+                    <h3 key={index} className="text-xl font-bold font-display text-slate-900 dark:text-white mt-8 mb-4">
+                      {paragraph.replace("###", "").trim()}
+                    </h3>
+                  )
+                }
+                if (paragraph.startsWith("####")) {
+                  return (
+                    <h4 key={index} className="text-lg font-bold font-display text-slate-900 dark:text-white mt-6 mb-3">
+                      {paragraph.replace("####", "").trim()}
+                    </h4>
+                  )
+                }
+                if (paragraph.startsWith("*")) {
+                  return (
+                    <ul key={index} className="list-disc pl-5 my-4 space-y-2">
+                      {paragraph.split("\n").map((line, lIdx) => {
+                        const cleanLine = line.replace(/^\*\s*/, "")
+                        const boldMatch = cleanLine.match(/\*\*(.*?)\*\*(.*)/)
+                        if (boldMatch) {
+                          return (
+                            <li key={lIdx}>
+                              <strong>{boldMatch[1]}</strong>
+                              {boldMatch[2]}
+                            </li>
+                          )
+                        }
+                        return <li key={lIdx}>{cleanLine}</li>
+                      })}
+                    </ul>
+                  )
+                }
+                return (
+                  <p key={index}>
+                    {paragraph}
+                  </p>
+                )
+              })}
+            </div>
+          </section>
+        )}
 
         {/* Selected Project Concepts */}
         <section className="mb-20">

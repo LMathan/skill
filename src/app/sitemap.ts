@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next"
+import { blogData } from "@/data/siteData"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://skillforgetechnology.app"
@@ -28,12 +29,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/project-center-karur"
   ]
 
-  const allRoutes = [...baseRoutes, ...seoSlugs]
+  const blogSlugs = blogData.map((blog) => `/blog/${blog.id}`)
+
+  const allRoutes = [...baseRoutes, ...seoSlugs, ...blogSlugs]
 
   return allRoutes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: route === "" ? "daily" : "weekly",
-    priority: route === "" ? 1.0 : seoSlugs.includes(route) ? 0.9 : 0.8,
+    priority: route === "" ? 1.0 : seoSlugs.includes(route) ? 0.9 : route.startsWith("/blog/") ? 0.7 : 0.8,
   }))
 }

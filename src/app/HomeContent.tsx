@@ -27,6 +27,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import { Input } from "@/components/ui/input"
 
 import { projectsData, defaultFeedbacks, servicesData, faqData } from "@/data/siteData"
+import { siteConfig } from "@/data/siteConfig"
 
 export default function HomeContent() {
   const [inquirySubmitted, setInquirySubmitted] = useState(false)
@@ -234,10 +235,10 @@ export default function HomeContent() {
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-8 rounded-3xl glass-panel text-center">
           {[
-            { label: "Projects Completed", value: 54, suffix: "" },
-            { label: "Students Guided", value: 103, suffix: "" },
-            { label: "Technologies Covered", value: 10, suffix: "+" },
-            { label: "Success Rating", value: 99, suffix: "%" }
+            { label: "Projects Completed", value: siteConfig.stats.projectsCompleted, suffix: "" },
+            { label: "Students Guided", value: siteConfig.stats.studentsGuided, suffix: "" },
+            { label: "Technologies Covered", value: siteConfig.stats.technologiesCovered, suffix: "+" },
+            { label: "Success Rating", value: siteConfig.stats.successRating, suffix: "%" }
           ].map((stat, index) => (
             <div key={index} className="space-y-1 border-r last:border-0 border-slate-200 dark:border-slate-800">
               <h3 className="text-3xl sm:text-4xl font-extrabold text-brand-cyan font-display flex justify-center items-center gap-0.5">
@@ -249,6 +250,62 @@ export default function HomeContent() {
               </p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Best Final Year Project Center in Erode - Local SEO Section */}
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="glass-panel p-8 sm:p-12 rounded-3xl border-white/20 dark:border-white/5 bg-gradient-to-br from-white/90 to-white/40 dark:from-slate-900/80 dark:to-slate-950/20">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-8 space-y-6 text-left">
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-950 dark:text-white font-display">
+                Best Final Year Project Center in Erode
+              </h2>
+              <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 leading-relaxed">
+                Welcome to <strong>SkillForge Technology</strong>, the premier <strong>Final Year Project Center in Erode</strong>. Located strategically near major educational hubs in Perundurai and Erode, we specialize in offering industry-aligned, high-quality, and working hardware prototypes for engineering graduates. Our lab is widely recognized as the leading <strong>IEEE Project Center in Erode</strong>, supporting students from ECE, EEE, CSE, IT, and research streams with cutting-edge academic solutions.
+              </p>
+              <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400 leading-relaxed">
+                Whether you are seeking custom <strong>IoT Project Center in Erode</strong> services or expert guidance in <strong>Embedded Systems Project Center in Erode</strong> configurations, we offer hands-on training. We guarantee 100% working hardware outputs, complete source code, detailed circuit diagrams, and comprehensive project report/synopsis documentation. We also cater to advanced research demands as a leading <strong>AI Project Center</strong>, developing solutions in Deep Learning, Computer Vision, and Edge AI.
+              </p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                Our support extends across major educational nodes in Tamil Nadu, including Salem, Coimbatore, Tiruppur, Namakkal, and Karur. We provide customized mentorship for students of top colleges like Kongu Engineering College, Nandha Engineering College, Velalar College of Engineering and Technology, KSR Educational Institutions, and Excel Engineering College.
+              </p>
+            </div>
+            <div className="lg:col-span-4 space-y-4">
+              <div className="p-6 rounded-2xl border border-brand-cyan/20 bg-brand-cyan/5 space-y-3">
+                <h4 className="font-bold text-base text-slate-950 dark:text-white">Why Choose SkillForge?</h4>
+                <ul className="space-y-2 text-xs text-slate-500 dark:text-slate-400 font-semibold">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="text-brand-cyan" size={14} />
+                    <span>100% Working Hardware Guarantee</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="text-brand-cyan" size={14} />
+                    <span>Hands-on Lab Training Sessions</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="text-brand-cyan" size={14} />
+                    <span>IEEE & Non-IEEE Domain Projects</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="text-brand-cyan" size={14} />
+                    <span>Complete Report & Synopsis Support</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="text-brand-cyan" size={14} />
+                    <span>VIVA Voce Prep & PPT Templates</span>
+                  </li>
+                </ul>
+                <div className="pt-2">
+                  <Link href={siteConfig.contact.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                    <Button variant="gradient" className="w-full text-xs font-bold py-2">
+                      Get Free Consultation
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
