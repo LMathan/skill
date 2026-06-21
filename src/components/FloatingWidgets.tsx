@@ -25,7 +25,7 @@ export function FloatingWidgets() {
     { id: "call", icon: Phone, color: "text-blue-500 hover:bg-blue-500/10 hover:text-blue-400", action: () => window.open("tel:+919345518760"), label: "Call Us" },
     { id: "mail", icon: Mail, color: "text-indigo-500 hover:bg-indigo-500/10 hover:text-indigo-400", action: () => window.open("mailto:skillforgetechnology05@gmail.com"), label: "Email Us" },
     { id: "whatsapp", icon: MessageSquare, color: "text-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-400", action: () => window.open(whatsappUrl, "_blank"), label: "WhatsApp Chat" },
-    { id: "inquiry", icon: Send, color: "text-cyan-500 hover:bg-cyan-500/10 hover:text-cyan-400", action: () => window.open("https://docs.google.com/forms/d/e/1FAIpQLSeswcU7Z1ynIuZTMwI543sefH2-biIa35B5WL0DAaJUMD3_vQ/viewform", "_blank"), label: "Inquiry Form" }
+    { id: "inquiry", icon: Send, color: "text-cyan-500 hover:bg-cyan-500/10 hover:text-cyan-400", action: () => window.location.href = "/contact", label: "Inquiry Form" }
   ]
 
   return (

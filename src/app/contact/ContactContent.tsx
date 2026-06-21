@@ -151,7 +151,12 @@ function ContactContentInner() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-6">
             <Sparkles size={12} />
             Connect With Us
@@ -162,18 +167,27 @@ function ContactContentInner() {
           <p className="text-slate-500 dark:text-slate-400 text-base max-w-2xl mx-auto">
             Have questions about custom schematics, thesis reviews, or batch intakes? Fill out our form or visit our laboratory in Erode.
           </p>
-        </div>
+        </motion.div>
 
         {/* Core Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column: Contact Cards & Map */}
-          <div className="lg:col-span-5 space-y-6">
+          <motion.div 
+            initial={{ opacity: 0, x: -35 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="lg:col-span-5 space-y-6"
+          >
             <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-white mb-4">Contact Details</h2>
 
             {/* Quick Cards */}
             <div className="space-y-4">
-              <div className="flex gap-4 p-5 bg-white/80 dark:bg-slate-900/40 border border-slate-200 dark:border-white/5 rounded-2xl backdrop-blur-sm">
+              <motion.div 
+                whileHover={{ y: -3 }}
+                className="flex gap-4 p-5 bg-white/80 dark:bg-slate-900/40 border border-slate-200 dark:border-white/5 rounded-2xl backdrop-blur-sm transition-all duration-300"
+              >
                 <div className="p-3 bg-sky-500/10 border border-sky-500/20 text-sky-400 rounded-xl shrink-0 h-fit">
                   <MapPin size={20} />
                 </div>
@@ -184,32 +198,38 @@ function ContactContentInner() {
                     Tamil Nadu - 638052
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex gap-4 p-5 bg-white/80 dark:bg-slate-900/40 border border-slate-200 dark:border-white/5 rounded-2xl backdrop-blur-sm">
+              <motion.div 
+                whileHover={{ y: -3 }}
+                className="flex gap-4 p-5 bg-white/80 dark:bg-slate-900/40 border border-slate-200 dark:border-white/5 rounded-2xl backdrop-blur-sm transition-all duration-300"
+              >
                 <div className="p-3 bg-purple-500/10 border border-purple-500/20 text-purple-400 rounded-xl shrink-0 h-fit">
                   <Phone size={20} />
                 </div>
                 <div>
                   <h4 className="text-sm font-bold font-display text-slate-900 dark:text-white">Direct Hotline / WhatsApp</h4>
-                  <a href="tel:+919345518760" className="text-slate-655 dark:text-slate-400 text-xs mt-1 hover:text-sky-400 transition-colors block">
+                  <a href="tel:+919345518760" className="text-slate-600 dark:text-slate-400 text-xs mt-1 hover:text-sky-400 transition-colors block">
                     +91 93455 18760
                   </a>
                   <p className="text-[10px] text-slate-500 mt-0.5">Mon - Sat: 9:00 AM - 7:30 PM</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex gap-4 p-5 bg-white/80 dark:bg-slate-900/40 border border-slate-200 dark:border-white/5 rounded-2xl backdrop-blur-sm">
+              <motion.div 
+                whileHover={{ y: -3 }}
+                className="flex gap-4 p-5 bg-white/80 dark:bg-slate-900/40 border border-slate-200 dark:border-white/5 rounded-2xl backdrop-blur-sm transition-all duration-300"
+              >
                 <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl shrink-0 h-fit">
                   <Mail size={20} />
                 </div>
                 <div>
                   <h4 className="text-sm font-bold font-display text-slate-900 dark:text-white">Email Inbox</h4>
-                  <a href="mailto:skillforgetechnology05@gmail.com" className="text-slate-655 dark:text-slate-400 text-xs mt-1 hover:text-sky-400 transition-colors block break-all">
+                  <a href="mailto:skillforgetechnology05@gmail.com" className="text-slate-600 dark:text-slate-400 text-xs mt-1 hover:text-sky-400 transition-colors block break-all">
                     skillforgetechnology05@gmail.com
                   </a>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Embedded Google Map */}
@@ -225,10 +245,16 @@ function ContactContentInner() {
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Tabbed Forms */}
-          <div className="lg:col-span-7">
+          <motion.div 
+            initial={{ opacity: 0, x: 35 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="lg:col-span-7"
+          >
             <Card className="bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md rounded-3xl overflow-hidden relative">
               <div className="absolute inset-0 rounded-3xl pointer-events-none overflow-hidden">
                 <BorderBeam duration={12} size={300} />
@@ -308,13 +334,13 @@ function ContactContentInner() {
                           <select
                             value={inqSubject}
                             onChange={(e) => setInqSubject(e.target.value)}
-                            className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl p-2.5 text-sm focus:outline-none focus:border-sky-500"
+                            className="w-full bg-slate-900 border border-slate-800 text-slate-100 rounded-xl p-2.5 text-sm focus:outline-none focus:border-sky-500 transition-colors"
                           >
-                            <option value="General Project Inquiry">General Project Inquiry</option>
-                            <option value="IEEE Research Paper Support">IEEE Research Paper Support</option>
-                            <option value="Custom Electronic Prototyping">Custom Electronic Prototyping</option>
-                            <option value="Technical Internship Training">Technical Internship Training</option>
-                            <option value="Other Assistance">Other Assistance</option>
+                            <option value="General Project Inquiry" className="bg-slate-950 text-slate-100">General Project Inquiry</option>
+                            <option value="IEEE Research Paper Support" className="bg-slate-950 text-slate-100">IEEE Research Paper Support</option>
+                            <option value="Custom Electronic Prototyping" className="bg-slate-950 text-slate-100">Custom Electronic Prototyping</option>
+                            <option value="Technical Internship Training" className="bg-slate-950 text-slate-100">Technical Internship Training</option>
+                            <option value="Other Assistance" className="bg-slate-950 text-slate-100">Other Assistance</option>
                           </select>
                         </div>
 
@@ -457,7 +483,7 @@ function ContactContentInner() {
                 </Tabs>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
 
         </div>
       </div>

@@ -133,10 +133,25 @@ export default function ProjectsContent() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            variants={{
+              hidden: { opacity: 0, y: -20 },
+              show: { opacity: 1, y: 0 }
+            }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-6"
           >
             <Sparkles size={12} />
@@ -144,23 +159,25 @@ export default function ProjectsContent() {
           </motion.div>
           
           <motion.h1
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            variants={{
+              hidden: { opacity: 0, y: -10 },
+              show: { opacity: 1, y: 0 }
+            }}
             className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-slate-900 dark:text-white mb-6"
           >
             Explore Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500">Innovation Catalog</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+            variants={{
+              hidden: { opacity: 0, y: 10 },
+              show: { opacity: 1, y: 0 }
+            }}
             className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed"
           >
             Discover over 54+ custom engineering projects engineered with full source code, high-quality hardware schematics, and industry-grade testing parameters.
           </motion.p>
-        </div>
+        </motion.div>
 
         {/* Search & Filter Toolbar */}
         <div className="space-y-6 mb-12">
@@ -168,7 +185,7 @@ export default function ProjectsContent() {
           <motion.div 
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
             className="max-w-2xl mx-auto relative"
           >
             <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-slate-400">
@@ -185,21 +202,36 @@ export default function ProjectsContent() {
 
           {/* Categories Grid */}
           <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.05,
+                  delayChildren: 0.35
+                }
+              }
+            }}
             className="flex flex-wrap justify-center gap-3"
           >
             {categories.map((cat) => {
               const Icon = cat.icon
               const isSelected = selectedCategory === cat.id
               return (
-                <button
+                <motion.button
                   key={cat.id}
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.9, y: 10 },
+                    show: { opacity: 1, scale: 1, y: 0 }
+                  }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all text-sm font-medium ${
                     isSelected
-                      ? "bg-gradient-to-r from-sky-500 to-blue-600 border-sky-400 text-white shadow-lg shadow-sky-500/20 scale-[1.02]"
+                      ? "bg-gradient-to-r from-sky-500 to-blue-600 border-sky-400 text-white shadow-lg shadow-sky-500/20"
                       : "bg-white dark:bg-slate-900/40 border-slate-200 dark:border-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-950 hover:bg-slate-100 dark:hover:text-white dark:hover:bg-slate-900/80"
                   }`}
                 >
@@ -210,30 +242,30 @@ export default function ProjectsContent() {
                   }`}>
                     {categoryCounts[cat.id]}
                   </span>
-                </button>
+                </motion.button>
               )
             })}
           </motion.div>
         </div>
 
         {/* Projects Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence mode="wait">
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.title}
-                variants={itemVariants}
-                initial="hidden"
-                animate="show"
-                exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                transition={{ duration: 0.2 }}
-                className="group relative"
-              >
+        <div className="relative min-h-[400px]">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project) => (
+                <motion.div
+                  key={project.title}
+                  layout
+                  variants={itemVariants}
+                  exit={{ opacity: 0, scale: 0.9, y: 15 }}
+                  transition={{ duration: 0.3 }}
+                  className="group relative"
+                >
                 <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md rounded-3xl flex flex-col justify-between overflow-hidden hover:bg-slate-50 dark:hover:bg-slate-900/60 hover:border-slate-300 dark:hover:border-white/10 transition-all duration-300">
                   {/* Decorative Border Beam on Hover */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
@@ -282,6 +314,7 @@ export default function ProjectsContent() {
             ))}
           </AnimatePresence>
         </motion.div>
+      </div>
 
         {/* Empty Search State */}
         {filteredProjects.length === 0 && (

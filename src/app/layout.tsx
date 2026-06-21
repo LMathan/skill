@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/context/ThemeContext"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import FloatingWidgets from "@/components/FloatingWidgets"
+import SplashLoader from "@/components/SplashLoader"
 import "./globals.css"
 
 const inter = Inter({
@@ -84,6 +85,9 @@ export default function RootLayout({
     <html lang="en" className="dark scroll-smooth">
       <body className={`${inter.variable} ${outfit.variable} font-sans min-h-screen flex flex-col`}>
         <ThemeProvider>
+          {/* Custom Splash Loader */}
+          <SplashLoader />
+
           {/* Header */}
           <Navbar />
 

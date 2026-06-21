@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, Variants } from "framer-motion"
 import { 
   Star, Heart, Search, Filter, MessageSquare, Shield, CheckCircle2, 
   Loader2, Award, Sparkles, Send, RefreshCw, Plus, X 
@@ -51,6 +51,37 @@ const DEFAULT_FEEDBACKS: Feedback[] = [
     createdAt: { seconds: 1773800000 }
   }
 ]
+
+const statsContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1
+    }
+  }
+}
+
+const statsItemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+}
+
+const feedbacksContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05
+    }
+  }
+}
+
+const feedbackItemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+}
 
 export default function FeedbackPortalContent() {
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
@@ -251,10 +282,25 @@ export default function FeedbackPortalContent() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
+            variants={{
+              hidden: { opacity: 0, y: -20 },
+              show: { opacity: 1, y: 0 }
+            }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-6"
           >
             <Award size={14} />
@@ -262,9 +308,10 @@ export default function FeedbackPortalContent() {
           </motion.div>
           
           <motion.h1
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            variants={{
+              hidden: { opacity: 0, y: -10 },
+              show: { opacity: 1, y: 0 }
+            }}
             className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-slate-900 dark:text-white mb-6"
           >
             Student & Client <br className="hidden sm:inline" />
@@ -272,51 +319,63 @@ export default function FeedbackPortalContent() {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+            variants={{
+              hidden: { opacity: 0, y: 10 },
+              show: { opacity: 1, y: 0 }
+            }}
             className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed"
           >
             Read authentic reviews logged directly from our prototyping lab projects. If you have partnered with us for final year or research support, submit your feedback to help future developers!
           </motion.p>
-        </div>
+        </motion.div>
 
         {/* Aggregate Stats Card */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-          <Card className="bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center text-center">
-            <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Average Score</h4>
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-extrabold text-slate-900 dark:text-white">{averageRating}</span>
-              <span className="text-slate-500 text-sm">/ 5.0</span>
-            </div>
-            <div className="flex gap-1 mt-2 text-amber-500">
-              {[1, 2, 3, 4, 5].map((s) => (
-                <Star 
-                  key={s} 
-                  size={16} 
-                  fill={s <= Math.round(Number(averageRating)) ? "currentColor" : "none"} 
-                  className={s <= Math.round(Number(averageRating)) ? "" : "text-slate-300 dark:text-slate-700"}
-                />
-              ))}
-            </div>
-          </Card>
+        <motion.div 
+          variants={statsContainerVariants}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12"
+        >
+          <motion.div variants={statsItemVariants}>
+            <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center text-center">
+              <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Average Score</h4>
+              <div className="flex items-baseline gap-2">
+                <span className="text-4xl font-extrabold text-slate-900 dark:text-white">{averageRating}</span>
+                <span className="text-slate-500 text-sm">/ 5.0</span>
+              </div>
+              <div className="flex gap-1 mt-2 text-amber-500">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star 
+                    key={s} 
+                    size={16} 
+                    fill={s <= Math.round(Number(averageRating)) ? "currentColor" : "none"} 
+                    className={s <= Math.round(Number(averageRating)) ? "" : "text-slate-300 dark:text-slate-700"}
+                  />
+                ))}
+              </div>
+            </Card>
+          </motion.div>
 
-          <Card className="bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center text-center">
-            <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Total Reviews</h4>
-            <div className="text-4xl font-extrabold text-brand-cyan">{feedbacks.length}</div>
-            <p className="text-xs text-slate-500 mt-2 font-medium">Stored and verified on Google Cloud Firestore</p>
-          </Card>
+          <motion.div variants={statsItemVariants}>
+            <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center text-center">
+              <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Total Reviews</h4>
+              <div className="text-4xl font-extrabold text-brand-cyan">{feedbacks.length}</div>
+              <p className="text-xs text-slate-500 mt-2 font-medium">Stored and verified on Google Cloud Firestore</p>
+            </Card>
+          </motion.div>
 
-          <Card className="bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center">
-            <Button
-              onClick={() => setShowForm(!showForm)}
-              className="w-full py-6 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-medium flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 transition-all duration-300"
-            >
-              <Heart size={16} className="fill-current" />
-              <span>Leave A Review</span>
-            </Button>
-          </Card>
-        </div>
+          <motion.div variants={statsItemVariants}>
+            <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center">
+              <Button
+                onClick={() => setShowForm(!showForm)}
+                className="w-full py-6 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-medium flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 transition-all duration-300"
+              >
+                <Heart size={16} className="fill-current" />
+                <span>Leave A Review</span>
+              </Button>
+            </Card>
+          </motion.div>
+        </motion.div>
 
         {/* Add Feedback Form Container (Drawer/Collapse Panel) */}
         <AnimatePresence>
@@ -523,21 +582,22 @@ export default function FeedbackPortalContent() {
             </p>
           </div>
         ) : (
-          <motion.div 
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredFeedbacks.map((fb, idx) => (
-                <motion.div
-                  key={fb.id || idx}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                  className="group relative"
-                >
+          <div className="relative min-h-[400px] w-full">
+            <motion.div 
+              variants={feedbacksContainerVariants}
+              initial="hidden"
+              animate="show"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredFeedbacks.map((fb, idx) => (
+                  <motion.div
+                    key={fb.id || idx}
+                    layout
+                    variants={feedbackItemVariants}
+                    exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                    className="group relative"
+                  >
                   <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-sm rounded-2xl p-6 flex flex-col justify-between hover:bg-slate-50 dark:hover:bg-slate-900/60 hover:border-slate-300 dark:hover:border-white/10 transition-all duration-300">
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl overflow-hidden">
                       <BorderBeam duration={12} size={150} />
@@ -587,7 +647,8 @@ export default function FeedbackPortalContent() {
               ))}
             </AnimatePresence>
           </motion.div>
-        )}
+        </div>
+      )}
 
       </div>
     </div>

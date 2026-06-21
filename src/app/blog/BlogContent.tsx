@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useMemo } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, Variants } from "framer-motion"
 import { BookOpen, Search, User, Calendar, Clock, ArrowLeft, ArrowRight, Tag, MessageSquare, ChevronRight } from "lucide-react"
 import { blogData, Blog } from "@/data/siteData"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
@@ -14,6 +14,25 @@ export default function BlogContent() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const [activeBlog, setActiveBlog] = useState<Blog | null>(null)
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08
+      }
+    }
+  }
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut" }
+    }
+  }
 
   // Extract all unique tags
   const allTags = useMemo(() => {
@@ -182,7 +201,12 @@ export default function BlogContent() {
               transition={{ duration: 0.2 }}
             >
               {/* Header */}
-              <div className="text-center max-w-3xl mx-auto mb-16">
+              <motion.div 
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="text-center max-w-3xl mx-auto mb-16"
+              >
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-6">
                   <BookOpen size={12} />
                   Knowledge Hub
@@ -193,7 +217,7 @@ export default function BlogContent() {
                 <p className="text-slate-500 dark:text-slate-400 text-base max-w-2xl mx-auto">
                   Step-by-step comparisons, hardware choosing checklists, and machine learning blueprints crafted by our engineering lab design coordinators.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Toolbar */}
               <div className="space-y-6 mb-12">
@@ -239,11 +263,17 @@ export default function BlogContent() {
               </div>
 
               {/* Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <motion.div 
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
                 {filteredBlogs.map((blog) => (
                   <motion.div
                     key={blog.id}
                     layout
+                    variants={cardVariants}
                     className="group relative"
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.2 }}
@@ -293,7 +323,7 @@ export default function BlogContent() {
                     </Card>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               {filteredBlogs.length === 0 && (
                 <div className="text-center py-20 bg-slate-100/50 dark:bg-slate-900/20 border border-slate-200 dark:border-white/5 rounded-3xl max-w-md mx-auto">

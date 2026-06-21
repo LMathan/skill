@@ -4,6 +4,7 @@ import React, { useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import { Cpu, Layers, Brain, FileText, Smartphone, GraduationCap, Check } from "lucide-react"
 import { servicesData } from "@/data/siteData"
+import { motion } from "framer-motion"
 
 export default function ServicesContent() {
   useEffect(() => {
@@ -30,10 +31,15 @@ export default function ServicesContent() {
   return (
     <div className="space-y-16">
       {servicesData.map((service) => (
-        <div 
+        <motion.div 
           key={service.id} 
           id={service.id}
-          className="scroll-mt-24 p-8 sm:p-12 rounded-3xl glass-panel relative overflow-hidden transition-all hover:border-brand-cyan/20"
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          whileHover={{ y: -4, transition: { duration: 0.2 } }}
+          className="scroll-mt-24 p-8 sm:p-12 rounded-3xl glass-panel relative overflow-hidden transition-all hover:border-brand-cyan/20 duration-300"
         >
           {/* Backglow overlay */}
           <div className="absolute -right-24 -top-24 w-72 h-72 bg-gradient-to-br from-brand-cyan/10 to-brand-blue/10 rounded-full blur-3xl pointer-events-none" />
@@ -74,7 +80,7 @@ export default function ServicesContent() {
             </div>
 
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   )
