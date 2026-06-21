@@ -58,7 +58,7 @@ export default function Page() {
       "@type": "LocalBusiness",
       "@id": "https://skillforgetechnology.app/#localbusiness",
       "name": "SkillForge Technology",
-      "image": "https://skillforgetechnology.app/og-image.jpg",
+      "image": "https://skillforgetechnology.app/og-image.png",
       "telephone": "+919345518760",
       "email": "skillforgetechnology05@gmail.com",
       "priceRange": "$$",
