@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import Particles from "@/components/magicui/particles"
-import GridPattern from "@/components/magicui/grid-pattern"
 import BorderBeam from "@/components/magicui/border-beam"
 
 const categories = [
@@ -62,29 +61,49 @@ export default function ProjectsContent() {
     return counts
   }, [])
 
-  const handleInquirySubmit = (e: React.FormEvent) => {
+  const handleInquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!name || !email || !phone) {
+    if (!name.trim() || !email.trim() || !phone.trim()) {
       setFormStatus("error")
       return
     }
 
     setFormStatus("submitting")
 
-    // Simulate API submission
-    setTimeout(() => {
-      setFormStatus("success")
-      setTimeout(() => {
-        // Reset form
-        setName("")
-        setEmail("")
-        setPhone("")
-        setCollege("")
-        setMessage("")
-        setFormStatus("idle")
-        setInquiryProject(null)
-      }, 2000)
-    }, 1500)
+    try {
+      const res = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          theme: `Project Inquiry: ${inquiryProject?.title || "General"}`,
+          message: `${message.trim()}${college.trim() ? `\n\n(College: ${college.trim()})` : ""}`,
+        }),
+      })
+
+      if (res.ok) {
+        setFormStatus("success")
+        setTimeout(() => {
+          // Reset form
+          setName("")
+          setEmail("")
+          setPhone("")
+          setCollege("")
+          setMessage("")
+          setFormStatus("idle")
+          setInquiryProject(null)
+        }, 2000)
+      } else {
+        setFormStatus("error")
+      }
+    } catch (err) {
+      console.error("Error submitting project inquiry:", err)
+      setFormStatus("error")
+    }
   }
 
   // Animation constants
@@ -104,10 +123,9 @@ export default function ProjectsContent() {
   }
 
   return (
-    <div className="relative min-h-screen bg-slate-950 text-slate-100 overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-background text-foreground overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
       {/* Background patterns */}
       <Particles className="absolute inset-0 z-0 opacity-40 pointer-events-none" quantity={60} staticity={50} />
-      <GridPattern className="absolute inset-0 z-0 opacity-30 pointer-events-none" width={40} height={40} />
 
       {/* Glow shapes */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[120px] pointer-events-none" />
@@ -129,7 +147,7 @@ export default function ProjectsContent() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-white mb-6"
+            className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-slate-900 dark:text-white mb-6"
           >
             Explore Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500">Innovation Catalog</span>
           </motion.h1>
@@ -138,9 +156,9 @@ export default function ProjectsContent() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-slate-400 text-lg leading-relaxed"
+            className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed"
           >
-            Discover over 35+ custom engineering projects engineered with full source code, high-quality hardware schematics, and industry-grade testing parameters.
+            Discover over 54+ custom engineering projects engineered with full source code, high-quality hardware schematics, and industry-grade testing parameters.
           </motion.p>
         </div>
 
@@ -161,7 +179,7 @@ export default function ProjectsContent() {
               placeholder="Search by title, technology, or keywords..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-12 pr-4 py-6 bg-slate-900/60 backdrop-blur border-white/10 rounded-2xl w-full text-slate-200 placeholder:text-slate-500 focus-visible:ring-sky-500/50"
+              className="pl-12 pr-4 py-6 bg-white/80 dark:bg-slate-900/60 backdrop-blur border-slate-200 dark:border-white/10 rounded-2xl w-full text-slate-900 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus-visible:ring-sky-500/50"
             />
           </motion.div>
 
@@ -182,13 +200,13 @@ export default function ProjectsContent() {
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all text-sm font-medium ${
                     isSelected
                       ? "bg-gradient-to-r from-sky-500 to-blue-600 border-sky-400 text-white shadow-lg shadow-sky-500/20 scale-[1.02]"
-                      : "bg-slate-900/40 border-white/5 text-slate-400 hover:text-white hover:bg-slate-900/80"
+                      : "bg-white dark:bg-slate-900/40 border-slate-200 dark:border-white/5 text-slate-600 dark:text-slate-400 hover:text-slate-950 hover:bg-slate-100 dark:hover:text-white dark:hover:bg-slate-900/80"
                   }`}
                 >
                   <Icon size={15} />
                   <span>{cat.label}</span>
                   <span className={`text-xs ml-1 px-1.5 py-0.5 rounded-full ${
-                    isSelected ? "bg-white/20 text-white" : "bg-slate-800 text-slate-400"
+                    isSelected ? "bg-white/20 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
                   }`}>
                     {categoryCounts[cat.id]}
                   </span>
@@ -216,7 +234,7 @@ export default function ProjectsContent() {
                 transition={{ duration: 0.2 }}
                 className="group relative"
               >
-                <Card className="h-full bg-slate-900/40 border-white/5 backdrop-blur-md rounded-3xl flex flex-col justify-between overflow-hidden hover:bg-slate-900/60 hover:border-white/10 transition-all duration-300">
+                <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md rounded-3xl flex flex-col justify-between overflow-hidden hover:bg-slate-50 dark:hover:bg-slate-900/60 hover:border-slate-300 dark:hover:border-white/10 transition-all duration-300">
                   {/* Decorative Border Beam on Hover */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                     <BorderBeam duration={8} size={250} />
@@ -224,14 +242,14 @@ export default function ProjectsContent() {
 
                   <CardHeader className="p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-[10px] font-semibold tracking-wider text-sky-400 px-2 py-0.5 bg-sky-500/10 border border-sky-500/20 rounded-md">
+                      <span className="text-[10px] font-semibold tracking-wider text-sky-600 dark:text-sky-400 px-2 py-0.5 bg-sky-500/5 dark:bg-sky-500/10 border border-sky-500/20 rounded-md">
                         {project.category}
                       </span>
                     </div>
-                    <CardTitle className="text-xl font-bold font-display text-white group-hover:text-sky-400 transition-colors duration-300">
+                    <CardTitle className="text-xl font-bold font-display text-slate-900 dark:text-white group-hover:text-sky-500 transition-colors duration-300">
                       {project.title}
                     </CardTitle>
-                    <CardDescription className="text-slate-400 mt-2 text-sm leading-relaxed">
+                    <CardDescription className="text-slate-600 dark:text-slate-400 mt-2 text-sm leading-relaxed">
                       {project.description}
                     </CardDescription>
                   </CardHeader>
@@ -241,7 +259,7 @@ export default function ProjectsContent() {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="text-xs bg-slate-800/80 border border-slate-700/50 text-slate-300 px-2 py-0.5 rounded-md"
+                          className="text-xs bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded-md"
                         >
                           {tech}
                         </span>
@@ -249,11 +267,11 @@ export default function ProjectsContent() {
                     </div>
                   </CardContent>
 
-                  <CardFooter className="p-6 pt-0 border-t border-white/5 mt-auto flex items-center justify-between">
+                  <CardFooter className="p-6 pt-0 border-t border-slate-200 dark:border-white/5 mt-auto flex items-center justify-between">
                     <span className="text-xs text-slate-500 font-medium">Ready Implementation</span>
                     <Button
                       onClick={() => setInquiryProject(project)}
-                      className="rounded-xl bg-slate-800 hover:bg-sky-500 text-white text-xs py-2 px-3 flex items-center gap-1.5 group-hover:translate-x-0.5 transition-all"
+                      className="rounded-xl bg-slate-100 hover:bg-sky-500 hover:text-white dark:bg-slate-800 dark:hover:bg-sky-500 text-slate-700 dark:text-white text-xs py-2 px-3 flex items-center gap-1.5 group-hover:translate-x-0.5 transition-all"
                     >
                       <span>Inquire Now</span>
                       <ArrowRight size={12} className="opacity-75" />
@@ -270,11 +288,11 @@ export default function ProjectsContent() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-20 bg-slate-900/20 border border-white/5 rounded-3xl backdrop-blur-sm max-w-xl mx-auto"
+            className="text-center py-20 bg-slate-100/50 dark:bg-slate-900/20 border border-slate-200 dark:border-white/5 rounded-3xl backdrop-blur-sm max-w-xl mx-auto"
           >
             <AlertCircle className="mx-auto text-slate-500 mb-4" size={48} />
-            <h3 className="text-lg font-bold font-display text-white mb-2">No Projects Found</h3>
-            <p className="text-slate-400 text-sm">
+            <h3 className="text-lg font-bold font-display text-slate-900 dark:text-white mb-2">No Projects Found</h3>
+            <p className="text-slate-500 dark:text-slate-400 text-sm">
               We couldn&apos;t find any project matching &quot;{searchQuery}&quot;. Please try a different query or switch categories.
             </p>
           </motion.div>
@@ -283,84 +301,84 @@ export default function ProjectsContent() {
 
       {/* Inquiry Dialog Modal */}
       <Dialog open={inquiryProject !== null} onOpenChange={(open) => !open && setInquiryProject(null)}>
-        <DialogContent className="max-w-md bg-slate-950 border border-white/10 rounded-3xl p-6 shadow-2xl relative">
+        <DialogContent className="max-w-md bg-white dark:bg-slate-950 border border-slate-200 dark:border-white/10 rounded-3xl p-6 shadow-2xl relative text-slate-900 dark:text-slate-100">
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold font-display text-white flex items-center gap-2">
-              <Cpu className="text-sky-400" size={20} />
+            <DialogTitle className="text-xl font-bold font-display text-slate-900 dark:text-white flex items-center gap-2">
+              <Cpu className="text-sky-500 dark:text-sky-400" size={20} />
               Inquire Project
             </DialogTitle>
-            <DialogDescription className="text-slate-400 text-sm">
+            <DialogDescription className="text-slate-600 dark:text-slate-400 text-sm">
               Get details, pricing, and documentation structure for: <br />
-              <strong className="text-sky-300 font-medium mt-1 inline-block">{inquiryProject?.title}</strong>
+              <strong className="text-sky-600 dark:text-sky-300 font-bold mt-1 inline-block">{inquiryProject?.title}</strong>
             </DialogDescription>
           </DialogHeader>
 
           {formStatus === "success" ? (
             <div className="flex flex-col items-center justify-center py-8 text-center">
               <CheckCircle2 className="text-emerald-500 w-16 h-16 animate-bounce mb-4" />
-              <h3 className="text-lg font-bold font-display text-white mb-2">Inquiry Submitted!</h3>
-              <p className="text-slate-400 text-sm max-w-xs">
+              <h3 className="text-lg font-bold font-display text-slate-900 dark:text-white mb-2">Inquiry Submitted!</h3>
+              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-xs">
                 Thank you! Our engineering team will contact you shortly with full documentation details and demo videos.
               </p>
             </div>
           ) : (
             <form onSubmit={handleInquirySubmit} className="space-y-4 mt-2">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Full Name *</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1">Full Name *</label>
                 <Input
                   required
                   type="text"
                   placeholder="Enter your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="bg-slate-900 border-white/10 text-slate-100 rounded-xl focus:border-sky-500"
+                  className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl focus:border-sky-500"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Email Address *</label>
+                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 tracking-wider mb-1">Email Address *</label>
                   <Input
                     required
                     type="email"
                     placeholder="email@college.edu"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="bg-slate-900 border-white/10 text-slate-100 rounded-xl focus:border-sky-500"
+                    className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl focus:border-sky-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Phone Number *</label>
+                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 tracking-wider mb-1">Phone Number *</label>
                   <Input
                     required
                     type="tel"
                     placeholder="Mobile / Whatsapp"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="bg-slate-900 border-white/10 text-slate-100 rounded-xl focus:border-sky-500"
+                    className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl focus:border-sky-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">College / Organization Name</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 tracking-wider mb-1">College / Organization Name</label>
                 <Input
                   type="text"
                   placeholder="Enter college name"
                   value={college}
                   onChange={(e) => setCollege(e.target.value)}
-                  className="bg-slate-900 border-white/10 text-slate-100 rounded-xl focus:border-sky-500"
+                  className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl focus:border-sky-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">Custom Requirements / Notes</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 tracking-wider mb-1">Custom Requirements / Notes</label>
                 <textarea
                   rows={3}
                   placeholder="Mention if you need custom integrations, specific microcontroller components, or direct review dates..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full bg-slate-900 border border-white/10 text-slate-100 rounded-xl p-3 text-sm focus:outline-none focus:border-sky-500 transition-colors"
+                  className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl p-3 text-sm focus:outline-none focus:border-sky-500 transition-colors"
                 />
               </div>
 

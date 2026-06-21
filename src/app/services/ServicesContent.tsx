@@ -57,7 +57,7 @@ export default function ServicesContent() {
             </div>
 
             {/* Right Feature list */}
-            <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-slate-100/50 dark:bg-slate-950/40 border border-slate-250/20 dark:border-slate-850/50 space-y-4 text-left">
+            <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-slate-100/50 dark:bg-slate-950/40 border border-slate-200/20 dark:border-slate-800/50 space-y-4 text-left">
               <h3 className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">
                 Core Modules & Parameters
               </h3>

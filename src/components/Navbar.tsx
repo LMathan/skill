@@ -3,14 +3,12 @@
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, Sun, Moon, Rocket, Send } from "lucide-react"
-import { useTheme } from "@/context/ThemeContext"
+import { Menu, Rocket, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { motion } from "framer-motion"
 
 export function Navbar() {
-  const { theme, toggleTheme } = useTheme()
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
@@ -27,7 +25,7 @@ export function Navbar() {
     { name: "Home", path: "/" },
     { name: "Projects", path: "/projects" },
     { name: "Services", path: "/services" },
-    { name: "Internship", path: "/internship" },
+    { name: "Reviews", path: "/reviews" },
     { name: "Blog", path: "/blog" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
@@ -44,7 +42,7 @@ export function Navbar() {
           {/* Brand Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="SkillForge Technology" className="h-10 w-auto" />
+              <img src="/logo.png" alt="SkillForge Technology" className="h-12 md:h-14 w-auto" />
             </Link>
           </div>
 
@@ -76,15 +74,6 @@ export function Navbar() {
 
             {/* Actions */}
             <div className="flex items-center gap-4 border-l border-slate-200 dark:border-slate-800 pl-6">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleTheme}
-                className="rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-                aria-label="Toggle Theme"
-              >
-                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-              </Button>
               <Link href="/contact">
                 <Button variant="gradient" className="font-semibold text-xs">
                   Discuss Project
@@ -95,15 +84,6 @@ export function Navbar() {
 
           {/* Mobile controllers */}
           <div className="md:hidden flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-xl text-slate-550 dark:text-slate-400"
-            >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-            </Button>
-
             {/* Mobile Sheet drawer */}
             <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
               <SheetTrigger asChild>

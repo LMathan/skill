@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { 
@@ -12,7 +12,6 @@ import {
 
 // Magic UI
 import Spotlight from "@/components/magicui/spotlight"
-import GridPattern from "@/components/magicui/grid-pattern"
 import Particles from "@/components/magicui/particles"
 import BorderBeam from "@/components/magicui/border-beam"
 import Meteors from "@/components/magicui/meteors"
@@ -32,6 +31,36 @@ import { projectsData, defaultFeedbacks, servicesData, faqData } from "@/data/si
 
 export default function Home() {
   const [inquirySubmitted, setInquirySubmitted] = useState(false)
+  const [feedbacks, setFeedbacks] = useState<any[]>(defaultFeedbacks)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  useEffect(() => {
+    const fetchLiveFeedbacks = async () => {
+      try {
+        const { collection, getDocs, query, orderBy } = await import("firebase/firestore")
+        const { db } = await import("@/lib/firebase")
+        const ref = collection(db, "feedbacks")
+        const q = query(ref, orderBy("createdAt", "desc"))
+        const snapshot = await getDocs(q)
+        const list = snapshot.docs.map(doc => {
+          const data = doc.data()
+          return {
+            customerName: data.customerName || "Anonymous",
+            projectName: data.projectName || "Generic Project",
+            message: data.message || "",
+            rating: Number(data.rating) || 5
+          }
+        })
+        if (list.length > 0) {
+          setFeedbacks(list)
+        }
+      } catch (error) {
+        console.warn("Error fetching live feedbacks for home page marquee", error)
+      }
+    }
+    fetchLiveFeedbacks()
+  }, [])
+
   const [inquiryData, setInquiryData] = useState({
     name: "",
     email: "",
@@ -52,14 +81,41 @@ export default function Home() {
     setInquiryData(prev => ({ ...prev, [name]: value }))
   }
 
-  const submitInquiry = (e: React.FormEvent) => {
+  const submitInquiry = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!inquiryData.name || !inquiryData.email || !inquiryData.phone) {
+    if (!inquiryData.name.trim() || !inquiryData.email.trim() || !inquiryData.phone.trim() || !inquiryData.message.trim()) {
       alert("Please fill in all required fields.")
       return
     }
-    setInquirySubmitted(true)
-    setInquiryData({ name: "", email: "", phone: "", interest: "IoT Projects", message: "" })
+    
+    setIsSubmitting(true)
+    try {
+      const res = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: inquiryData.name.trim(),
+          email: inquiryData.email.trim(),
+          phone: inquiryData.phone.trim(),
+          theme: inquiryData.interest,
+          message: inquiryData.message.trim(),
+        }),
+      })
+
+      if (res.ok) {
+        setInquirySubmitted(true)
+        setInquiryData({ name: "", email: "", phone: "", interest: "IoT Projects", message: "" })
+      } else {
+        alert("Failed to submit inquiry. Please try again.")
+      }
+    } catch (err) {
+      console.error(err)
+      alert("Failed to submit inquiry. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   // Schema Markup (Organization & LocalBusiness JSON-LD)
@@ -112,9 +168,6 @@ export default function Home() {
 
       <div className="relative overflow-hidden pt-20">
         
-        {/* Animated grid overlay */}
-        <GridPattern maxOpacity={0.2} numSquares={40} />
-
         {/* Hero Section */}
         <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 md:py-32">
           {/* Spotlight element */}
@@ -171,7 +224,7 @@ export default function Home() {
                   </Button>
                 </Link>
                 <Link href="/projects">
-                  <Button variant="outline" size="lg" className="rounded-2xl border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-350 bg-slate-900/10 hover:bg-slate-100 dark:hover:bg-slate-900/80 flex items-center gap-2">
+                  <Button variant="outline" size="lg" className="rounded-2xl border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 bg-slate-900/10 hover:bg-slate-100 dark:hover:bg-slate-900/80 flex items-center gap-2">
                     <span>Explore Gallery</span>
                     <ArrowUpRight size={16} />
                   </Button>
@@ -202,7 +255,7 @@ export default function Home() {
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-sm">
                       <CheckCircle className="text-brand-cyan shrink-0 mt-0.5" size={16} />
-                      <span className="text-slate-655 dark:text-slate-300 font-medium">{item}</span>
+                      <span className="text-slate-600 dark:text-slate-300 font-medium">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -217,9 +270,9 @@ export default function Home() {
         <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 p-8 rounded-3xl glass-panel text-center">
             {[
-              { label: "Projects Completed", value: 350, suffix: "+" },
-              { label: "Students Guided", value: 1200, suffix: "+" },
-              { label: "Technologies Covered", value: 15, suffix: "+" },
+              { label: "Projects Completed", value: 54, suffix: "" },
+              { label: "Students Guided", value: 103, suffix: "" },
+              { label: "Technologies Covered", value: 10, suffix: "+" },
               { label: "Success Rating", value: 99, suffix: "%" }
             ].map((stat, index) => (
               <div key={index} className="space-y-1 border-r last:border-0 border-slate-200 dark:border-slate-800">
@@ -227,7 +280,7 @@ export default function Home() {
                   <NumberTicker value={stat.value} />
                   <span>{stat.suffix}</span>
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-450 font-semibold uppercase tracking-wider">
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                   {stat.label}
                 </p>
               </div>
@@ -285,9 +338,9 @@ export default function Home() {
         </section>
 
         {/* Continuous Tech logo marquee */}
-        <section className="relative z-10 py-16 bg-slate-100/30 dark:bg-slate-950/20 border-y border-slate-200/60 dark:border-slate-850/60">
+        <section className="relative z-10 py-16 bg-slate-100/30 dark:bg-slate-950/20 border-y border-slate-200/60 dark:border-slate-800/60">
           <div className="max-w-7xl mx-auto px-4 mb-8 text-center">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400">Supported Technology Stacks</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Supported Technology Stacks</h3>
           </div>
           <Marquee pauseOnHover className="[--duration:24s]">
             {[
@@ -295,7 +348,7 @@ export default function Home() {
               "OpenCV Vision", "YOLO Object Models", "Python Programming", "TensorFlow Lite",
               "Flutter Mobile Apps", "React Web Panels", "Blynk IoT Dash", "Firebase Realtime"
             ].map((tech) => (
-              <div key={tech} className="px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 font-semibold text-xs text-slate-655 dark:text-slate-350 shadow-sm shrink-0">
+              <div key={tech} className="px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 font-semibold text-xs text-slate-600 dark:text-slate-300 shadow-sm shrink-0">
                 {tech}
               </div>
             ))}
@@ -386,11 +439,11 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
                 <div>
                   <h4 className="text-2xl font-bold text-brand-cyan">SIH 2023</h4>
-                  <p className="text-xs text-slate-400 font-semibold uppercase mt-0.5">National Rank 1 Award</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase mt-0.5">National Rank 1 Award</p>
                 </div>
                 <div>
                   <h4 className="text-2xl font-bold text-brand-cyan">100%</h4>
-                  <p className="text-xs text-slate-400 font-semibold uppercase mt-0.5">Working Hardware Guarantee</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase mt-0.5">Working Hardware Guarantee</p>
                 </div>
               </div>
             </div>
@@ -399,7 +452,7 @@ export default function Home() {
         </section>
 
         {/* Testimonials Auto-marquee */}
-        <section className="relative z-10 py-20 bg-slate-50/50 dark:bg-transparent border-t border-slate-200 dark:border-slate-850">
+        <section className="relative z-10 py-20 bg-slate-50/50 dark:bg-transparent border-t border-slate-200 dark:border-slate-800">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <h2 className="text-3xl font-bold font-display text-slate-950 dark:text-white">Student Reviews</h2>
             <p className="text-lg text-slate-500 dark:text-slate-400">
@@ -408,7 +461,7 @@ export default function Home() {
           </div>
 
           <Marquee pauseOnHover className="[--duration:36s]">
-            {defaultFeedbacks.map((f, idx) => (
+            {feedbacks.map((f, idx) => (
               <div key={idx} className="glass-panel p-6 rounded-2xl w-80 flex flex-col justify-between shrink-0 hover:border-brand-cyan/20 transition-colors">
                 <div className="space-y-4">
                   <div className="flex text-amber-500 gap-0.5">
@@ -420,7 +473,7 @@ export default function Home() {
                     "{f.message}"
                   </p>
                 </div>
-                <div className="pt-4 border-t border-slate-100 dark:border-slate-850 mt-4 text-left">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800 mt-4 text-left">
                   <h4 className="font-bold text-sm text-slate-900 dark:text-white">{f.customerName}</h4>
                   <p className="text-xs text-brand-cyan font-semibold">{f.projectName}</p>
                 </div>
@@ -489,7 +542,7 @@ export default function Home() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="p-8 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 text-center space-y-4"
                   >
-                    <CheckCircle className="text-emerald-555 mx-auto" size={48} />
+                    <CheckCircle className="text-emerald-500 mx-auto" size={48} />
                     <h3 className="text-2xl font-bold text-emerald-500">Form Inquiry Logged!</h3>
                     <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                       Thank you for submitting your project parameters. A design engineer from our Perundurai lab will contact you shortly.
@@ -502,7 +555,7 @@ export default function Home() {
                   <form onSubmit={submitInquiry} className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5 text-left">
-                        <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Full Name *</label>
+                        <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400">Full Name *</label>
                         <Input
                           type="text"
                           name="name"
@@ -514,7 +567,7 @@ export default function Home() {
                         />
                       </div>
                       <div className="space-y-1.5 text-left">
-                        <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Email Address *</label>
+                        <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400">Email Address *</label>
                         <Input
                           type="email"
                           name="email"
@@ -529,7 +582,7 @@ export default function Home() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5 text-left">
-                        <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Phone Number *</label>
+                        <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400">Phone Number *</label>
                         <Input
                           type="tel"
                           name="phone"
@@ -541,7 +594,7 @@ export default function Home() {
                         />
                       </div>
                       <div className="space-y-1.5 text-left">
-                        <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Course Domain</label>
+                        <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400">Course Domain</label>
                         <select
                           name="interest"
                           value={inquiryData.interest}
@@ -558,19 +611,19 @@ export default function Home() {
                     </div>
 
                     <div className="space-y-1.5 text-left">
-                      <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Project specifications / Message</label>
+                      <label className="text-[10px] font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400">Project specifications / Message</label>
                       <textarea
                         name="message"
                         value={inquiryData.message}
                         onChange={handleInquiryChange}
                         rows={4}
-                        className="flex w-full rounded-xl border border-input border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 px-4 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan text-slate-700 dark:text-slate-350"
+                        className="flex w-full rounded-xl border border-input border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 px-4 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan text-slate-700 dark:text-slate-300"
                         placeholder="Detail sensors, target microcontrollers (e.g. Arduino, ESP32) or software requirements..."
                       />
                     </div>
 
-                    <Button type="submit" variant="gradient" size="lg" className="w-full font-bold">
-                      Submit Project Parameters
+                    <Button type="submit" variant="gradient" size="lg" className="w-full font-bold" disabled={isSubmitting}>
+                      {isSubmitting ? "Submitting..." : "Submit Project Parameters"}
                     </Button>
                   </form>
                 )}

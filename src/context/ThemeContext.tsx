@@ -10,26 +10,16 @@ interface ThemeContextProps {
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined)
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<string>("dark")
+  const [theme] = useState<string>("dark")
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme")
-    const initialTheme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
-    setTheme(initialTheme)
-
     const root = window.document.documentElement
-    root.classList.remove("light", "dark")
-    root.classList.add(initialTheme)
+    root.classList.remove("light")
+    root.classList.add("dark")
   }, [])
 
   const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : "dark"
-    setTheme(nextTheme)
-    localStorage.setItem("theme", nextTheme)
-
-    const root = window.document.documentElement
-    root.classList.remove("light", "dark")
-    root.classList.add(nextTheme)
+    // Light mode has been disabled; this is now a no-op
   }
 
   return (

@@ -4,7 +4,7 @@ import { projectsData } from "@/data/siteData"
 
 export const metadata: Metadata = {
   title: "Engineering Projects & Embedded Systems",
-  description: "Explore our collection of 35+ projects across IoT & Embedded Systems, AI & Machine Learning, Robotics, and Software Stacks. Filter and find your next project idea with source code, report documents, and viva support.",
+  description: "Explore our collection of 54+ projects across IoT & Embedded Systems, AI & Machine Learning, Robotics, and Software Stacks. Filter and find your next project idea with source code, report documents, and viva support.",
   keywords: [
     "IoT Projects Database",
     "Embedded Systems Projects",
@@ -24,7 +24,7 @@ export default function ProjectsPage() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "SkillForge Engineering Projects Database",
-    "description": "Comprehensive catalog of 35+ verified IoT, Robotics, AI, and Embedded Systems engineering projects.",
+    "description": "Comprehensive catalog of 54+ verified IoT, Robotics, AI, and Embedded Systems engineering projects.",
     "itemListElement": projectsData.map((project, idx) => ({
       "@type": "ListItem",
       "position": idx + 1,

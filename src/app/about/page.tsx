@@ -28,9 +28,6 @@ export default function AboutPage() {
 
   return (
     <div className="relative overflow-hidden pt-20">
-      
-      {/* Decorative Grid */}
-      <div className="absolute inset-0 z-0 opacity-40 dark:opacity-60 bg-grid-pattern pointer-events-none" />
 
       {/* Hero Header */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">

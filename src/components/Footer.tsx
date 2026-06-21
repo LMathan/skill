@@ -73,13 +73,13 @@ export function Footer() {
                 { name: "Home", path: "/" },
                 { name: "Projects Portfolio", path: "/projects" },
                 { name: "Our Services", path: "/services" },
-                { name: "Internship Training", path: "/internship" },
+                { name: "Reviews & Feedback", path: "/reviews" },
                 { name: "Resource Blog", path: "/blog" },
                 { name: "About Us", path: "/about" },
                 { name: "Contact Us", path: "/contact" }
               ].map((link) => (
                 <li key={link.name}>
-                  <Link href={link.path} className="text-sm text-slate-500 dark:text-slate-450 hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors">
+                  <Link href={link.path} className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -103,7 +103,7 @@ export function Footer() {
                 "Technical Workshops & Internships"
               ].map((service) => (
                 <li key={service}>
-                  <Link href="/services" className="text-sm text-slate-500 dark:text-slate-450 hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors">
+                  <Link href="/services" className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors">
                     {service}
                   </Link>
                 </li>
@@ -119,19 +119,19 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-brand-cyan shrink-0 mt-0.5" />
-                <span className="text-sm text-slate-550 dark:text-slate-450 leading-relaxed">
+                <span className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   Perundurai Road, Erode,<br />Tamil Nadu - 638052
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-brand-cyan shrink-0" />
-                <a href="tel:+919345518760" className="text-sm text-slate-500 dark:text-slate-450 hover:text-brand-cyan transition-colors">
+                <a href="tel:+919345518760" className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-cyan transition-colors">
                   +91 93455 18760
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-brand-cyan shrink-0" />
-                <a href="mailto:skillforgetechnology05@gmail.com" className="text-sm text-slate-500 dark:text-slate-450 hover:text-brand-cyan transition-colors break-all">
+                <a href="mailto:skillforgetechnology05@gmail.com" className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-cyan transition-colors break-all">
                   skillforgetechnology05@gmail.com
                 </a>
               </li>

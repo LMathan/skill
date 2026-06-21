@@ -89,9 +89,6 @@ export default function ServicesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      
-      {/* Grid overlay */}
-      <div className="absolute inset-0 z-0 opacity-40 dark:opacity-60 bg-grid-pattern pointer-events-none" />
 
       {/* Hero */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
@@ -99,7 +96,7 @@ export default function ServicesPage() {
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-display">
             Our <span className="text-gradient">Engineering Services</span>
           </h1>
-          <p className="text-lg sm:text-xl text-slate-500 dark:text-slate-450 leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-500 dark:text-slate-400 leading-relaxed">
             We specialize in custom electronic designs, hardware integrations, and edge analytics to build reliable prototypes.
           </p>
         </div>
