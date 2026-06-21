@@ -1,24 +1,36 @@
-# SkillForge Technology Website
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Project Structure
+## Getting Started
 
-- `index.html` — homepage entry page
-- `pages/` — all secondary site pages
-- `pages/projects.html` — project listing page
-- `pages/feedback.html` — testimonials page
-- `pages/submit-feedback.html` — feedback form page
-- `pages/about.html` — about page
-- `pages/contact.html` — contact page
-- `assets/css/style.css` — shared site styles
-- `assets/js/data.js` — static content and shared configuration (projects, default feedback, Firebase config)
-- `assets/js/script.js` — UI behavior and page logic (rendering, animations, forms, Firebase/localStorage flow)
-- `assets/images/` — shared image assets
-- `assets/images/projects/` — project-specific generated/slug-based image assets
+First, run the development server:
 
-## Maintenance Guidelines
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-1. Keep all static datasets inside `assets/js/data.js`.
-2. Keep reusable behavior and DOM logic inside `assets/js/script.js`.
-3. Add new page-level styles in `assets/css/style.css` using existing design tokens.
-4. Place new project images in `assets/images/projects/` and name them with the same slug format used in `script.js`.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
