@@ -4,7 +4,7 @@ import React, { useState, useMemo } from "react"
 import { motion, Variants } from "framer-motion"
 import { BookOpen, Search, Clock, ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { blogData } from "@/data/siteData"
+import { blogSummaryData } from "@/data/siteData"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -36,7 +36,7 @@ export default function BlogContent() {
   // Extract all unique tags
   const allTags = useMemo(() => {
     const tags = new Set<string>()
-    blogData.forEach(blog => {
+    blogSummaryData.forEach(blog => {
       blog.tags.forEach(t => tags.add(t))
     })
     return Array.from(tags)
@@ -44,11 +44,10 @@ export default function BlogContent() {
 
   // Filtered blogs
   const filteredBlogs = useMemo(() => {
-    return blogData.filter(blog => {
+    return blogSummaryData.filter(blog => {
       const matchesSearch = 
         blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.content.toLowerCase().includes(searchQuery.toLowerCase())
+        blog.summary.toLowerCase().includes(searchQuery.toLowerCase())
       
       const matchesTag = !selectedTag || blog.tags.includes(selectedTag)
 

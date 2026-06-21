@@ -32,6 +32,16 @@ export interface Blog {
   tags: string[]
 }
 
+export interface BlogSummary {
+  id: string
+  title: string
+  summary: string
+  author: string
+  date: string
+  readTime: string
+  tags: string[]
+}
+
 export interface FAQ {
   question: string
   answer: string
@@ -358,9 +368,10 @@ export const servicesData: Service[] = [
   }
 ];
 
-import { blogData as generatedBlogData } from "./blogData"
+import { blogData as generatedBlogData, blogSummaryData as generatedBlogSummaryData } from "./blogData"
 
 export const blogData: Blog[] = generatedBlogData;
+export const blogSummaryData: BlogSummary[] = generatedBlogSummaryData;
 
 
 export const faqData: FAQ[] = [

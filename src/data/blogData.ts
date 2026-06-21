@@ -1,4 +1,187 @@
-import { Blog } from "./siteData"
+import { Blog, BlogSummary } from "./siteData"
+
+export const blogSummaryData: BlogSummary[] = [
+  {
+    id: "top-20-ece-project-ideas",
+    title: "Top 20 Final Year Project Ideas for ECE Students in 2026",
+    summary: "An extensive roadmap of twenty innovative ECE project concepts spanning IoT, TinyML, biomedical engineering, and automotive systems.",
+    author: "Engr. Mathan Kumar",
+    date: "June 18, 2026",
+    readTime: "12 min read",
+    tags: ["ECE", "Electronics", "IoT", "Embedded"]
+  },
+  {
+    id: "best-iot-projects-esp32",
+    title: "Best IoT Projects Using ESP32 in 2026: The Comprehensive List",
+    summary: "An exhaustive guide to building advanced Internet of Things prototypes using the dual-core ESP32 chip with built-in Wi-Fi and Bluetooth.",
+    author: "IoT Specialist, SkillForge",
+    date: "June 15, 2026",
+    readTime: "11 min read",
+    tags: ["IoT", "ESP32", "Sensors", "Cloud"]
+  },
+  {
+    id: "esp32-vs-esp8266-projects",
+    title: "ESP32 vs ESP8266: Which Board to Choose for Final Year Projects?",
+    summary: "A detailed technical comparison of ESP32 and ESP8266 microcontrollers across speed, memory, pins, wireless bands, and pricing matrices.",
+    author: "Hardware Architect, SkillForge",
+    date: "June 10, 2026",
+    readTime: "10 min read",
+    tags: ["ESP32", "ESP8266", "IoT", "Microcontrollers"]
+  },
+  {
+    id: "rfid-arduino-interface-guide",
+    title: "How to Interface RFID with Arduino: A Practical Step-by-Step Guide",
+    summary: "Learn how to wire, program, and interface the RC522 RFID reader with an Arduino Uno for secure access control databases.",
+    author: "Embedded Lead, SkillForge",
+    date: "June 05, 2026",
+    readTime: "9 min read",
+    tags: ["Arduino", "RFID", "Security", "Embedded"]
+  },
+  {
+    id: "embedded-systems-eee-projects",
+    title: "Top Embedded Systems Project Ideas for EEE Students",
+    summary: "A high-impact collection of electrical engineering final year projects targeting power systems, smart grids, and motor drives.",
+    author: "Electrical Engineer, SkillForge",
+    date: "May 30, 2026",
+    readTime: "11 min read",
+    tags: ["EEE", "Embedded", "PowerSystems", "MATLAB"]
+  },
+  {
+    id: "smart-agriculture-iot-setup",
+    title: "Smart Agriculture IoT Projects: Code & Hardware Setup Checklist",
+    summary: "Design automated irrigation and crop monitoring networks with soil moisture sensors, water pumps, and cloud telemetry maps.",
+    author: "IoT Specialist, SkillForge",
+    date: "May 25, 2026",
+    readTime: "13 min read",
+    tags: ["IoT", "Agriculture", "ESP32", "Sensors"]
+  },
+  {
+    id: "lorawan-vs-wifi-iot",
+    title: "LoRaWAN vs Wi-Fi: Designing Long Range IoT Prototypes",
+    summary: "Evaluate range, power consumption, data payload limits, and battery life constraints for long-range and short-range wireless IoT projects.",
+    author: "Hardware Architect, SkillForge",
+    date: "May 20, 2026",
+    readTime: "10 min read",
+    tags: ["IoT", "LoRaWAN", "WiFi", "Wireless"]
+  },
+  {
+    id: "stm32-embedded-projects",
+    title: "Top 10 STM32 Embedded Projects for Advanced Engineering Scholars",
+    summary: "Leverage ARM Cortex-M microcontrollers to build real-time processing platforms with low-latency communication layouts.",
+    author: "Embedded Lead, SkillForge",
+    date: "May 15, 2026",
+    readTime: "12 min read",
+    tags: ["STM32", "ARM", "Embedded", "Firmware"]
+  },
+  {
+    id: "smart-cities-iot-guide",
+    title: "Smart Cities IoT Projects: Adaptive Traffic & Waste Management Guide",
+    summary: "Build adaptive traffic congestion signals, smart streetlights, and fill-alert trash cans using ESP8266 and Blynk APIs.",
+    author: "IoT Specialist, SkillForge",
+    date: "May 10, 2026",
+    readTime: "10 min read",
+    tags: ["IoT", "SmartCity", "ESP8266", "Blynk"]
+  },
+  {
+    id: "hardware-debugging-esp32-errors",
+    title: "Hardware Debugging Guide: Resolving ESP32 Boot Loops and Voltage Drops",
+    summary: "Step-by-step diagnostic techniques to resolve brownout resets, register dump boot loops, and serial interface crashes.",
+    author: "Hardware Architect, SkillForge",
+    date: "May 05, 2026",
+    readTime: "11 min read",
+    tags: ["Debugging", "ESP32", "Hardware", "Troubleshooting"]
+  },
+  {
+    id: "ai-final-year-projects-cv-tinyml",
+    title: "AI Projects for Final Year Students: Computer Vision and TinyML",
+    summary: "Deploy deep learning models on resource-constrained microcontrollers and single board computers for smart applications.",
+    author: "AI Lead, SkillForge",
+    date: "April 30, 2026",
+    readTime: "14 min read",
+    tags: ["AI", "TinyML", "ComputerVision", "Python"]
+  },
+  {
+    id: "deploy-yolo-raspberry-pi",
+    title: "Deploying YOLO Models on Raspberry Pi: Performance Tuning Tips",
+    summary: "Optimize object detection frame rates using quantization, ONNX exports, OpenVINO runners, and TPU accelerators.",
+    author: "AI Developer, SkillForge",
+    date: "April 25, 2026",
+    readTime: "12 min read",
+    tags: ["YOLO", "RaspberryPi", "EdgeAI", "Python"]
+  },
+  {
+    id: "driver-drowsiness-detection-opencv",
+    title: "Driver Drowsiness Detection: Building Automotive Safety Prototypes using OpenCV",
+    summary: "Build real-time facial feature trackers to measure Eye Aspect Ratio (EAR) and warn drowsy drivers with buzzer signals.",
+    author: "AI Lead, SkillForge",
+    date: "April 20, 2026",
+    readTime: "13 min read",
+    tags: ["OpenCV", "Python", "Safety", "ComputerVision"]
+  },
+  {
+    id: "computer-vision-python-haar",
+    title: "Top Computer Vision Project Ideas using Python & Haar Cascades",
+    summary: "Develop responsive motion detection, automated face locks, and object-tracking robotic arm prototypes.",
+    author: "AI Developer, SkillForge",
+    date: "April 15, 2026",
+    readTime: "10 min read",
+    tags: ["OpenCV", "Python", "HaarCascades", "AI"]
+  },
+  {
+    id: "edge-impulse-audio-classification",
+    title: "Introduction to Edge Impulse: Building Audio Classification Prototypes",
+    summary: "Learn keyword spotting and sound classification on embedded microcontrollers using the Edge Impulse TinyML pipeline.",
+    author: "AI Developer, SkillForge",
+    date: "April 10, 2026",
+    readTime: "11 min read",
+    tags: ["TinyML", "EdgeImpulse", "Audio", "ESP32"]
+  },
+  {
+    id: "face-recognition-attendance-firebase",
+    title: "Real-Time Face Recognition Attendance: Database Sync & Cloud Integrations",
+    summary: "Create automated classroom logs syncing facial embeddings directly with Google Firebase Realtime Database.",
+    author: "AI Developer, SkillForge",
+    date: "April 05, 2026",
+    readTime: "12 min read",
+    tags: ["Firebase", "AI", "OpenCV", "Python"]
+  },
+  {
+    id: "ai-smart-farm-security-yolo",
+    title: "AI-Powered Smart Farm Security: Combining Motion Tracking and YOLO Models",
+    summary: "Protect agricultural yields using PIR motion sensors, ESP32-CAM nodes, and a centralized Raspberry Pi YOLO detector.",
+    author: "AI Lead, SkillForge",
+    date: "March 30, 2026",
+    readTime: "13 min read",
+    tags: ["AI", "YOLO", "ESP32-CAM", "Agriculture"]
+  },
+  {
+    id: "raspberry-pi-5-vs-4-edge-ml",
+    title: "Raspberry Pi 5 vs Pi 4: Benchmarking Edge ML Processing Capabilities",
+    summary: "Compare neural network execution times, thermal throttling limits, and peripheral speeds on the latest Pi SBCs.",
+    author: "AI Developer, SkillForge",
+    date: "March 25, 2026",
+    readTime: "11 min read",
+    tags: ["RaspberryPi", "EdgeML", "Hardware", "AI"]
+  },
+  {
+    id: "gesture-controlled-robotics",
+    title: "Gesture Controlled Robotics: Integrating IMU Sensors with Microcontrollers",
+    summary: "Build hand-motion controlled robotic drives using MPU6050 accelerometer sensors and RF24 transmitters.",
+    author: "Hardware Lead, SkillForge",
+    date: "March 20, 2026",
+    readTime: "10 min read",
+    tags: ["Robotics", "Arduino", "Sensors", "MPU6050"]
+  },
+  {
+    id: "viva-voce-prep-guide",
+    title: "Step-by-Step Guide to Preparing for Final Year Project Viva & Reviews",
+    summary: "Confidently face external academic examiners, structure presentation slides, and manage common questions.",
+    author: "Engr. Mathan Kumar",
+    date: "March 15, 2026",
+    readTime: "10 min read",
+    tags: ["Viva", "Reviews", "Academic", "Mentorship"]
+  },
+];
 
 export const blogData: Blog[] = [
   {
