@@ -28,6 +28,7 @@ import { Input } from "@/components/ui/input"
 
 import { projectsData, defaultFeedbacks, servicesData, faqData } from "@/data/siteData"
 import { siteConfig } from "@/data/siteConfig"
+import { renderTextWithLinks } from "@/lib/seo"
 
 export default function HomeContent() {
   const [inquirySubmitted, setInquirySubmitted] = useState(false)
@@ -516,7 +517,7 @@ export default function HomeContent() {
           {faqData.map((faq, index) => (
             <AccordionItem key={index} id={`faq-${index}`}>
               <AccordionTrigger>{faq.question}</AccordionTrigger>
-              <AccordionContent>{faq.answer}</AccordionContent>
+              <AccordionContent>{renderTextWithLinks(faq.answer)}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

@@ -8,14 +8,24 @@ import { motion } from "framer-motion"
 
 export default function ServicesContent() {
   useEffect(() => {
-    // Scroll to hash if exists
-    if (window.location.hash) {
-      const element = document.getElementById(window.location.hash.substring(1))
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth", block: "start" })
-        }, 150)
+    const scrollToHash = () => {
+      if (window.location.hash) {
+        const element = document.getElementById(window.location.hash.substring(1))
+        if (element) {
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: "smooth", block: "start" })
+          }, 150)
+        }
       }
+    }
+
+    // Scroll on mount
+    scrollToHash()
+
+    // Scroll on hash change (e.g. clicking links while already on this page)
+    window.addEventListener("hashchange", scrollToHash)
+    return () => {
+      window.removeEventListener("hashchange", scrollToHash)
     }
   }, [])
 

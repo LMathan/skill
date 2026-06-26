@@ -94,17 +94,17 @@ export function Footer() {
             </h3>
             <ul className="space-y-2.5">
               {[
-                "IoT Systems Development",
-                "Embedded Systems Hardware",
-                "AI & Machine Learning Systems",
-                "Custom PCB Design & Prototyping",
-                "IEEE Research Support",
-                "Web & Mobile App Development",
-                "Technical Workshops & Internships"
+                { name: "IoT Systems Development", path: "/services#iot" },
+                { name: "Embedded Systems Hardware", path: "/services#embedded" },
+                { name: "AI & Machine Learning Systems", path: "/services#ai-ml" },
+                { name: "Custom PCB Design & Prototyping", path: "/services#embedded" },
+                { name: "IEEE Research Support", path: "/services#ieee" },
+                { name: "Web & Mobile App Development", path: "/services#web-mobile" },
+                { name: "Technical Workshops & Internships", path: "/services#internships" }
               ].map((service) => (
-                <li key={service}>
-                  <Link href="/services" className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors">
-                    {service}
+                <li key={service.name}>
+                  <Link href={service.path} className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors">
+                    {service.name}
                   </Link>
                 </li>
               ))}

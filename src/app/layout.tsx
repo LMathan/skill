@@ -44,9 +44,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "SkillForge Technology" }],
   metadataBase: new URL("https://skillforgetechnology.app"),
-  alternates: {
-    canonical: "/"
-  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",

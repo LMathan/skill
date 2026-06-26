@@ -21,12 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/embedded-project-center-erode",
     "/ai-project-center-erode",
     "/internship-training-erode",
-    "/project-center-erode",
-    "/project-center-salem",
-    "/project-center-coimbatore",
-    "/project-center-tiruppur",
-    "/project-center-namakkal",
-    "/project-center-karur"
+    "/project-center-erode"
   ]
 
   const blogSlugs = blogData.map((blog) => `/blog/${blog.id}`)

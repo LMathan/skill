@@ -1,8 +1,9 @@
 import { Metadata } from "next"
 import BlogContent from "./BlogContent"
 import { blogData } from "@/data/siteData"
+import { getSeoMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = getSeoMetadata({
   title: "Tech Tutorials & Engineering Guides",
   description: "Read technical guides on microcontrollers (ESP32, STM32), Edge AI, TinyML, and IoT sensor networks written by SkillForge design engineers.",
   keywords: [
@@ -13,10 +14,8 @@ export const metadata: Metadata = {
     "ESP32 projects guide",
     "Engineering research blog"
   ],
-  alternates: {
-    canonical: "/blog"
-  }
-}
+  path: "/blog"
+})
 
 export default function BlogPage() {
   const jsonLd = {

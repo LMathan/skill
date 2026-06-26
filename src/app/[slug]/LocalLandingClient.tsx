@@ -1,8 +1,10 @@
 "use client"
 
 import React, { useState } from "react"
+import Link from "next/link"
 import { motion, Variants } from "framer-motion"
 import { Sparkles, ArrowRight, CheckCircle, Cpu, Brain, Award, ShieldAlert, CheckCircle2, Loader2, MessageSquare, Phone, MapPin, Star } from "lucide-react"
+import { renderTextWithLinks } from "@/lib/seo"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
@@ -214,6 +216,11 @@ export default function LocalLandingClient({ content, slug }: LocalLandingClient
               <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
                 We cater to students, research scholars, and academic panels from all leading technical campuses in the {content.city} and surrounding Tamil Nadu districts. Our prototype parameters match the strict guidelines of their respective departments.
               </p>
+              <div className="pt-2 text-xs text-brand-cyan font-semibold space-y-2">
+                <p>
+                  Explore our <Link href="/services" className="underline hover:text-brand-blue transition-colors">Engineering Services</Link>, browse our <Link href="/projects" className="underline hover:text-brand-blue transition-colors">Projects Portfolio</Link>, or <Link href="/contact" className="underline hover:text-brand-blue transition-colors">Contact Us</Link> today to discuss your project requirements.
+                </p>
+              </div>
             </div>
             <div className="lg:col-span-7">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -341,7 +348,7 @@ export default function LocalLandingClient({ content, slug }: LocalLandingClient
             {content.faqs.map((faq, idx) => (
               <AccordionItem key={idx} id={`local-faq-${idx}`}>
                 <AccordionTrigger>{faq.question}</AccordionTrigger>
-                <AccordionContent>{faq.answer}</AccordionContent>
+                <AccordionContent>{renderTextWithLinks(faq.answer)}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

@@ -1,8 +1,9 @@
 import { Metadata } from "next"
 import ProjectsContent from "./ProjectsContent"
 import { projectsData } from "@/data/siteData"
+import { getSeoMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = getSeoMetadata({
   title: "Engineering Projects & Embedded Systems",
   description: "Explore our collection of 54+ projects across IoT & Embedded Systems, AI & Machine Learning, Robotics, and Software Stacks. Filter and find your next project idea with source code, report documents, and viva support.",
   keywords: [
@@ -14,10 +15,8 @@ export const metadata: Metadata = {
     "Final year engineering projects",
     "SkillForge projects list"
   ],
-  alternates: {
-    canonical: "/projects"
-  }
-}
+  path: "/projects"
+})
 
 export default function ProjectsPage() {
   const jsonLd = {

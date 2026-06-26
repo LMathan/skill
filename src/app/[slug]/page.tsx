@@ -5,6 +5,7 @@ import { Sparkles, ArrowRight, CheckCircle, Cpu, Brain, Award, ShieldAlert, Grad
 import LocalLandingClient from "@/app/[slug]/LocalLandingClient"
 import { projectsData } from "@/data/siteData"
 import { seoPagesContent, SEOPageData } from "@/data/seoLandingData"
+import { getSeoMetadata } from "@/lib/seo"
 
 // Precompile pages at build time
 export async function generateStaticParams() {
@@ -19,14 +20,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const content = seoPagesContent[slug]
   if (!content) return notFound()
 
-  return {
+  return getSeoMetadata({
     title: content.title,
     description: content.description,
     keywords: content.keywords,
-    alternates: {
-      canonical: `/${slug}`
-    }
-  }
+    path: `/${slug}`
+  })
 }
 
 export default async function SEOPage({ params }: { params: Promise<{ slug: string }> }) {

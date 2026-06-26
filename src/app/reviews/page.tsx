@@ -1,7 +1,8 @@
 import { Metadata } from "next"
 import FeedbackPortalContent from "./FeedbackPortalContent"
+import { getSeoMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = getSeoMetadata({
   title: "Student Reviews & Project Feedback | SkillForge Technology",
   description: "Read verified student reviews and client testimonials for electronics, IoT, and AI prototypes built inside our laboratory. Share your project feedback.",
   keywords: [
@@ -11,10 +12,8 @@ export const metadata: Metadata = {
     "Electronics project reviews Tamil Nadu",
     "Embedded systems project ratings"
   ],
-  alternates: {
-    canonical: "/reviews"
-  }
-}
+  path: "/reviews"
+})
 
 export default function ReviewsPage() {
   const jsonLd = {

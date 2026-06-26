@@ -1,11 +1,13 @@
 import React from "react"
 import { Metadata } from "next"
 import ServicesContent from "./ServicesContent"
+import { getSeoMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = getSeoMetadata({
   title: "Our Services | IoT, AI & Embedded Development",
-  description: "Explore the full spectrum of engineering services offered by SkillForge Technology: from hardware prototyping & PCB layouts to TinyML, Flutter IoT apps, and research guides."
-}
+  description: "Explore the full spectrum of engineering services offered by SkillForge Technology: from hardware prototyping & PCB layouts to TinyML, Flutter IoT apps, and research guides.",
+  path: "/services"
+})
 
 export default function ServicesPage() {
   const jsonLd = {

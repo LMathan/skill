@@ -1,7 +1,8 @@
 import { Metadata } from "next"
 import HomeContent from "./HomeContent"
+import { getSeoMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = getSeoMetadata({
   title: "Best Project Center in Erode | SkillForge Technology",
   description: "SkillForge Technology is Erode's leading engineering project center for IEEE, IoT, Embedded Systems, AI & ML prototypes. Enquire today for hands-on training!",
   keywords: [
@@ -16,10 +17,8 @@ export const metadata: Metadata = {
     "Engineering Project Center Tamil Nadu",
     "SkillForge Technology Erode"
   ],
-  alternates: {
-    canonical: "/"
-  }
-}
+  path: "/"
+})
 
 export default function Page() {
   const schemas = [

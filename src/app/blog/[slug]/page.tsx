@@ -6,6 +6,7 @@ import { blogData } from "@/data/siteData"
 import { Button } from "@/components/ui/button"
 import Particles from "@/components/magicui/particles"
 import BorderBeam from "@/components/magicui/border-beam"
+import { getSeoMetadata } from "@/lib/seo"
 
 // Precompile pages at build time
 export async function generateStaticParams() {
@@ -20,14 +21,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const blog = blogData.find((b) => b.id === slug)
   if (!blog) return notFound()
 
-  return {
+  return getSeoMetadata({
     title: `${blog.title} | SkillForge Technology Blog`,
     description: blog.summary,
     keywords: blog.tags,
-    alternates: {
-      canonical: `/blog/${slug}`
-    }
-  }
+    path: `/blog/${slug}`
+  })
 }
 
 function renderContentWithFormatting(content: string) {
@@ -89,6 +88,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const { slug } = await params
   const blog = blogData.find((b) => b.id === slug)
   if (!blog) return notFound()
+
+  // Find related articles (excluding the current one)
+  const relatedBlogs = blogData.filter((b) => b.id !== slug).slice(0, 2)
 
   // Generate Schema markup (BlogPosting)
   const schema = {
@@ -181,10 +183,33 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {renderContentWithFormatting(blog.content)}
           </div>
 
+          {/* Related Articles & Services Links */}
+          <div className="mt-12 pt-8 border-t border-slate-200 dark:border-white/5">
+            <h3 className="text-lg font-bold font-display text-slate-900 dark:text-white mb-4">Related Technical Guides</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {relatedBlogs.map((rBlog) => (
+                <Link
+                  key={rBlog.id}
+                  href={`/blog/${rBlog.id}`}
+                  className="p-4 rounded-xl border border-slate-200 dark:border-white/5 hover:border-sky-500/30 bg-slate-550/5 dark:bg-slate-950/20 hover:bg-slate-100/50 dark:hover:bg-slate-900/10 transition-all text-left block"
+                >
+                  <h4 className="text-sm font-bold font-display text-slate-900 dark:text-white line-clamp-1 mb-1">{rBlog.title}</h4>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">{rBlog.summary}</p>
+                </Link>
+              ))}
+            </div>
+            
+            <div className="mt-6 p-4 rounded-xl bg-sky-500/5 border border-sky-500/10 text-left">
+              <span className="text-xs text-slate-650 dark:text-slate-400 leading-relaxed">
+                Looking to build an electronics prototype or implement custom firmware? Explore our specialized <Link href="/services" className="font-semibold text-brand-cyan hover:text-brand-blue underline transition-colors">Engineering Services</Link> or browse the <Link href="/projects" className="font-semibold text-brand-cyan hover:text-brand-blue underline transition-colors">Projects Gallery</Link>.
+              </span>
+            </div>
+          </div>
+
           <div className="mt-12 pt-8 border-t border-slate-200 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
               <h4 className="text-sm font-bold font-display text-slate-900 dark:text-white">Have questions about this article?</h4>
-              <p className="text-slate-550 dark:text-slate-400 text-xs mt-1">Our engineers can help implement this in your project.</p>
+              <p className="text-slate-555 dark:text-slate-400 text-xs mt-1">Our engineers can help implement this in your project.</p>
             </div>
             <Link href={`/contact?inquiry=Article Query: ${encodeURIComponent(blog.title)}`}>
               <Button
