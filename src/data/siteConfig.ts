@@ -1,7 +1,7 @@
 export const siteConfig = {
   stats: {
-    projectsCompleted: 154,
-    studentsGuided: 310,
+    projectsCompleted: 54,
+    studentsGuided: 100,
     technologiesCovered: 12,
     successRating: 99
   },

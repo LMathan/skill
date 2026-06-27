@@ -189,7 +189,7 @@ export default function HomeContent() {
                   <ArrowRight size={16} />
                 </Button>
               </Link>
-              <Link href="/projects">
+              <Link href="/gallery">
                 <Button variant="outline" size="lg" className="rounded-2xl border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 bg-slate-900/10 hover:bg-slate-100 dark:hover:bg-slate-900/80 flex items-center gap-2">
                   <span>Explore Gallery</span>
                   <ArrowUpRight size={16} />
