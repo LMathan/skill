@@ -33,6 +33,11 @@ export const metadata: Metadata = getSeoMetadata({
     "Smart Irrigation System ESP8266 Arduino",
     "AI Smart Waste Monitoring System",
     "Automatic Remote Motor Control System",
+    "IoT Water Pipeline Leakage Theft Detection",
+    "F450 Quadcopter Drone FlySky RC",
+    "IoT Alcohol Detection Vehicle Ignition Locking",
+    "IoT Smart Drainage Blockage Monitoring",
+    "UAV Drone Outdoor Flight Testing Erode",
     // Local SEO
     "SkillForge Technology Gallery Erode",
     "Final Year Project Photos Erode",
