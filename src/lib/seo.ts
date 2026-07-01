@@ -87,7 +87,7 @@ export function renderTextWithLinks(text: string): React.ReactNode {
   let match
 
   while ((match = regex.exec(text)) !== null) {
-    const [_, linkText, linkUrl] = match
+    const [, linkText, linkUrl] = match
     const matchIndex = match.index
 
     if (matchIndex > lastIndex) {

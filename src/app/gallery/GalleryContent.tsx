@@ -39,10 +39,10 @@ const categories: {
 
 // ─── Stats (real numbers from siteConfig) ─────────────────────────────────────
 const stats = [
-  { value: "54+", label: "Projects Built" },
-  { value: "100+", label: "Students Guided" },
-  { value: "6+", label: "Departments Supported" },
-  { value: "4+", label: "Years of Experience" },
+  { value: "54+", label: "Prototypes Engineered" },
+  { value: "40+", label: "Enterprise Partners" },
+  { value: "10+", label: "Countries Served" },
+  { value: "4+", label: "Years of R&D" },
 ]
 
 // ─── Main Component ────────────────────────────────────────────────────────────

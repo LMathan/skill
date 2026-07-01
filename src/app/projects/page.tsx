@@ -4,16 +4,16 @@ import { projectsData } from "@/data/siteData"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Engineering Projects & Embedded Systems",
-  description: "Explore our collection of 54+ projects across IoT & Embedded Systems, AI & Machine Learning, Robotics, and Software Stacks. Filter and find your next project idea with source code, report documents, and viva support.",
+  title: "Engineering R&D Prototypes & Systems",
+  description: "Explore our collection of 54+ proof-of-concept prototypes across IoT & Embedded Systems, AI & Machine Learning, Robotics, and Scaled Software Stacks.",
   keywords: [
-    "IoT Projects Database",
-    "Embedded Systems Projects",
-    "Robotics Projects",
-    "AI & ML engineering projects",
-    "IEEE Project topics Erode",
-    "Final year engineering projects",
-    "SkillForge projects list"
+    "IoT R&D Prototypes",
+    "Embedded Systems Prototypes",
+    "Robotics Systems engineering",
+    "AI & ML proof of concepts",
+    "Erode IoT engineering",
+    "Custom hardware prototype center",
+    "SkillForge portfolio"
   ],
   path: "/projects"
 })

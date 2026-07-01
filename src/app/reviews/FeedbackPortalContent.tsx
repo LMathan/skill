@@ -14,6 +14,7 @@ import BorderBeam from "@/components/magicui/border-beam"
 import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, Timestamp } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import { siteConfig } from "@/data/siteConfig"
+import { useLanguage } from "@/context/LanguageContext"
 
 const LOCAL_KEY = "skillforge_feedbacks_v1"
 
@@ -85,6 +86,7 @@ const feedbackItemVariants: Variants = {
 }
 
 export default function FeedbackPortalContent() {
+  const { t } = useLanguage()
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
@@ -276,7 +278,7 @@ export default function FeedbackPortalContent() {
     : siteConfig.reviewsBaselineCount
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-background text-foreground overflow-hidden py-24 px-4 sm:px-6 lg:px-8 bg-dot-pattern">
       {/* Background patterns */}
       <Particles className="absolute inset-0 z-0 opacity-40 pointer-events-none" quantity={60} staticity={50} />
 
@@ -317,10 +319,9 @@ export default function FeedbackPortalContent() {
               hidden: { opacity: 0, y: -10 },
               show: { opacity: 1, y: 0 }
             }}
-            className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-slate-900 dark:text-white mb-6"
+            className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-gradient mb-6 pb-1"
           >
-            Student & Client <br className="hidden sm:inline" />
-            <span className="text-gradient">Project Reviews</span>
+            {t("reviews.title")}
           </motion.h1>
 
           <motion.p
@@ -328,9 +329,9 @@ export default function FeedbackPortalContent() {
               hidden: { opacity: 0, y: 10 },
               show: { opacity: 1, y: 0 }
             }}
-            className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed"
+            className="text-slate-600 dark:text-slate-400 text-base leading-relaxed"
           >
-            Read authentic reviews logged directly from our prototyping lab projects. If you have partnered with us for final year or research support, submit your feedback to help future developers!
+            {t("reviews.subtitle")}
           </motion.p>
         </motion.div>
 
@@ -343,7 +344,7 @@ export default function FeedbackPortalContent() {
         >
           <motion.div variants={statsItemVariants}>
             <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center text-center">
-              <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Average Score</h4>
+              <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">{t("reviews.averageScore")}</h4>
               <div className="flex items-baseline gap-2">
                 <span className="text-4xl font-extrabold text-slate-900 dark:text-white">{averageRating}</span>
                 <span className="text-slate-500 text-sm">/ 5.0</span>
@@ -363,9 +364,9 @@ export default function FeedbackPortalContent() {
 
           <motion.div variants={statsItemVariants}>
             <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center text-center">
-              <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">Total Reviews</h4>
+              <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">{t("reviews.totalReviews")}</h4>
               <div className="text-4xl font-extrabold text-brand-cyan">{totalReviewsDisplay}</div>
-              <p className="text-xs text-slate-500 mt-2 font-medium">Stored and verified on Google Cloud Firestore</p>
+              <p className="text-xs text-slate-500 mt-2 font-medium">{t("reviews.verified")}</p>
             </Card>
           </motion.div>
 
@@ -376,7 +377,7 @@ export default function FeedbackPortalContent() {
                 className="w-full py-6 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-medium flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 transition-all duration-300"
               >
                 <Heart size={16} className="fill-current" />
-                <span>Leave A Review</span>
+                <span>{t("reviews.leaveBtn")}</span>
               </Button>
             </Card>
           </motion.div>
@@ -417,16 +418,31 @@ export default function FeedbackPortalContent() {
                   {submitSuccess ? (
                     <div className="flex flex-col items-center justify-center py-8 text-center">
                       <CheckCircle2 className="text-emerald-500 w-12 h-12 mb-3 animate-bounce" />
-                      <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">Feedback Submitted!</h4>
+                      <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{t("reviews.submittedTitle")}</h4>
                       <p className="text-xs text-slate-600 dark:text-slate-400 max-w-sm">
-                        Thank you! Your feedback has been written to the Firestore database and is now live.
+                        {t("reviews.submittedSubtitle")}
                       </p>
                     </div>
                   ) : (
                     <form onSubmit={handleFeedbackSubmit} className="space-y-4">
+                      <div className="flex justify-between items-center mb-2">
+                        <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">
+                          {t("reviews.formTitle")}
+                        </h4>
+                        <Button 
+                          type="button" 
+                          variant="ghost" 
+                          size="icon" 
+                          className="h-7 w-7 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5"
+                          onClick={() => setShowForm(false)}
+                        >
+                          <X size={14} />
+                        </Button>
+                      </div>
+
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="space-y-1.5">
-                          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">Full Name *</label>
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">{t("reviews.formName")}</label>
                           <Input
                             required
                             type="text"
@@ -437,7 +453,7 @@ export default function FeedbackPortalContent() {
                           />
                         </div>
                         <div className="space-y-1.5">
-                          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">Project Name *</label>
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">{t("reviews.formProject")}</label>
                           <Input
                             required
                             type="text"
@@ -450,7 +466,7 @@ export default function FeedbackPortalContent() {
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400 block">Rating (1-5 Stars) *</label>
+                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400 block">{t("reviews.formRating")}</label>
                         <div className="flex items-center gap-1.5 mt-1">
                           {[1, 2, 3, 4, 5].map((star) => (
                             <button
@@ -475,7 +491,7 @@ export default function FeedbackPortalContent() {
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">Review Message *</label>
+                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">{t("reviews.formMessage")}</label>
                         <textarea
                           required
                           rows={4}
@@ -524,7 +540,7 @@ export default function FeedbackPortalContent() {
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={16} />
             <Input
               type="text"
-              placeholder="Search by student name, project or message..."
+              placeholder={t("reviews.searchPlaceholder")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="bg-slate-50/50 dark:bg-slate-950/40 border-slate-200 dark:border-white/5 rounded-xl pl-10 focus:border-sky-500 text-sm w-full text-slate-800 dark:text-slate-100"
@@ -534,7 +550,7 @@ export default function FeedbackPortalContent() {
           {/* Rating filter & Refresh */}
           <div className="flex flex-wrap items-center gap-3">
             <div className="flex items-center gap-1.5 bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200 dark:border-white/5 rounded-xl p-1.5 text-xs">
-              <span className="text-slate-550 dark:text-slate-500 px-2 flex items-center gap-1"><Filter size={12} /> Filter:</span>
+              <span className="text-slate-550 dark:text-slate-500 px-2 flex items-center gap-1"><Filter size={12} /> {t("reviews.filterLabel")}</span>
               <button
                 onClick={() => setFilterRating(null)}
                 className={`px-2.5 py-1 rounded-lg transition-colors font-semibold ${
@@ -543,7 +559,7 @@ export default function FeedbackPortalContent() {
                     : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
                 }`}
               >
-                All
+                {t("reviews.filterAll")}
               </button>
               {[5, 4, 3].map((star) => (
                 <button
@@ -623,24 +639,30 @@ export default function FeedbackPortalContent() {
 
                       {/* Review message */}
                       <p className="text-sm text-slate-700 dark:text-slate-300 italic leading-relaxed">
-                        &ldquo;{fb.message}&rdquo;
+                        &ldquo;{fb.id?.startsWith("default-") ? t(`reviews.${fb.id.replace("default-", "msg")}` as any) : fb.message}&rdquo;
                       </p>
                     </div>
 
                     {/* Reviewer Details */}
                     <div className="pt-4 border-t border-slate-200 dark:border-white/5 mt-6 flex justify-between items-end">
-                      <div>
-                        <h4 className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-sky-500 transition-colors">
-                          {fb.customerName}
-                        </h4>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
-                          {fb.projectName}
-                        </p>
+                      <div className="flex items-center gap-3">
+                        {/* Client Avatar with dynamic gradient */}
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center text-white font-bold text-xs uppercase select-none shrink-0 shadow-sm shadow-blue-500/10">
+                          {fb.customerName.slice(0, 2)}
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-sky-500 transition-colors">
+                            {fb.customerName}
+                          </h4>
+                          <p className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold tracking-wider uppercase mt-0.5 leading-none">
+                            {fb.id?.startsWith("default-") ? t(`reviews.${fb.id.replace("default-", "proj")}` as any) : fb.projectName}
+                          </p>
+                        </div>
                       </div>
                       
                       {/* Database Verified Badge */}
                       <div 
-                        className="flex items-center gap-1 text-[9px] text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full font-bold border border-emerald-500/10"
+                        className="flex items-center gap-1 text-[9px] text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full font-bold border border-emerald-500/10 shrink-0"
                         title="Verified document fetched directly from Google Cloud Firestore"
                       >
                         <Shield size={9} className="fill-current" />

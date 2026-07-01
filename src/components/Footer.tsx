@@ -1,85 +1,114 @@
-import React from "react"
+"use client"
+
+import React, { useState } from "react"
 import Link from "next/link"
-import { Mail, Phone, MapPin, Rocket } from "lucide-react"
-
-const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-)
-
-const InstagramIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-  </svg>
-)
-
-const FacebookIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-  </svg>
-)
-
-const YoutubeIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
-    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" />
-  </svg>
-)
+import { Send, Mail, Phone, MapPin } from "lucide-react"
+import { useLanguage } from "@/context/LanguageContext"
+import { agencyServices } from "@/data/agencyData"
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
+  const { t, isRTL } = useLanguage()
+  const [email, setEmail] = useState("")
+  const [subscribed, setSubscribed] = useState(false)
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (email) {
+      setSubscribed(true)
+      setEmail("")
+      setTimeout(() => setSubscribed(false), 3000)
+    }
+  }
+
+  const companyLinks = [
+    { name: t("nav.about"), path: "/about" },
+    { name: t("nav.portfolio"), path: "/portfolio" },
+    { name: t("nav.caseStudies"), path: "/case-studies" },
+    { name: t("nav.careers"), path: "/careers" },
+    { name: t("nav.blog"), path: "/blog" },
+    { name: t("nav.contact"), path: "/contact" }
+  ]
+
+  const legalLinks = [
+    { name: "Privacy Policy", path: "#" },
+    { name: "Terms of Service", path: "#" },
+    { name: "Security Standards", path: "#" },
+    { name: "SLA Agreements", path: "#" }
+  ]
 
   return (
-    <footer className="relative bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 pt-16 pb-8 transition-colors duration-300">
+    <footer className="bg-slate-50 border-t border-slate-200/60 pt-16 pb-12 select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Brand Info */}
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <img src="/logo.png" alt="SkillForge Technology" className="h-12 w-auto" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-slate-200/60">
+
+          {/* Info Block */}
+          <div className="lg:col-span-4 space-y-5 text-left">
+            <Link href="/" className="flex items-center gap-2.5">
+              <img 
+                src="/logo-mark.png" 
+                alt="SkillForge" 
+                className="h-10 w-auto block" 
+              />
+              <div className="flex flex-col text-left leading-none font-display">
+                <span className="text-xl font-extrabold tracking-tight text-slate-900">
+                  SkillForge
+                </span>
+                <span className="text-[9px] font-black uppercase tracking-[0.25em] mt-0.5 text-blue-650">
+                  Technology
+                </span>
+              </div>
             </Link>
-            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-              SkillForge Technology is an electronics and IoT innovation lab specializing in engineering project mentoring, custom electronic prototyping, and intelligent software systems.
+            <p className="text-xs text-slate-500 leading-relaxed max-w-sm">
+              {t("footer.desc")} Positioning startups, SMEs, and global enterprises to dominate markets via robust software engineering and digital transformational intelligence.
             </p>
-            {/* Social Icons */}
-            <div className="flex items-center gap-3 pt-2">
-              <a href="#" className="p-2 rounded-lg bg-slate-100 hover:bg-brand-cyan hover:text-white dark:bg-slate-900 dark:hover:bg-brand-cyan text-slate-500 dark:text-slate-400 transition-colors" aria-label="LinkedIn">
-                <LinkedinIcon className="w-[18px] h-[18px]" />
+
+            {/* Contact details */}
+            <div className="space-y-2.5 pt-2">
+              <a href="mailto:info@skillforgetechnology.app" className="flex items-center gap-2 text-xs text-slate-650 hover:text-blue-600 transition-colors">
+                <Mail size={14} className="text-slate-400" />
+                <span>info@skillforgetechnology.app</span>
               </a>
-              <a href="#" className="p-2 rounded-lg bg-slate-100 hover:bg-brand-cyan hover:text-white dark:bg-slate-900 dark:hover:bg-brand-cyan text-slate-500 dark:text-slate-400 transition-colors" aria-label="Instagram">
-                <InstagramIcon className="w-[18px] h-[18px]" />
+              <a href="tel:+919345518760" className="flex items-center gap-2 text-xs text-slate-650 hover:text-blue-600 transition-colors">
+                <Phone size={14} className="text-slate-400" />
+                <span>+91 93455 18760</span>
               </a>
-              <a href="#" className="p-2 rounded-lg bg-slate-100 hover:bg-brand-cyan hover:text-white dark:bg-slate-900 dark:hover:bg-brand-cyan text-slate-500 dark:text-slate-400 transition-colors" aria-label="Facebook">
-                <FacebookIcon className="w-[18px] h-[18px]" />
-              </a>
-              <a href="#" className="p-2 rounded-lg bg-slate-100 hover:bg-brand-cyan hover:text-white dark:bg-slate-900 dark:hover:bg-brand-cyan text-slate-500 dark:text-slate-400 transition-colors" aria-label="YouTube">
-                <YoutubeIcon className="w-[18px] h-[18px]" />
-              </a>
+              <div className="flex items-start gap-2 text-xs text-slate-650">
+                <MapPin size={14} className="text-slate-400 mt-0.5 shrink-0" />
+                <span className="leading-tight">Perundurai, Erode, Tamil Nadu, India</span>
+              </div>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-900 dark:text-white mb-4">
-              Quick Links
+          {/* Service Links Column */}
+          <div className="lg:col-span-3 text-left">
+            <h3 className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-4">
+              {t("footer.services")}
             </h3>
             <ul className="space-y-2.5">
-              {[
-                { name: "Home", path: "/" },
-                { name: "Projects Portfolio", path: "/projects" },
-                { name: "Our Services", path: "/services" },
-                { name: "Reviews & Feedback", path: "/reviews" },
-                { name: "Resource Blog", path: "/blog" },
-                { name: "About Us", path: "/about" },
-                { name: "Contact Us", path: "/contact" }
-              ].map((link) => (
+              {agencyServices.slice(0, 6).map((service) => (
+                <li key={service.slug}>
+                  <Link href={`/services/${service.slug}`} className="text-xs text-slate-650 hover:text-blue-600 transition-colors font-medium">
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/services" className="text-xs text-blue-600 hover:text-blue-700 font-bold flex items-center gap-0.5">
+                  <span>View All 16 Divisions →</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Company & Legal Column */}
+          <div className="lg:col-span-2 text-left">
+            <h3 className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-4">
+              {t("footer.company")}
+            </h3>
+            <ul className="space-y-2.5">
+              {companyLinks.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.path} className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors">
+                  <Link href={link.path} className="text-xs text-slate-655 hover:text-blue-600 transition-colors font-medium">
                     {link.name}
                   </Link>
                 </li>
@@ -87,69 +116,82 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-900 dark:text-white mb-4">
-              Services
+          {/* Legal and Newsletter Column */}
+          <div className="lg:col-span-3 text-left">
+            <h3 className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 mb-4">
+              Legal & Newsletter
             </h3>
-            <ul className="space-y-2.5">
-              {[
-                { name: "IoT Systems Development", path: "/services#iot" },
-                { name: "Embedded Systems Hardware", path: "/services#embedded" },
-                { name: "AI & Machine Learning Systems", path: "/services#ai-ml" },
-                { name: "Custom PCB Design & Prototyping", path: "/services#embedded" },
-                { name: "IEEE Research Support", path: "/services#ieee" },
-                { name: "Web & Mobile App Development", path: "/services#web-mobile" },
-                { name: "Technical Workshops & Internships", path: "/services#internships" }
-              ].map((service) => (
-                <li key={service.name}>
-                  <Link href={service.path} className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-cyan dark:hover:text-brand-cyan transition-colors">
-                    {service.name}
+            <ul className="space-y-2.5 mb-5">
+              {legalLinks.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.path} className="text-xs text-slate-655 hover:text-blue-600 transition-colors font-medium">
+                    {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
+
+            {/* Newsletter input */}
+            <form onSubmit={handleSubscribe} className="space-y-2">
+              <span className="text-[10px] font-semibold text-slate-500 block">Subscribe to our Insights</span>
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  required
+                  placeholder="Enter email..."
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-650 w-full"
+                />
+                <button
+                  type="submit"
+                  className="bg-gradient-brand text-white p-2 rounded-xl hover:shadow-md transition-shadow shrink-0 cursor-pointer flex items-center justify-center"
+                  aria-label="Subscribe"
+                >
+                  <Send size={14} />
+                </button>
+              </div>
+              {subscribed && (
+                <p className="text-[10px] text-green-600 font-semibold">Subscribed successfully!</p>
+              )}
+            </form>
           </div>
 
-          {/* Contact Details */}
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-900 dark:text-white mb-4">
-              Contact Info
-            </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <MapPin size={18} className="text-brand-cyan shrink-0 mt-0.5" />
-                <span className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                  Perundurai Road, Erode,<br />Tamil Nadu - 638052
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone size={18} className="text-brand-cyan shrink-0" />
-                <a href="tel:+919345518760" className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-cyan transition-colors">
-                  +91 93455 18760
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail size={18} className="text-brand-cyan shrink-0" />
-                <a href="mailto:skillforgetechnology05@gmail.com" className="text-sm text-slate-500 dark:text-slate-400 hover:text-brand-cyan transition-colors break-all">
-                  skillforgetechnology05@gmail.com
-                </a>
-              </li>
-            </ul>
+        </div>
+
+        {/* Bottom Socials & Rights */}
+        <div className="flex flex-col sm:flex-row items-center justify-between pt-8 gap-4">
+          <p className="text-xs text-slate-400">
+            {t("footer.rights")}
+          </p>
+
+          <div className="flex items-center gap-4">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl text-slate-400 hover:text-blue-650 hover:bg-slate-100 transition-all flex items-center justify-center" aria-label="LinkedIn">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-all flex items-center justify-center" aria-label="GitHub">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl text-slate-400 hover:text-blue-400 hover:bg-slate-100 transition-all flex items-center justify-center" aria-label="Twitter">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+              </svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl text-slate-400 hover:text-red-500 hover:bg-slate-100 transition-all flex items-center justify-center" aria-label="YouTube">
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M23.498 6.163c-.272-1.016-1.074-1.819-2.09-2.09-1.839-.497-9.408-.497-9.408-.497s-7.569 0-9.408.497c-1.016.271-1.818 1.074-2.09 2.09-.497 1.839-.497 5.687-.497 5.687s0 3.848.497 5.688c.272 1.016 1.074 1.819 2.09 2.09 1.839.497 9.408.497 9.408.497s7.569 0 9.408-.497c1.016-.272 1.818-1.074 2.09-2.09.497-1.839.497-5.688.497-5.688s0-3.848-.497-5.687zm-14.276 9.405v-6.757l6.517 3.378-6.517 3.379z" />
+              </svg>
+            </a>
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="border-t border-slate-200 dark:border-slate-900 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-          <p className="text-xs text-slate-500 dark:text-slate-500">
-            &copy; {currentYear} SkillForge Technology. All rights reserved.
-          </p>
-          <p className="text-xs text-slate-500 dark:text-slate-500 font-medium">
-            Designed for engineering excellence & digital innovation.
-          </p>
-        </div>
       </div>
     </footer>
   )
 }
+
 export default Footer

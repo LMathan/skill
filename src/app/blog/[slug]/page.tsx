@@ -4,8 +4,6 @@ import Link from "next/link"
 import { ArrowLeft, User, Calendar, Clock } from "lucide-react"
 import { blogData } from "@/data/siteData"
 import { Button } from "@/components/ui/button"
-import Particles from "@/components/magicui/particles"
-import BorderBeam from "@/components/magicui/border-beam"
 import { getSeoMetadata } from "@/lib/seo"
 
 // Precompile pages at build time
@@ -22,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!blog) return notFound()
 
   return getSeoMetadata({
-    title: `${blog.title} | SkillForge Technology Blog`,
+    title: `${blog.title} | SkillForge Technology Insights`,
     description: blog.summary,
     keywords: blog.tags,
     path: `/blog/${slug}`
@@ -33,14 +31,14 @@ function renderContentWithFormatting(content: string) {
   return content.split("\n\n").map((paragraph, index) => {
     if (paragraph.startsWith("###")) {
       return (
-        <h3 key={index} className="text-2xl font-bold font-display text-slate-900 dark:text-white mt-8 mb-4">
+        <h3 key={index} className="text-xl font-bold font-display text-slate-950 mt-8 mb-4">
           {paragraph.replace("###", "").trim()}
         </h3>
       )
     }
     if (paragraph.startsWith("####")) {
       return (
-        <h4 key={index} className="text-lg font-bold font-display text-slate-900 dark:text-white mt-6 mb-3">
+        <h4 key={index} className="text-base font-bold font-display text-slate-955 mt-6 mb-3">
           {paragraph.replace("####", "").trim()}
         </h4>
       )
@@ -51,7 +49,7 @@ function renderContentWithFormatting(content: string) {
       const codeLines = paragraph.split("\n");
       const codeString = codeLines.slice(1, -1).join("\n");
       return (
-        <pre key={index} className="bg-slate-900 dark:bg-slate-950/85 border border-slate-200 dark:border-white/5 p-4 rounded-xl my-6 overflow-x-auto text-xs sm:text-sm font-mono text-cyan-400">
+        <pre key={index} className="bg-slate-950 border border-slate-800 p-4 rounded-xl my-6 overflow-x-auto text-xs sm:text-sm font-mono text-cyan-400">
           <code>{codeString}</code>
         </pre>
       )
@@ -59,7 +57,7 @@ function renderContentWithFormatting(content: string) {
 
     if (paragraph.startsWith("* **") || paragraph.startsWith("*")) {
       return (
-        <ul key={index} className="list-disc pl-6 my-4 text-slate-700 dark:text-slate-300 space-y-2">
+        <ul key={index} className="list-disc pl-6 my-4 text-slate-650 space-y-2 text-xs sm:text-sm">
           {paragraph.split("\n").map((line, lIdx) => {
             const cleanLine = line.replace(/^\*\s*/, "") // remove leading asterisk
             const boldMatch = cleanLine.match(/\*\*(.*?)\*\*(.*)/)
@@ -77,7 +75,7 @@ function renderContentWithFormatting(content: string) {
       )
     }
     return (
-      <p key={index} className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4 text-base">
+      <p key={index} className="text-slate-650 leading-relaxed mb-4 text-xs sm:text-sm">
         {paragraph}
       </p>
     )
@@ -118,13 +116,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-hidden py-24 px-4 sm:px-6 lg:px-8">
-      {/* Background patterns */}
-      <Particles className="absolute inset-0 z-0 opacity-40 pointer-events-none" quantity={60} staticity={50} />
-
+    <div className="relative min-h-screen bg-white text-slate-900 py-24 px-4 sm:px-6 lg:px-8 text-left select-none">
+      
       {/* Glow shapes */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-sky-500/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-50/10 rounded-full blur-[120px] pointer-events-none" />
 
       {/* Structured Schema */}
       <script
@@ -133,87 +128,83 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       />
 
       <div className="max-w-4xl mx-auto relative z-10">
-        <div className="bg-white/80 dark:bg-slate-900/40 border border-slate-200 dark:border-white/5 rounded-3xl p-6 sm:p-10 backdrop-blur-md relative shadow-xl">
-          {/* Border Beam decorative effect */}
-          <div className="absolute inset-0 rounded-3xl pointer-events-none overflow-hidden">
-            <BorderBeam duration={12} size={300} colorFrom="#06b6d4" colorTo="#3b82f6" />
-          </div>
-
+        <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 relative shadow-xl">
+          
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors text-sm mb-8"
+            className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 transition-colors text-xs mb-8 font-semibold"
           >
-            <ArrowLeft size={16} />
-            Back to Knowledge Hub
+            <ArrowLeft size={14} />
+            Back to Insights
           </Link>
 
           <div className="flex flex-wrap gap-2 mb-6">
             {blog.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[10px] font-bold text-sky-400 tracking-wider uppercase px-2.5 py-1 bg-sky-500/10 border border-sky-500/20 rounded-md"
+                className="text-[9px] font-extrabold text-blue-650 tracking-wider uppercase px-2.5 py-1 bg-blue-50/40 border border-blue-100 rounded-md"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-extrabold font-display text-slate-900 dark:text-white mb-6 leading-tight">
+          <h1 className="text-xl sm:text-2xl font-extrabold font-display text-slate-950 mb-6 leading-tight">
             {blog.title}
           </h1>
 
           {/* Metadata strip */}
-          <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-slate-400 border-y border-slate-200 dark:border-white/5 py-4 mb-8">
+          <div className="flex flex-wrap items-center gap-6 text-xs text-slate-450 border-y border-slate-100 py-4 mb-8 font-semibold">
             <span className="flex items-center gap-1.5">
-              <User size={15} />
+              <User size={13} className="text-slate-450" />
               <span>{blog.author}</span>
             </span>
             <span className="flex items-center gap-1.5">
-              <Calendar size={15} />
+              <Calendar size={13} className="text-slate-450" />
               <span>{blog.date}</span>
             </span>
             <span className="flex items-center gap-1.5">
-              <Clock size={15} />
+              <Clock size={13} className="text-slate-450" />
               <span>{blog.readTime}</span>
             </span>
           </div>
 
           {/* Formatted Content */}
-          <div className="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300">
+          <div className="prose max-w-none text-slate-700">
             {renderContentWithFormatting(blog.content)}
           </div>
 
           {/* Related Articles & Services Links */}
-          <div className="mt-12 pt-8 border-t border-slate-200 dark:border-white/5">
-            <h3 className="text-lg font-bold font-display text-slate-900 dark:text-white mb-4">Related Technical Guides</h3>
+          <div className="mt-12 pt-8 border-t border-slate-100">
+            <h3 className="text-sm font-bold font-display text-slate-900 mb-4">Related Technical Guides</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {relatedBlogs.map((rBlog) => (
                 <Link
                   key={rBlog.id}
                   href={`/blog/${rBlog.id}`}
-                  className="p-4 rounded-xl border border-slate-200 dark:border-white/5 hover:border-sky-500/30 bg-slate-550/5 dark:bg-slate-950/20 hover:bg-slate-100/50 dark:hover:bg-slate-900/10 transition-all text-left block"
+                  className="p-4 rounded-xl border border-slate-205 bg-slate-50/30 hover:bg-slate-50 transition-all text-left block"
                 >
-                  <h4 className="text-sm font-bold font-display text-slate-900 dark:text-white line-clamp-1 mb-1">{rBlog.title}</h4>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">{rBlog.summary}</p>
+                  <h4 className="text-xs font-bold font-display text-slate-900 line-clamp-1 mb-1">{rBlog.title}</h4>
+                  <p className="text-[10px] text-slate-500 line-clamp-2 leading-relaxed">{rBlog.summary}</p>
                 </Link>
               ))}
             </div>
             
-            <div className="mt-6 p-4 rounded-xl bg-sky-500/5 border border-sky-500/10 text-left">
-              <span className="text-xs text-slate-650 dark:text-slate-400 leading-relaxed">
-                Looking to build an electronics prototype or implement custom firmware? Explore our specialized <Link href="/services" className="font-semibold text-brand-cyan hover:text-brand-blue underline transition-colors">Engineering Services</Link> or browse the <Link href="/projects" className="font-semibold text-brand-cyan hover:text-brand-blue underline transition-colors">Projects Gallery</Link>.
+            <div className="mt-6 p-4 rounded-xl bg-blue-50/30 border border-blue-100 text-left">
+              <span className="text-[10px] text-slate-500 leading-relaxed font-semibold">
+                Looking to build an enterprise platform or implement custom AI systems? Explore our specialized <Link href="/services" className="font-bold text-blue-650 hover:underline transition-colors">Engineering Services</Link> or browse our complete <Link href="/portfolio" className="font-bold text-blue-650 hover:underline transition-colors">Case Portfolio</Link>.
               </span>
             </div>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-slate-200 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
-              <h4 className="text-sm font-bold font-display text-slate-900 dark:text-white">Have questions about this article?</h4>
-              <p className="text-slate-555 dark:text-slate-400 text-xs mt-1">Our engineers can help implement this in your project.</p>
+              <h4 className="text-xs font-bold font-display text-slate-900">Have questions about this article?</h4>
+              <p className="text-slate-450 text-[10px] mt-1 font-semibold">Our solutions architects can help design implementations.</p>
             </div>
             <Link href={`/contact?inquiry=Article Query: ${encodeURIComponent(blog.title)}`}>
               <Button
-                className="rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-medium text-xs px-4 py-2"
+                className="rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs px-4 py-2 cursor-pointer"
               >
                 Consult an Engineer
               </Button>

@@ -3,14 +3,14 @@ import ContactContent from "./ContactContent"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Contact Us | Project Inquiries & Support",
-  description: "Reach out to SkillForge Technology. Submit project inquiries, send reviews, or locate our electronics design center in Perundurai, Erode.",
+  title: "Contact Our Solutions Architects | SkillForge Technology",
+  description: "Schedule a free 30-minute discovery call or submit your project scope to receive a transparent estimate. Connect with our architects at our Perundurai, Erode office in Tamil Nadu, India.",
   keywords: [
-    "Contact SkillForge Erode",
-    "Project inquiries",
-    "Submit electronics project feedback",
-    "Erode project center address",
-    "SkillForge WhatsApp support"
+    "Contact Software Engineers",
+    "Request Software Quote",
+    "Schedule Technical Consultation",
+    "Book Calendly Developer Call",
+    "SkillForge WhatsApp Inquiry"
   ],
   path: "/contact"
 })

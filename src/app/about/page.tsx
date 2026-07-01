@@ -4,8 +4,16 @@ import AboutContent from "./AboutContent"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "About Us | Lab Mission & Tech Stack",
-  description: "Learn about SkillForge Technology, our mission, vision, engineering principles, and why we are the leading project development center in Tamil Nadu.",
+  title: "About Us | Enterprise Software Engineers & Tech Consultancy",
+  description: "Learn about SkillForge Technology, our mission, vision, engineering principles, and how we deliver high-performance software and AI solutions to clients worldwide.",
+  keywords: [
+    "About SkillForge Technology",
+    "Offshore Engineering Principles",
+    "International Software Agency",
+    "SaaS Founders Tech Partner",
+    "Outsource Dedicated Developers",
+    "Startups Scale Consulting"
+  ],
   path: "/about"
 })
 

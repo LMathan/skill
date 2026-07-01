@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import { Phone, Mail, ArrowUp, Send, MessageSquare } from "lucide-react"
+import { Mail, ArrowUp, Send, MessageSquare, Calendar } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 export function FloatingWidgets() {
@@ -22,10 +22,34 @@ export function FloatingWidgets() {
   const whatsappUrl = "https://wa.me/919345518760?text=Hello%20SkillForge%20Technology,%20I%20would%20like%20to%20discuss%20a%20project."
 
   const items = [
-    { id: "call", icon: Phone, color: "text-blue-500 hover:bg-blue-500/10 hover:text-blue-400", action: () => window.open("tel:+919345518760"), label: "Call Us" },
-    { id: "mail", icon: Mail, color: "text-indigo-500 hover:bg-indigo-500/10 hover:text-indigo-400", action: () => window.open("mailto:skillforgetechnology05@gmail.com"), label: "Email Us" },
-    { id: "whatsapp", icon: MessageSquare, color: "text-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-400", action: () => window.open(whatsappUrl, "_blank"), label: "WhatsApp Chat" },
-    { id: "inquiry", icon: Send, color: "text-cyan-500 hover:bg-cyan-500/10 hover:text-cyan-400", action: () => window.location.href = "/contact", label: "Inquiry Form" }
+    { 
+      id: "schedule", 
+      icon: Calendar, 
+      color: "text-blue-600 hover:bg-blue-50 text-blue-500", 
+      action: () => window.open("https://calendly.com", "_blank"), 
+      label: "Book Call" 
+    },
+    { 
+      id: "mail", 
+      icon: Mail, 
+      color: "text-purple-650 hover:bg-purple-50 text-purple-500", 
+      action: () => window.open("mailto:info@skillforgetechnology.app"), 
+      label: "Email Support" 
+    },
+    { 
+      id: "whatsapp", 
+      icon: MessageSquare, 
+      color: "text-emerald-600 hover:bg-emerald-50 text-emerald-500", 
+      action: () => window.open(whatsappUrl, "_blank"), 
+      label: "WhatsApp Chat" 
+    },
+    { 
+      id: "inquiry", 
+      icon: Send, 
+      color: "text-blue-500 hover:bg-blue-50 text-blue-400", 
+      action: () => window.location.href = "/contact", 
+      label: "Request Proposal" 
+    }
   ]
 
   return (
@@ -34,7 +58,7 @@ export function FloatingWidgets() {
       <motion.div 
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
-        className="pointer-events-auto flex flex-col gap-2.5 p-2 rounded-2xl border border-slate-200/50 dark:border-slate-800 bg-white/80 dark:bg-slate-950/70 backdrop-blur-md shadow-2xl"
+        className="pointer-events-auto flex flex-col gap-2.5 p-2 rounded-2xl border border-slate-200/80 bg-white/95 backdrop-blur-md shadow-xl"
       >
         {items.map((item) => {
           const Icon = item.icon
@@ -42,7 +66,7 @@ export function FloatingWidgets() {
             <button
               key={item.id}
               onClick={item.action}
-              className={`p-3 rounded-xl transition-all duration-300 ${item.color} focus:outline-none flex items-center justify-center`}
+              className={`p-3 rounded-xl transition-all duration-300 ${item.color} focus:outline-none flex items-center justify-center cursor-pointer`}
               title={item.label}
             >
               <Icon size={18} />
@@ -59,7 +83,7 @@ export function FloatingWidgets() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={scrollToTop}
-            className="pointer-events-auto p-3 rounded-xl border border-slate-200/50 dark:border-slate-800 bg-white/80 dark:bg-slate-950/70 text-slate-500 hover:text-brand-cyan dark:text-slate-400 dark:hover:text-brand-cyan backdrop-blur-md shadow-lg transition-colors focus:outline-none"
+            className="pointer-events-auto p-3 rounded-xl border border-slate-200/80 bg-white/95 text-slate-500 hover:text-blue-600 hover:border-blue-200/80 backdrop-blur-md shadow-md transition-colors focus:outline-none cursor-pointer"
             title="Scroll to Top"
           >
             <ArrowUp size={18} />
