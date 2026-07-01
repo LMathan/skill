@@ -265,11 +265,13 @@ export function Navbar() {
               </div>
 
               {/* CTA Discuss Project */}
-              <Link href="/contact">
-                <Button variant="gradient" className="font-semibold text-xs py-2 px-4 shadow-sm">
-                  {t("nav.cta")}
-                </Button>
-              </Link>
+              <Button 
+                onClick={() => window.dispatchEvent(new CustomEvent("open-book-call-modal"))}
+                variant="gradient" 
+                className="font-semibold text-xs py-2 px-4 shadow-sm cursor-pointer"
+              >
+                {t("nav.cta")}
+              </Button>
             </div>
           </div>
 
@@ -376,12 +378,17 @@ export function Navbar() {
               })}
 
               <div className="pt-4 border-t border-slate-100">
-                <Link href="/contact" onClick={() => setIsMobileOpen(false)}>
-                  <Button variant="gradient" className="w-full py-3.5 text-xs font-bold flex items-center justify-center gap-2">
-                    <span>{t("nav.cta")}</span>
-                    <Send size={12} />
-                  </Button>
-                </Link>
+                <Button 
+                  onClick={() => {
+                    setIsMobileOpen(false)
+                    window.dispatchEvent(new CustomEvent("open-book-call-modal"))
+                  }}
+                  variant="gradient" 
+                  className="w-full py-3.5 text-xs font-bold flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>{t("nav.cta")}</span>
+                  <Send size={12} />
+                </Button>
               </div>
             </div>
           </motion.div>

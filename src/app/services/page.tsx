@@ -40,7 +40,18 @@ export default function ServicesPage() {
   }
 
   return (
-    <div className="relative bg-white pt-24 select-none">
+    <div className="relative bg-transparent pt-24 select-none bg-dot-pattern overflow-hidden">
+      {/* Background glowing circles and 3D shapes */}
+      <div className="absolute top-10 right-10 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" />
+      <div className="absolute top-1/3 left-10 w-[350px] h-[350px] bg-purple-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      
+      {/* 3D-style gear isometric tech shape */}
+      <svg className="absolute top-24 left-[10%] w-64 h-64 text-blue-500/10 pointer-events-none -z-10 animate-spin-slow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="30" stroke="currentColor" strokeWidth="0.4" strokeDasharray="4 4" />
+        <path d="M50 15 L50 85 M15 50 L85 50 M25 25 L75 75 M75 25 L25 75" stroke="currentColor" strokeWidth="0.2" />
+        <circle cx="50" cy="50" r="12" stroke="currentColor" strokeWidth="0.8" fill="white" />
+        <circle cx="50" cy="50" r="6" stroke="currentColor" strokeWidth="0.4" />
+      </svg>
       {/* Schema injection */}
       <script
         type="application/ld+json"

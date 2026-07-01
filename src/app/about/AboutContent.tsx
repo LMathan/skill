@@ -38,12 +38,22 @@ export default function AboutContent() {
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative bg-white pt-24 text-left select-none bg-dot-pattern"
+      className="relative bg-transparent pt-24 text-left select-none bg-dot-pattern"
     >
       
       {/* Background colorful blurred blobs */}
       <div className="absolute top-10 right-10 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" />
       <div className="absolute top-1/3 left-10 w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      {/* 3D-style wireframe isometric tech sphere SVG */}
+      <svg className="absolute top-20 right-[15%] w-72 h-72 text-indigo-500/10 pointer-events-none -z-10 animate-pulse" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="0.2" />
+        <ellipse cx="50" cy="50" rx="40" ry="15" stroke="currentColor" strokeWidth="0.25" />
+        <ellipse cx="50" cy="50" rx="15" ry="40" stroke="currentColor" strokeWidth="0.25" />
+        <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" strokeWidth="0.2" />
+        <line x1="10" y1="50" x2="90" y2="50" stroke="currentColor" strokeWidth="0.2" />
+        <circle cx="50" cy="50" r="3" fill="currentColor" className="text-blue-500 animate-ping" />
+      </svg>
 
       {/* Hero Header */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">

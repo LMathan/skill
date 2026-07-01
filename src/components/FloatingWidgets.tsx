@@ -26,7 +26,7 @@ export function FloatingWidgets() {
       id: "schedule", 
       icon: Calendar, 
       color: "text-blue-600 hover:bg-blue-50 text-blue-500", 
-      action: () => window.open("https://calendly.com", "_blank"), 
+      action: () => window.dispatchEvent(new CustomEvent("open-book-call-modal")), 
       label: "Book Call" 
     },
     { 

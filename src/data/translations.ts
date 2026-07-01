@@ -56,7 +56,7 @@ export const translations: Record<string, Record<string, any>> = {
         },
         "3": {
           "title": "Active Support Lines",
-          "desc": "+91 99947 52125"
+          "desc": "+91 93455 18760"
         }
       },
       "formSubtitle": "Submit your target features to receive a granular architecture quote and timeframe schedule within 24 hours.",
@@ -218,7 +218,25 @@ export const translations: Record<string, Record<string, any>> = {
       "problemLabel": "Operational Challenge",
       "solutionLabel": "Technical Resolve",
       "outcomeLabel": "Key Metric Achieved",
-      "deploymentLabel": "Production Stack Status"
+      "deploymentLabel": "Production Stack Status",
+      "port-1": {
+        "title": "Healthcare Vitals Sensor Tracker App",
+        "problem": "Bluetooth sensor connection dropouts during telemetry packet syncs.",
+        "solution": "Implemented retry buffer queue logic and offline packet local database sync.",
+        "outcome": "99.8% sensor data packet delivery under critical dropouts."
+      },
+      "port-2": {
+        "title": "Decentralized Logistics Shipping Portal",
+        "problem": "API query latencies exceeding 2400ms during bulk shipping updates.",
+        "solution": "Redesigned GraphQL resolvers with query caching and Redis syncing.",
+        "outcome": "Reduced query latency to 180ms on high concurrent client threads."
+      },
+      "port-3": {
+        "title": "Industrial ESP32 Modbus Telemetry Unit",
+        "problem": "Noise interference on RS485 lines causing data packet corruption.",
+        "solution": "Designed custom PCB differential isolation circuits and software noise filters.",
+        "outcome": "100% data transmission reliability on high electromagnetic noise lines."
+      }
     },
     "reviews": {
       "submittedTitle": "Review Submitted Successfully",
@@ -296,8 +314,21 @@ export const translations: Record<string, Record<string, any>> = {
       "titlePart2": "Critical Industries",
       "subtitle": "We engineer specialized data compliance engines, low-latency microservices, and design frameworks aligned with vertical standards.",
       "protectLabel": "Enterprise-Grade Protections",
-      "discussBtn": "Discuss Sector Specs"
+      "discussBtn": "Discuss Sector Specs",
+      "0": {
+        "name": "Finance & Banking"
+      },
+      "1": {
+        "name": "Healthcare & Life Sciences"
+      },
+      "2": {
+        "name": "Real Estate & Construction"
+      },
+      "3": {
+        "name": "Logistics & Supply Chain"
+      }
     },
+
     "faq": {
       "0": {
         "q": "What services does SkillForge Technology provide?",
@@ -352,22 +383,68 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "services": {
       "software-development": {
-        "title": "Software Development"
+        "title": "Software Development",
+        "desc": "High-performance enterprise software & SaaS products built for scale."
+      },
+      "enterprise-development": {
+        "title": "Enterprise Development",
+        "desc": "Bespoke high-performance core business platforms."
+      },
+      "saas-development": {
+        "title": "SaaS Development",
+        "desc": "Build, deploy, and scale multi-tenant SaaS products."
       },
       "web-development": {
-        "title": "Web Development"
+        "title": "Web Development",
+        "desc": "Stunning, high-performance web applications built for growth."
       },
       "mobile-development": {
-        "title": "Mobile App Development"
+        "title": "Mobile App Development",
+        "desc": "Premium native & cross-platform applications."
+      },
+      "flutter-development": {
+        "title": "Flutter Development",
+        "desc": "Cross-platform mobile applications built with Flutter."
+      },
+      "react-development": {
+        "title": "React Development",
+        "desc": "Dynamic single-page React frontend applications."
+      },
+      "wordpress-development": {
+        "title": "WordPress Development",
+        "desc": "Custom themes, WooCommerce, and headless WordPress setups."
+      },
+      "php-development": {
+        "title": "PHP Development",
+        "desc": "Bespoke backend web systems engineered in Laravel & PHP."
+      },
+      "dotnet-development": {
+        "title": ".NET Development",
+        "desc": "Secure C# .NET Core backend microservices and desktop apps."
+      },
+      "ui-ux-design": {
+        "title": "UI/UX Design",
+        "desc": "Modern user research, layout wireframing, and Figma prototyping."
       },
       "ai-solutions": {
-        "title": "AI Solutions"
+        "title": "AI Solutions",
+        "desc": "Fine-tune LLMs, vector search, RAG pipelines, and agent systems."
       },
       "cloud-devops": {
-        "title": "Cloud & DevOps"
+        "title": "Cloud & DevOps",
+        "desc": "Automate Kubernetes operations and CI/CD pipelines."
+      },
+      "seo-marketing": {
+        "title": "SEO Optimization",
+        "desc": "Boost traffic metrics and keyword ranking visibility."
+      },
+      "iot-embedded": {
+        "title": "IoT & Embedded",
+        "desc": "ESP32 firmware, custom PCB circuits, and sensors."
       },
       "real-estate-creative": {
-        "title": "Real Estate Creative"
+        "title": "Real Estate Creative",
+        "desc": "3D properties showcasing, staging, and high-end floor plans."
       }
     }
   },
@@ -426,7 +503,7 @@ export const translations: Record<string, Record<string, any>> = {
         },
         "3": {
           "title": "Active Support Lines",
-          "desc": "+91 99947 52125"
+          "desc": "+91 93455 18760"
         }
       },
       "formSubtitle": "Submit your target features to receive a granular architecture quote and timeframe schedule within 24 hours.",
@@ -796,7 +873,7 @@ export const translations: Record<string, Record<string, any>> = {
         },
         "3": {
           "title": "Active Support Lines",
-          "desc": "+91 99947 52125"
+          "desc": "+91 93455 18760"
         }
       },
       "formSubtitle": "Submit your target features to receive a granular architecture quote and timeframe schedule within 24 hours.",
@@ -1166,7 +1243,7 @@ export const translations: Record<string, Record<string, any>> = {
         },
         "3": {
           "title": "Active Support Lines",
-          "desc": "+91 99947 52125"
+          "desc": "+91 93455 18760"
         }
       },
       "formSubtitle": "Submit your target features to receive a granular architecture quote and timeframe schedule within 24 hours.",
@@ -1536,7 +1613,7 @@ export const translations: Record<string, Record<string, any>> = {
         },
         "3": {
           "title": "Active Support Lines",
-          "desc": "+91 99947 52125"
+          "desc": "+91 93455 18760"
         }
       },
       "formSubtitle": "Submit your target features to receive a granular architecture quote and timeframe schedule within 24 hours.",
@@ -1906,7 +1983,7 @@ export const translations: Record<string, Record<string, any>> = {
         },
         "3": {
           "title": "Active Support Lines",
-          "desc": "+91 99947 52125"
+          "desc": "+91 93455 18760"
         }
       },
       "formSubtitle": "Submit your target features to receive a granular architecture quote and timeframe schedule within 24 hours.",
@@ -2276,7 +2353,7 @@ export const translations: Record<string, Record<string, any>> = {
         },
         "3": {
           "title": "Active Support Lines",
-          "desc": "+91 99947 52125"
+          "desc": "+91 93455 18760"
         }
       },
       "formSubtitle": "Submit your target features to receive a granular architecture quote and timeframe schedule within 24 hours.",
@@ -2646,7 +2723,7 @@ export const translations: Record<string, Record<string, any>> = {
         },
         "3": {
           "title": "Active Support Lines",
-          "desc": "+91 99947 52125"
+          "desc": "+91 93455 18760"
         }
       },
       "formSubtitle": "Submit your target features to receive a granular architecture quote and timeframe schedule within 24 hours.",
@@ -3016,7 +3093,7 @@ export const translations: Record<string, Record<string, any>> = {
         },
         "3": {
           "title": "Active Support Lines",
-          "desc": "+91 99947 52125"
+          "desc": "+91 93455 18760"
         }
       },
       "formSubtitle": "Submit your target features to receive a granular architecture quote and timeframe schedule within 24 hours.",
@@ -3386,7 +3463,7 @@ export const translations: Record<string, Record<string, any>> = {
         },
         "3": {
           "title": "Active Support Lines",
-          "desc": "+91 99947 52125"
+          "desc": "+91 93455 18760"
         }
       },
       "formSubtitle": "Submit your target features to receive a granular architecture quote and timeframe schedule within 24 hours.",

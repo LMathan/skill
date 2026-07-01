@@ -170,7 +170,7 @@ export function HomeContent() {
   }
 
   return (
-    <div className="relative bg-white pt-24 overflow-x-hidden selection:bg-blue-500/20 text-slate-800 bg-dot-pattern" dir={isRTL ? "rtl" : "ltr"}>
+    <div className="relative bg-transparent pt-24 overflow-x-hidden selection:bg-blue-500/20 text-slate-800 bg-dot-pattern" dir={isRTL ? "rtl" : "ltr"}>
       
       {/* Animated Floating Gradient Blobs */}
       <div className="absolute top-10 left-1/4 w-[350px] h-[350px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none -z-10 ambient-blob-slow" />

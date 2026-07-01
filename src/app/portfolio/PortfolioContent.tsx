@@ -35,7 +35,7 @@ export default function PortfolioContent() {
   }
 
   return (
-    <div className="relative bg-white pt-24 pb-20 select-none text-left bg-dot-pattern">
+    <div className="relative bg-transparent pt-24 pb-20 select-none text-left bg-dot-pattern">
       
       {/* Background patterns */}
       <div className="absolute top-0 right-1/4 w-80 h-80 bg-blue-500/8 rounded-full blur-3xl pointer-events-none -z-10" />

@@ -38,7 +38,7 @@ export default function ServicesContent() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="p-8 sm:p-10 rounded-3xl border border-slate-200/80 bg-white relative overflow-hidden shadow-sm hover:shadow-md transition-shadow group text-left"
+          className="p-8 sm:p-10 rounded-3xl border border-slate-200/80 glass-card-premium relative overflow-hidden shadow-sm hover:shadow-md transition-shadow group text-left"
         >
           {/* Subtle backglow */}
           <div className="absolute -right-24 -top-24 w-72 h-72 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-full blur-3xl pointer-events-none" />

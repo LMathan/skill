@@ -55,11 +55,23 @@ export default function TechnologiesContent() {
   ]
 
   return (
-    <div className="relative bg-white pt-24 pb-20 select-none text-left bg-dot-pattern">
+    <div className="relative bg-transparent pt-24 pb-20 select-none text-left bg-dot-pattern">
       
       {/* Background patterns */}
       <div className="absolute top-0 left-10 w-96 h-96 bg-purple-500/8 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute bottom-1/4 right-10 w-[300px] h-[300px] bg-blue-500/8 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      {/* 3D-style isometric code compilation block SVG representing technology stacks */}
+      <svg className="absolute top-24 left-[10%] w-60 h-60 text-blue-500/10 pointer-events-none -z-10 animate-pulse" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 25 L85 25 L85 75 L15 75 Z" stroke="currentColor" strokeWidth="0.3" />
+        <path d="M15 35 L85 35 M25 25 L25 75" stroke="currentColor" strokeWidth="0.2" />
+        <circle cx="20" cy="30" r="1.5" fill="currentColor" className="text-red-500" />
+        <circle cx="24" cy="30" r="1.5" fill="currentColor" className="text-yellow-500" />
+        <circle cx="28" cy="30" r="1.5" fill="currentColor" className="text-green-500" />
+        <line x1="32" y1="45" x2="65" y2="45" stroke="currentColor" strokeWidth="0.5" />
+        <line x1="32" y1="52" x2="55" y2="52" stroke="currentColor" strokeWidth="0.5" />
+        <line x1="32" y1="59" x2="75" y2="59" stroke="currentColor" strokeWidth="0.5" />
+      </svg>
 
       {/* Hero Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
@@ -79,7 +91,7 @@ export default function TechnologiesContent() {
         {stacks.map((stack, idx) => (
           <div 
             key={idx}
-            className="bg-white border border-slate-200/80 rounded-3xl p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative overflow-hidden"
+            className="glass-card-premium border border-slate-200/80 rounded-3xl p-8 flex flex-col justify-between shadow-sm"
           >
             <div className="space-y-4 text-left">
               <div className="p-3 bg-slate-50 border border-slate-100 rounded-xl w-fit">
@@ -113,7 +125,7 @@ export default function TechnologiesContent() {
 
       {/* CTA section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 text-center">
-        <div className="bg-slate-50 border border-slate-200/60 rounded-3xl p-10 max-w-4xl mx-auto space-y-6">
+        <div className="glass-card border border-slate-200/60 rounded-3xl p-10 max-w-4xl mx-auto space-y-6">
           <h2 className="text-xl sm:text-2xl font-bold font-display text-slate-900">
             {t("tech.ctaTitle" as any)}
           </h2>

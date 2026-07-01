@@ -11,6 +11,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/context/LanguageContext"
+import { galleryData } from "@/data/galleryData"
 
 interface ServiceDetailClientProps {
   service: any
@@ -168,6 +169,39 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
   ])
   const [isAiLoading, setIsAiLoading] = useState(false)
 
+  // C# Middleware console sync state
+  const [dotnetLogs, setDotnetLogs] = useState<string[]>([
+    "System startup. Loaded assembly Core.dll",
+    "Initializing secure routing engine client configurations...",
+    "Gateway security node status: Listening on PORT 5001"
+  ])
+
+  // PHP Laravel route inspector requests
+  const [phpResponse, setPhpResponse] = useState<any>({
+    status: "200 OK",
+    body: JSON.stringify({ message: "Select route above to fetch database output payload" }, null, 2)
+  })
+
+  // React SPA counter state
+  const [reactCounter, setReactCounter] = useState(0)
+  const [reactLogs, setReactLogs] = useState<string[]>(["Initial render of SPA component completed."])
+
+  // WordPress headless CMS content list
+  const [wpPosts, setWpPosts] = useState([
+    { id: 1, title: "Next.js Static ISR Speed", status: "Published", api: "Headless REST v2" },
+    { id: 2, title: "WooCommerce API Gateway", status: "Published", api: "GraphQL Node" }
+  ])
+
+  // UI/UX Figma layer state
+  const [figmaLayer, setFigmaLayer] = useState<"wireframe" | "high-fidelity">("wireframe")
+
+  // Enterprise ERP inventory item selection
+  const [erpItems, setErpItems] = useState([
+    { sku: "SKU-990", stock: 842, status: "IN_STOCK" },
+    { sku: "SKU-410", stock: 12, status: "LOW_STOCK" },
+    { sku: "SKU-890", stock: 0, status: "OUT_OF_STOCK" }
+  ])
+
   const handleAiSend = (e: React.FormEvent) => {
     e.preventDefault()
     if (!aiPrompt.trim()) return
@@ -205,15 +239,16 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
   // Map slugs to generated high-fidelity screenshot assets
   const categoryScreenshotMap: Record<string, string> = {
     "software-development": "/gallery/software-development/saas_dashboard_mockup.png",
-    "enterprise-development": "/gallery/software-development/saas_dashboard_mockup.png",
+    "enterprise-development": "/gallery/enterprise-development/enterprise_erp_mockup.png",
     "saas-development": "/gallery/software-development/saas_dashboard_mockup.png",
-    "web-development": "/gallery/software-development/saas_dashboard_mockup.png",
+    "web-development": "/gallery/web-development/web_landing_mockup.png",
     "mobile-development": "/gallery/mobile-development/mobile_app_mockup.png",
-    "flutter-development": "/gallery/mobile-development/mobile_app_mockup.png",
-    "react-development": "/gallery/software-development/saas_dashboard_mockup.png",
-    "wordpress-development": "/gallery/software-development/saas_dashboard_mockup.png",
-    "php-development": "/gallery/software-development/saas_dashboard_mockup.png",
-    "dotnet-development": "/gallery/software-development/saas_dashboard_mockup.png",
+    "flutter-development": "/gallery/flutter-development/flutter_app_mockup.png",
+    "react-development": "/gallery/react-development/react_spa_mockup.png",
+    "wordpress-development": "/gallery/wordpress-development/wordpress_woocommerce_mockup.png",
+    "php-development": "/gallery/php-development/php_laravel_api_mockup.png",
+    "dotnet-development": "/gallery/dotnet-development/dotnet_security_mockup.png",
+    "ui-ux-design": "/gallery/ui-ux-design/figma_design_mockup.png",
     "ai-solutions": "/gallery/ai-solutions/ai_agent_mockup.png",
     "cloud-devops": "/gallery/cloud-devops/cloud_monitoring_mockup.png",
     "seo-marketing": "/gallery/seo-marketing/seo_metrics_mockup.png",
@@ -224,9 +259,6 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
   const getMockupWidget = (slug: string) => {
     switch (slug) {
       case "software-development":
-      case "enterprise-development":
-      case "dotnet-development":
-      case "php-development":
         return (
           <div className="border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-6 shadow-xl relative overflow-hidden text-left font-mono text-[10px] space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
@@ -274,6 +306,42 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
           </div>
         )
 
+      case "enterprise-development":
+        return (
+          <div className="border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-5 shadow-xl text-left space-y-4 font-sans">
+            <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+              <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400">Enterprise ERP Warehouse</span>
+              <span className="text-emerald-600 font-extrabold text-[8px]">● Live Sync</span>
+            </div>
+            <div className="space-y-2.5 text-[10px]">
+              <div className="flex justify-between font-extrabold text-slate-400 border-b border-slate-100 pb-1">
+                <span>SKU Code</span>
+                <span>Quantity</span>
+                <span>Status</span>
+              </div>
+              {erpItems.map((item, index) => (
+                <div key={index} className="flex justify-between items-center py-1 border-b border-slate-50 font-bold text-slate-700">
+                  <span className="font-mono">{item.sku}</span>
+                  <span>{item.stock} units</span>
+                  <span className={`px-1.5 py-0.5 rounded text-[8px] font-extrabold ${
+                    item.status === "IN_STOCK" ? "bg-green-50 text-green-600" :
+                    item.status === "LOW_STOCK" ? "bg-amber-50 text-amber-600" : "bg-red-50 text-red-600"
+                  }`}>{item.status.replace("_", " ")}</span>
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setErpItems(prev => prev.map(item => item.sku === "SKU-410" ? { ...item, stock: 50, status: "IN_STOCK" } : item))
+              }}
+              className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-xl py-2 text-[10px] font-bold text-center cursor-pointer"
+            >
+              Refill Low Stock SKU-410 (+38 units)
+            </button>
+          </div>
+        )
+
       case "saas-development":
         return (
           <div className="border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-6 shadow-xl text-left relative overflow-hidden space-y-6">
@@ -308,11 +376,9 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
         )
 
       case "web-development":
-      case "react-development":
-      case "wordpress-development":
         return (
           <div className="border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl shadow-xl overflow-hidden text-left relative">
-            <div className="bg-slate-50 border-b border-slate-150 px-4 py-3 flex items-center justify-between">
+            <div className="bg-slate-50 border-b border-slate-155 px-4 py-3 flex items-center justify-between">
               <div className="flex gap-1">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
@@ -324,7 +390,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
 
             <div className="p-5 grid grid-cols-12 gap-4 font-sans text-xs">
               <div className="col-span-4 border border-slate-200 bg-slate-50/50 p-3 rounded-xl space-y-2 font-bold">
-                <div className="w-full bg-slate-350 h-3 rounded" />
+                <div className="w-full bg-slate-300 h-3 rounded" />
                 <div className="w-3/4 bg-slate-200 h-2 rounded" />
                 <div className="w-1/2 bg-slate-200 h-2 rounded" />
               </div>
@@ -350,7 +416,6 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
         )
 
       case "mobile-development":
-      case "flutter-development":
         return (
           <div className="flex justify-center items-center">
             <div className="w-64 border-[6px] border-slate-800 bg-slate-900 rounded-[32px] overflow-hidden shadow-2xl relative text-left">
@@ -359,7 +424,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
               <div className="bg-white min-h-[360px] p-5 relative pt-8 font-sans">
                 <div className="flex justify-between items-center text-[10px] font-extrabold text-slate-400 pb-4 border-b border-slate-100">
                   <span>9:41 AM</span>
-                  <span className="text-blue-600">Active SDK</span>
+                  <span className="text-blue-650">Active SDK</span>
                 </div>
 
                 <div className="flex gap-1.5 py-3">
@@ -417,12 +482,223 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
           </div>
         )
 
+      case "flutter-development":
+        return (
+          <div className="flex justify-center items-center">
+            <div className="w-64 border-[6px] border-slate-800 bg-slate-900 rounded-[32px] overflow-hidden shadow-2xl relative text-left">
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-4 bg-slate-800 rounded-full z-20" />
+              <div className="bg-white min-h-[340px] p-5 relative pt-8 font-sans text-[10px]">
+                <div className="flex justify-between items-center text-[7px] font-extrabold text-slate-400 border-b border-slate-100 pb-2">
+                  <span>SDK Flutter Engine</span>
+                  <span className="text-teal-600">v3.22 Stable</span>
+                </div>
+                <div className="space-y-4 pt-4">
+                  <span className="font-display font-extrabold text-sm text-slate-900 block leading-tight">Cross-Platform Render</span>
+                  <div className="space-y-2 border border-slate-100 p-3 bg-slate-50/50 rounded-2xl">
+                    <div className="flex justify-between items-center font-bold text-slate-700">
+                      <span>Compiled Targets:</span>
+                      <span className="text-teal-650 font-extrabold">iOS, Android, Web</span>
+                    </div>
+                    <div className="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+                      <div className="bg-teal-500 h-full w-full" />
+                    </div>
+                  </div>
+                  <div className="bg-teal-50 border border-teal-100 p-2.5 rounded-xl text-[8px] text-teal-700 font-bold leading-normal">
+                    Hot reload sync is fully functional. Engine responsive scaling complete.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+
+      case "react-development":
+        return (
+          <div className="border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-5 shadow-xl text-left font-sans space-y-4">
+            <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+              <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400">React Client-Side SPA Simulator</span>
+              <span className="text-blue-500 font-extrabold text-[8px]">STATE SYNC</span>
+            </div>
+            <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between">
+              <span className="text-xs font-bold text-slate-800">Local Component Counter State:</span>
+              <span className="text-xl font-extrabold text-blue-600 font-mono">{reactCounter}</span>
+            </div>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setReactCounter(c => c + 1)
+                  setReactLogs(prev => [...prev, `Action dispatch: INCREMENT State parsed to ${reactCounter + 1}`])
+                }}
+                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2 text-[10px] font-bold text-center cursor-pointer"
+              >
+                Increment State (+)
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setReactCounter(0)
+                  setReactLogs(["SPA state reset to zero base."])
+                }}
+                className="bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-xl px-4 py-2 text-[10px] font-bold text-center cursor-pointer"
+              >
+                Reset
+              </button>
+            </div>
+            <div className="p-2.5 bg-slate-900 text-slate-400 font-mono text-[8px] rounded-lg max-h-16 overflow-y-auto">
+              {reactLogs.map((log, i) => (
+                <p key={i} className="text-slate-350">{`> ${log}`}</p>
+              ))}
+            </div>
+          </div>
+        )
+
+      case "wordpress-development":
+        return (
+          <div className="border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-5 shadow-xl text-left font-sans space-y-4">
+            <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+              <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400">Headless WordPress CMS Sync</span>
+              <span className="text-indigo-600 font-extrabold text-[8px]">WooCommerce REST API</span>
+            </div>
+            <div className="space-y-2 text-[10px]">
+              {wpPosts.map((post) => (
+                <div key={post.id} className="flex justify-between items-center p-2 border border-slate-100 bg-slate-50/50 rounded-xl">
+                  <div className="space-y-0.5">
+                    <span className="font-bold text-slate-800 block">{post.title}</span>
+                    <span className="text-[7px] text-slate-400 font-bold block">{post.api}</span>
+                  </div>
+                  <span className="bg-green-50 text-green-600 px-1.5 py-0.5 rounded text-[8px] font-extrabold">{post.status}</span>
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                if (wpPosts.length < 3) {
+                  setWpPosts(prev => [...prev, { id: 3, title: "Product Stock Webhook Triggered", status: "Published", api: "Webhooks v3" }])
+                }
+              }}
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl py-2 text-[10px] font-bold text-center cursor-pointer"
+            >
+              Create & Publish New Headless Post
+            </button>
+          </div>
+        )
+
+      case "php-development":
+        return (
+          <div className="border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-5 shadow-xl text-left space-y-4 font-mono text-[9px]">
+            <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+              <span className="text-slate-400 font-extrabold uppercase">Laravel API Routes Inspector</span>
+              <span className="text-orange-500 font-extrabold">API v3</span>
+            </div>
+            <div className="flex gap-1.5">
+              <button
+                type="button"
+                onClick={() => setPhpResponse({ status: "200 OK", body: JSON.stringify({ message: "Welcome to Laravel Core Service API", uptime: "99.98%" }, null, 2) })}
+                className="px-2 py-1 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 cursor-pointer font-bold"
+              >
+                GET /
+              </button>
+              <button
+                type="button"
+                onClick={() => setPhpResponse({ status: "200 OK", body: JSON.stringify({ error: null, users: [{ id: 890, role: "Subscriber" }] }, null, 2) })}
+                className="px-2 py-1 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 cursor-pointer font-bold"
+              >
+                GET /users
+              </button>
+            </div>
+            <div className="p-3 bg-slate-900 text-slate-200 rounded-xl space-y-1 overflow-x-auto">
+              <p className="text-emerald-500 font-bold">STATUS: {phpResponse.status}</p>
+              <pre className="text-[8px] leading-normal text-slate-350">{phpResponse.body}</pre>
+            </div>
+          </div>
+        )
+
+      case "dotnet-development":
+        return (
+          <div className="border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-5 shadow-xl text-left font-mono text-[9px] space-y-4">
+            <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+              <span className="text-slate-400 font-extrabold uppercase">C# .NET Core Middleware</span>
+              <span className="text-blue-600 font-extrabold">Active JWT filter</span>
+            </div>
+            <div className="p-3 bg-slate-900 text-slate-350 rounded-xl space-y-1.5 h-28 overflow-y-auto font-mono">
+              {dotnetLogs.map((log, i) => (
+                <p key={i} className="text-emerald-500 leading-normal">{`[${new Date().toLocaleTimeString()}] ${log}`}</p>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setDotnetLogs(prev => [...prev, "HTTP GET /api/v2/secure-vault verified SHA-256", "User Role Access Granted: ADMIN"])
+              }}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-2 text-[9px] font-bold text-center cursor-pointer font-sans"
+            >
+              Trigger API Request Verification
+            </button>
+          </div>
+        )
+
+      case "ui-ux-design":
+        return (
+          <div className="border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-5 shadow-xl text-left font-sans space-y-4">
+            <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+              <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400">Figma Prototype Artboard</span>
+              <div className="flex gap-1">
+                <button
+                  type="button"
+                  onClick={() => setFigmaLayer("wireframe")}
+                  className={`px-2 py-0.5 rounded text-[7px] font-bold cursor-pointer ${figmaLayer === "wireframe" ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-500"}`}
+                >
+                  Wireframe
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFigmaLayer("high-fidelity")}
+                  className={`px-2 py-0.5 rounded text-[7px] font-bold cursor-pointer ${figmaLayer === "high-fidelity" ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-500"}`}
+                >
+                  High-Fi
+                </button>
+              </div>
+            </div>
+            <div className="relative border border-slate-200 aspect-[16/10] bg-slate-50 rounded-2xl flex flex-col justify-between p-4 overflow-hidden select-none">
+              {figmaLayer === "wireframe" ? (
+                <div className="space-y-3 font-mono text-[9px] text-slate-400">
+                  <div className="border border-dashed border-slate-300 h-6 rounded flex items-center justify-center font-bold">[ H1 Header Block ]</div>
+                  <div className="grid grid-cols-2 gap-2 h-14">
+                    <div className="border border-dashed border-slate-300 rounded flex items-center justify-center font-bold">Grid 1</div>
+                    <div className="border border-dashed border-slate-300 rounded flex items-center justify-center font-bold">Grid 2</div>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-3 font-sans text-[9px] text-slate-800 animate-fade-in">
+                  <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-2 rounded-xl flex justify-between items-center font-bold shadow-md">
+                    <span>Enterprise Sync Panel</span>
+                    <span className="text-[7px] bg-white/20 px-1 rounded">Active</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-white border border-slate-200 p-2.5 rounded-xl space-y-1 shadow-sm">
+                      <span className="text-slate-400 text-[7px] block">Clicks</span>
+                      <span className="text-xs font-bold block">14,890</span>
+                    </div>
+                    <div className="bg-white border border-slate-200 p-2.5 rounded-xl space-y-1 shadow-sm">
+                      <span className="text-slate-400 text-[7px] block">Sales</span>
+                      <span className="text-xs font-bold block">$24,900</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+              <span className="text-[8px] text-slate-400 block text-center font-mono">Artboard ID: art_90218_desktop</span>
+            </div>
+          </div>
+        )
+
       case "ai-solutions":
         return (
           <div className="border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-5 shadow-xl text-left font-sans space-y-4">
             <div className="flex justify-between items-center pb-3 border-b border-slate-100">
               <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 flex items-center gap-1">
-                <Brain size={11} className="text-blue-600 animate-pulse" />
+                <Brain size={11} className="text-blue-650 animate-pulse" />
                 <span>Cognitive Chatbot Core</span>
               </span>
               <span className="text-green-600 text-[8px] font-extrabold uppercase">OpenAI API synced</span>
@@ -447,7 +723,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
                 onChange={(e) => setAiPrompt(e.target.value)}
                 className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs placeholder:text-slate-400 text-slate-800"
               />
-              <button type="submit" className="p-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors cursor-pointer">
+              <button type="submit" className="p-2.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors cursor-pointer flex items-center justify-center">
                 <Send size={14} />
               </button>
             </form>
@@ -457,24 +733,24 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
       case "cloud-devops":
         return (
           <div className="border border-slate-200 bg-white/70 backdrop-blur-md rounded-2xl p-6 shadow-xl text-left font-mono text-[10px] space-y-5">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-150">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-155">
               <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-450">DevOps Infrastructure Pipeline</span>
               <span className="text-green-600 font-extrabold">● STABLE DEPLOY</span>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 font-sans">
               <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Server size={14} className="text-blue-600 animate-pulse" />
+                  <Server size={14} className="text-blue-605 animate-pulse" />
                   <span className="font-bold text-slate-800">CloudFront Load Balancer</span>
                 </div>
-                <span className="text-slate-400 text-[8px]">SSL: ACTIVE</span>
+                <span className="text-slate-400 text-[8px] font-mono">SSL: ACTIVE</span>
               </div>
 
               <div className="pl-6 border-l-2 border-dashed border-slate-200/80 space-y-4">
                 <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Database size={14} className="text-indigo-650" />
+                    <Database size={14} className="text-indigo-600" />
                     <span className="font-bold text-slate-800">K8s Replica Set (3 pods)</span>
                   </div>
                   <span className="text-emerald-600 font-bold">100% HEALTH</span>
@@ -484,7 +760,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
                     <Database size={14} className="text-cyan-600" />
                     <span className="font-bold text-slate-800">PostgreSQL Cloud DB cluster</span>
                   </div>
-                  <span className="text-slate-400">AWS Aurora</span>
+                  <span className="text-slate-400 font-mono text-[8px]">AWS Aurora</span>
                 </div>
               </div>
             </div>
@@ -508,7 +784,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
                 <span className="block text-[8px] font-extrabold uppercase text-slate-400">Total Clicks</span>
                 <span className="text-lg font-extrabold text-slate-900 font-display">124.8K</span>
               </div>
-              <div className="p-3 bg-slate-50 border border-slate-150 rounded-xl">
+              <div className="p-3 bg-slate-50 border border-slate-155 rounded-xl">
                 <span className="block text-[8px] font-extrabold uppercase text-slate-400">Average Position</span>
                 <span className="text-lg font-extrabold text-blue-600 font-display">#1.4</span>
               </div>
@@ -862,7 +1138,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
   const screenshotPath = categoryScreenshotMap[slug]
 
   return (
-    <div className="relative bg-white pt-24 pb-20 select-none text-slate-800 text-left font-sans bg-dot-pattern" dir={isRTL ? "rtl" : "ltr"}>
+    <div className="relative bg-transparent pt-24 pb-20 select-none text-slate-800 text-left font-sans bg-dot-pattern" dir={isRTL ? "rtl" : "ltr"}>
       
       {/* Background colorful blurred blobs */}
       <div className="absolute top-10 right-10 w-[300px] h-[300px] bg-blue-500/8 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" />
@@ -1430,44 +1706,117 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
 
       {/* LIGHTBOX FOR IMAGES */}
       <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 bg-slate-950/90 z-50 flex items-center justify-center p-4 cursor-zoom-out"
-          >
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-6 right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
-            >
-              <X size={20} />
-            </button>
-
+        {selectedImage && (() => {
+          const matchedProject = galleryData.find(p => p.src === selectedImage) || {
+            projectTitle: (selectedImage.split("/").pop() || "").replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").replace(/\b\w/g, c => c.toUpperCase()),
+            shortDesc: "Premium prototype engineered at our lab using state of the art microcontrollers and custom code integration.",
+            category: "Enterprise System",
+            technologies: ["Custom Stack", "Cloud Integrations", "Optimized Core"],
+            department: "SkillForge Hardware Lab"
+          }
+          return (
             <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative max-w-4xl max-h-[80vh] w-full flex flex-col justify-center items-center rounded-2xl overflow-hidden bg-black"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedImage(null)}
+              className="fixed inset-0 bg-slate-950/60 backdrop-blur-md z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 cursor-zoom-out"
             >
-              <img
-                src={selectedImage}
-                alt="Selected build"
-                className="max-w-full max-h-[75vh] object-contain"
-              />
-              <div className="w-full bg-slate-900 py-3 px-4 text-center">
-                <span className="text-xs text-white font-bold font-display">
-                  {(selectedImage.split("/").pop() || "")
-                    .replace(/\.[^/.]+$/, "")
-                    .replace(/[-_]/g, " ")
-                    .replace(/\b\w/g, c => c.toUpperCase())}
-                </span>
-              </div>
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-4 right-4 z-55 p-3 rounded-full bg-slate-950/10 hover:bg-slate-950/20 text-slate-700 border border-slate-200/60 transition-colors cursor-pointer"
+              >
+                <X size={20} />
+              </button>
+
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative max-w-5xl w-full grid grid-cols-1 md:grid-cols-12 rounded-[32px] overflow-hidden bg-white border border-slate-200/80 shadow-2xl text-left cursor-default"
+              >
+                {/* Left Side: High-res Image */}
+                <div className="md:col-span-7 bg-slate-50 flex items-center justify-center relative min-h-[300px] md:min-h-[500px] border-b md:border-b-0 md:border-r border-slate-100">
+                  <img
+                    src={selectedImage}
+                    alt={matchedProject.projectTitle}
+                    className="max-w-full max-h-[70vh] object-contain p-2"
+                  />
+                  <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-sm border border-slate-200 text-[10px] font-extrabold text-blue-650 uppercase tracking-widest">
+                    <Sparkles size={10} />
+                    <span>Project Showcase</span>
+                  </div>
+                </div>
+
+                {/* Right Side: Rich Description & Specs */}
+                <div className="md:col-span-5 p-6 md:p-8 flex flex-col justify-between space-y-6 bg-gradient-to-br from-white via-white to-slate-50/50">
+                  <div className="space-y-4">
+                    <div className="space-y-1">
+                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-650 block">
+                        {matchedProject.category}
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-black font-display text-slate-900 leading-tight">
+                        {matchedProject.projectTitle}
+                      </h3>
+                    </div>
+
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-50 border border-slate-200 text-[9px] font-extrabold text-slate-550 uppercase tracking-wide">
+                      <Terminal size={11} className="text-indigo-650" />
+                      <span>{matchedProject.department}</span>
+                    </div>
+
+                    <p className="text-xs text-slate-600 leading-relaxed font-sans font-medium">
+                      {matchedProject.shortDesc}
+                    </p>
+
+                    <div className="space-y-2">
+                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400 block">
+                        Key Features & Architecture
+                      </span>
+                      <ul className="text-xs text-slate-700 font-semibold space-y-1.5 list-disc pl-4 leading-relaxed font-sans">
+                        <li>High-availability distributed database backend integration.</li>
+                        <li>Microservices schema logic with low latency pipeline parameters.</li>
+                        <li>Robust responsive layouts compatible with global cloud servers.</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 pt-4 border-t border-slate-100">
+                    <div className="space-y-1.5">
+                      <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400 block">
+                        Engineering Stack
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {matchedProject.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="text-[9px] font-extrabold px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 font-mono"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedImage(null)
+                        window.dispatchEvent(new CustomEvent("open-book-call-modal"))
+                      }}
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-all cursor-pointer shadow-sm text-xs flex justify-center items-center gap-1.5"
+                    >
+                      Discuss Project Scope
+                      <ArrowRight size={13} />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
+          )
+        })()}
       </AnimatePresence>
 
     </div>
