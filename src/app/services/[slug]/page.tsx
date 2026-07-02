@@ -146,6 +146,50 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const service = agencyServices.find((s) => s.slug === slug)
   if (!service) return notFound()
 
+  if (slug === "real-estate-creative") {
+    return getSeoMetadata({
+      title: "Professional Real Estate Photo Editing Services | HDR, Virtual Staging & Image Retouching",
+      description: "Professional Real Estate Photo Editing Services with HDR blending, sky replacement, virtual staging, object removal, color correction, and fast turnaround. Get your free sample today.",
+      keywords: [
+        "Real Estate Photo Editing Services",
+        "Real Estate Image Editing",
+        "HDR Real Estate Photo Editing",
+        "Property Photo Editing",
+        "Real Estate Photoshop Editing",
+        "Real Estate Photo Retouching",
+        "Professional Real Estate Editing",
+        "Real Estate Editing Company",
+        "Real Estate Photo Enhancement",
+        "Real Estate Photography Editing",
+        "Sky Replacement",
+        "Virtual Staging",
+        "Virtual Twilight",
+        "Object Removal",
+        "Lawn Enhancement",
+        "Window Masking",
+        "Perspective Correction",
+        "Color Correction",
+        "HDR Blending",
+        "Real Estate Floor Plan",
+        "Furniture Removal",
+        "TV Screen Replacement",
+        "Image Retouching",
+        "Property Image Enhancement",
+        "Best Real Estate Photo Editing Company",
+        "Affordable Real Estate Photo Editing",
+        "Outsource Real Estate Photo Editing",
+        "24 Hour Real Estate Editing Service",
+        "Professional HDR Photo Editing",
+        "Real Estate Photo Editing for Photographers",
+        "Photo Editing for Realtors",
+        "Real Estate Image Enhancement Service",
+        "Virtual Staging Company",
+        "Real Estate Editing Outsourcing"
+      ],
+      path: `/services/${slug}`
+    })
+  }
+
   return getSeoMetadata({
     title: `${service.title} Solutions | SkillForge Technology`,
     description: service.longDesc,

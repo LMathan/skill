@@ -14,6 +14,11 @@ export default function CaseStudiesContent() {
     setExpandedStudy(expandedStudy === id ? null : id)
   }
 
+  const getTranslation = (key: string, fallback: string) => {
+    const value = t(key as any)
+    return value === key ? fallback : value
+  }
+
   return (
     <div className="relative bg-white pt-24 pb-20 select-none text-left bg-dot-pattern">
       
@@ -52,24 +57,24 @@ export default function CaseStudiesContent() {
               >
                 <div className="space-y-3 text-left">
                   <div className="flex items-center gap-4 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
-                    <span>{t(`caseStudies.${study.id}.client` as any) || study.client}</span>
-                    <span className="text-blue-655 bg-blue-50 px-2 py-0.5 rounded-md">{t(`caseStudies.${study.id}.industry` as any) || study.industry}</span>
+                    <span>{getTranslation(`caseStudies.${study.id}.client`, study.client)}</span>
+                    <span className="text-blue-655 bg-blue-50 px-2 py-0.5 rounded-md">{getTranslation(`caseStudies.${study.id}.industry`, study.industry)}</span>
                   </div>
                   <h2 className="text-xl font-bold font-display text-slate-950">
-                    {t(`caseStudies.${study.id}.title` as any) || study.title}
+                    {getTranslation(`caseStudies.${study.id}.title`, study.title)}
                   </h2>
                   <p className="text-xs text-slate-500 max-w-2xl line-clamp-1 leading-relaxed">
-                    {t(`caseStudies.${study.id}.summary` as any) || study.summary}
+                    {getTranslation(`caseStudies.${study.id}.summary`, study.summary)}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-6 shrink-0 pt-4 md:pt-0 border-t border-slate-100 md:border-t-0 w-full md:w-auto justify-between">
                   <div className="text-left">
-                    <span className="block text-2xl font-extrabold text-blue-650 font-display leading-none">
-                      {t(`caseStudies.${study.id}.metric` as any) || study.metric}
+                    <span className="block text-2xl font-extrabold text-blue-655 font-display leading-none">
+                      {getTranslation(`caseStudies.${study.id}.metric`, study.metric)}
                     </span>
                     <span className="text-[8px] uppercase tracking-wider font-extrabold text-slate-400 mt-1 block">
-                      {t(`caseStudies.${study.id}.metricLabel` as any) || study.metricLabel}
+                      {getTranslation(`caseStudies.${study.id}.metricLabel`, study.metricLabel)}
                     </span>
                   </div>
                   <ChevronDown size={18} className={`text-slate-400 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`} />
@@ -94,7 +99,7 @@ export default function CaseStudiesContent() {
                             01. {t("caseStudies.step1" as any)}
                           </span>
                           <p className="text-slate-500 leading-relaxed text-xs">
-                            {t(`caseStudies.${study.id}.challenge` as any) || study.challenge}
+                            {getTranslation(`caseStudies.${study.id}.challenge`, study.challenge)}
                           </p>
                         </div>
 
@@ -103,7 +108,7 @@ export default function CaseStudiesContent() {
                             02. {t("caseStudies.step2" as any)}
                           </span>
                           <p className="text-slate-500 leading-relaxed text-xs">
-                            {t(`caseStudies.${study.id}.research` as any) || study.research}
+                            {getTranslation(`caseStudies.${study.id}.research`, study.research)}
                           </p>
                         </div>
 
@@ -112,7 +117,7 @@ export default function CaseStudiesContent() {
                             03. {t("caseStudies.step3" as any)}
                           </span>
                           <p className="text-slate-500 leading-relaxed text-xs">
-                            {t(`caseStudies.${study.id}.design` as any) || study.design}
+                            {getTranslation(`caseStudies.${study.id}.design`, study.design)}
                           </p>
                         </div>
                       </div>
@@ -123,7 +128,7 @@ export default function CaseStudiesContent() {
                             04. {t("caseStudies.step4" as any)}
                           </span>
                           <p className="text-slate-500 leading-relaxed text-xs">
-                            {t(`caseStudies.${study.id}.development` as any) || study.development}
+                            {getTranslation(`caseStudies.${study.id}.development`, study.development)}
                           </p>
                         </div>
 
@@ -132,7 +137,7 @@ export default function CaseStudiesContent() {
                             05. {t("caseStudies.step5" as any)}
                           </span>
                           <p className="text-slate-500 leading-relaxed text-xs">
-                            {t(`caseStudies.${study.id}.deployment` as any) || study.deployment}
+                            {getTranslation(`caseStudies.${study.id}.deployment`, study.deployment)}
                           </p>
                         </div>
 
@@ -142,7 +147,7 @@ export default function CaseStudiesContent() {
                             <span>06. {t("caseStudies.step6" as any)}</span>
                           </span>
                           <p className="text-slate-700 font-semibold leading-relaxed text-xs">
-                            {t(`caseStudies.${study.id}.result` as any) || study.result}
+                            {getTranslation(`caseStudies.${study.id}.result`, study.result)}
                           </p>
                         </div>
                       </div>

@@ -2,8 +2,8 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { 
-  Check, ArrowRight, ArrowLeft, Cpu, Globe, Smartphone, Brain, 
+import {
+  Check, ArrowRight, ArrowLeft, Cpu, Globe, Smartphone, Brain,
   Cloud, TrendingUp, Code, Layers, ShieldAlert, Layout, Activity, Home,
   Clock, ZoomIn, X, Terminal, Database, Server, Settings, CheckCircle2,
   Lock, RefreshCw, Send, Sparkles, Filter, Sliders, Play, Trash2
@@ -12,10 +12,53 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/context/LanguageContext"
 import { galleryData } from "@/data/galleryData"
+import RealEstateLandingPage from "./RealEstateLandingPage"
 
 interface ServiceDetailClientProps {
   service: any
   localImages: string[]
+}
+
+function getProjectFeatures(project: any) {
+  if (project.features) return project.features;
+
+  const title = (project.projectTitle || "").toLowerCase();
+  const category = (project.category || "").toLowerCase();
+
+  if (category.includes("iot") || category.includes("embedded") || title.includes("car") || title.includes("drone") || title.includes("sensor") || title.includes("irrigation") || title.includes("locking")) {
+    return [
+      "Hardware circuit schematic design using microcontrollers (ESP32 / Arduino).",
+      "Real-time sensor telemetry acquisition and cloud communications protocol integration.",
+      "Embedded C/C++ firmware compiler optimization with stable power management."
+    ];
+  }
+  if (category.includes("ai") || category.includes("ml") || title.includes("ai") || title.includes("agent") || title.includes("chatgpt") || title.includes("chat")) {
+    return [
+      "Large Language Model orchestration and semantic text embedding retrieval.",
+      "Vector database query pipeline optimization for context-aware responses.",
+      "Intelligent recursive routing logic using advanced graph flows."
+    ];
+  }
+  if (title.includes("ecommerce") || title.includes("woocommerce") || title.includes("store")) {
+    return [
+      "High-conversion e-commerce landing pages optimized for fast checkout flow.",
+      "Secure payment gateway integration (Stripe, Paypal) and custom coupon engines.",
+      "WordPress WooCommerce database schema optimization and custom plugin hooks."
+    ];
+  }
+  if (title.includes("pipeline") || title.includes("devops") || title.includes("cloud") || title.includes("monitoring")) {
+    return [
+      "Automated CI/CD workflow pipeline setup with secure container actions.",
+      "AWS ECS or Kubernetes cloud cluster orchestration and load balancing.",
+      "Real-time cloud application monitoring, latency logging, and error alert telemetry."
+    ];
+  }
+
+  return [
+    "High-availability distributed database backend design and integration.",
+    "Responsive, pixel-perfect frontend layouts optimized for speed and SEO.",
+    "Secure API microservices endpoints with low latency database queries."
+  ];
 }
 
 const serviceKeywords: Record<string, string[]> = {
@@ -147,7 +190,7 @@ const serviceKeywords: Record<string, string[]> = {
 export default function ServiceDetailClient({ service, localImages }: ServiceDetailClientProps) {
   const { t, locale, isRTL } = useLanguage()
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
-  
+
   // Real Estate staging sliders
   const [sliderPosition, setSliderPosition] = useState(50)
   const [activeCreativeTab, setActiveCreativeTab] = useState<"staging" | "sky">("staging")
@@ -241,7 +284,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
     "software-development": "/gallery/software-development/saas_dashboard_mockup.png",
     "enterprise-development": "/gallery/enterprise-development/enterprise_erp_mockup.png",
     "saas-development": "/gallery/software-development/saas_dashboard_mockup.png",
-    "web-development": "/gallery/web-development/web_landing_mockup.png",
+    "web-development": "/gallery/web-development/aura-wellness-sanctuary.png",
     "mobile-development": "/gallery/mobile-development/mobile_app_mockup.png",
     "flutter-development": "/gallery/flutter-development/flutter_app_mockup.png",
     "react-development": "/gallery/react-development/react_spa_mockup.png",
@@ -249,7 +292,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
     "php-development": "/gallery/php-development/php_laravel_api_mockup.png",
     "dotnet-development": "/gallery/dotnet-development/dotnet_security_mockup.png",
     "ui-ux-design": "/gallery/ui-ux-design/figma_design_mockup.png",
-    "ai-solutions": "/gallery/ai-solutions/ai_agent_mockup.png",
+    "ai-solutions": "/gallery/ai-solutions/ai_agent_mockup.jpeg",
     "cloud-devops": "/gallery/cloud-devops/cloud_monitoring_mockup.png",
     "seo-marketing": "/gallery/seo-marketing/seo_metrics_mockup.png",
     "iot-embedded": "/gallery/iot/iot_board_mockup.png"
@@ -323,10 +366,9 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
                 <div key={index} className="flex justify-between items-center py-1 border-b border-slate-50 font-bold text-slate-700">
                   <span className="font-mono">{item.sku}</span>
                   <span>{item.stock} units</span>
-                  <span className={`px-1.5 py-0.5 rounded text-[8px] font-extrabold ${
-                    item.status === "IN_STOCK" ? "bg-green-50 text-green-600" :
+                  <span className={`px-1.5 py-0.5 rounded text-[8px] font-extrabold ${item.status === "IN_STOCK" ? "bg-green-50 text-green-600" :
                     item.status === "LOW_STOCK" ? "bg-amber-50 text-amber-600" : "bg-red-50 text-red-600"
-                  }`}>{item.status.replace("_", " ")}</span>
+                    }`}>{item.status.replace("_", " ")}</span>
                 </div>
               ))}
             </div>
@@ -349,7 +391,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
               <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400">SaaS Billing Console</span>
               <span className="text-emerald-600 bg-emerald-50 text-[9px] font-extrabold px-2 py-0.5 rounded">Active MRR</span>
             </div>
-            
+
             <div className="space-y-2">
               <span className="text-2xl font-extrabold text-slate-900 font-display">$84,250.00</span>
               <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
@@ -420,7 +462,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
           <div className="flex justify-center items-center">
             <div className="w-64 border-[6px] border-slate-800 bg-slate-900 rounded-[32px] overflow-hidden shadow-2xl relative text-left">
               <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-4 bg-slate-800 rounded-full z-20" />
-              
+
               <div className="bg-white min-h-[360px] p-5 relative pt-8 font-sans">
                 <div className="flex justify-between items-center text-[10px] font-extrabold text-slate-400 pb-4 border-b border-slate-100">
                   <span>9:41 AM</span>
@@ -429,13 +471,12 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
 
                 <div className="flex gap-1.5 py-3">
                   {["login", "chart", "map"].map((tab) => (
-                    <button 
+                    <button
                       type="button"
                       key={tab}
                       onClick={() => setActiveMobileScreen(tab as any)}
-                      className={`px-2.5 py-1 rounded-full text-[8px] font-extrabold uppercase transition-all cursor-pointer ${
-                        activeMobileScreen === tab ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-500"
-                      }`}
+                      className={`px-2.5 py-1 rounded-full text-[8px] font-extrabold uppercase transition-all cursor-pointer ${activeMobileScreen === tab ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-500"
+                        }`}
                     >
                       {tab}
                     </button>
@@ -716,8 +757,8 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
             </div>
 
             <form onSubmit={handleAiSend} className="flex gap-2">
-              <input 
-                type="text" 
+              <input
+                type="text"
                 placeholder="Enter prompts (e.g. Run OCR scan)..."
                 value={aiPrompt}
                 onChange={(e) => setAiPrompt(e.target.value)}
@@ -1139,7 +1180,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
 
   return (
     <div className="relative bg-transparent pt-24 pb-20 select-none text-slate-800 text-left font-sans bg-dot-pattern" dir={isRTL ? "rtl" : "ltr"}>
-      
+
       {/* Background colorful blurred blobs */}
       <div className="absolute top-10 right-10 w-[300px] h-[300px] bg-blue-500/8 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" />
       <div className="absolute top-1/3 left-10 w-[300px] h-[300px] bg-purple-500/8 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -1154,220 +1195,11 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
 
       {/* RENDER FOR CREATIVE REAL ESTATE DIVISION */}
       {isRealEstate ? (
-        <div className="space-y-16">
-          
-          {/* Creative Staging Hero */}
-          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6 space-y-6">
-              <span className="text-[9px] font-extrabold uppercase tracking-widest text-orange-500 px-3 py-1 rounded-full border border-orange-100 bg-orange-50/40 w-fit block font-display">
-                Creative Media Division
-              </span>
-              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-display text-slate-900 leading-tight">
-                Premium Real Estate <br />
-                <span className="text-gradient">Creative & Staging Services</span>
-              </h1>
-              <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-sans">
-                Empower your listings with photorealistic architectural editing. We blend high-end HDR captures, virtually stage empty rooms with high-fidelity furniture models, and convert overcast skies to gorgeous sunset backdrops.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Link href="/contact" className="w-full sm:w-auto">
-                  <Button variant="gradient" className="w-full font-bold text-xs py-3 px-6 shadow-sm cursor-pointer">
-                    Submit Property Photos
-                  </Button>
-                </Link>
-                <div className="flex items-center gap-2 text-xs font-bold text-slate-500">
-                  <Clock size={16} className="text-orange-500 animate-pulse" />
-                  <span>24-Hour Turnaround Guaranteed</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Before / After Interactive Slider Widget */}
-            <div className="lg:col-span-6 space-y-4">
-              <div className="flex gap-2">
-                {(Object.keys(beforeAfterExamples) as Array<keyof typeof beforeAfterExamples>).map((tab) => (
-                  <button
-                    type="button"
-                    key={tab}
-                    onClick={() => setActiveCreativeTab(tab)}
-                    className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                      activeCreativeTab === tab 
-                        ? "bg-slate-900 text-white shadow-sm" 
-                        : "bg-slate-50 text-slate-600 hover:bg-slate-100"
-                    }`}
-                  >
-                    {beforeAfterExamples[tab].title}
-                  </button>
-                ))}
-              </div>
-
-              {/* Slider Showcase Box */}
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-lg border border-slate-200/80">
-                <img 
-                  src={beforeAfterExamples[activeCreativeTab].after} 
-                  alt="Staged After" 
-                  className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
-                />
-                <span className="absolute bottom-4 right-4 bg-slate-900/80 backdrop-blur-md text-white text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-md z-20">
-                  Staged After
-                </span>
-
-                <div 
-                  className="absolute inset-y-0 left-0 overflow-hidden z-10"
-                  style={{ width: `${sliderPosition}%` }}
-                >
-                  <img 
-                    src={beforeAfterExamples[activeCreativeTab].before} 
-                    alt="Empty Before" 
-                    className="absolute inset-y-0 left-0 w-full h-full object-cover max-w-none select-none pointer-events-none"
-                    style={{ width: "100%" }}
-                  />
-                  <span className="absolute bottom-4 left-4 bg-orange-600/90 backdrop-blur-md text-white text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-md z-20">
-                    Empty Before
-                  </span>
-                </div>
-
-                <div 
-                  className="absolute inset-y-0 z-20 w-1 bg-white cursor-ew-resize flex items-center justify-center"
-                  style={{ left: `${sliderPosition}%` }}
-                >
-                  <div className="w-8 h-8 bg-white border border-slate-200 shadow-lg rounded-full flex items-center justify-center text-[10px] font-bold text-slate-500 select-none">
-                    ↔
-                  </div>
-                </div>
-
-                <input 
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={sliderPosition}
-                  onChange={(e) => setSliderPosition(Number(e.target.value))}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30"
-                  aria-label="Before after slider"
-                />
-              </div>
-
-              <p className="text-[10px] text-slate-400 font-semibold text-center italic mt-1 font-sans">
-                Drag the divider left or right to inspect the quality. {beforeAfterExamples[activeCreativeTab].desc}
-              </p>
-            </div>
-          </section>
-
-          {/* Staging Services Subdivisions Grid */}
-          <section className="bg-slate-50/50 border-y border-slate-200/60 py-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-              <div className="text-center max-w-3xl mx-auto space-y-4">
-                <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">Creative Services Matrix</span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">Specialized Image Retouching</h2>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 font-sans">
-                {service.subServices.map((sub: string, idx: number) => (
-                  <div key={idx} className="bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm space-y-3 glass-card glass-card-hover">
-                    <div className="p-2 bg-orange-50 text-orange-500 rounded-lg w-fit">
-                      <Home size={18} />
-                    </div>
-                    <h3 className="font-bold text-xs sm:text-sm text-slate-900 font-display">{sub}</h3>
-                    <p className="text-[11px] text-slate-500 leading-relaxed">
-                      Professional enhancements structured to maximize engagement rates on Zillow, Realtor, and commercial portals.
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Pricing Structures */}
-          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-              <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">Simple Pricing</span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">Transparent Rates Matrix</h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 font-sans">
-              <div className="bg-white border border-slate-200/60 rounded-3xl p-8 shadow-sm space-y-6 relative flex flex-col justify-between glass-card">
-                <div className="space-y-4">
-                  <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest">Single Blends</span>
-                  <h3 className="text-lg font-bold font-display text-slate-900">HDR Image Editing</h3>
-                  <div className="flex items-baseline">
-                    <span className="text-3xl font-extrabold text-slate-950 font-display">$1.50</span>
-                    <span className="text-xs text-slate-400 ml-1">/ image</span>
-                  </div>
-                  <ul className="space-y-2 border-t border-slate-100 pt-4">
-                    {["16-step exposure blending", "Window view alignment", "Color cast corrections", "Output within 24 hours"].map((bullet, index) => (
-                      <li key={index} className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                        <Check size={13} className="text-green-500" />
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <Link href="/contact" className="w-full">
-                  <Button variant="outline" className="w-full border-slate-200 hover:bg-slate-50 font-bold text-xs py-3.5 rounded-xl mt-6 cursor-pointer">
-                    Get Started
-                  </Button>
-                </Link>
-              </div>
-
-              <div className="bg-white border-2 border-orange-500 rounded-3xl p-8 shadow-md space-y-6 relative flex flex-col justify-between">
-                <span className="absolute -top-3 right-6 bg-orange-500 text-white text-[8px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full">
-                  Most Popular
-                </span>
-                <div className="space-y-4">
-                  <span className="text-[9px] font-extrabold text-orange-500 uppercase tracking-widest">3D Modeling</span>
-                  <h3 className="text-lg font-bold font-display text-slate-900">Virtual Room Staging</h3>
-                  <div className="flex items-baseline">
-                    <span className="text-3xl font-extrabold text-slate-950 font-display">$15.00</span>
-                    <span className="text-xs text-slate-400 ml-1">/ room</span>
-                  </div>
-                  <ul className="space-y-2 border-t border-slate-100 pt-4">
-                    {["Premium 3D furniture models", "Scandinavian or Modern themes", "Unlimited adjustments", "High-res print outcomes"].map((bullet, index) => (
-                      <li key={index} className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                        <Check size={13} className="text-green-500" />
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <Link href="/contact" className="w-full">
-                  <Button variant="gradient" className="w-full font-bold text-xs py-3.5 rounded-xl mt-6 cursor-pointer">
-                    Get Started
-                  </Button>
-                </Link>
-              </div>
-
-              <div className="bg-white border border-slate-200/60 rounded-3xl p-8 shadow-sm space-y-6 relative flex flex-col justify-between glass-card">
-                <div className="space-y-4">
-                  <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest">Sky Replace</span>
-                  <h3 className="text-lg font-bold font-display text-slate-900">Day to Dusk Conversion</h3>
-                  <div className="flex items-baseline">
-                    <span className="text-3xl font-extrabold text-slate-950 font-display">$4.00</span>
-                    <span className="text-xs text-slate-400 ml-1">/ image</span>
-                  </div>
-                  <ul className="space-y-2 border-t border-slate-100 pt-4">
-                    {["Dusk sky replacement", "Interior lighting glowing effects", "Powerline & powerbox removal", "Zillow-optimized outcomes"].map((bullet, index) => (
-                      <li key={index} className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                        <Check size={13} className="text-green-500" />
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <Link href="/contact" className="w-full">
-                  <Button variant="outline" className="w-full border-slate-200 hover:bg-slate-50 font-bold text-xs py-3.5 rounded-xl mt-6 cursor-pointer">
-                    Get Started
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </section>
-
-        </div>
+        <RealEstateLandingPage service={service} localImages={localImages} />
       ) : (
         /* RENDER FOR STANDARD SERVICES (SaaS Product Layout - UNIQUE visual styling per slug) */
         <div className="space-y-16">
-          
+
           {/* Custom Landing Page Hero */}
           <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 space-y-6">
@@ -1379,16 +1211,16 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
                   Corporate Solutions Division
                 </span>
               </div>
-              
+
               <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-display text-slate-900 leading-tight">
                 {t(`services.${slug}.title` as any) || service.title} <br />
                 <span className="text-gradient">Solutions Architecting</span>
               </h1>
-              
+
               <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-sans">
                 {t(`services.${slug}.longDesc` as any) || service.longDesc}
               </p>
-              
+
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
                 <Link href="/contact" className="w-full sm:w-auto">
                   <Button variant="gradient" className="w-full font-bold text-xs py-3 px-6 shadow-sm cursor-pointer">
@@ -1406,26 +1238,24 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
             {/* Custom Interactive Mockup Widget with Image vs Sandbox Switcher */}
             <div className="lg:col-span-6 relative">
               <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500/5 to-purple-500/5 rounded-3xl blur-xl" />
-              
+
               {/* Switcher Header */}
               <div className="relative border border-slate-200 bg-white/95 rounded-2xl shadow-xl overflow-hidden glass-card">
                 <div className="bg-slate-50 border-b border-slate-200/80 px-4 py-3 flex items-center justify-between">
                   <div className="flex gap-1.5">
-                    <button 
+                    <button
                       type="button"
                       onClick={() => setActiveMockupMode("image")}
-                      className={`px-3 py-1.5 rounded-lg text-[9px] font-extrabold uppercase tracking-wider transition-all cursor-pointer ${
-                        activeMockupMode === "image" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500"
-                      }`}
+                      className={`px-3 py-1.5 rounded-lg text-[9px] font-extrabold uppercase tracking-wider transition-all cursor-pointer ${activeMockupMode === "image" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500"
+                        }`}
                     >
                       UI Concept Visual
                     </button>
-                    <button 
+                    <button
                       type="button"
                       onClick={() => setActiveMockupMode("sandbox")}
-                      className={`px-3 py-1.5 rounded-lg text-[9px] font-extrabold uppercase tracking-wider transition-all cursor-pointer ${
-                        activeMockupMode === "sandbox" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500"
-                      }`}
+                      className={`px-3 py-1.5 rounded-lg text-[9px] font-extrabold uppercase tracking-wider transition-all cursor-pointer ${activeMockupMode === "sandbox" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500"
+                        }`}
                     >
                       Interactive Sandbox
                     </button>
@@ -1440,9 +1270,9 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
                     <div className="space-y-4">
                       {/* Browser mockup wrap */}
                       <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-slate-50">
-                        <img 
-                          src={screenshotPath} 
-                          alt={`${service.title} Product Mockup Concept`} 
+                        <img
+                          src={screenshotPath}
+                          alt={`${service.title} Product Mockup Concept`}
                           className="w-full h-full object-cover select-none pointer-events-none"
                         />
                       </div>
@@ -1536,11 +1366,11 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
                     We engineer high-performance systems for startups, SMEs, and enterprise scale-ups across the United States, United Kingdom, Europe, Canada, and Australia. Our teams align engineering processes to meet standard specifications across the following target parameters:
                   </p>
                 </div>
-                
+
                 <div className="flex flex-wrap gap-2.5 pt-2">
                   {(serviceKeywords[slug] || []).map((keyword: string, idx: number) => (
-                    <span 
-                      key={idx} 
+                    <span
+                      key={idx}
                       className="text-xs font-semibold text-blue-650 bg-blue-50/40 border border-blue-100 rounded-2xl px-4 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors cursor-default select-none shadow-sm"
                     >
                       {keyword}
@@ -1707,13 +1537,49 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
       {/* LIGHTBOX FOR IMAGES */}
       <AnimatePresence>
         {selectedImage && (() => {
-          const matchedProject = galleryData.find(p => p.src === selectedImage) || {
-            projectTitle: (selectedImage.split("/").pop() || "").replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").replace(/\b\w/g, c => c.toUpperCase()),
-            shortDesc: "Premium prototype engineered at our lab using state of the art microcontrollers and custom code integration.",
-            category: "Enterprise System",
-            technologies: ["Custom Stack", "Cloud Integrations", "Optimized Core"],
-            department: "SkillForge Hardware Lab"
-          }
+          const getFilename = (src: string) => src.split("/").pop() || ""
+          const found = galleryData.find(p => getFilename(p.src) === getFilename(selectedImage))
+
+          const matchedProject = found || (() => {
+            const filename = getFilename(selectedImage)
+            const cleanTitle = filename.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").replace(/\b\w/g, c => c.toUpperCase())
+            const lowerFile = filename.toLowerCase()
+
+            let category = "Software Stack"
+            let dept = "Custom Software Engineering"
+            let desc = "Premium custom software solution engineered to automate workflows and optimize operations."
+            let techs = ["Next.js", "TypeScript", "Tailwind CSS"]
+
+            if (lowerFile.includes("iot") || lowerFile.includes("embedded") || lowerFile.includes("esp32") || lowerFile.includes("mcu") || (lowerFile.includes("board") && !lowerFile.includes("dashboard")) || lowerFile.includes("sensor") || lowerFile.includes("drone") || lowerFile.includes("car") || lowerFile.includes("irrigation") || lowerFile.includes("motor") || lowerFile.includes("locking") || lowerFile.includes("drainage") || lowerFile.includes("gps")) {
+              category = "IoT & Embedded"
+              dept = "SkillForge Hardware Lab"
+              desc = "Custom hardware prototype integrated with real-time sensors, customized PCB schematics, and microcontrollers."
+              techs = ["ESP32", "Embedded C/C++", "Sensors", "MQTT"]
+            } else if (lowerFile.includes("ai") || lowerFile.includes("ml") || lowerFile.includes("agent") || lowerFile.includes("chatgpt") || lowerFile.includes("chat")) {
+              category = "AI & Machine Learning"
+              dept = "SkillForge AI Lab"
+              desc = "Intelligent AI assistant integration utilizing Large Language Models (LLMs) and advanced query orchestration."
+              techs = ["OpenAI API", "Python", "LangChain", "Vector DB"]
+            } else if (lowerFile.includes("devops") || lowerFile.includes("cloud") || lowerFile.includes("monitoring") || lowerFile.includes("pipeline")) {
+              category = "Cloud & DevOps"
+              dept = "Cloud Infrastructure"
+              desc = "Automated CI/CD workflow pipeline orchestrating secure application deployments and cluster health telemetry."
+              techs = ["AWS", "Docker", "GitHub Actions", "Kubernetes"]
+            } else if (lowerFile.includes("wordpress") || lowerFile.includes("woocommerce") || lowerFile.includes("ecommerce") || lowerFile.includes("store")) {
+              category = "CMS & E-Commerce"
+              dept = "E-Commerce Solutions"
+              desc = "Highly optimized, responsive web storefront custom-built on WordPress & WooCommerce platforms."
+              techs = ["WordPress", "WooCommerce", "PHP", "Stripe"]
+            }
+
+            return {
+              projectTitle: cleanTitle,
+              shortDesc: desc,
+              category: category,
+              technologies: techs,
+              department: dept
+            }
+          })()
           return (
             <motion.div
               initial={{ opacity: 0 }}
@@ -1776,9 +1642,9 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
                         Key Features & Architecture
                       </span>
                       <ul className="text-xs text-slate-700 font-semibold space-y-1.5 list-disc pl-4 leading-relaxed font-sans">
-                        <li>High-availability distributed database backend integration.</li>
-                        <li>Microservices schema logic with low latency pipeline parameters.</li>
-                        <li>Robust responsive layouts compatible with global cloud servers.</li>
+                        {getProjectFeatures(matchedProject).map((feature: string, fIdx: number) => (
+                          <li key={fIdx}>{feature}</li>
+                        ))}
                       </ul>
                     </div>
                   </div>
