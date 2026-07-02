@@ -517,7 +517,7 @@ export function HomeContent() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 font-sans">
           {[
-            { metric: "120+", label: t("hero.statsClients"), desc: "Enterprise leaders trust us.", color: "from-blue-500 to-indigo-500" },
+            { metric: "80+", label: t("hero.statsClients"), desc: "Enterprise leaders trust us.", color: "from-blue-500 to-indigo-500" },
             { metric: "99.4%", label: t("hero.statsRating"), desc: "Unmatched execution SLA.", color: "from-emerald-500 to-teal-500" },
             { metric: "16", label: t("hero.statsDivisions"), desc: "Cross-functional engineering.", color: "from-purple-500 to-fuchsia-500" },
             { metric: "24/7", label: t("hero.statsOperations"), desc: "Always-on DevOps monitoring.", color: "from-amber-500 to-orange-500" }
