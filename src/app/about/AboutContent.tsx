@@ -27,7 +27,7 @@ export default function AboutContent() {
   ]
 
   const metrics = [
-    { value: "80+", label: t("about.metrics.0.label" as any) },
+    { value: "100+", label: t("about.metrics.0.label" as any) },
     { value: "250+", label: t("about.metrics.1.label" as any) },
     { value: "10+", label: t("about.metrics.2.label" as any) },
     { value: "99.4%", label: t("about.metrics.3.label" as any) }
