@@ -25,48 +25,19 @@ export function Particles({
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 })
   const requestRef = useRef<number | null>(null)
 
-  const [themeMode, setThemeMode] = useState<"dark" | "light">("dark")
-
-  useEffect(() => {
-    // Detect theme class manually
-    const observer = new MutationObserver(() => {
-      const isDark = document.documentElement.classList.contains("dark")
-      setThemeMode(isDark ? "dark" : "light")
-    })
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] })
-    
-    // Set initial
-    setThemeMode(document.documentElement.classList.contains("dark") ? "dark" : "light")
-
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
-    if (canvasRef.current) {
-      context.current = canvasRef.current.getContext("2d")
+  const [themeMode, setThemeMode] = useState<"dark" | "light">(() => {
+    if (typeof window !== "undefined") {
+      return document.documentElement.classList.contains("dark") ? "dark" : "light"
     }
-    initCanvas()
-    animate()
-    window.addEventListener("resize", initCanvas)
+    return "dark"
+  })
 
-    return () => {
-      window.removeEventListener("resize", initCanvas)
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current)
-      }
-    }
-  }, [themeMode])
-
-  useEffect(() => {
-    onMouseMove()
-  }, [])
-
-  const initCanvas = () => {
+  function initCanvas() {
     resizeCanvas()
     drawParticles()
   }
 
-  const onMouseMove = () => {
+  function onMouseMove() {
     const handleMouseMove = (event: MouseEvent) => {
       if (canvasRef.current) {
         const rect = canvasRef.current.getBoundingClientRect()
@@ -80,7 +51,7 @@ export function Particles({
     return () => window.removeEventListener("mousemove", handleMouseMove)
   }
 
-  const resizeCanvas = () => {
+  function resizeCanvas() {
     if (canvasContainerRef.current && canvasRef.current && context.current) {
       circles.current = []
       canvasSize.current.w = canvasContainerRef.current.offsetWidth
@@ -90,7 +61,7 @@ export function Particles({
     }
   }
 
-  const circleParams = (): any => {
+  function circleParams(): any {
     const x = Math.random() * canvasSize.current.w
     const y = Math.random() * canvasSize.current.h
     const translateX = 0
@@ -115,7 +86,7 @@ export function Particles({
     }
   }
 
-  const drawCircle = (circle: any, update = false) => {
+  function drawCircle(circle: any, update = false) {
     if (context.current) {
       const { x, y, translateX, translateY, size, alpha } = circle
       context.current.translate(translateX, translateY)
@@ -132,13 +103,13 @@ export function Particles({
     }
   }
 
-  const clearContext = () => {
+  function clearContext() {
     if (context.current) {
       context.current.clearRect(0, 0, canvasSize.current.w, canvasSize.current.h)
     }
   }
 
-  const drawParticles = () => {
+  function drawParticles() {
     clearContext()
     for (let i = 0; i < quantity; i++) {
       const circle = circleParams()
@@ -146,18 +117,18 @@ export function Particles({
     }
   }
 
-  const remapValue = (
+  function remapValue(
     value: number,
     start1: number,
     end1: number,
     start2: number,
     end2: number
-  ): number => {
+  ): number {
     const factor = (value - start1) / (end1 - start1)
     return start2 + (end2 - start2) * factor
   }
 
-  const animate = () => {
+  function animate() {
     clearContext()
     circles.current.forEach((circle: any, i: number) => {
       // Handle ease alpha
@@ -199,6 +170,37 @@ export function Particles({
     })
     requestRef.current = requestAnimationFrame(animate)
   }
+
+  useEffect(() => {
+    // Detect theme class manually
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark")
+      setThemeMode(isDark ? "dark" : "light")
+    })
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] })
+
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      context.current = canvasRef.current.getContext("2d")
+    }
+    initCanvas()
+    animate()
+    window.addEventListener("resize", initCanvas)
+
+    return () => {
+      window.removeEventListener("resize", initCanvas)
+      if (requestRef.current) {
+        cancelAnimationFrame(requestRef.current)
+      }
+    }
+  }, [themeMode])
+
+  useEffect(() => {
+    onMouseMove()
+  }, [])
 
   return (
     <div

@@ -3,19 +3,16 @@ import HomeContent from "./HomeContent"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Best Project Center in Erode | SkillForge Technology",
-  description: "SkillForge Technology is Erode's leading engineering project center for IEEE, IoT, Embedded Systems, AI & ML prototypes. Enquire today for hands-on training!",
+  title: "Premium Enterprise Software & AI Solutions | SkillForge Technology",
+  description: "SkillForge Technology is an international software development and digital transformation agency. We engineer custom enterprise software, AI agents, cloud architectures, and IoT hardware prototypes for global markets.",
   keywords: [
-    "Best Project Center in Erode",
-    "Final Year Project Center in Erode",
-    "IEEE Project Center in Erode",
-    "IoT Project Center in Erode",
-    "Embedded Systems Project Center in Erode",
-    "AI Project Center in Erode",
-    "Internship Training in Erode",
-    "Final Year Projects Tamil Nadu",
-    "Engineering Project Center Tamil Nadu",
-    "SkillForge Technology Erode"
+    "Enterprise Software Development",
+    "Digital Transformation Agency",
+    "AI Agent Integrations",
+    "Custom IoT Prototyping",
+    "SaaS Product Engineering",
+    "Global Cloud Solutions",
+    "USA UK Europe Software Partner"
   ],
   path: "/"
 })
@@ -28,7 +25,7 @@ export default function Page() {
       "@id": "https://skillforgetechnology.app/#website",
       "url": "https://skillforgetechnology.app/",
       "name": "SkillForge Technology",
-      "description": "Premium Engineering Projects & Hardware Prototyping Laboratory in Erode, Tamil Nadu.",
+      "description": "Premium Enterprise Software, AI Agents, Cloud & Industrial IoT Consultancy.",
       "publisher": {
         "@id": "https://skillforgetechnology.app/#organization"
       }
@@ -47,76 +44,27 @@ export default function Page() {
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+919345518760",
-        "contactType": "customer support",
-        "areaServed": "IN",
-        "availableLanguage": ["en", "ta"]
+        "contactType": "sales",
+        "areaServed": ["IN", "US", "GB", "CA", "AU", "EU", "AE", "SG"],
+        "availableLanguage": ["en", "de", "fr", "es", "it", "nl", "ja", "ta", "hi"]
       }
     },
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": "https://skillforgetechnology.app/#localbusiness",
+      "@type": "ProfessionalService",
+      "@id": "https://skillforgetechnology.app/#corporateservice",
       "name": "SkillForge Technology",
       "image": "https://skillforgetechnology.app/og-image.png",
       "telephone": "+919345518760",
-      "email": "skillforgetechnology05@gmail.com",
-      "priceRange": "$$",
+      "email": "info@skillforgetechnology.app",
+      "priceRange": "$$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Perundurai Road, Near Kongu Engineering College",
-        "addressLocality": "Perundurai, Erode",
+        "streetAddress": "Perundurai Road",
+        "addressLocality": "Erode",
         "addressRegion": "Tamil Nadu",
         "postalCode": "638052",
         "addressCountry": "IN"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "11.2778",
-        "longitude": "77.5878"
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
-        ],
-        "opens": "09:00",
-        "closes": "18:00"
-      },
-      "areaServed": [
-        {
-          "@type": "City",
-          "name": "Erode"
-        },
-        {
-          "@type": "City",
-          "name": "Salem"
-        },
-        {
-          "@type": "City",
-          "name": "Coimbatore"
-        },
-        {
-          "@type": "City",
-          "name": "Tiruppur"
-        },
-        {
-          "@type": "City",
-          "name": "Namakkal"
-        },
-        {
-          "@type": "City",
-          "name": "Karur"
-        }
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "103"
       }
     }
   ]

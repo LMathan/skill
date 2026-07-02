@@ -1,9 +1,12 @@
 import type { Metadata, Viewport } from "next"
 import { Inter, Outfit } from "next/font/google"
 import { ThemeProvider } from "@/context/ThemeContext"
+import { LanguageProvider } from "@/context/LanguageContext"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import FloatingWidgets from "@/components/FloatingWidgets"
+import BookCallModal from "@/components/BookCallModal"
+import PremiumBackground3D from "@/components/PremiumBackground3D"
 import "./globals.css"
 
 const inter = Inter({
@@ -19,28 +22,25 @@ const outfit = Outfit({
 })
 
 export const viewport: Viewport = {
-  themeColor: "#030712",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 }
 
 export const metadata: Metadata = {
   title: {
-    default: "SkillForge Technology | Premium Projects & Embedded Systems Lab",
+    default: "SkillForge Technology | Premium Enterprise Software & AI solutions",
     template: "%s | SkillForge Technology"
   },
-  description: "SkillForge Technology is an electronics and IoT innovation lab specializing in engineering project mentoring, custom electronic prototyping, and intelligent software systems in Tamil Nadu.",
+  description: "SkillForge Technology is an international software development and digital transformation agency building premium custom software, IoT systems, cloud platforms, and AI agents worldwide.",
   keywords: [
-    "Final Year Project Center",
-    "Engineering Project Center",
-    "IoT Project Center",
-    "IEEE Project Center",
-    "AI Project Center",
-    "Embedded Systems Training",
-    "Mini Project Center",
-    "Final Year Projects Tamil Nadu",
-    "Engineering Projects Erode",
-    "SkillForge Technology"
+    "Enterprise Software Development",
+    "Digital Transformation Company",
+    "SaaS Product Engineering",
+    "Custom AI Agent Development",
+    "Industrial IoT & Embedded Systems",
+    "Premium Web Development Agency",
+    "Global Software Consulting"
   ],
   authors: [{ name: "SkillForge Technology" }],
   metadataBase: new URL("https://skillforgetechnology.app"),
@@ -55,8 +55,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "SkillForge Technology | Premium Projects & Embedded Lab",
-    description: "Upgrade your engineering journey with certified project prototypes in IoT, Embedded Systems, and AI. Serving Tamil Nadu and startups.",
+    title: "SkillForge Technology | Enterprise Software & AI",
+    description: "Premium software development, AI agent deployment, IoT engineering, and digital transformation services globally.",
     url: "https://skillforgetechnology.app",
     siteName: "SkillForge Technology",
     images: [
@@ -72,8 +72,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SkillForge Technology | Engineering Prototyping",
-    description: "Certified projects and internships in IoT, AI/ML, and Robotics.",
+    title: "SkillForge Technology | Premium Global Software Engineering",
+    description: "Enterprise software, cloud migrations, AI integrations, and industrial IoT solutions worldwide.",
     images: ["/og-image.png"],
   }
 }
@@ -84,23 +84,27 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.variable} ${outfit.variable} font-sans min-h-screen flex flex-col`}>
-        <ThemeProvider>
-          {/* Header */}
-          <Navbar />
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} ${outfit.variable} font-sans min-h-screen flex flex-col bg-white text-slate-900`}>
+        <LanguageProvider>
+          <ThemeProvider>
+            {/* Header */}
+            <Navbar />
 
-          {/* Main Area */}
-          <div className="flex-grow">
-            {children}
-          </div>
+            {/* Main Area */}
+            <div className="flex-grow">
+              {children}
+            </div>
 
-          {/* Footer */}
-          <Footer />
+            {/* Footer */}
+            <Footer />
 
-          {/* Hover widgets */}
-          <FloatingWidgets />
-        </ThemeProvider>
+            {/* Hover widgets */}
+            <FloatingWidgets />
+            <BookCallModal />
+            <PremiumBackground3D />
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   )

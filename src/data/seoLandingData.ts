@@ -1,4 +1,3 @@
-import { projectsData } from "./siteData"
 
 export interface SEOPageData {
   title: string

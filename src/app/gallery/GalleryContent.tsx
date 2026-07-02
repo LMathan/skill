@@ -39,10 +39,10 @@ const categories: {
 
 // ─── Stats (real numbers from siteConfig) ─────────────────────────────────────
 const stats = [
-  { value: "54+", label: "Projects Built" },
-  { value: "100+", label: "Students Guided" },
-  { value: "6+", label: "Departments Supported" },
-  { value: "4+", label: "Years of Experience" },
+  { value: "54+", label: "Prototypes Engineered" },
+  { value: "40+", label: "Enterprise Partners" },
+  { value: "10+", label: "Countries Served" },
+  { value: "4+", label: "Years of R&D" },
 ]
 
 // ─── Main Component ────────────────────────────────────────────────────────────
@@ -471,7 +471,7 @@ export default function GalleryContent() {
 
                 <Link href="/contact?inquiry=quote" aria-label="Get a project quote from SkillForge Technology">
                   <Button
-                    className="rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center gap-2"
+                    className="rounded-xl bg-slate-105 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center gap-2"
                   >
                     <span>Get Quote</span>
                     <ArrowRight size={14} aria-hidden="true" />
@@ -501,7 +501,7 @@ export default function GalleryContent() {
             aria-label={`Lightbox: ${activeImage.projectTitle}`}
           >
             {/* Backdrop */}
-            <div className="absolute inset-0 bg-slate-950/92 backdrop-blur-md" aria-hidden="true" />
+            <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-md" aria-hidden="true" />
 
             {/* Content panel */}
             <motion.div
@@ -510,23 +510,23 @@ export default function GalleryContent() {
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", stiffness: 260, damping: 24 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative z-10 w-full max-w-4xl flex flex-col items-center gap-5"
+              className="relative z-10 w-full max-w-5xl grid grid-cols-1 md:grid-cols-12 rounded-[32px] overflow-hidden bg-white border border-slate-200/80 shadow-2xl text-left cursor-default"
             >
-              {/* Image */}
-              <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-slate-900">
+              {/* Left Side: Image container */}
+              <div className="md:col-span-7 bg-slate-50 flex items-center justify-center relative min-h-[300px] md:min-h-[500px] border-b md:border-b-0 md:border-r border-slate-100">
                 {imgErrors[activeImage.src] ? (
                   <div className="w-full aspect-video flex flex-col items-center justify-center bg-slate-900 text-slate-500 gap-3">
                     <Cpu size={48} className="opacity-30" aria-hidden="true" />
                     <span className="text-sm opacity-50">Image not available</span>
                   </div>
                 ) : (
-                  <div className="relative w-full aspect-video">
+                  <div className="relative w-full aspect-[4/3] max-h-[70vh] flex items-center justify-center p-2">
                     <Image
                       src={activeImage.src}
                       alt={activeImage.alt}
                       fill
                       sizes="(max-width: 1200px) 100vw, 900px"
-                      className="object-contain"
+                      className="object-contain p-2"
                       priority
                       onError={() =>
                         setImgErrors((prev) => ({ ...prev, [activeImage.src]: true }))
@@ -534,54 +534,96 @@ export default function GalleryContent() {
                     />
                   </div>
                 )}
-              </div>
-
-              {/* Rich caption */}
-              <div className="text-center space-y-2 px-4">
-                <h2 className="text-white font-bold text-xl font-display leading-snug">
-                  {activeImage.projectTitle}
-                </h2>
-                <p className="text-sky-400 text-xs font-semibold uppercase tracking-wider">
-                  {activeImage.department}
-                </p>
-                <p className="text-slate-400 text-sm leading-relaxed max-w-lg">
-                  {activeImage.shortDesc}
-                </p>
-                {/* Tech chips */}
-                <div className="flex flex-wrap justify-center gap-1.5 pt-1">
-                  {activeImage.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 border border-slate-700 text-slate-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-sm border border-slate-200 text-[10px] font-extrabold text-blue-650 uppercase tracking-widest">
+                  <Sparkles size={10} />
+                  <span>Lab Prototype</span>
                 </div>
-                <p className="text-slate-600 text-xs pt-1">
-                  {lightboxIndex + 1} / {filtered.length}
-                </p>
               </div>
 
-              {/* Internal link in lightbox */}
-              {activeImage.relatedService && (
-                <Link
-                  href={activeImage.relatedService}
-                  onClick={closeLightbox}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-400 hover:text-sky-300 transition-colors border border-sky-500/30 rounded-xl px-4 py-2 hover:bg-sky-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
-                  aria-label={`View service related to ${activeImage.projectTitle}`}
-                >
-                  <span>View Related Service</span>
-                  <ArrowRight size={12} aria-hidden="true" />
-                </Link>
-              )}
+              {/* Right Side: Rich details sidebar */}
+              <div className="md:col-span-5 p-6 md:p-8 flex flex-col justify-between space-y-6 bg-gradient-to-br from-white via-white to-slate-50/50">
+                <div className="space-y-4">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-sky-600 block">
+                      {activeImage.category}
+                    </span>
+                    <h2 className="text-xl md:text-2xl font-black font-display text-slate-900 leading-tight">
+                      {activeImage.projectTitle}
+                    </h2>
+                  </div>
+
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-50 border border-slate-200 text-[9px] font-extrabold text-slate-550 uppercase tracking-wide">
+                    <Terminal size={11} className="text-indigo-650" />
+                    <span>{activeImage.department}</span>
+                  </div>
+
+                  <p className="text-xs text-slate-600 leading-relaxed font-sans font-medium">
+                    {activeImage.shortDesc}
+                  </p>
+
+                  <div className="space-y-2">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400 block">
+                      Laboratory Specifications
+                    </span>
+                    <ul className="text-xs text-slate-700 font-semibold space-y-1.5 list-disc pl-4 leading-relaxed font-sans">
+                      <li>Designed & compiled at Erode engineering headquarters.</li>
+                      <li>Standard validation with hardware circuit components.</li>
+                      <li>Fully tested & deployed logic codes.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="space-y-4 pt-4 border-t border-slate-100">
+                  <div className="space-y-1.5">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400 block">
+                      Technologies & Chips
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {activeImage.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-[9px] font-extrabold px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 font-mono"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between text-[10px] text-slate-550 font-bold pt-2">
+                    <span>Active Index: {lightboxIndex + 1} / {filtered.length}</span>
+                  </div>
+
+                  <div className="flex gap-2">
+                    {activeImage.relatedService && (
+                      <Link
+                        href={activeImage.relatedService}
+                        onClick={closeLightbox}
+                        className="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl text-center text-xs border border-slate-200 transition-colors"
+                      >
+                        View Service
+                      </Link>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        closeLightbox()
+                        window.dispatchEvent(new CustomEvent("open-book-call-modal"))
+                      }}
+                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-center text-xs transition-colors cursor-pointer"
+                    >
+                      Book Consult
+                    </button>
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
             {/* Close */}
             <button
               onClick={closeLightbox}
               aria-label="Close lightbox"
-              className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500"
+              className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-slate-950/10 hover:bg-slate-950/20 text-slate-750 transition-colors backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 cursor-pointer"
             >
               <X size={20} aria-hidden="true" />
             </button>

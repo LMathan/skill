@@ -17,19 +17,17 @@ const BASE_URL = "https://skillforgetechnology.app"
  *   queries like "project center Erode" or "IoT project Erode Tamil Nadu".
  */
 export const metadata: Metadata = getSeoMetadata({
-  title: "Project Gallery — Real Engineering Hardware Prototypes | SkillForge Technology Erode",
+  title: "R&D Prototype Gallery — Real Hardware Systems | SkillForge Technology",
   description:
-    "Browse real photos of working engineering hardware prototypes built at SkillForge Technology laboratory in Erode, Tamil Nadu — Eye Blink Car, Smart Irrigation, AI Waste Monitoring, Remote Motor Control. Actual lab-made IoT, Embedded Systems, AI & Robotics final year projects for ECE, EEE, CSE students.",
+    "Browse real photos of working hardware prototypes built at SkillForge Technology laboratory in Erode, Tamil Nadu — Eye Blink Car, Smart Irrigation, AI Waste Monitoring, Remote Motor Control. Real production-grade IoT, Embedded Systems, AI & Robotics systems.",
   keywords: [
-    // Gallery discovery queries
-    "Engineering Project Gallery Erode",
-    "Real Hardware Project Photos Tamil Nadu",
-    "IoT Project Prototype Photos Erode",
-    "Embedded Systems Project Gallery",
-    "AI Project Photos Erode",
-    "Robotics Project Gallery Tamil Nadu",
-    // Project-specific (each title = a searchable query)
-    "Eye Blink Controlled Car Obstacle Avoidance Project",
+    "Engineering Prototype Gallery Erode",
+    "Real Hardware Prototype Photos Tamil Nadu",
+    "IoT Prototype Photos Erode",
+    "Embedded Systems Prototype Gallery",
+    "AI Prototype Photos Erode",
+    "Robotics Prototype Gallery Tamil Nadu",
+    "Eye Blink Controlled Car Obstacle Avoidance",
     "Smart Irrigation System ESP8266 Arduino",
     "AI Smart Waste Monitoring System",
     "Automatic Remote Motor Control System",
@@ -38,12 +36,8 @@ export const metadata: Metadata = getSeoMetadata({
     "IoT Alcohol Detection Vehicle Ignition Locking",
     "IoT Smart Drainage Blockage Monitoring",
     "UAV Drone Outdoor Flight Testing Erode",
-    // Local SEO
     "SkillForge Technology Gallery Erode",
-    "Final Year Project Photos Erode",
-    "IEEE Project Center Gallery Tamil Nadu",
-    "Engineering Lab Photos Erode",
-    "Project Center Erode Tamil Nadu Photos",
+    "Engineering Lab Photos Erode"
   ],
   path: "/gallery",
 })

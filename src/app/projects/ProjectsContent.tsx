@@ -81,7 +81,7 @@ export default function ProjectsContent() {
           email: email.trim(),
           phone: phone.trim(),
           theme: `Project Inquiry: ${inquiryProject?.title || "General"}`,
-          message: `${message.trim()}${college.trim() ? `\n\n(College: ${college.trim()})` : ""}`,
+          message: `${message.trim()}${college.trim() ? `\n\n(Organization: ${college.trim()})` : ""}`,
         }),
       })
 
@@ -374,7 +374,7 @@ export default function ProjectsContent() {
                   <Input
                     required
                     type="email"
-                    placeholder="email@college.edu"
+                    placeholder="name@company.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl focus:border-sky-500"
@@ -394,10 +394,10 @@ export default function ProjectsContent() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 tracking-wider mb-1">College / Organization Name</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 tracking-wider mb-1">Company / Organization Name</label>
                 <Input
                   type="text"
-                  placeholder="Enter college name"
+                  placeholder="Enter organization / company name"
                   value={college}
                   onChange={(e) => setCollege(e.target.value)}
                   className="bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl focus:border-sky-500"
