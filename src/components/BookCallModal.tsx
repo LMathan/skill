@@ -5,8 +5,8 @@ import { X, ChevronLeft, ChevronRight, Calendar, Mail, Sparkles, Clock } from "l
 
 export default function BookCallModal() {
   const [isOpen, setIsOpen] = useState(false)
-  const [currentYear, setCurrentYear] = useState(2026)
-  const [currentMonth, setCurrentMonth] = useState(6) // 6 is July (0-indexed)
+  const [currentYear, setCurrentYear] = useState(() => new Date().getFullYear())
+  const [currentMonth, setCurrentMonth] = useState(() => new Date().getMonth()) // 0-indexed
   const [selectedDay, setSelectedDay] = useState<number | null>(null)
   const [email, setEmail] = useState("")
   const [submitting, setSubmitting] = useState(false)
@@ -21,6 +21,10 @@ export default function BookCallModal() {
       setSelectedDay(null)
       setEmail("")
       setErrorMsg("")
+      
+      const today = new Date()
+      setCurrentYear(today.getFullYear())
+      setCurrentMonth(today.getMonth())
     }
     window.addEventListener("open-book-call-modal", handleOpen)
     return () => window.removeEventListener("open-book-call-modal", handleOpen)
@@ -28,10 +32,11 @@ export default function BookCallModal() {
 
   if (!isOpen) return null
 
-  // Date constants (Today is Wed, Jul 1, 2026)
-  const todayYear = 2026
-  const todayMonth = 6 // July
-  const todayDay = 1
+  // Date constants (calculated dynamically)
+  const today = new Date()
+  const todayYear = today.getFullYear()
+  const todayMonth = today.getMonth()
+  const todayDay = today.getDate()
 
   const monthNames = [
     "January", "February", "March", "April", "May", "June",
