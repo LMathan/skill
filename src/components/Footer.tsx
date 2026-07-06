@@ -139,6 +139,7 @@ export function Footer() {
                   type="email"
                   required
                   placeholder="Enter email..."
+                  aria-label="Email address for newsletter subscription"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-650 w-full"

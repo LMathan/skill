@@ -5,8 +5,6 @@ import { LanguageProvider } from "@/context/LanguageContext"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import FloatingWidgets from "@/components/FloatingWidgets"
-import BookCallModal from "@/components/BookCallModal"
-import PremiumBackground3D from "@/components/PremiumBackground3D"
 import "./globals.css"
 
 const inter = Inter({
@@ -101,8 +99,6 @@ export default function RootLayout({
 
             {/* Hover widgets */}
             <FloatingWidgets />
-            <BookCallModal />
-            <PremiumBackground3D />
           </ThemeProvider>
         </LanguageProvider>
       </body>

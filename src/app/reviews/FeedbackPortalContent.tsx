@@ -557,8 +557,9 @@ export default function FeedbackPortalContent() {
                     <p className="text-red-500 font-semibold">{submitError}</p>
                   )}
                   <div className="space-y-1">
-                    <label className="font-bold text-slate-500 uppercase tracking-wider block">Client Name / Representative</label>
+                    <label htmlFor="feedback-customer-name" className="font-bold text-slate-500 uppercase tracking-wider block">Client Name / Representative</label>
                     <input
+                      id="feedback-customer-name"
                       required
                       type="text"
                       placeholder="e.g. Sarah Jenkins"
@@ -569,8 +570,9 @@ export default function FeedbackPortalContent() {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="font-bold text-slate-500 uppercase tracking-wider block">Project Name / Division</label>
+                    <label htmlFor="feedback-project-name" className="font-bold text-slate-500 uppercase tracking-wider block">Project Name / Division</label>
                     <input
+                      id="feedback-project-name"
                       required
                       type="text"
                       placeholder="e.g. FinTech PWA Portal"
@@ -581,7 +583,7 @@ export default function FeedbackPortalContent() {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="font-bold text-slate-500 uppercase tracking-wider block">Star Rating</label>
+                    <span className="font-bold text-slate-500 uppercase tracking-wider block">Star Rating</span>
                     <div className="flex gap-1 items-center">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <button
@@ -591,6 +593,7 @@ export default function FeedbackPortalContent() {
                           onMouseEnter={() => setHoverRating(star)}
                           onMouseLeave={() => setHoverRating(0)}
                           className="text-amber-400 hover:scale-110 transition-transform cursor-pointer"
+                          aria-label={`Rate ${star} Stars`}
                         >
                           <Star
                             size={20}
@@ -602,8 +605,9 @@ export default function FeedbackPortalContent() {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="font-bold text-slate-500 uppercase tracking-wider block">Review Comments</label>
+                    <label htmlFor="feedback-message" className="font-bold text-slate-500 uppercase tracking-wider block">Review Comments</label>
                     <textarea
+                      id="feedback-message"
                       required
                       rows={3}
                       placeholder="Outline implementation quality, project updates, or delivery parameters..."

@@ -143,6 +143,7 @@ export default function BookCallModal() {
             type="button"
             onClick={() => setIsOpen(false)}
             className="p-2 hover:bg-slate-50 text-slate-400 hover:text-slate-800 rounded-full transition-colors cursor-pointer"
+            aria-label="Close booking modal"
           >
             <X size={18} />
           </button>
@@ -164,6 +165,7 @@ export default function BookCallModal() {
                       disabled={currentYear === todayYear && currentMonth === todayMonth}
                       onClick={handlePrevMonth}
                       className="p-1 border border-slate-200 rounded-lg hover:bg-white text-slate-500 disabled:opacity-30 disabled:hover:bg-transparent transition-colors cursor-pointer"
+                      aria-label="Previous month"
                     >
                       <ChevronLeft size={14} />
                     </button>
@@ -171,6 +173,7 @@ export default function BookCallModal() {
                       type="button"
                       onClick={handleNextMonth}
                       className="p-1 border border-slate-200 rounded-lg hover:bg-white text-slate-500 transition-colors cursor-pointer"
+                      aria-label="Next month"
                     >
                       <ChevronRight size={14} />
                     </button>
@@ -218,10 +221,11 @@ export default function BookCallModal() {
 
               {/* Email Input Field */}
               <div className="space-y-1.5 text-xs">
-                <label className="font-extrabold text-slate-650 uppercase tracking-wider block">Corporate Email Address *</label>
+                <label htmlFor="booking-email-input" className="font-extrabold text-slate-650 uppercase tracking-wider block">Corporate Email Address *</label>
                 <div className="relative flex items-center">
                   <Mail size={13} className="text-slate-400 absolute left-3" />
                   <input
+                    id="booking-email-input"
                     type="email"
                     required
                     placeholder="e.g. manager@yourcompany.com"
