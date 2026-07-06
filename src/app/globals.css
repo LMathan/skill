@@ -429,5 +429,36 @@
   z-index: 1;
 }
 
+/* Staggered float loops for dynamic elements */
+@keyframes float-ecosystem-1 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(0.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes float-ecosystem-2 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(-1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes float-ecosystem-3 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.float-ecosystem-1 {
+  animation: float-ecosystem-1 6s ease-in-out infinite;
+}
+
+.float-ecosystem-2 {
+  animation: float-ecosystem-2 8s ease-in-out infinite;
+}
+
+.float-ecosystem-3 {
+  animation: float-ecosystem-3 7s ease-in-out infinite;
+}
+
 
 
