@@ -3,14 +3,14 @@ import FeedbackPortalContent from "./FeedbackPortalContent"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Student Reviews & Project Feedback | SkillForge Technology",
-  description: "Read verified student reviews and client testimonials for electronics, IoT, and AI prototypes built inside our laboratory. Share your project feedback.",
+  title: "Quality & Delivery Standards | SkillForge Technology",
+  description: "Read about SkillForge Technology's core engineering principles, type-safe development practices, security audits, and our transparent trust policy.",
   keywords: [
-    "SkillForge Technology reviews",
-    "IoT project testimonials Erode",
-    "Student engineering project feedback",
-    "Electronics project reviews Tamil Nadu",
-    "Embedded systems project ratings"
+    "Software Quality Standards",
+    "Secure Coding Practices",
+    "Type Safe Web Development",
+    "Enterprise Software Engineering",
+    "SkillForge Technology Quality"
   ],
   path: "/reviews"
 })
@@ -23,17 +23,13 @@ export default function ReviewsPage() {
         "@type": "WebPage",
         "@id": "https://skillforgetechnology.app/reviews/#webpage",
         "url": "https://skillforgetechnology.app/reviews",
-        "name": "Student Reviews & Project Feedback | SkillForge Technology"
+        "name": "Quality & Delivery Standards | SkillForge Technology"
       },
       {
-        "@type": "LocalBusiness",
+        "@type": "Organization",
+        "@id": "https://skillforgetechnology.app/#organization",
         "name": "SkillForge Technology",
-        "url": "https://skillforgetechnology.app",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "103"
-        }
+        "url": "https://skillforgetechnology.app"
       }
     ]
   }

@@ -27,10 +27,10 @@ export default function AboutContent() {
   ]
 
   const metrics = [
-    { value: "100+", label: t("about.metrics.0.label" as any) },
-    { value: "250+", label: t("about.metrics.1.label" as any) },
-    { value: "10+", label: t("about.metrics.2.label" as any) },
-    { value: "99.4%", label: t("about.metrics.3.label" as any) }
+    { value: "Global", label: t("about.metrics.0.label" as any) },
+    { value: "Agile", label: t("about.metrics.1.label" as any) },
+    { value: "Collaborative", label: t("about.metrics.2.label" as any) },
+    { value: "Reliable", label: t("about.metrics.3.label" as any) }
   ]
 
   return (
@@ -38,7 +38,7 @@ export default function AboutContent() {
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative bg-transparent pt-24 text-left select-none bg-dot-pattern"
+      className="relative bg-transparent pt-24 text-left select-none bg-dot-pattern noise-bg"
     >
 
       {/* Background colorful blurred blobs */}
@@ -131,18 +131,22 @@ export default function AboutContent() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 space-y-4">
-              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm glass-card glass-card-hover">
-                <span className="font-bold text-sm text-slate-900 block font-display">{t("about.cards.0.title" as any)}</span>
-                <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+            <div className="lg:col-span-6 space-y-5">
+              <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm glass-card-premium relative overflow-hidden group">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-indigo-600" />
+                <span className="font-extrabold text-sm text-slate-900 block font-display">{t("about.cards.0.title" as any)}</span>
+                <p className="text-xs text-slate-500 mt-2 leading-relaxed font-sans">
                   {t("about.cards.0.desc" as any)}
                 </p>
+                <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-blue-500/5 rounded-full blur-xl group-hover:bg-blue-500/10 transition-colors" />
               </div>
-              <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm glass-card glass-card-hover">
-                <span className="font-bold text-sm text-slate-900 block font-display">{t("about.cards.1.title" as any)}</span>
-                <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+              <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm glass-card-premium relative overflow-hidden group">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 to-purple-600" />
+                <span className="font-extrabold text-sm text-slate-900 block font-display">{t("about.cards.1.title" as any)}</span>
+                <p className="text-xs text-slate-500 mt-2 leading-relaxed font-sans">
                   {t("about.cards.1.desc" as any)}
                 </p>
+                <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-purple-500/5 rounded-full blur-xl group-hover:bg-purple-500/10 transition-colors" />
               </div>
             </div>
 

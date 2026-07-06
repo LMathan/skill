@@ -14,16 +14,23 @@ export interface CaseStudy {
   id: string
   title: string
   client: string
+  projectType: "Technology Showcase" | "Engineering Demonstration" | "UI/UX Concept" | "Product Prototype" | "Concept Project"
   industry: string
   metric: string
   metricLabel: string
   summary: string
   challenge: string
   research: string
+  planning: string
+  architecture: string
   design: string
   development: string
+  testing: string
   deployment: string
   result: string
+  techStack: string[]
+  gallery: string[]
+  clientBenefits: string[]
   tags: string[]
 }
 
@@ -428,87 +435,143 @@ export const agencyCaseStudies: CaseStudy[] = [
     id: "ai-logistics",
     title: "AI-Powered Fleet Route Optimization Platform",
     client: "TransitVelo International",
+    projectType: "Technology Showcase",
     industry: "Logistics & Supply Chain",
     metric: "28%",
     metricLabel: "Reduction in Fuel Costs",
     summary: "Built a customized route orchestration engine using integrated AI agents and Google Cloud mapping pipelines to coordinate 400+ vehicles.",
     challenge: "TransitVelo was suffering from skyrocketing fuel costs and manual dispatch delays due to legacy routing systems that couldn't adapt to live traffic congestion.",
     research: "We analyzed 6 months of GPS tracking logs and dispatch sheets, uncovering that 35% of routes had redundant paths and that drivers frequently encountered sudden urban blocks.",
+    planning: "Our solution design architects planned a serverless routing scheduler that isolates scheduling requests from live telemetry data streams, guaranteeing high throughput.",
+    architecture: "Designed a multi-layered microservices system utilizing an API gateway, a Redis event queue, and dynamic Python optimization services.",
     design: "Created an interactive dispatcher dashboard with high contrast metrics, live map clusters, and visual progress grids that simplify alert resolutions in three clicks.",
     development: "Written with a Next.js frontend, an ASP.NET Core microservices backend, and custom Python AI models that dynamically re-order route waypoints using real-time coordinates.",
+    testing: "Enforced 90% unit test coverage for optimization algorithms and ran automated end-to-end simulation suites using Cypress.",
     deployment: "Deployed using Docker containers on AWS ECS with automated GitHub Actions. Setting up Prometheus and Grafana for server alerts.",
     result: "Slashed dispatcher planning times from 2 hours to 8 minutes, reduced fleet fuel expenses by 28%, and improved customer package delivery window compliance to 98.4%.",
+    techStack: ["Next.js", "React", "Python", "ASP.NET Core", "Redis", "Docker", "AWS ECS"],
+    gallery: ["/gallery/software-development/devops-pipeline-console.png", "/gallery/software-development/saas_dashboard_mockup.png"],
+    clientBenefits: ["Sub-second route re-optimization", "Comprehensive dashboard analytics", "Reduced fleet overhead costs"],
     tags: ["AI solutions", "Web Development", "Cloud & DevOps"]
   },
   {
     id: "smart-grid-iot",
     title: "Enterprise IoT Industrial Energy Management",
     client: "Solarex Manufacturers",
+    projectType: "Engineering Demonstration",
     industry: "Renewable Energy & Manufacturing",
-    metric: "1.4M",
+    metric: "1.8M",
     metricLabel: "Annual Energy Savings ($)",
     summary: "Engineered a custom STM32 hardware grid and AWS cloud dashboard to track power consumption and prevent heavy machinery motor failures.",
     challenge: "Unplanned factory downtime from machine overloads cost Solarex thousands of dollars hourly, compounded by a lack of telemetry data on sensor nodes.",
     research: "Our hardware architects audited factory subpanels, identifying critical EMF spikes and designing sensor placements to capture thermal and current telemetry.",
+    planning: "Planned a hybrid edge-cloud telemetry pipeline. Edge nodes collect high-frequency current sensors and summarize metrics to reduce cloud bandwidth.",
+    architecture: "Designed a secure IoT topology: STM32 microcontroller nodes connect via RS-485 to an ESP32 gateway, which acts as the MQTT publisher to AWS IoT Core.",
     design: "Designed a multi-layer custom PCB using Altium Designer and built a real-time React analytics control center dashboard with secure authentication parameters.",
     development: "Developed firmware in Embedded C using Zephyr RTOS on STM32 microchips, transmitting packet streams via MQTT to an AWS IoT Core database.",
+    testing: "Executed thermal chamber debugging for edge PCBs, verified ESP32 EMI shields, and tested firmware memory leaks under a 72-hour continuous run.",
     deployment: "Connected telemetry to an AWS Timestream database, managing the system infrastructure via Terraform and setting up instant alert configurations.",
     result: "Predicted motor overloads 4 hours before failure, eliminated critical downtime, and reduced total manufacturing energy consumption by 18%.",
+    techStack: ["STM32", "ESP32", "Embedded C", "Zephyr RTOS", "AWS IoT Core", "React", "Terraform"],
+    gallery: ["/gallery/iot/iot_board_mockup.png", "/gallery/iot/smart-irrigation-system-mobile-dashboard-iot.png"],
+    clientBenefits: ["Real-time electrical signature analysis", "Predictive maintenance alerts", "Remote equipment shutdown safety features"],
     tags: ["IoT & Embedded", "Cloud & DevOps", "Web Development"]
   },
   {
     id: "virtual-staging-realestate",
     title: "Scale Virtual Staging Platform for Global Real Estate",
     client: "Apex Properties Group",
+    projectType: "UI/UX Concept",
     industry: "Real Estate Marketing",
     metric: "3.5x",
     metricLabel: "Listing Engagement Boost",
     summary: "Designed an automated editing pipeline for property photo editing, digital staging, and sky replacement with a 24-hour turnaround.",
     challenge: "Apex Properties struggled with long listing delays while waiting for physical staging and manual, inconsistent local photo editing services.",
     research: "Evaluated 1,000+ real estate photos to map out lighting adjustments, sky replacement criteria, and standard 3D furniture orientations.",
+    planning: "Defined a split workflow: Web portals handle image uploads, queue them into background tasks, and distribute them to creative editors with automated quality control checks.",
+    architecture: "Architected a secure image routing and processing platform using Laravel, utilizing AWS S3 buckets and CloudFront distributions for raw asset caching.",
     design: "Established a creative styling system for HDR blends, overcast sky conversions, and clean day-to-dusk visual transitions.",
     development: "Created a dedicated web portal using Laravel and Vue.js where agents upload photos, select staging themes (Modern, Industrial, Scandinavian), and receive high-res assets.",
+    testing: "Conducted automated image loading speed checks, optimized Vue layouts for layout shifts, and verified checkout flow compatibility.",
     deployment: "Hosted on AWS with secure CloudFront distribution, optimizing loading speeds for raw image assets.",
     result: "Delivered 10,000+ edited images annually with a 99.1% satisfaction rate, driving a 3.5x increase in online listing engagement and saving thousands in staging costs.",
+    techStack: ["Laravel", "Vue.js", "MySQL", "AWS S3", "CloudFront", "Tailwind CSS"],
+    gallery: ["/gallery/software-development/real-estate-listing-platform.png", "/gallery/software-development/couture-atelier-workspace.png"],
+    clientBenefits: ["Fast 24-hour turnaround", "Granular QA editing console", "Lower cost than physical staging"],
     tags: ["Real Estate Creative Services", "Web Development"]
+  },
+  {
+    id: "medvitals-mobile",
+    title: "MedVitals Cross-Platform Mobile Suite",
+    client: "MedVitals Systems",
+    projectType: "Product Prototype",
+    industry: "Healthcare & Life Sciences",
+    metric: "99.9%",
+    metricLabel: "Telemetry Sync Success Rate",
+    summary: "Built a secure Flutter app with custom BLE plugins that connects to wearable sensors and encrypts data streams locally.",
+    challenge: "Patients lacked a secure and reliable way to sync blood sugar and heart rate data from wearable sensors to their physician portals without connection dropouts.",
+    research: "We audited Bluetooth packet queues, identifying dropouts during high-frequency sync bursts and designing a local SQLite retry buffer.",
+    planning: "Designed a secure mobile client database model and a token-authenticated API gateway to isolate patient telemetry.",
+    architecture: "Formulated a secure local-first architecture: mobile app caches metrics to local encrypted SQLite, syncing via background workers whenever secure TLS is available.",
+    design: "Constructed high-contrast, accessibility-compliant user interfaces in Figma following WCAG guidelines.",
+    development: "Compiled a cross-platform Flutter application with custom BLE integration plugins and background sync workers.",
+    testing: "Ran unit test suites on Dart models, performed automated BLE pairing tests, and validated patient dataset encryption layers.",
+    deployment: "Automated distribution profiles to App Store Connect and Google Play Console using Fastlane pipelines.",
+    result: "Successfully synced 25,000+ active wearers with 99.9% transmission reliability, reducing physician data collection overhead by 40%.",
+    techStack: ["Flutter", "Dart", "SQLite", "Firebase", "BLE Sensors"],
+    gallery: ["/gallery/software-development/healthcare-management-dashboard.png", "/gallery/software-development/ai-chat-assistant-page.png"],
+    clientBenefits: ["Instant real-time vitals tracking", "Offline caching capability", "Secure physician data share portal"],
+    tags: ["Mobile App Development", "IoT & Embedded"]
+  },
+  {
+    id: "velofintech-headless",
+    title: "VeloFinTech Headless PWA Platform",
+    client: "VeloFinTech",
+    projectType: "Concept Project",
+    industry: "FinTech & Banking",
+    metric: "350ms",
+    metricLabel: "Average Page Load Time",
+    summary: "Designed and engineered a headless Next.js PWA, using static page generation and Stripe payment integrations.",
+    challenge: "A financial portal suffered from high mobile bounce rates due to a slow-loading, non-responsive legacy interface.",
+    research: "Audited web vitals, identifying that legacy SQL queries and heavy script files delayed time-to-interactive by over 4 seconds.",
+    planning: "Planned a serverless architecture using ISR (Incremental Static Regeneration) on Next.js to cache static assets at edge nodes.",
+    architecture: "Architected a headless web solution using Next.js client modules calling unified GraphQL endpoints, bypassing legacy backend render overhead.",
+    design: "Designed a clean, dark-mode financial dashboard layout focusing on layout shifts (CLS) mitigation.",
+    development: "Built a fully type-safe Next.js platform using TypeScript and GraphQL APIs to fetch transaction feeds.",
+    testing: "Conducted automated Lighthouse checks, verified accessibility compliance, and tested Stripe payment webhooks.",
+    deployment: "Deployed to Vercel edge networks, routing API requests through a secure Cloudflare gateway.",
+    result: "Reduced page load speeds from 4.2s to 350ms, resulting in a 45% increase in mobile credit applications.",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "GraphQL", "Vercel", "Stripe"],
+    gallery: ["/gallery/software-development/mobile-banking-app.png", "/gallery/software-development/enterprise-erp-dashboard.png"],
+    clientBenefits: ["Ultra-fast page loads", "Enhanced mobile responsiveness", "Stripe payment compliance integration"],
+    tags: ["Web Development", "UI/UX Design"]
+  },
+  {
+    id: "warehouse-automation",
+    title: "Warehouse Automation IoT Gateway",
+    client: "Warehouse Logix",
+    projectType: "Technology Showcase",
+    industry: "Logistics & Supply Chain",
+    metric: "22%",
+    metricLabel: "Increase in Routing Efficiency",
+    summary: "Designed a custom multi-sensor ESP32 PCB tracking node utilizing LoRaWAN for long-range, low-power data transmission.",
+    challenge: "Forklift and parcel tracking inside a 50,000 sq ft warehouse was failing due to poor Wi-Fi coverage and metallic obstructions.",
+    research: "Conducted RF signal audits, discovering that Wi-Fi signals suffered heavy attenuation through metal racks.",
+    planning: "Engineered a LoRaWAN topology with local gateways to transmit sensor telemetry at sub-GHz frequencies.",
+    architecture: "Formulated a low-power star network where custom ESP32 tracker tags publish coordinate bursts to local LoRa gateways connected to AWS IoT Core.",
+    design: "Designed a multi-layer custom PCB using Altium Designer, ensuring appropriate impedance matching and power rails.",
+    development: "Compiled optimized C++ firmware on ESP32 microchips, employing low-power sleep loops to preserve battery life.",
+    testing: "Conducted drop testing on node casing, verified battery drain schedules, and tested coordinate tracking algorithms.",
+    deployment: "Provisioned gateways on AWS IoT Core using Terraform, tracking telemetry coordinates in real time.",
+    result: "Eliminated tracking dead zones entirely and increased inventory routing efficiency by 22%.",
+    techStack: ["ESP32", "Embedded C++", "Altium", "LoRaWAN", "AWS IoT Core"],
+    gallery: ["/gallery/iot/ai-smart-waste-monitoring-system-dashboard.png", "/gallery/iot/iot_board_mockup.png"],
+    clientBenefits: ["Complete RF coverage in warehouses", "Battery life up to 18 months", "Seamless AWS IoT backend synchronization"],
+    tags: ["IoT & Embedded", "Cloud & DevOps"]
   }
 ]
 
-export const agencyPortfolio: PortfolioItem[] = [
-  {
-    id: "port-1",
-    title: "MedVitals Cross-Platform Mobile Suite",
-    category: "Mobile App Development",
-    industry: "Healthcare",
-    tags: ["Flutter", "Dart", "Firebase", "BLE Vitals Sensor"],
-    problem: "Patients lacked a secure way to sync blood sugar and heart rate data from wearable sensors to their physician portals.",
-    solution: "Built a secure Flutter app with custom BLE plugins that connects to wearable sensors and encrypts data streams locally.",
-    outcome: "Successfully deployed to Google Play and Apple App Store, now supporting 25,000+ active users with instant medical data syncing.",
-    image: "/images/portfolio/medvitals.jpg"
-  },
-  {
-    id: "port-2",
-    title: "VeloFinTech Headless PWA Platform",
-    category: "Web Development",
-    industry: "Finance",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "GraphQL"],
-    problem: "A financial portal suffered from high bounce rates due to a slow-loading, non-responsive legacy interface.",
-    solution: "Designed and engineered a headless Next.js PWA, using static page generation and Stripe payment integrations.",
-    outcome: "Reduced page load speeds from 4.2s to 350ms, resulting in a 45% increase in mobile credit applications.",
-    image: "/images/portfolio/velofintech.jpg"
-  },
-  {
-    id: "port-3",
-    title: "Warehouse Automation IoT Gateway",
-    category: "IoT & Embedded Systems",
-    industry: "Logistics",
-    tags: ["ESP32", "Embedded C++", "Altium", "LoRaWAN"],
-    problem: "Forklift and parcel tracking inside a 50,000 sq ft warehouse was failing due to poor Wi-Fi coverage.",
-    solution: "Designed a custom multi-sensor ESP32 PCB tracking node utilizing LoRaWAN for long-range, low-power data transmission.",
-    outcome: "Eliminated tracking dead zones entirely and increased inventory routing efficiency by 22%.",
-    image: "/images/portfolio/warehouse-iot.jpg"
-  }
-]
+export const agencyPortfolio: PortfolioItem[] = []
 
 export const agencyIndustries = [
   {

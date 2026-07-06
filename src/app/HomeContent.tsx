@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -114,6 +114,29 @@ export function HomeContent() {
 
   // Interactive capabilities simulator states
   const [activeServiceTab, setActiveServiceTab] = useState<string>("software-development")
+
+  const [showDock, setShowDock] = useState(false)
+  const [readProgress, setReadProgress] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowDock(window.scrollY > 400)
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+      if (totalHeight > 0) {
+        setReadProgress((window.scrollY / totalHeight) * 100)
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const handleDockNavigation = (tabId: string) => {
+    setActiveServiceTab(tabId)
+    const element = document.getElementById("capabilities-section")
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
   const [activeMobileAppScreen, setActiveMobileAppScreen] = useState<"fintech" | "healthcare" | "logistics">("fintech")
   const [activeEnterpriseTable, setActiveEnterpriseTable] = useState<"users" | "orders" | "logs">("users")
   const [aiPromptsList, setAiPromptsList] = useState<string[]>([
@@ -357,12 +380,12 @@ export function HomeContent() {
   }
 
   return (
-    <div className="relative bg-transparent pt-24 overflow-x-hidden selection:bg-blue-500/20 text-slate-800 bg-dot-pattern" dir={isRTL ? "rtl" : "ltr"}>
+    <div className="relative bg-transparent pt-24 overflow-x-hidden selection:bg-blue-500/20 text-slate-800 bg-dot-pattern noise-bg" dir={isRTL ? "rtl" : "ltr"}>
 
-      {/* Animated Floating Gradient Blobs */}
-      <div className="absolute top-10 left-1/4 w-[350px] h-[350px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none -z-10 ambient-blob-slow" />
-      <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none -z-10 ambient-blob-medium" />
-      <div className="absolute bottom-1/3 left-10 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-[90px] pointer-events-none -z-10 ambient-blob-slow" />
+      {/* Animated Floating Gradient Blobs (Mesh overlay) */}
+      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-blue-500/10 to-indigo-500/10 rounded-full blur-[120px] pointer-events-none -z-10 ambient-blob-slow" />
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-[140px] pointer-events-none -z-10 ambient-blob-medium" />
+      <div className="absolute bottom-1/3 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 rounded-full blur-[100px] pointer-events-none -z-10 ambient-blob-slow" />
 
       {/* Hero Section */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-left">
@@ -427,86 +450,140 @@ export function HomeContent() {
             </motion.div>
           </div>
 
-          {/* Right Floating Browser Mockup (Dashboard/Analytics) */}
+          {/* Right Floating Cinematic Digital Ecosystem */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-6 relative"
+            className="lg:col-span-6 relative min-h-[460px] flex justify-center items-center py-10"
           >
-            {/* Subtle decorative grid lines and floating backdrops */}
-            <div className="absolute -inset-6 bg-gradient-to-tr from-blue-500/5 to-purple-500/5 rounded-3xl blur-2xl -z-10" />
-
-            {/* Floating background SVG shapes */}
-            <svg className="absolute -top-10 -right-10 w-64 h-64 text-blue-500/10 pointer-events-none -z-10 animate-spin-slow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="40" stroke="currentColor" strokeWidth="0.15" strokeDasharray="3 3" />
-              <circle cx="50" cy="50" r="28" stroke="currentColor" strokeWidth="0.08" />
-              <path d="M15 50 Q 30 20, 50 80 T 85 30" stroke="currentColor" strokeWidth="0.25" />
-            </svg>
+            {/* Ambient background meshes and grid patterns */}
+            <div className="absolute -inset-10 bg-gradient-to-tr from-blue-500/10 to-purple-500/10 rounded-full blur-3xl -z-10 animate-pulse" />
             <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-gradient-to-tr from-cyan-400/20 to-blue-500/20 rounded-full blur-2xl pointer-events-none -z-10 animate-pulse" />
 
-            {/* Browser frame container */}
-            <div className="relative border border-slate-200/80 bg-white shadow-2xl rounded-2xl overflow-hidden glass-card-premium">
+            {/* Simulated Vector Grid Blueprint */}
+            <svg className="absolute w-[120%] h-[120%] text-blue-600/[0.03] pointer-events-none -z-10 animate-spin-slow" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="45" stroke="currentColor" strokeWidth="0.1" strokeDasharray="2 2" />
+              <circle cx="50" cy="50" r="32" stroke="currentColor" strokeWidth="0.05" />
+              <path d="M50 5 L50 95 M5 50 L95 50 M15 15 L85 85 M85 15 L15 85" stroke="currentColor" strokeWidth="0.05" />
+            </svg>
+
+            {/* Base Element: Browser frame (Telemetry dashboard) */}
+            <div className="relative border border-slate-200/80 bg-white/95 shadow-2xl rounded-2xl overflow-hidden glass-card-premium float-ecosystem-1 w-full max-w-[420px] z-10 noise-bg select-none">
               {/* Browser bar */}
               <div className="bg-slate-50 border-b border-slate-200/80 px-4 py-3 flex items-center justify-between">
                 <div className="flex gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                  <div className="w-2 h-2 rounded-full bg-red-400" />
+                  <div className="w-2 h-2 rounded-full bg-yellow-400" />
+                  <div className="w-2 h-2 rounded-full bg-green-400" />
                 </div>
-                <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest select-none font-mono">
-                  skillforge_analytics_v1.sys
+                <div className="text-[9px] text-slate-400 font-bold uppercase tracking-widest font-mono">
+                  analytics_telemetry_v1.app
                 </div>
-                <div className="w-8" />
+                <div className="w-6" />
               </div>
 
               {/* Dashboard Content */}
-              <div className="p-6 space-y-6 text-left font-sans">
+              <div className="p-5 space-y-5 text-left font-sans">
                 {/* Stats grid */}
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="p-4 bg-white border border-slate-200/50 rounded-xl shadow-sm space-y-1">
-                    <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block">Deployments</span>
-                    <span className="block text-base font-extrabold text-slate-900 font-display">16/16</span>
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="p-3 bg-slate-50 border border-slate-200/40 rounded-xl shadow-inner space-y-0.5">
+                    <span className="text-[7px] font-extrabold text-slate-400 uppercase tracking-wider block">Deploys</span>
+                    <span className="block text-xs font-extrabold text-slate-900 font-display">61/61</span>
                   </div>
-                  <div className="p-4 bg-white border border-slate-200/50 rounded-xl shadow-sm space-y-1">
-                    <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block">Uptime</span>
-                    <span className="block text-base font-extrabold text-emerald-600 font-display">99.98%</span>
+                  <div className="p-3 bg-slate-50 border border-slate-200/40 rounded-xl shadow-inner space-y-0.5">
+                    <span className="text-[7px] font-extrabold text-slate-400 uppercase tracking-wider block">Uptime</span>
+                    <span className="block text-xs font-extrabold text-emerald-600 font-display">99.98%</span>
                   </div>
-                  <div className="p-4 bg-white border border-slate-200/50 rounded-xl shadow-sm space-y-1">
-                    <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider block">Latency</span>
-                    <span className="block text-base font-extrabold text-blue-600 font-display">14ms</span>
+                  <div className="p-3 bg-slate-50 border border-slate-200/40 rounded-xl shadow-inner space-y-0.5">
+                    <span className="text-[7px] font-extrabold text-slate-400 uppercase tracking-wider block">Latency</span>
+                    <span className="block text-xs font-extrabold text-blue-600 font-display">14ms</span>
                   </div>
                 </div>
 
                 {/* Line graph mockup */}
-                <div className="p-4 bg-white border border-slate-200/50 rounded-xl shadow-sm space-y-3">
-                  <div className="flex justify-between items-center text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">
-                    <span>Performance Metrics Over Time</span>
-                    <span className="text-blue-650 bg-blue-50 px-2 py-0.5 rounded">Real-time telemetry</span>
+                <div className="p-3 bg-slate-50 border border-slate-200/40 rounded-xl shadow-inner space-y-2">
+                  <div className="flex justify-between items-center text-[7px] font-extrabold text-slate-400 uppercase tracking-wider">
+                    <span>Performance Metrics</span>
+                    <span className="text-blue-650 bg-blue-50 px-2 py-0.5 rounded">Telemetry Active</span>
                   </div>
-                  <div className="h-28 flex items-end gap-1.5 border-b border-l border-slate-200/80 p-2.5">
+                  <div className="h-20 flex items-end gap-1.5 border-b border-l border-slate-200/80 p-1.5">
                     {[35, 65, 45, 80, 55, 95, 75, 90, 60, 85].map((h, idx) => (
                       <motion.div
                         key={idx}
                         initial={{ height: 0 }}
                         animate={{ height: `${h}%` }}
                         transition={{ duration: 0.8, delay: idx * 0.05 + 0.4, ease: "easeOut" }}
-                        className="w-full bg-gradient-to-t from-blue-600 to-indigo-500 rounded-t-sm hover:from-blue-500 hover:to-indigo-400 transition-colors"
+                        className="w-full bg-gradient-to-t from-blue-600 to-indigo-500 rounded-t-sm"
                       />
                     ))}
                   </div>
                 </div>
 
                 {/* System status logs */}
-                <div className="flex items-center justify-between text-[10px] text-slate-400 font-bold border-t border-slate-200/60 pt-4">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    <span>All services compiling static builds</span>
+                <div className="flex items-center justify-between text-[8px] text-slate-400 font-bold border-t border-slate-200/60 pt-3">
+                  <div className="flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                    <span>All compilations static verified</span>
                   </div>
-                  <span className="font-mono">Erosion Lab Node</span>
+                  <span className="font-mono text-[7px]">SkillForge Cloud Node</span>
                 </div>
               </div>
             </div>
+
+            {/* Overlap Element 1: Dark Mode Code Terminal (Bottom Right) */}
+            <div className="absolute -bottom-8 -right-4 w-56 bg-slate-950/95 border border-slate-800 rounded-2xl p-4 shadow-2xl float-ecosystem-3 hidden md:block text-[8px] font-mono text-cyan-400 select-none z-20">
+              <div className="flex justify-between items-center pb-2 border-b border-slate-900 mb-2">
+                <div className="flex gap-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                </div>
+                <span className="text-[7px] text-slate-500 uppercase tracking-widest">Terminal compiler</span>
+              </div>
+              <div className="space-y-1 text-left">
+                <div>$ npm run compile-static</div>
+                <div className="text-emerald-400">✓ 61 routes compiled in 2.3s</div>
+                <div>$ tail -n 1 telemetry.log</div>
+                <div className="text-slate-500">API: GET /v1/telemetry 200 OK</div>
+              </div>
+            </div>
+
+            {/* Overlap Element 2: Database CPU Cluster Card (Top Right) */}
+            <div className="absolute -top-6 -right-6 w-36 bg-white border border-slate-200/80 rounded-2xl p-3.5 shadow-xl float-ecosystem-2 hidden sm:block text-[9px] select-none z-20 noise-bg">
+              <div className="flex justify-between items-center text-[7px] text-slate-400 font-extrabold uppercase tracking-wider mb-1.5">
+                <span>Cluster Latency</span>
+                <span className="text-emerald-600 font-bold bg-emerald-50 px-1 rounded">Active</span>
+              </div>
+              <div className="text-sm font-extrabold text-blue-600 font-display">8ms avg</div>
+              <div className="h-6 flex items-end gap-1 border-b border-l border-slate-100 p-0.5 mt-2">
+                {[10, 30, 20, 45, 15, 35].map((h, i) => (
+                  <div key={i} className="w-full bg-blue-500 rounded-t-xs" style={{ height: `${h}%` }} />
+                ))}
+              </div>
+            </div>
+
+            {/* Overlap Element 3: Smartphone App Frame (Bottom Left) */}
+            <div className="absolute -bottom-8 -left-8 w-36 h-60 bg-slate-950 rounded-[28px] p-2 border-4 border-slate-800 shadow-2xl float-ecosystem-2 hidden md:block select-none overflow-hidden z-20">
+              <div className="absolute top-1 left-1/2 -translate-x-1/2 w-14 h-2.5 bg-slate-950 rounded-full flex items-center justify-center gap-0.5 z-10">
+                <div className="w-6 h-0.5 bg-slate-850 rounded-full" />
+              </div>
+              <div className="bg-white rounded-[20px] p-2.5 h-full flex flex-col justify-between text-left text-[8px] font-sans">
+                <div className="space-y-2 pt-1.5">
+                  <span className="font-bold text-slate-400 block text-[6px] uppercase tracking-wider">Telemetry Node</span>
+                  <div className="bg-blue-50 border border-blue-100 rounded p-1 flex items-center justify-between">
+                    <span className="font-semibold text-slate-700">Heart Rate</span>
+                    <span className="font-bold text-blue-600 text-[6px]">72 bpm</span>
+                  </div>
+                </div>
+                <div className="h-16 flex items-end gap-1 border-b border-l border-slate-100 p-0.5">
+                  {[20, 40, 15, 30, 45, 25, 50, 35].map((h, i) => (
+                    <div key={i} className="w-full bg-blue-500 rounded-t-xs" style={{ height: `${h}%` }} />
+                  ))}
+                </div>
+              </div>
+            </div>
+
           </motion.div>
         </div>
       </section>
@@ -517,10 +594,10 @@ export function HomeContent() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 font-sans">
           {[
-            { metric: "80+", label: t("hero.statsClients"), desc: "Enterprise leaders trust us.", color: "from-blue-500 to-indigo-500" },
-            { metric: "99.4%", label: t("hero.statsRating"), desc: "Unmatched execution SLA.", color: "from-emerald-500 to-teal-500" },
-            { metric: "16", label: t("hero.statsDivisions"), desc: "Cross-functional engineering.", color: "from-purple-500 to-fuchsia-500" },
-            { metric: "24/7", label: t("hero.statsOperations"), desc: "Always-on DevOps monitoring.", color: "from-amber-500 to-orange-500" }
+            { metric: "Global", label: t("hero.statsClients"), desc: "Trusted by startups and global enterprises.", color: "from-blue-500 to-indigo-500" },
+            { metric: "Quality", label: t("hero.statsRating"), desc: "Rigorous standards and robust architecture.", color: "from-emerald-500 to-teal-500" },
+            { metric: "Expertise", label: t("hero.statsDivisions"), desc: "Multi-disciplinary engineering expertise.", color: "from-purple-500 to-fuchsia-500" },
+            { metric: "Responsive", label: t("hero.statsOperations"), desc: "Clear updates throughout the development lifecycle.", color: "from-amber-500 to-orange-500" }
           ].map((stat, idx) => (
             <motion.div
               key={idx}
@@ -547,8 +624,145 @@ export function HomeContent() {
         </div>
       </section>
 
+      {/* Chapter 3: Business Problems we solve */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative select-none text-left border-t border-slate-100/50">
+        <div className="absolute top-1/4 right-10 w-96 h-96 bg-red-500/[0.01] rounded-full blur-[100px] pointer-events-none -z-10" />
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">Chapter 2: Scaling Bottlenecks</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-display text-slate-900 leading-tight">
+            Critical Operational Obstacles We Defuse
+          </h2>
+          <p className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-xl mx-auto">
+            Generic templates fail under transactional stress. We engineer custom middleware solutions to prevent common operational failures.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 font-sans">
+          {[
+            {
+              title: "The Latency Wall",
+              issue: "API timeouts stalling customer checkout pipelines.",
+              metric: "4.2s delay",
+              metricLabel: "Average unchecked api delay",
+              color: "from-red-500 to-orange-500",
+              icon: <Activity className="text-red-500" size={20} />
+            },
+            {
+              title: "Legacy Database Locks",
+              issue: "Unoptimized database index lockups freezing server pods.",
+              metric: "100% CPU",
+              metricLabel: "Thread pools exhaust capacity",
+              color: "from-amber-500 to-yellow-500",
+              icon: <Layers className="text-amber-500" size={20} />
+            },
+            {
+              title: "API Endpoint Leakage",
+              issue: "Vulnerable token headers inviting malicious access attempts.",
+              metric: "0% Encrypt",
+              metricLabel: "Raw logs expose active tokens",
+              color: "from-rose-500 to-pink-500",
+              icon: <ShieldAlert className="text-rose-500" size={20} />
+            },
+            {
+              title: "Monolithic Scaling limits",
+              issue: "Clunky legacy codebases slowing down feature releases.",
+              metric: "6-Week",
+              metricLabel: "Average deploy delay bounds",
+              color: "from-red-600 to-orange-600",
+              icon: <Cpu className="text-red-600" size={20} />
+            }
+          ].map((card, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ y: -6 }}
+              className="p-6 bg-white border border-slate-200 rounded-3xl glass-card-premium relative overflow-hidden group noise-bg flex flex-col justify-between"
+            >
+              <div className="space-y-4">
+                <div className="p-3 bg-red-50/50 border border-red-100/50 rounded-2xl w-fit">
+                  {card.icon}
+                </div>
+                <div>
+                  <h4 className="font-extrabold text-sm text-slate-955 font-display">{card.title}</h4>
+                  <p className="text-[11px] text-slate-500 mt-2 leading-relaxed font-sans">{card.issue}</p>
+                </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center bg-slate-50/50 p-3 rounded-xl border border-slate-100/50">
+                <span className="text-[8px] font-extrabold text-slate-400 uppercase tracking-wider block max-w-[90px]">{card.metricLabel}</span>
+                <span className="text-xs font-extrabold text-red-500 font-mono">{card.metric}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Chapter 4: Design-to-Deployment Journey */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative select-none text-left border-t border-slate-100/50">
+        <div className="absolute top-10 left-10 w-[500px] h-[500px] bg-blue-500/[0.01] rounded-full blur-[120px] pointer-events-none -z-10" />
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-5 space-y-6">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">Chapter 3: Engineering Flow</span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-display text-slate-900 leading-tight">
+              Our Design-to-Deployment Sprint Journey
+            </h2>
+            <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-sans">
+              We bridge the gap between aesthetic wireframes and strict compiled code structures. Every sprint step is mapped and monitored.
+            </p>
+
+            <div className="space-y-4 pt-2 font-sans">
+              {[
+                { step: "01", title: "UX Tokens & Figma Design Systems", desc: "Constructing accessibility-compliant UI spacing and styling tokens." },
+                { step: "02", title: "Relational Schemas & API Blueprints", desc: "Modeling high-throughput PostgreSQL schemas and backend gateways." },
+                { step: "03", title: "Automated Linting & Code Verification", desc: "Executing Jest, Cypress, and TypeScript compiler validation loops." },
+                { step: "04", title: "Edge CD Deployments & SLA Auditing", desc: "Pushing production assets to global CDN nodes with sub-400ms latency budgets." }
+              ].map((item, idx) => (
+                <div key={idx} className="flex gap-4 items-start p-4 bg-slate-50/50 border border-slate-100 rounded-2xl">
+                  <span className="text-xs font-extrabold text-blue-600 font-mono">{item.step}</span>
+                  <div className="space-y-0.5">
+                    <h4 className="font-extrabold text-xs text-slate-900 leading-tight">{item.title}</h4>
+                    <p className="text-[10px] text-slate-400 leading-relaxed font-medium">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Visual interactive diagram column */}
+          <div className="lg:col-span-7 relative flex justify-center py-6">
+            <div className="absolute -inset-4 bg-gradient-to-tr from-purple-500/5 to-blue-500/5 rounded-3xl blur-xl" />
+            <div className="relative border border-slate-200/80 bg-white/95 rounded-3xl p-6 sm:p-8 shadow-2xl max-w-lg w-full glass-card-premium noise-bg text-[10px] font-mono leading-relaxed space-y-5">
+              {/* Header */}
+              <div className="flex justify-between items-center border-b border-slate-100 pb-3">
+                <span className="text-[8px] font-bold text-slate-450 uppercase tracking-widest font-mono">Compiler Pipeline v1</span>
+                <span className="text-emerald-500 font-bold uppercase text-[7px] bg-emerald-50 px-2 py-0.5 rounded animate-pulse">Running</span>
+              </div>
+
+              {/* Steps visual representation */}
+              <div className="space-y-3.5 text-left">
+                <div className="flex items-center justify-between bg-slate-50 border border-slate-200/50 p-2.5 rounded-lg">
+                  <span>Step 1: Figma Token Sync</span>
+                  <span className="text-blue-600 font-bold">SUCCESS (0.8s)</span>
+                </div>
+                <div className="flex items-center justify-between bg-slate-50 border border-slate-200/50 p-2.5 rounded-lg">
+                  <span>Step 2: Database Schema Migrate</span>
+                  <span className="text-blue-600 font-bold">SUCCESS (1.2s)</span>
+                </div>
+                <div className="flex items-center justify-between bg-slate-50 border border-slate-200/50 p-2.5 rounded-lg">
+                  <span>Step 3: Jest QA Test Coverage (92%)</span>
+                  <span className="text-blue-600 font-bold">SUCCESS (3.4s)</span>
+                </div>
+                <div className="flex items-center justify-between bg-slate-50 border border-slate-200/50 p-2.5 rounded-lg border-blue-200 bg-blue-50/20">
+                  <span>Step 4: Next.js Compile Static</span>
+                  <span className="text-indigo-600 font-bold animate-pulse">ACTIVE (2.1s...)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Client Logos Horizontal Auto-Marquee */}
-      <section className="bg-slate-50/50 border-y border-slate-200/50 py-10 my-12 relative overflow-hidden">
+      <section className="bg-gradient-to-r from-blue-50/10 via-purple-50/10 to-blue-50/10 border-y border-slate-200/50 py-10 my-12 relative overflow-hidden noise-bg">
         <div className="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <p className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest text-center mb-8">
@@ -559,7 +773,7 @@ export function HomeContent() {
               {techStackLogos.concat(techStackLogos).map((item, idx) => (
                 <div
                   key={idx}
-                  className="w-16 h-16 border border-slate-200/60 bg-white/70 shadow-sm rounded-2xl flex items-center justify-center shrink-0 select-none glass-card hover:border-blue-300 hover:bg-white transition-all"
+                  className="w-16 h-16 border border-slate-200/60 bg-white/80 shadow-sm rounded-2xl flex items-center justify-center shrink-0 select-none glass-card-premium hover:border-blue-500/40 hover:scale-105 transition-all cursor-default"
                   title={item.name}
                 >
                   {item.logo}
@@ -630,7 +844,7 @@ export function HomeContent() {
       </section>
 
       {/* Interactive Capabilities & Visual Proof Showcase */}
-      <section className="bg-slate-50/40 border-y border-slate-200/50 py-24 select-none relative">
+      <section id="capabilities-section" className="bg-slate-50/40 border-y border-slate-200/50 py-24 select-none relative">
         <div className="absolute inset-0 bg-dot-pattern opacity-60 pointer-events-none" />
 
         {/* Floating background gradient circles for visual depth */}
@@ -1656,34 +1870,6 @@ export function HomeContent() {
               )
             })}
           </div>
-
-          {/* Stats Bar */}
-          <div className="mt-16 border-t border-slate-200 pt-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 bg-white/50 backdrop-blur-md rounded-2xl py-6 px-4 border border-slate-200/60 shadow-sm">
-              {[
-                { icon: Briefcase, value: "130+", label: "Projects Delivered" },
-                { icon: HeartHandshake, value: "98%", label: "Client Satisfaction" },
-                { icon: Users, value: "80+", label: "Happy Clients" },
-                { icon: Award, value: "3+", label: "Years of Excellence" }
-              ].map((stat, idx) => {
-                const StatIcon = stat.icon
-                return (
-                  <div key={idx} className="flex items-center justify-center gap-3">
-                    <StatIcon className="text-blue-600 shrink-0" size={24} />
-                    <div className="text-left">
-                      <span className="block text-xl font-extrabold text-slate-900 font-display leading-tight">
-                        {stat.value}
-                      </span>
-                      <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold block">
-                        {stat.label}
-                      </span>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-
         </div>
       </section>
 
@@ -1697,7 +1883,7 @@ export function HomeContent() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
           {/* Left Column: Heading and Support Card */}
-          <div className="lg:col-span-5 space-y-8">
+          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-28">
             <div className="space-y-4">
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/80 bg-slate-50 text-[9px] font-extrabold text-slate-655 uppercase tracking-widest font-display">
                 <HelpCircle size={10} className="text-blue-600 animate-pulse" />
@@ -1823,6 +2009,44 @@ export function HomeContent() {
           </div>
         </div>
       </section>
+
+      {/* Floating Glassmorphism Sub-Navigation Dock */}
+      <AnimatePresence>
+        {showDock && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 50, scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-lg bg-white/80 backdrop-blur-md border border-slate-200 rounded-2xl shadow-xl overflow-hidden px-4 py-3.5 flex items-center justify-between"
+          >
+            {/* Scroll reading progress bar */}
+            <div 
+              className="absolute top-0 left-0 h-[2.5px] bg-blue-600 transition-all duration-75"
+              style={{ width: `${readProgress}%` }}
+            />
+
+            {/* Anchors List */}
+            <div className="flex gap-4 items-center">
+              <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest hidden sm:inline select-none">Quick Jump:</span>
+              <div className="flex gap-2 sm:gap-3 text-[10px] font-bold text-slate-600">
+                <button onClick={() => handleDockNavigation("software-development")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">SaaS</button>
+                <button onClick={() => handleDockNavigation("mobile-development")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">Mobile</button>
+                <button onClick={() => handleDockNavigation("ai-solutions")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">AI</button>
+                <button onClick={() => handleDockNavigation("cloud-devops")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">Cloud</button>
+                <button onClick={() => handleDockNavigation("iot-embedded")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">IoT</button>
+              </div>
+            </div>
+
+            {/* CTA Book Call */}
+            <Link href="/contact">
+              <Button size="sm" className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-[9px] py-1.5 px-3 rounded-lg shadow-sm cursor-pointer uppercase tracking-wider">
+                Book Call
+              </Button>
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   )
