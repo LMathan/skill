@@ -370,41 +370,42 @@ export const servicesData: Service[] = [
 
 import { blogData as generatedBlogData, blogSummaryData as generatedBlogSummaryData } from "./blogData"
 
-export const blogData: Blog[] = generatedBlogData;
-export const blogSummaryData: BlogSummary[] = generatedBlogSummaryData;
+const premiumBlogIds = [
+  "modern-microservices-nextjs-erp",
+  "optimize-flutter-cross-platform-apps",
+  "secure-cicd-github-actions-aws",
+  "optimize-woocommerce-core-web-vitals",
+  "micro-frontends-architecture",
+  "agentic-ai-langchain-rag-tuning",
+  "advanced-nextjs-caching-isr"
+]
 
+export const blogData: Blog[] = generatedBlogData.filter(b => premiumBlogIds.includes(b.id));
+export const blogSummaryData: BlogSummary[] = generatedBlogSummaryData.filter(b => premiumBlogIds.includes(b.id));
 
 export const faqData: FAQ[] = [
   {
-    question: "What is the best final year project center in Erode for engineering students?",
-    answer: "SkillForge Technology is widely recognized as the premier final year project center in Erode, offering verified academic mentoring for ECE, CSE, EEE, IT, and Robotics streams. Situated on Perundurai Road near top institutions like Kongu Engineering College (KEC) and Velalar College (VCET), our laboratory focuses on practical learning. Unlike centers selling pre-built modules, we guide students through custom hardware assembly, schematic validation, and source code diagnostics. Learn more about our [Engineering Services](/services) or explore our [Projects Portfolio](/projects) to find your next innovation topic."
+    question: "What core engineering services does SkillForge Technology provide?",
+    answer: "We deliver full-cycle software engineering, custom enterprise platforms, high-performance web applications, native cross-platform mobile apps, cloud-native DevOps configurations, and cloud-connected IoT prototypes."
   },
   {
-    question: "Do you provide IEEE projects with complete source code and documentation?",
-    answer: "Yes, absolutely. SkillForge Technology is a trusted IEEE project center in Erode. Every IEEE reference paper project includes fully annotated source code (written in C++, Python, Dart, or MATLAB), complete circuit schematics, wiring connections diagrams, block flowcharts, and a detailed research thesis report formatted to college panel guidelines. We also conduct interactive code walkthroughs and mock viva presentation rehearsals to help you explain the project logic confidently to academic reviews. View our ready-made prototypes in the [Projects Gallery](/projects)."
+    question: "How does your team coordinate software development sprints?",
+    answer: "We operate on modern Agile methodologies. Clients are integrated into active tracking boards, receive weekly sprint updates, and have direct communication lines with project solution architects throughout the software development lifecycle."
   },
   {
-    question: "Can engineering students customize their final year project parameters?",
-    answer: "Yes, custom project development is our key specialty. If you want to merge features from different research papers—such as adding GPS alerts to an AI computer vision system or building a custom Node-RED dashboard for an agricultural sensor network—our lab design engineers will customize the printed circuit board (PCB) layout and write custom firmware for you. We cater to unique needs for B.E., B.Tech, and M.E. candidates. Contact our Erode design laboratory today via our [Contact Page](/contact) to discuss your customized ideas."
+    question: "Do you support remote collaboration for international projects?",
+    answer: "Yes, we serve clients globally. Our engineers utilize modern virtual collaboration tools, maintain clear documentation, and adjust scheduling overlap to collaborate seamlessly with international teams."
   },
   {
-    question: "Do you provide IoT projects using ESP32 and cloud dashboards?",
-    answer: "Yes. We design and program advanced Internet of Things (IoT) systems using ESP32 and ESP8266 development boards. Our lab focuses on real-time data sync using Google Firebase, AWS IoT Core, and Blynk console dashboards. We train students on modern communication protocols like MQTT, HTTP REST, and WebSockets. Projects include multi-sensor arrays, solar telemetry, and mobile controllers. Check out our IoT division details on our [Services Page](/services#iot)."
+    question: "How do you protect software intellectual property (IP) and data?",
+    answer: "We sign comprehensive non-disclosure agreements (NDAs) before discovery calls. Upon project delivery, we transfer 100% legal rights, clean Git repositories, database scripts, and assets back to your enterprise."
   },
   {
-    question: "Do you provide AI, Machine Learning, and Edge AI projects?",
-    answer: "Yes, we specialize in Artificial Intelligence and Machine Learning solutions. We develop computer vision applications using Python, OpenCV, YOLO, and MediaPipe. Crucially, we focus on Edge AI and TinyML—optimizing deep neural networks to run locally on low-power hardware like ESP32 microcontrollers, Raspberry Pi 4/5, or Nvidia Jetson Nano nodes. Projects cover facial recognition attendance systems, perimeter monitoring, and driver drowsiness alerts. Explore our AI developments at [AI Specializations](/services#ai-ml)."
+    question: "What core technologies do your engineers specialize in?",
+    answer: "Our frontend teams leverage TypeScript, React, and Next.js. Our backend architectures employ .NET Core, Node.js, and Python. Mobile platforms utilize Flutter, and cloud environments run on AWS, Azure, and Google Cloud."
   },
   {
-    question: "Do you provide certified technical internships and workshops?",
-    answer: "Yes. SkillForge Technology offers hands-on industrial internship programs and technical workshops at our Erode development laboratory. Students gain practical experience interfacing microcontrollers, soldering PCBs, and compiling computer vision code. Upon successful completion, you receive ISO-compliant internship certificates, technical project badges, and resume-ready credentials valued by core tech recruiters. Read testimonials from former interns on our [Reviews Page](/reviews) or consult our engineers on our [About Us Page](/about)."
-  },
-  {
-    question: "Do you provide Embedded Systems and Robotics projects?",
-    answer: "Yes, our laboratory supports robust Embedded Systems and Robotics projects using Arduino, STM32 ARM Cortex, PIC, and MSP430 controllers. We guide students in schematic capture, circuit board routing, firmware coding in Embedded C, and motor control diagnostics using digital oscilloscopes (DSOs). Robotic systems include gesture-controlled rovers, obstacle-avoidance platforms, and automated robotic arms. Read about our firmware expertise under [Embedded Services](/services#embedded)."
-  },
-  {
-    question: "How long does a final year project take, and can they be delivered online?",
-    answer: "Standard academic projects are typically finalized within 5 to 7 working days, while custom IoT or AI models take between 10 to 15 working days. Yes, we support complete online delivery for students in nearby cities like Coimbatore, Salem, Tiruppur, Namakkal, and Karur. We provide step-by-step assembly guides, online screen-sharing code explanations, and secure courier shipping. Visit our [Contact Page](/contact) to query about timelines."
+    question: "Do you offer post-deployment maintenance and SLA support?",
+    answer: "Yes, we offer ongoing service-level agreement (SLA) support plans covering system health auditing, security patch updates, performance tuning, and feature expansion to maintain optimal performance."
   }
 ];

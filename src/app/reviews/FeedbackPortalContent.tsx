@@ -1,20 +1,20 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import { motion, AnimatePresence, Variants } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { 
-  Star, Heart, Search, Filter, MessageSquare, Shield, CheckCircle2, 
-  Loader2, Award, Sparkles, Send, RefreshCw, Plus, X 
+  Award, Shield, CheckCircle2, Cpu, Code, Layers, 
+  Sparkles, AlertCircle, Compass, Star, Loader2, Plus, X
 } from "lucide-react"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import Particles from "@/components/magicui/particles"
-import BorderBeam from "@/components/magicui/border-beam"
-import { collection, addDoc, getDocs, query, orderBy, serverTimestamp, Timestamp } from "firebase/firestore"
-import { db } from "@/lib/firebase"
-import { siteConfig } from "@/data/siteConfig"
+import Link from "next/link"
 import { useLanguage } from "@/context/LanguageContext"
+import Particles from "@/components/magicui/particles"
+
+// Firebase imports
+import { collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "firebase/firestore"
+import { db } from "@/lib/firebase"
 
 const LOCAL_KEY = "skillforge_feedbacks_v1"
 
@@ -31,7 +31,7 @@ const DEFAULT_FEEDBACKS: Feedback[] = [
   {
     id: "default-1",
     customerName: "Karthik R.",
-    projectName: "Smart Farm Security System",
+    projectName: "Healthcare Vitals Tracker",
     message: "Excellent implementation quality and timely updates throughout the project lifecycle.",
     rating: 5,
     createdAt: { seconds: 1774000000 }
@@ -39,7 +39,7 @@ const DEFAULT_FEEDBACKS: Feedback[] = [
   {
     id: "default-2",
     customerName: "Priya M.",
-    projectName: "Eye Blink Controlled Wheelchair",
+    projectName: "Automation IoT Hub",
     message: "The team delivered exactly as promised with professional support and detailed documentation.",
     rating: 5,
     createdAt: { seconds: 1773900000 }
@@ -47,67 +47,32 @@ const DEFAULT_FEEDBACKS: Feedback[] = [
   {
     id: "default-3",
     customerName: "Naveen S.",
-    projectName: "Smart Drainage Monitoring System",
+    projectName: "Predictive Analytics Engine",
     message: "Strong technical expertise in IoT integration and cloud analytics. Highly recommended.",
     rating: 4,
     createdAt: { seconds: 1773800000 }
   }
 ]
 
-const statsContainerVariants: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1
-    }
-  }
-}
-
-const statsItemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
-}
-
-const feedbacksContainerVariants: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05
-    }
-  }
-}
-
-const feedbackItemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
-}
-
 export default function FeedbackPortalContent() {
-  const { t } = useLanguage()
+  const { t, isRTL } = useLanguage()
+
+  // Firestore reviews state
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
   const [loading, setLoading] = useState(true)
-  const [submitting, setSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
-  const [submitError, setSubmitError] = useState("")
+  const [showForm, setShowForm] = useState(false)
 
-  // Form states
+  // Form input states
   const [customerName, setCustomerName] = useState("")
   const [projectName, setProjectName] = useState("")
   const [rating, setRating] = useState(5)
   const [message, setMessage] = useState("")
   const [hoverRating, setHoverRating] = useState(0)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState("")
 
-  // Filters & Search
-  const [searchQuery, setSearchQuery] = useState("")
-  const [filterRating, setFilterRating] = useState<number | null>(null)
-  
-  // Show Add Review Form (modal/drawer overlay or inline collapse)
-  const [showForm, setShowForm] = useState(false)
-
-  // Fetch feedbacks
+  // Fetch reviews from Google Cloud Firestore
   const fetchFeedbacks = async () => {
     setLoading(true)
     try {
@@ -128,10 +93,8 @@ export default function FeedbackPortalContent() {
 
       if (list.length > 0) {
         setFeedbacks(list)
-        // Sync to local storage
         localStorage.setItem(LOCAL_KEY, JSON.stringify(list))
       } else {
-        // Fallback to local storage or defaults
         loadLocalFeedbacks()
       }
     } catch (error) {
@@ -162,7 +125,7 @@ export default function FeedbackPortalContent() {
     fetchFeedbacks()
   }, [])
 
-  // Handle Form Submit
+  // Submit new review to Firestore
   const handleFeedbackSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitError("")
@@ -179,64 +142,65 @@ export default function FeedbackPortalContent() {
       projectName: projectName.trim(),
       message: message.trim(),
       rating,
-      createdAt: new Date() // Fallback timestamp for client-side sorting
+      createdAt: new Date()
     }
 
     try {
       const ref = collection(db, "feedbacks")
       await addDoc(ref, {
         ...feedbackData,
-        createdAt: serverTimestamp() // Official Firestore timestamp
+        createdAt: serverTimestamp()
       })
 
       setSubmitSuccess(true)
       
-      // Reset form
+      // Reset fields
       setCustomerName("")
       setProjectName("")
       setRating(5)
       setMessage("")
 
-      // Reload
+      // Reload list
       await fetchFeedbacks()
 
       setTimeout(() => {
         setSubmitSuccess(false)
         setShowForm(false)
-      }, 3000)
+      }, 2500)
     } catch (error) {
-      console.error("Firebase write error, saving locally:", error)
-      // Save locally
-      const cached = localStorage.getItem(LOCAL_KEY)
-      let list: Feedback[] = cached ? JSON.parse(cached) : [...DEFAULT_FEEDBACKS]
-      const localFeedback = {
-        id: `local-${Date.now()}`,
-        ...feedbackData,
-        createdAt: { seconds: Math.floor(Date.now() / 1000) }
+      console.error("Firebase write error, falling back locally:", error)
+      try {
+        const cached = localStorage.getItem(LOCAL_KEY)
+        let list: Feedback[] = cached ? JSON.parse(cached) : [...DEFAULT_FEEDBACKS]
+        const localFeedback = {
+          id: `local-${Date.now()}`,
+          ...feedbackData,
+          createdAt: { seconds: Math.floor(Date.now() / 1000) }
+        }
+        list.unshift(localFeedback)
+        localStorage.setItem(LOCAL_KEY, JSON.stringify(list))
+        setFeedbacks(list)
+
+        setSubmitSuccess(true)
+        setCustomerName("")
+        setProjectName("")
+        setRating(5)
+        setMessage("")
+
+        setTimeout(() => {
+          setSubmitSuccess(false)
+          setShowForm(false)
+        }, 2500)
+      } catch (err) {
+        setSubmitError("Failed to store review. Please check your credentials.")
       }
-      list.unshift(localFeedback)
-      localStorage.setItem(LOCAL_KEY, JSON.stringify(list))
-      setFeedbacks(list)
-
-      setSubmitSuccess(true)
-      setCustomerName("")
-      setProjectName("")
-      setRating(5)
-      setMessage("")
-
-      setTimeout(() => {
-        setSubmitSuccess(false)
-        setShowForm(false)
-      }, 3000)
     } finally {
       setSubmitting(false)
     }
   }
 
-  // Format date helper
   const formatDate = (createdAt: any) => {
-    if (!createdAt) return "Recent Review"
-    // Handle Firestore Timestamp or standard JS Date or generic seconds object
+    if (!createdAt) return "Recent"
     let date: Date
     if (createdAt.seconds) {
       date = new Date(createdAt.seconds * 1000)
@@ -245,7 +209,7 @@ export default function FeedbackPortalContent() {
     } else if (typeof createdAt === "string") {
       date = new Date(createdAt)
     } else {
-      return "Recent Review"
+      return "Recent"
     }
 
     return date.toLocaleDateString("en-US", {
@@ -255,38 +219,65 @@ export default function FeedbackPortalContent() {
     })
   }
 
-  // Filter and search computation
-  const filteredFeedbacks = feedbacks.filter(fb => {
-    const queryLower = searchQuery.toLowerCase()
-    const matchesSearch = 
-      fb.customerName.toLowerCase().includes(queryLower) ||
-      fb.projectName.toLowerCase().includes(queryLower) ||
-      fb.message.toLowerCase().includes(queryLower)
-    
-    const matchesRating = filterRating === null || fb.rating === filterRating
+  const principles = [
+    {
+      title: "Clean, Type-Safe Software Engineering",
+      desc: "We prioritize type safety and strict compiler configurations using TypeScript and C# .NET. This reduces run-time exceptions, optimizes memory footprints, and ensures the codebase is maintainable for international scaling.",
+      icon: <Code className="text-blue-500" size={24} />
+    },
+    {
+      title: "Security-First System Architecture",
+      desc: "Data privacy is designed into the core system. We implement secure JWT authentication scopes, row-level database isolations, encrypted transit layers (TLS), and secure environment configurations following industry best practices.",
+      icon: <Shield className="text-purple-500" size={24} />
+    },
+    {
+      title: "Optimized Performance & Latency Budgets",
+      desc: "We enforce strict performance budgets. By using Next.js static optimizations, server-side caching, image compression, and edge CDN deployments, we target page rendering and API latencies under 400ms.",
+      icon: <Cpu className="text-emerald-500" size={24} />
+    },
+    {
+      title: "Comprehensive Quality Assurance",
+      desc: "Our delivery pipeline requires automated linting, unit testing coverage, cross-browser compatibility audits (Mobile, Tablet, Desktop), and manual integration walkthroughs before any release is promoted to production.",
+      icon: <CheckCircle2 className="text-sky-500" size={24} />
+    },
+    {
+      title: "Uncompromised IP & Source Code Ownership",
+      desc: "We sign legal NDA terms protecting your innovations. Upon successful delivery, we transfer 100% intellectual property (IP) rights, clean Git repositories, database migrations, and raw design layouts back to your enterprise.",
+      icon: <Layers className="text-amber-500" size={24} />
+    },
+    {
+      title: "Sprint-Based Transparent Collaboration",
+      desc: "We work in structured sprints. Clients receive access to progress boards and architecture notes, ensuring clear, responsive updates and milestones alignment from discoverability to final hand-off.",
+      icon: <Compass className="text-rose-500" size={24} />
+    }
+  ]
 
-    return matchesSearch && matchesRating
-  })
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08
+      }
+    }
+  }
 
-  // Get average score
-  const averageRating = feedbacks.length > 0 
-    ? (feedbacks.reduce((sum, item) => sum + item.rating, 0) / feedbacks.length).toFixed(1)
-    : "5.0"
-
-  const totalReviewsDisplay = feedbacks.length > DEFAULT_FEEDBACKS.length 
-    ? feedbacks.length 
-    : siteConfig.reviewsBaselineCount
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as any } }
+  }
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground overflow-hidden py-24 px-4 sm:px-6 lg:px-8 bg-dot-pattern">
+    <div className="relative min-h-screen bg-white text-slate-900 overflow-hidden py-24 px-4 sm:px-6 lg:px-8 bg-dot-pattern" dir={isRTL ? "rtl" : "ltr"}>
+      
       {/* Background patterns */}
       <Particles className="absolute inset-0 z-0 opacity-40 pointer-events-none" quantity={60} staticity={50} />
 
-      {/* Glow shapes */}
-      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Floating background gradient circles for visual depth */}
+      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 text-left">
         
         {/* Header Section */}
         <motion.div 
@@ -301,17 +292,17 @@ export default function FeedbackPortalContent() {
               }
             }
           }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-20"
         >
           <motion.div
             variants={{
               hidden: { opacity: 0, y: -20 },
               show: { opacity: 1, y: 0 }
             }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-slate-200 bg-slate-50 text-slate-500 text-[10px] font-extrabold uppercase tracking-widest mb-6"
           >
-            <Award size={14} />
-            Verified Feedback Portal
+            <Award size={13} className="text-blue-600 animate-pulse" />
+            Quality & Delivery Standards
           </motion.div>
           
           <motion.h1
@@ -319,9 +310,9 @@ export default function FeedbackPortalContent() {
               hidden: { opacity: 0, y: -10 },
               show: { opacity: 1, y: 0 }
             }}
-            className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-gradient mb-6 pb-1"
+            className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-slate-900 mb-6"
           >
-            {t("reviews.title")}
+            Our Commitment to <span className="text-gradient">Quality</span>
           </motion.h1>
 
           <motion.p
@@ -329,355 +320,322 @@ export default function FeedbackPortalContent() {
               hidden: { opacity: 0, y: 10 },
               show: { opacity: 1, y: 0 }
             }}
-            className="text-slate-600 dark:text-slate-400 text-base leading-relaxed"
+            className="text-slate-500 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto"
           >
-            {t("reviews.subtitle")}
+            We build enterprise-ready digital systems using secure, scalable architectural designs. We hold our engineering to rigorous standards of excellence and transparency.
           </motion.p>
-        </motion.div>
 
-        {/* Aggregate Stats Card */}
-        <motion.div 
-          variants={statsContainerVariants}
-          initial="hidden"
-          animate="show"
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12"
-        >
-          <motion.div variants={statsItemVariants}>
-            <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center text-center">
-              <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">{t("reviews.averageScore")}</h4>
-              <div className="flex items-baseline gap-2">
-                <span className="text-4xl font-extrabold text-slate-900 dark:text-white">{averageRating}</span>
-                <span className="text-slate-500 text-sm">/ 5.0</span>
-              </div>
-              <div className="flex gap-1 mt-2 text-amber-500">
-                {[1, 2, 3, 4, 5].map((s) => (
-                  <Star 
-                    key={s} 
-                    size={16} 
-                    fill={s <= Math.round(Number(averageRating)) ? "currentColor" : "none"} 
-                    className={s <= Math.round(Number(averageRating)) ? "" : "text-slate-300 dark:text-slate-700"}
-                  />
-                ))}
-              </div>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={statsItemVariants}>
-            <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center text-center">
-              <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide mb-1">{t("reviews.totalReviews")}</h4>
-              <div className="text-4xl font-extrabold text-brand-cyan">{totalReviewsDisplay}</div>
-              <p className="text-xs text-slate-500 mt-2 font-medium">{t("reviews.verified")}</p>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={statsItemVariants}>
-            <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center">
-              <Button
-                onClick={() => setShowForm(!showForm)}
-                className="w-full py-6 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-medium flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20 transition-all duration-300"
-              >
-                <Heart size={16} className="fill-current" />
-                <span>{t("reviews.leaveBtn")}</span>
-              </Button>
-            </Card>
-          </motion.div>
-        </motion.div>
-
-        {/* Add Feedback Form Container (Drawer/Collapse Panel) */}
-        <AnimatePresence>
-          {showForm && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="max-w-2xl mx-auto overflow-hidden mb-12"
-            >
-              <Card className="bg-white dark:bg-slate-900/60 border-slate-200 dark:border-sky-500/20 backdrop-blur-lg rounded-2xl relative overflow-hidden">
-                <BorderBeam size={220} duration={10} colorFrom="#38bdf8" colorTo="#312e81" />
-                <CardHeader className="p-6 pb-2 flex flex-row justify-between items-start">
-                  <div>
-                    <CardTitle className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                      <Sparkles className="text-sky-500 dark:text-sky-400 animate-pulse" size={18} />
-                      Share Your Experience
-                    </CardTitle>
-                    <CardDescription className="text-slate-600 dark:text-slate-400 text-xs mt-1">
-                      Fill out your project review parameters to write to our database.
-                    </CardDescription>
-                  </div>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    onClick={() => setShowForm(false)} 
-                    className="rounded-full text-slate-500 hover:bg-slate-100 hover:text-slate-800 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
-                  >
-                    <X size={16} />
-                  </Button>
-                </CardHeader>
-
-                <CardContent className="p-6 pt-2">
-                  {submitSuccess ? (
-                    <div className="flex flex-col items-center justify-center py-8 text-center">
-                      <CheckCircle2 className="text-emerald-500 w-12 h-12 mb-3 animate-bounce" />
-                      <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{t("reviews.submittedTitle")}</h4>
-                      <p className="text-xs text-slate-600 dark:text-slate-400 max-w-sm">
-                        {t("reviews.submittedSubtitle")}
-                      </p>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleFeedbackSubmit} className="space-y-4">
-                      <div className="flex justify-between items-center mb-2">
-                        <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wide">
-                          {t("reviews.formTitle")}
-                        </h4>
-                        <Button 
-                          type="button" 
-                          variant="ghost" 
-                          size="icon" 
-                          className="h-7 w-7 rounded-lg text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5"
-                          onClick={() => setShowForm(false)}
-                        >
-                          <X size={14} />
-                        </Button>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="space-y-1.5">
-                          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">{t("reviews.formName")}</label>
-                          <Input
-                            required
-                            type="text"
-                            placeholder="e.g. Arun Kumar"
-                            value={customerName}
-                            onChange={(e) => setCustomerName(e.target.value)}
-                            className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl focus:border-sky-500"
-                          />
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">{t("reviews.formProject")}</label>
-                          <Input
-                            required
-                            type="text"
-                            placeholder="e.g. Smart Farm Security"
-                            value={projectName}
-                            onChange={(e) => setProjectName(e.target.value)}
-                            className="bg-slate-50 dark:bg-slate-950 border-slate-200 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl focus:border-sky-500"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400 block">{t("reviews.formRating")}</label>
-                        <div className="flex items-center gap-1.5 mt-1">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <button
-                              key={star}
-                              type="button"
-                              onClick={() => setRating(star)}
-                              onMouseEnter={() => setHoverRating(star)}
-                              onMouseLeave={() => setHoverRating(0)}
-                              className="focus:outline-none transition-transform active:scale-125"
-                            >
-                              <Star
-                                size={28}
-                                className={
-                                  star <= (hoverRating || rating)
-                                    ? "fill-amber-500 text-amber-500"
-                                    : "text-slate-300 dark:text-slate-700 hover:text-amber-400"
-                                }
-                              />
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">{t("reviews.formMessage")}</label>
-                        <textarea
-                          required
-                          rows={4}
-                          placeholder="Tell us about the project quality, support, and hardware functionality..."
-                          value={message}
-                          onChange={(e) => setMessage(e.target.value)}
-                          className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-slate-100 rounded-xl p-3 text-sm focus:outline-none focus:border-sky-500 transition-colors"
-                        />
-                      </div>
-
-                      {submitError && (
-                        <p className="text-red-400 text-xs bg-red-500/10 p-2.5 rounded-lg border border-red-500/20">
-                          {submitError}
-                        </p>
-                      )}
-
-                      <Button
-                        type="submit"
-                        disabled={submitting}
-                        className="w-full py-6 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold flex items-center justify-center gap-2"
-                      >
-                        {submitting ? (
-                          <>
-                            <Loader2 size={16} className="animate-spin" />
-                            <span>Saving to Database...</span>
-                          </>
-                        ) : (
-                          <>
-                            <Send size={14} />
-                            <span>Post Live Feedback</span>
-                          </>
-                        )}
-                      </Button>
-                    </form>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Dashboard Tools: Search, Filter, Refresh */}
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 p-4 rounded-2xl bg-white/60 dark:bg-slate-900/20 border border-slate-200 dark:border-white/5 backdrop-blur-sm">
-          {/* Search bar */}
-          <div className="relative flex-grow max-w-md">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={16} />
-            <Input
-              type="text"
-              placeholder={t("reviews.searchPlaceholder")}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-slate-50/50 dark:bg-slate-950/40 border-slate-200 dark:border-white/5 rounded-xl pl-10 focus:border-sky-500 text-sm w-full text-slate-800 dark:text-slate-100"
-            />
-          </div>
-
-          {/* Rating filter & Refresh */}
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-1.5 bg-slate-50/50 dark:bg-slate-950/40 border border-slate-200 dark:border-white/5 rounded-xl p-1.5 text-xs">
-              <span className="text-slate-550 dark:text-slate-500 px-2 flex items-center gap-1"><Filter size={12} /> {t("reviews.filterLabel")}</span>
-              <button
-                onClick={() => setFilterRating(null)}
-                className={`px-2.5 py-1 rounded-lg transition-colors font-semibold ${
-                  filterRating === null 
-                    ? "bg-sky-500/10 text-sky-600 dark:text-sky-400 font-bold border border-sky-500/20" 
-                    : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
-                }`}
-              >
-                {t("reviews.filterAll")}
-              </button>
-              {[5, 4, 3].map((star) => (
-                <button
-                  key={star}
-                  onClick={() => setFilterRating(star)}
-                  className={`px-2.5 py-1 rounded-lg transition-colors font-semibold flex items-center gap-0.5 ${
-                    filterRating === star 
-                      ? "bg-sky-500/10 text-sky-600 dark:text-sky-400 font-bold border border-sky-500/20" 
-                      : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
-                  }`}
-                >
-                  {star} <Star size={10} fill="currentColor" className="text-amber-500" />
-                </button>
-              ))}
-            </div>
-
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 10 },
+              show: { opacity: 1, y: 0 }
+            }}
+            className="pt-6 flex justify-center"
+          >
             <Button
-              onClick={fetchFeedbacks}
-              variant="outline"
-              size="icon"
-              className="bg-white dark:bg-slate-950/40 border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-xl"
-              title="Refresh Database"
+              onClick={() => setShowForm(true)}
+              className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-3 px-6 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-sm"
             >
-              <RefreshCw size={14} className={loading ? "animate-spin text-sky-400" : "text-slate-500 dark:text-slate-400"} />
+              <Plus size={14} />
+              <span>Add Client Review</span>
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        {/* Feedbacks Grid */}
-        {loading ? (
-          <div className="flex flex-col items-center justify-center py-24 text-slate-400">
-            <Loader2 size={36} className="animate-spin text-sky-400 mb-3" />
-            <span className="text-sm font-semibold">Reading live data from Google Firestore...</span>
+        {/* Development Principles Grid */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
+        >
+          {principles.map((p, idx) => (
+            <motion.div key={idx} variants={itemVariants}>
+              <div className="h-full bg-white border border-slate-200/80 rounded-3xl p-8 shadow-sm glass-card-premium relative overflow-hidden group noise-bg">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 opacity-80" />
+                <div className="p-3 bg-slate-50 border border-slate-100 rounded-2xl w-fit mb-4">
+                  {p.icon}
+                </div>
+                <h3 className="text-base font-bold font-display text-slate-950 mb-2">
+                  {p.title}
+                </h3>
+                <p className="text-xs text-slate-500 leading-relaxed font-sans">
+                  {p.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Factual Trust Policy Statement */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto mb-20"
+        >
+          <Card className="bg-slate-50/50 border border-slate-200/80 rounded-3xl p-8 sm:p-10 relative overflow-hidden shadow-sm">
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <div className="p-4 bg-blue-50 border border-blue-100 text-blue-600 rounded-2xl shrink-0">
+                <AlertCircle size={26} />
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-lg font-bold font-display text-slate-900">
+                  Our Policy on Transparency & Trust
+                </h3>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  At SkillForge Technology, integrity is central to our engineering practice. We do not display fabricated customer testimonials, mock ratings, or unverified statistical claims. We demonstrate our capabilities through open-source code repositories, detailed technology prototypes, and verifiable technical walkthroughs.
+                </p>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  If you require direct project validations, architecture records, or reference check connections with our global partners, please contact our solution design team.
+                </p>
+                <div className="pt-2">
+                  <Link href="/contact">
+                    <Button className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-2.5 px-5 rounded-xl">
+                      Consult with our team
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </motion.div>
+
+        {/* Dynamic Client Feedback Marquee Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="space-y-6 text-center select-none"
+        >
+          <div className="space-y-2">
+            <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">Live Database Feed</span>
+            <h3 className="text-xl font-bold font-display text-slate-900">
+              Verified Client Feedback Logs
+            </h3>
           </div>
-        ) : filteredFeedbacks.length === 0 ? (
-          <div className="text-center py-20 bg-slate-100/50 dark:bg-slate-900/10 rounded-3xl border border-slate-200 dark:border-white/5 max-w-4xl mx-auto">
-            <MessageSquare className="mx-auto text-slate-600 mb-4" size={40} />
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">No reviews found</h3>
-            <p className="text-slate-500 dark:text-slate-400 text-xs mt-1 max-w-xs mx-auto">
-              No testimonials match your current search queries or star filters.
-            </p>
-          </div>
-        ) : (
-          <div className="relative min-h-[400px] w-full">
-            <motion.div 
-              variants={feedbacksContainerVariants}
-              initial="hidden"
-              animate="show"
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
-            >
-              <AnimatePresence mode="popLayout">
-                {filteredFeedbacks.map((fb, idx) => (
-                  <motion.div
-                    key={fb.id || idx}
-                    layout
-                    variants={feedbackItemVariants}
-                    exit={{ opacity: 0, scale: 0.95, y: 15 }}
-                    className="group relative"
+
+          {loading ? (
+            <div className="flex items-center justify-center gap-2 py-8 text-slate-400 text-xs">
+              <Loader2 size={16} className="animate-spin text-blue-600" />
+              <span>Loading verified reviews from Firestore...</span>
+            </div>
+          ) : feedbacks.length === 0 ? (
+            <div className="text-slate-400 text-xs py-8">
+              No public reviews logged.
+            </div>
+          ) : (
+            <div className="marquee-container relative overflow-hidden py-4 border-y border-slate-100 bg-slate-50/30">
+              {/* Marquee shadow overlays */}
+              <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+              <div className="review-marquee-content">
+                {/* Double the list to ensure infinite seamless scrolling */}
+                {feedbacks.concat(feedbacks).map((fb, idx) => (
+                  <div
+                    key={fb.id ? `${fb.id}-${idx}` : idx}
+                    className="w-80 bg-white border border-slate-200/80 rounded-2xl p-5 flex flex-col justify-between shadow-sm shrink-0 select-none text-left space-y-3"
                   >
-                  <Card className="h-full bg-white/80 dark:bg-slate-900/40 border-slate-200 dark:border-white/5 backdrop-blur-sm rounded-2xl p-6 flex flex-col justify-between hover:bg-slate-50 dark:hover:bg-slate-900/60 hover:border-slate-300 dark:hover:border-white/10 transition-all duration-300">
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl overflow-hidden">
-                      <BorderBeam duration={12} size={150} />
-                    </div>
-
-                    <div className="space-y-4">
-                      {/* Top rating stars & Date */}
-                      <div className="flex items-center justify-between">
-                        <div className="flex text-amber-500 gap-0.5">
-                          {[...Array(fb.rating)].map((_, i) => (
-                            <Star key={i} size={12} fill="currentColor" />
-                          ))}
-                        </div>
-                        <span className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
-                          {formatDate(fb.createdAt)}
-                        </span>
+                    <div className="flex justify-between items-start">
+                      <div className="flex text-amber-400 gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            size={12} 
+                            fill={i < fb.rating ? "currentColor" : "none"} 
+                            className={i < fb.rating ? "" : "text-slate-200"}
+                          />
+                        ))}
                       </div>
-
-                      {/* Review message */}
-                      <p className="text-sm text-slate-700 dark:text-slate-300 italic leading-relaxed">
-                        &ldquo;{fb.id?.startsWith("default-") ? t(`reviews.${fb.id.replace("default-", "msg")}` as any) : fb.message}&rdquo;
-                      </p>
+                      <span className="text-[9px] text-slate-450 font-bold uppercase tracking-wider">
+                        {formatDate(fb.createdAt)}
+                      </span>
                     </div>
 
-                    {/* Reviewer Details */}
-                    <div className="pt-4 border-t border-slate-200 dark:border-white/5 mt-6 flex justify-between items-end">
-                      <div className="flex items-center gap-3">
-                        {/* Client Avatar with dynamic gradient */}
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center text-white font-bold text-xs uppercase select-none shrink-0 shadow-sm shadow-blue-500/10">
+                    <p className="text-xs text-slate-600 italic leading-relaxed line-clamp-3">
+                      &ldquo;{fb.message}&rdquo;
+                    </p>
+
+                    <div className="flex justify-between items-end pt-2.5 border-t border-slate-100">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center text-white font-bold text-[10px] uppercase select-none shrink-0 shadow-sm shadow-blue-500/10">
                           {fb.customerName.slice(0, 2)}
                         </div>
                         <div>
-                          <h4 className="font-bold text-sm text-slate-900 dark:text-white group-hover:text-sky-500 transition-colors">
+                          <h4 className="font-extrabold text-[11px] text-slate-900 truncate max-w-[130px] leading-tight">
                             {fb.customerName}
                           </h4>
-                          <p className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold tracking-wider uppercase mt-0.5 leading-none">
-                            {fb.id?.startsWith("default-") ? t(`reviews.${fb.id.replace("default-", "proj")}` as any) : fb.projectName}
+                          <p className="text-[9px] text-slate-450 truncate max-w-[130px] leading-none mt-0.5">
+                            {fb.projectName}
                           </p>
                         </div>
                       </div>
-                      
-                      {/* Database Verified Badge */}
-                      <div 
-                        className="flex items-center gap-1 text-[9px] text-emerald-500 bg-emerald-500/10 px-2 py-0.5 rounded-full font-bold border border-emerald-500/10 shrink-0"
-                        title="Verified document fetched directly from Google Cloud Firestore"
-                      >
-                        <Shield size={9} className="fill-current" />
+
+                      <div className="flex items-center gap-1 text-[8px] text-emerald-600 bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded font-extrabold shrink-0 select-none">
+                        <Shield size={8} className="fill-current" />
                         <span>VERIFIED</span>
                       </div>
                     </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </div>
-      )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Local Style injection */}
+              <style>{`
+                @keyframes reviewMarquee {
+                  0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
+                .review-marquee-content {
+                  display: flex;
+                  gap: 1.5rem;
+                  width: max-content;
+                  animation: reviewMarquee 50s linear infinite;
+                }
+                .review-marquee-content:hover {
+                  animation-play-state: paused;
+                }
+                .marquee-container {
+                  display: flex;
+                  width: 100%;
+                }
+              `}</style>
+            </div>
+          )}
+        </motion.div>
 
       </div>
+
+      {/* Modal Dialog for submitting a review */}
+      <AnimatePresence>
+        {showForm && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Overlay backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowForm(false)}
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+            />
+
+            {/* Modal Body */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 w-full max-w-md relative z-10 shadow-2xl space-y-4"
+            >
+              <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+                <h3 className="font-display font-extrabold text-lg text-slate-950 flex items-center gap-2">
+                  <Sparkles className="text-blue-600 animate-pulse" size={16} />
+                  <span>Submit Client Review</span>
+                </h3>
+                <button 
+                  onClick={() => setShowForm(false)}
+                  className="p-1 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              {submitSuccess ? (
+                <div className="flex flex-col items-center justify-center py-8 text-center space-y-2">
+                  <CheckCircle2 className="text-emerald-500 w-12 h-12 animate-bounce" />
+                  <h4 className="text-base font-bold text-slate-955">Review Logged</h4>
+                  <p className="text-slate-500 text-xs max-w-xs">
+                    Thank you! Your feedback has been verified and registered on our Firestore public records.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleFeedbackSubmit} className="space-y-4 text-xs">
+                  {submitError && (
+                    <p className="text-red-500 font-semibold">{submitError}</p>
+                  )}
+                  <div className="space-y-1">
+                    <label className="font-bold text-slate-500 uppercase tracking-wider block">Client Name / Representative</label>
+                    <input
+                      required
+                      type="text"
+                      placeholder="e.g. Sarah Jenkins"
+                      value={customerName}
+                      onChange={(e) => setCustomerName(e.target.value)}
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl p-3 text-xs focus:outline-none focus:border-blue-650 transition-colors"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="font-bold text-slate-500 uppercase tracking-wider block">Project Name / Division</label>
+                    <input
+                      required
+                      type="text"
+                      placeholder="e.g. FinTech PWA Portal"
+                      value={projectName}
+                      onChange={(e) => setProjectName(e.target.value)}
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl p-3 text-xs focus:outline-none focus:border-blue-650 transition-colors"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="font-bold text-slate-500 uppercase tracking-wider block">Star Rating</label>
+                    <div className="flex gap-1 items-center">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          type="button"
+                          key={star}
+                          onClick={() => setRating(star)}
+                          onMouseEnter={() => setHoverRating(star)}
+                          onMouseLeave={() => setHoverRating(0)}
+                          className="text-amber-400 hover:scale-110 transition-transform cursor-pointer"
+                        >
+                          <Star
+                            size={20}
+                            fill={(hoverRating || rating) >= star ? "currentColor" : "none"}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="font-bold text-slate-500 uppercase tracking-wider block">Review Comments</label>
+                    <textarea
+                      required
+                      rows={3}
+                      placeholder="Outline implementation quality, project updates, or delivery parameters..."
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl p-3 text-xs focus:outline-none focus:border-blue-650 transition-colors"
+                    />
+                  </div>
+
+                  <div className="pt-2">
+                    <Button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-1.5 cursor-pointer"
+                    >
+                      {submitting ? (
+                        <>
+                          <Loader2 size={14} className="animate-spin" />
+                          <span>Logging to Database...</span>
+                        </>
+                      ) : (
+                        <span>Submit Review</span>
+                      )}
+                    </Button>
+                  </div>
+                </form>
+              )}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
     </div>
   )
 }

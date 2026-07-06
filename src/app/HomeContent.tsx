@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -114,6 +114,29 @@ export function HomeContent() {
 
   // Interactive capabilities simulator states
   const [activeServiceTab, setActiveServiceTab] = useState<string>("software-development")
+
+  const [showDock, setShowDock] = useState(false)
+  const [readProgress, setReadProgress] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowDock(window.scrollY > 400)
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+      if (totalHeight > 0) {
+        setReadProgress((window.scrollY / totalHeight) * 100)
+      }
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const handleDockNavigation = (tabId: string) => {
+    setActiveServiceTab(tabId)
+    const element = document.getElementById("capabilities-section")
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
   const [activeMobileAppScreen, setActiveMobileAppScreen] = useState<"fintech" | "healthcare" | "logistics">("fintech")
   const [activeEnterpriseTable, setActiveEnterpriseTable] = useState<"users" | "orders" | "logs">("users")
   const [aiPromptsList, setAiPromptsList] = useState<string[]>([
@@ -357,12 +380,12 @@ export function HomeContent() {
   }
 
   return (
-    <div className="relative bg-transparent pt-24 overflow-x-hidden selection:bg-blue-500/20 text-slate-800 bg-dot-pattern" dir={isRTL ? "rtl" : "ltr"}>
+    <div className="relative bg-transparent pt-24 overflow-x-hidden selection:bg-blue-500/20 text-slate-800 bg-dot-pattern noise-bg" dir={isRTL ? "rtl" : "ltr"}>
 
-      {/* Animated Floating Gradient Blobs */}
-      <div className="absolute top-10 left-1/4 w-[350px] h-[350px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none -z-10 ambient-blob-slow" />
-      <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none -z-10 ambient-blob-medium" />
-      <div className="absolute bottom-1/3 left-10 w-[300px] h-[300px] bg-cyan-500/10 rounded-full blur-[90px] pointer-events-none -z-10 ambient-blob-slow" />
+      {/* Animated Floating Gradient Blobs (Mesh overlay) */}
+      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-blue-500/10 to-indigo-500/10 rounded-full blur-[120px] pointer-events-none -z-10 ambient-blob-slow" />
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-[140px] pointer-events-none -z-10 ambient-blob-medium" />
+      <div className="absolute bottom-1/3 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 rounded-full blur-[100px] pointer-events-none -z-10 ambient-blob-slow" />
 
       {/* Hero Section */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-left">
@@ -507,6 +530,22 @@ export function HomeContent() {
                 </div>
               </div>
             </div>
+            {/* Floating layered widget for visual depth */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1, duration: 0.6 }}
+              className="absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-md border border-slate-200 rounded-2xl p-4 shadow-xl hidden sm:flex items-center gap-3 max-w-[200px] z-20"
+            >
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-[10px]">
+                SF
+              </div>
+              <div className="text-[10px] space-y-0.5 leading-none">
+                <span className="font-extrabold text-slate-900 block">Deploy Success</span>
+                <span className="text-[9px] text-slate-450 block">Pipeline verified</span>
+              </div>
+              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ml-auto" />
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -517,10 +556,10 @@ export function HomeContent() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 font-sans">
           {[
-            { metric: "120+", label: t("hero.statsClients"), desc: "Enterprise leaders trust us.", color: "from-blue-500 to-indigo-500" },
-            { metric: "99.4%", label: t("hero.statsRating"), desc: "Unmatched execution SLA.", color: "from-emerald-500 to-teal-500" },
-            { metric: "16", label: t("hero.statsDivisions"), desc: "Cross-functional engineering.", color: "from-purple-500 to-fuchsia-500" },
-            { metric: "24/7", label: t("hero.statsOperations"), desc: "Always-on DevOps monitoring.", color: "from-amber-500 to-orange-500" }
+            { metric: "Global", label: t("hero.statsClients"), desc: "Trusted by startups and global enterprises.", color: "from-blue-500 to-indigo-500" },
+            { metric: "Quality", label: t("hero.statsRating"), desc: "Rigorous standards and robust architecture.", color: "from-emerald-500 to-teal-500" },
+            { metric: "Expertise", label: t("hero.statsDivisions"), desc: "Multi-disciplinary engineering expertise.", color: "from-purple-500 to-fuchsia-500" },
+            { metric: "Responsive", label: t("hero.statsOperations"), desc: "Clear updates throughout the development lifecycle.", color: "from-amber-500 to-orange-500" }
           ].map((stat, idx) => (
             <motion.div
               key={idx}
@@ -630,7 +669,7 @@ export function HomeContent() {
       </section>
 
       {/* Interactive Capabilities & Visual Proof Showcase */}
-      <section className="bg-slate-50/40 border-y border-slate-200/50 py-24 select-none relative">
+      <section id="capabilities-section" className="bg-slate-50/40 border-y border-slate-200/50 py-24 select-none relative">
         <div className="absolute inset-0 bg-dot-pattern opacity-60 pointer-events-none" />
 
         {/* Floating background gradient circles for visual depth */}
@@ -1697,7 +1736,7 @@ export function HomeContent() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
           {/* Left Column: Heading and Support Card */}
-          <div className="lg:col-span-5 space-y-8">
+          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-28">
             <div className="space-y-4">
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/80 bg-slate-50 text-[9px] font-extrabold text-slate-655 uppercase tracking-widest font-display">
                 <HelpCircle size={10} className="text-blue-600 animate-pulse" />
@@ -1823,6 +1862,44 @@ export function HomeContent() {
           </div>
         </div>
       </section>
+
+      {/* Floating Glassmorphism Sub-Navigation Dock */}
+      <AnimatePresence>
+        {showDock && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 50, scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-lg bg-white/80 backdrop-blur-md border border-slate-200 rounded-2xl shadow-xl overflow-hidden px-4 py-3.5 flex items-center justify-between"
+          >
+            {/* Scroll reading progress bar */}
+            <div 
+              className="absolute top-0 left-0 h-[2.5px] bg-blue-600 transition-all duration-75"
+              style={{ width: `${readProgress}%` }}
+            />
+
+            {/* Anchors List */}
+            <div className="flex gap-4 items-center">
+              <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest hidden sm:inline select-none">Quick Jump:</span>
+              <div className="flex gap-2 sm:gap-3 text-[10px] font-bold text-slate-600">
+                <button onClick={() => handleDockNavigation("software-development")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">SaaS</button>
+                <button onClick={() => handleDockNavigation("mobile-development")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">Mobile</button>
+                <button onClick={() => handleDockNavigation("ai-solutions")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">AI</button>
+                <button onClick={() => handleDockNavigation("cloud-devops")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">Cloud</button>
+                <button onClick={() => handleDockNavigation("iot-embedded")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">IoT</button>
+              </div>
+            </div>
+
+            {/* CTA Book Call */}
+            <Link href="/contact">
+              <Button size="sm" className="bg-blue-600 hover:bg-blue-500 text-white font-bold text-[9px] py-1.5 px-3 rounded-lg shadow-sm cursor-pointer uppercase tracking-wider">
+                Book Call
+              </Button>
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   )

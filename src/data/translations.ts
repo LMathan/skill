@@ -17,15 +17,15 @@ export const translations: Record<string, Record<string, any>> = {
       "reviews": "Reviews"
     },
     "hero": {
-      "statsDivisions": "Engineering Divisions",
-      "statsOperations": "Worldwide Operations",
+      "statsDivisions": "Engineering Scope",
+      "statsOperations": "Communication Standard",
       "badge": "Global Digital Transformation Partner",
       "title": "We Engineer Enterprise Software & Scalable AI Solutions",
       "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
       "ctaPrimary": "Book Discovery Call",
       "ctaSecondary": "View Case Studies",
-      "statsClients": "Global Clients",
-      "statsRating": "CSAT Score"
+      "statsClients": "Client Partnerships",
+      "statsRating": "Commitment to Quality"
     },
     "common": {
       "bookCall": "Book Free Consultation",
@@ -112,16 +112,16 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "metrics": [
         {
-          "label": "Client Deployments"
+          "label": "Market Delivery"
         },
         {
-          "label": "Jira Sprint Iterations"
+          "label": "Sprint Methodology"
         },
         {
-          "label": "Global Operations Nodes"
+          "label": "Remote Operations"
         },
         {
-          "label": "Telemetry Uptime"
+          "label": "Production Uptime"
         }
       ],
       "techBadge": "Operations Integrity",
@@ -136,32 +136,32 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "cards": [
         {
-          "title": "GDPR Compliance",
-          "desc": "Configured to align with European data security guidelines and user deletion APIs."
+          "title": "Privacy-Focused Development",
+          "desc": "We build software following privacy-by-design principles, implementing secure user data handling and deletion protocols."
         },
         {
-          "title": "HIPAA Aligned",
-          "desc": "Medical database encryptions and secure patient ledger architectures."
+          "title": "Secure Software Architecture",
+          "desc": "Our designs include multi-layered database encryption, secure authentication gates, and tokenized APIs."
         }
       ],
       "badgesBadge": "Recognitions",
       "badgesTitle": "Compliance & Security Shields",
       "badges": [
         {
-          "title": "GDPR Verified",
-          "desc": "Authorized data processing workflows."
+          "title": "Security-First Engineering",
+          "desc": "Built with secure coding best practices."
         },
         {
-          "title": "HIPAA Compliant",
-          "desc": "Secure medical record handlings."
+          "title": "Privacy-Focused Development",
+          "desc": "Designed to respect user data privacy."
         },
         {
-          "title": "ISO 27001 Ready",
-          "desc": "Information safety protocols."
+          "title": "Modern Development Standards",
+          "desc": "Following clean code and strict linting rules."
         },
         {
-          "title": "SOC 2 Type II",
-          "desc": "Verified database integrity."
+          "title": "Enterprise-Ready Architecture",
+          "desc": "Ensuring high availability and modular scaling."
         }
       ]
     },
@@ -220,22 +220,22 @@ export const translations: Record<string, Record<string, any>> = {
       "outcomeLabel": "Key Metric Achieved",
       "deploymentLabel": "Production Stack Status",
       "port-1": {
-        "title": "Healthcare Vitals Sensor Tracker App",
-        "problem": "Bluetooth sensor connection dropouts during telemetry packet syncs.",
+        "title": "Healthcare Vitals Sync Suite",
+        "problem": "Sensor connectivity dropouts during packet syncs.",
         "solution": "Implemented retry buffer queue logic and offline packet local database sync.",
-        "outcome": "99.8% sensor data packet delivery under critical dropouts."
+        "outcome": "99.9% Telemetry sync success rate"
       },
       "port-2": {
-        "title": "Decentralized Logistics Shipping Portal",
-        "problem": "API query latencies exceeding 2400ms during bulk shipping updates.",
-        "solution": "Redesigned GraphQL resolvers with query caching and Redis syncing.",
-        "outcome": "Reduced query latency to 180ms on high concurrent client threads."
+        "title": "FinTech Headless Checkout Gateway",
+        "problem": "High load times on legacy Shopify systems during campaigns.",
+        "solution": "Rebuilt store as a React headless site utilizing Stripe Checkout APIs.",
+        "outcome": "48% Decrease in bounce rates"
       },
       "port-3": {
-        "title": "Industrial ESP32 Modbus Telemetry Unit",
-        "problem": "Noise interference on RS485 lines causing data packet corruption.",
-        "solution": "Designed custom PCB differential isolation circuits and software noise filters.",
-        "outcome": "100% data transmission reliability on high electromagnetic noise lines."
+        "title": "Warehouse Smart Tracking Grid",
+        "problem": "Heavy packet loss in dense metal environments.",
+        "solution": "Deployed custom ESP32 LoRa nodes to bypass metal obstructions.",
+        "outcome": "99.8% Core packet delivery rate"
       }
     },
     "reviews": {
@@ -309,26 +309,37 @@ export const translations: Record<string, Record<string, any>> = {
       ]
     },
     "industries": {
+      "0": {
+        "name": "FinTech & Banking",
+        "desc": "Secure, compliant web applications, custom API integrations, and robust payment gateways designed for financial institutions."
+      },
+      "1": {
+        "name": "Healthcare & Life Sciences",
+        "desc": "HIPAA-compliant client portals, cross-platform mobile trackers, and AI-enabled document parsing."
+      },
+      "2": {
+        "name": "E-Commerce & Retail",
+        "desc": "Headless e-commerce stores, WooCommerce setups, high-conversion landing pages, and Stripe checkout systems."
+      },
+      "3": {
+        "name": "Logistics & Supply Chain",
+        "desc": "Real-time GPS tracking gateways, IoT sensor boards, and route optimization AI agent platforms."
+      },
+      "4": {
+        "name": "Real Estate Marketing",
+        "desc": "Visual HDR blending, day-to-dusk sky replacement, virtual staging, and redrawn floor plans."
+      },
+      "5": {
+        "name": "EdTech & Learning Platforms",
+        "desc": "Interactive dashboards, corporate learning portals, custom LMS setups, and automated progress analytics."
+      },
       "badge": "Target Markets Focus",
       "titlePart1": "Tailored Software for",
       "titlePart2": "Critical Industries",
       "subtitle": "We engineer specialized data compliance engines, low-latency microservices, and design frameworks aligned with vertical standards.",
       "protectLabel": "Enterprise-Grade Protections",
-      "discussBtn": "Discuss Sector Specs",
-      "0": {
-        "name": "Finance & Banking"
-      },
-      "1": {
-        "name": "Healthcare & Life Sciences"
-      },
-      "2": {
-        "name": "Real Estate & Construction"
-      },
-      "3": {
-        "name": "Logistics & Supply Chain"
-      }
+      "discussBtn": "Discuss Sector Specs"
     },
-
     "faq": {
       "0": {
         "q": "What services does SkillForge Technology provide?",
@@ -464,15 +475,15 @@ export const translations: Record<string, Record<string, any>> = {
       "reviews": "Bewertungen"
     },
     "hero": {
-      "statsDivisions": "Engineering-Abteilungen",
-      "statsOperations": "Weltweite Aktivitäten",
+      "statsDivisions": "Engineering-Umfang",
+      "statsOperations": "Kommunikationsstandard",
       "badge": "Globaler Partner für digitale Transformation",
       "title": "Wir entwickeln Enterprise-Software & skalierbare KI-Lösungen",
       "subtitle": "SkillForge Technology entwickelt erstklassige Individualsoftware, IoT-Prototypen, Hochleistungs-Web-Apps und integrierte KI-Agenten für zukunftsorientierte Unternehmen weltweit.",
       "ctaPrimary": "Erstgespräch buchen",
       "ctaSecondary": "Fallstudien ansehen",
-      "statsClients": "Globale Kunden",
-      "statsRating": "Kundenzufriedenheit"
+      "statsClients": "Kundenpartnerschaften",
+      "statsRating": "Verpflichtung zur Qualität"
     },
     "common": {
       "bookCall": "Kostenlose Beratung buchen",
@@ -559,16 +570,16 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "metrics": [
         {
-          "label": "Client Deployments"
+          "label": "Marktlieferung"
         },
         {
-          "label": "Jira Sprint Iterations"
+          "label": "Sprint-Methodik"
         },
         {
-          "label": "Global Operations Nodes"
+          "label": "Remote-Betrieb"
         },
         {
-          "label": "Telemetry Uptime"
+          "label": "Produktions-Uptime"
         }
       ],
       "techBadge": "Operations Integrity",
@@ -583,32 +594,32 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "cards": [
         {
-          "title": "GDPR Compliance",
-          "desc": "Configured to align with European data security guidelines and user deletion APIs."
+          "title": "Datenschutzorientierte Entwicklung",
+          "desc": "Wir entwickeln Software nach dem Prinzip 'Privacy by Design' und implementieren sichere Protokolle zur Handhabung und Löschung von Benutzerdaten."
         },
         {
-          "title": "HIPAA Aligned",
-          "desc": "Medical database encryptions and secure patient ledger architectures."
+          "title": "Sichere Softwarearchitektur",
+          "desc": "Unsere Designs umfassen mehrschichtige Datenbankverschlüsselung, sichere Authentifizierungsgateways und tokenisierte APIs."
         }
       ],
       "badgesBadge": "Recognitions",
       "badgesTitle": "Compliance & Security Shields",
       "badges": [
         {
-          "title": "GDPR Verified",
-          "desc": "Authorized data processing workflows."
+          "title": "Security-First Engineering",
+          "desc": "Entwickelt nach bewährten Sicherheitspraktiken."
         },
         {
-          "title": "HIPAA Compliant",
-          "desc": "Secure medical record handlings."
+          "title": "Datenschutzorientierte Entwicklung",
+          "desc": "Entwickelt, um den Datenschutz der Benutzer zu respektieren."
         },
         {
-          "title": "ISO 27001 Ready",
-          "desc": "Information safety protocols."
+          "title": "Moderne Entwicklungsstandards",
+          "desc": "Sauberer Code und strenge Linting-Regeln."
         },
         {
-          "title": "SOC 2 Type II",
-          "desc": "Verified database integrity."
+          "title": "Unternehmensfähige Architektur",
+          "desc": "Hohe Verfügbarkeit und modulare Skalierung."
         }
       ]
     },
@@ -665,7 +676,25 @@ export const translations: Record<string, Record<string, any>> = {
       "problemLabel": "Operational Challenge",
       "solutionLabel": "Technical Resolve",
       "outcomeLabel": "Key Metric Achieved",
-      "deploymentLabel": "Production Stack Status"
+      "deploymentLabel": "Production Stack Status",
+      "port-1": {
+        "title": "Healthcare Vitals Sync Suite",
+        "problem": "Sensorverbindungsabbrüche während der Paketsynchronisierung.",
+        "solution": "Implementierung einer Wiederholungspuffer-Warteschlangenlogik und einer lokalen Offline-Datenbanksynchronisierung.",
+        "outcome": "99.9% Telemetrie-Sync-Erfolgsrate"
+      },
+      "port-2": {
+        "title": "FinTech Headless Checkout Gateway",
+        "problem": "Lange Ladezeiten alter Shopify-Systeme während Kampagnen.",
+        "solution": "Neuaufbau des Shops als React Headless-Site mit Stripe-Checkout-APIs.",
+        "outcome": "48% Verringerung der Absprungrate"
+      },
+      "port-3": {
+        "title": "Warehouse Smart Tracking Grid",
+        "problem": "Hoher Paketverlust in dichten Metallumgebungen.",
+        "solution": "Einsatz von ESP32 LoRa-Knoten zur Umgehung von Metallhindernissen.",
+        "outcome": "99.8% Paketlieferungsrate"
+      }
     },
     "reviews": {
       "submittedTitle": "Bewertung erfolgreich übermittelt",
@@ -738,6 +767,30 @@ export const translations: Record<string, Record<string, any>> = {
       ]
     },
     "industries": {
+      "0": {
+        "name": "FinTech & Bankwesen",
+        "desc": "Sichere, konforme Webanwendungen, maßgeschneiderte API-Integrationen und robuste Zahlungsgateways für Finanzinstitute."
+      },
+      "1": {
+        "name": "Gesundheitswesen & Biowissenschaften",
+        "desc": "Gesundheits-Kundenportale, plattformübergreifende mobile Tracker und KI-gestützte Dokumentenanalyse."
+      },
+      "2": {
+        "name": "E-Commerce & Einzelhandel",
+        "desc": "Headless E-Commerce-Shops, WooCommerce-Systeme, hochkonvertierende Landingpages und Stripe-Zahlungssysteme."
+      },
+      "3": {
+        "name": "Logistik & Lieferkette",
+        "desc": "Echtzeit-GPS-Tracking-Gateways, IoT-Sensorboards und KI-Plattformen zur Routenoptimierung."
+      },
+      "4": {
+        "name": "Immobilienmarketing",
+        "desc": "Visuelle HDR-Mischung, Tag-zu-Dämmerung-Himmelsaustausch, virtuelles Staging und neu gezeichnete Grundrisse."
+      },
+      "5": {
+        "name": "EdTech & Lernplattformen",
+        "desc": "Interaktive Dashboards, Lernportale für Unternehmen, maßgeschneiderte LMS-Setups und automatisierte Fortschrittsanalysen."
+      },
       "badge": "Target Markets Focus",
       "titlePart1": "Tailored Software for",
       "titlePart2": "Critical Industries",
@@ -799,22 +852,68 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "services": {
       "software-development": {
-        "title": "Softwareentwicklung"
+        "title": "Softwareentwicklung",
+        "desc": "Leistungsstarke Unternehmenssoftware & SaaS-Produkte für globale Skalierung."
       },
       "web-development": {
-        "title": "Webentwicklung"
+        "title": "Webentwicklung",
+        "desc": "Leistungsstarke Webanwendungen für schnelles Unternehmenswachstum."
       },
       "mobile-development": {
-        "title": "Mobile App-Entwicklung"
+        "title": "Mobile App-Entwicklung",
+        "desc": "Erstklassige native & plattformübergreifende Mobilanwendungen."
       },
       "ai-solutions": {
-        "title": "KI-Lösungen"
+        "title": "KI-Lösungen",
+        "desc": "Optimierung von LLMs, Vektordatenbanken und Agentensystemen."
       },
       "cloud-devops": {
-        "title": "Cloud & DevOps"
+        "title": "Cloud & DevOps",
+        "desc": "Automatisierte CI/CD-Bereitstellungsketten und Kubernetes-Orchestrierung."
       },
       "real-estate-creative": {
-        "title": "Immobilien & Kreativwirtschaft"
+        "title": "Immobilien & Kreativwirtschaft",
+        "desc": "Visuelle HDR-Mischung, virtuelle Inszenierung und 3D-Grundrisse."
+      },
+      "enterprise-development": {
+        "title": "Unternehmensentwicklung",
+        "desc": "Maßgeschneiderte Hochleistungs-Kernplattformen für Großkunden."
+      },
+      "saas-development": {
+        "title": "SaaS-Entwicklung",
+        "desc": "Entwicklung und Skalierung von mandantenfähigen SaaS-Produkten."
+      },
+      "flutter-development": {
+        "title": "Flutter-Entwicklung",
+        "desc": "Plattformübergreifende Apps mit nativem Look-and-Feel über Flutter."
+      },
+      "react-development": {
+        "title": "React-Entwicklung",
+        "desc": "Interaktive Web-Frontends mit React- und Next.js-Komponenten."
+      },
+      "wordpress-development": {
+        "title": "WordPress-Entwicklung",
+        "desc": "Maßgeschneiderte WooCommerce-Erweiterungen und Headless-Systeme."
+      },
+      "php-development": {
+        "title": "PHP-Entwicklung",
+        "desc": "Sichere Backend-Architekturen mit Laravel- und PHP-Strukturen."
+      },
+      "dotnet-development": {
+        "title": ".NET-Entwicklung",
+        "desc": "Robuste C# .NET Core Microservices für hohe Datenlasten."
+      },
+      "ui-ux-design": {
+        "title": "UI/UX-Design",
+        "desc": "Bedarfsgerechte Benutzerforschung, Drahtgittermodelle und Figma-Prototypen."
+      },
+      "seo-marketing": {
+        "title": "SEO-Optimierung",
+        "desc": "Erhöhung der organischen Sichtbarkeit und Keyword-Rankings."
+      },
+      "iot-embedded": {
+        "title": "IoT & Embedded Systems",
+        "desc": "ESP32-Firmware, anwendungsspezifisches PCB-Design und Sensoren."
       }
     }
   },
@@ -834,15 +933,15 @@ export const translations: Record<string, Record<string, any>> = {
       "reviews": "Avis"
     },
     "hero": {
-      "statsDivisions": "Divisions d'Ingénierie",
-      "statsOperations": "Opérations Mondiales",
+      "statsDivisions": "Portée de l'ingénierie",
+      "statsOperations": "Norme de communication",
       "badge": "Partenaire Global de Transformation Digitale",
       "title": "Nous concevons des logiciels d'entreprise & des solutions d'IA",
       "subtitle": "SkillForge Technology conçoit des logiciels personnalisés haut de gamme, des prototypes IoT, des applications web performantes et des agents d'IA intégrés pour les entreprises innovantes.",
       "ctaPrimary": "Réserver un appel découverte",
       "ctaSecondary": "Voir nos études de cas",
-      "statsClients": "Clients Globaux",
-      "statsRating": "Score de satisfaction"
+      "statsClients": "Partenariats clients",
+      "statsRating": "Engagement envers la qualité"
     },
     "common": {
       "bookCall": "Consultation gratuite",
@@ -929,16 +1028,16 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "metrics": [
         {
-          "label": "Client Deployments"
+          "label": "Livraison sur le marché"
         },
         {
-          "label": "Jira Sprint Iterations"
+          "label": "Méthodologie Sprint"
         },
         {
-          "label": "Global Operations Nodes"
+          "label": "Opérations à distance"
         },
         {
-          "label": "Telemetry Uptime"
+          "label": "Temps d'activité"
         }
       ],
       "techBadge": "Operations Integrity",
@@ -953,32 +1052,32 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "cards": [
         {
-          "title": "GDPR Compliance",
-          "desc": "Configured to align with European data security guidelines and user deletion APIs."
+          "title": "Développement axé sur la confidentialité",
+          "desc": "Nous construisons des logiciels selon les principes de confidentialité dès la conception, en mettant en œuvre des protocoles sécurisés de traitement et de suppression des données."
         },
         {
-          "title": "HIPAA Aligned",
-          "desc": "Medical database encryptions and secure patient ledger architectures."
+          "title": "Architecture logicielle sécurisée",
+          "desc": "Nos conceptions incluent un cryptage de base de données multicouche, des passerelles d'authentification sécurisées et des API tokenisées."
         }
       ],
       "badgesBadge": "Recognitions",
       "badgesTitle": "Compliance & Security Shields",
       "badges": [
         {
-          "title": "GDPR Verified",
-          "desc": "Authorized data processing workflows."
+          "title": "Ingénierie axée sur la sécurité",
+          "desc": "Construit selon les meilleures pratiques de codage sécurisé."
         },
         {
-          "title": "HIPAA Compliant",
-          "desc": "Secure medical record handlings."
+          "title": "Développement axé sur la confidentialité",
+          "desc": "Conçu pour respecter la confidentialité des données des utilisateurs."
         },
         {
-          "title": "ISO 27001 Ready",
-          "desc": "Information safety protocols."
+          "title": "Normes de développement modernes",
+          "desc": "Code propre et règles de linting strictes."
         },
         {
-          "title": "SOC 2 Type II",
-          "desc": "Verified database integrity."
+          "title": "Architecture prête pour l'entreprise",
+          "desc": "Garantir une haute disponibilité et une mise à l'échelle modulaire."
         }
       ]
     },
@@ -1035,7 +1134,25 @@ export const translations: Record<string, Record<string, any>> = {
       "problemLabel": "Operational Challenge",
       "solutionLabel": "Technical Resolve",
       "outcomeLabel": "Key Metric Achieved",
-      "deploymentLabel": "Production Stack Status"
+      "deploymentLabel": "Production Stack Status",
+      "port-1": {
+        "title": "Healthcare Vitals Sync Suite",
+        "problem": "Pertes de connexion des capteurs pendant la synchronisation.",
+        "solution": "Implémentation d'une file d'attente tampon et synchronisation hors ligne.",
+        "outcome": "Taux de synchronisation de 99.9%"
+      },
+      "port-2": {
+        "title": "FinTech Headless Checkout Gateway",
+        "problem": "Temps de chargement élevés sur Shopify lors des campagnes.",
+        "solution": "Reconstruction en site React headless utilisant les API Stripe.",
+        "outcome": "Baisse de 48% du taux de rebond"
+      },
+      "port-3": {
+        "title": "Warehouse Smart Tracking Grid",
+        "problem": "Pertes importantes de paquets en environnement métallique.",
+        "solution": "Déploiement de nœuds ESP32 LoRa pour contourner les obstacles.",
+        "outcome": "Taux de livraison de paquets de 99.8%"
+      }
     },
     "reviews": {
       "submittedTitle": "Avis Soumis avec Succès",
@@ -1108,6 +1225,30 @@ export const translations: Record<string, Record<string, any>> = {
       ]
     },
     "industries": {
+      "0": {
+        "name": "FinTech & Banque",
+        "desc": "Applications Web sécurisées et conformes, intégrations d'API personnalisées et passerelles de paiement robustes pour les institutions financières."
+      },
+      "1": {
+        "name": "Santé & Sciences de la vie",
+        "desc": "Portails clients conformes, suivis mobiles multi-plateformes et analyse de documents par IA."
+      },
+      "2": {
+        "name": "E-commerce & Vente au détail",
+        "desc": "Boutiques e-commerce headless, configurations WooCommerce, pages de destination à conversion élevée et Stripe."
+      },
+      "3": {
+        "name": "Logistique & Chaîne d'approvisionnement",
+        "desc": "Passerelles de suivi GPS en temps réel, cartes de capteurs IoT et algorithmes d'optimisation d'itinéraires par IA."
+      },
+      "4": {
+        "name": "Marketing immobilier",
+        "desc": "Fusion HDR visuelle, remplacement de ciel jour-crépuscule, staging virtuel et plans au sol redessinés."
+      },
+      "5": {
+        "name": "EdTech & Plateformes d'apprentissage",
+        "desc": "Tableaux de bord interactifs, portails d'apprentissage d'entreprise, configurations LMS sur mesure et analyses automatisées."
+      },
       "badge": "Target Markets Focus",
       "titlePart1": "Tailored Software for",
       "titlePart2": "Critical Industries",
@@ -1169,22 +1310,68 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "services": {
       "software-development": {
-        "title": "Développement Logiciel"
+        "title": "Développement de logiciels",
+        "desc": "Logiciels d'entreprise haute performance et produits SaaS conçus pour évoluer."
       },
       "web-development": {
-        "title": "Développement Web"
+        "title": "Développement Web",
+        "desc": "Applications Web performantes et élégantes conçues pour la croissance."
       },
       "mobile-development": {
-        "title": "Développement d'App Mobile"
+        "title": "Développement d'applications mobiles",
+        "desc": "Applications mobiles natives et multi-plateformes haut de gamme."
       },
       "ai-solutions": {
-        "title": "Solutions d'IA"
+        "title": "Solutions d'IA",
+        "desc": "Optimisation de LLM, recherche vectorielle, pipelines RAG et agents IA."
       },
       "cloud-devops": {
-        "title": "Cloud & DevOps"
+        "title": "Cloud et DevOps",
+        "desc": "Automatisation des opérations Kubernetes et des pipelines CI/CD."
       },
       "real-estate-creative": {
-        "title": "Création Immobilière"
+        "title": "Création pour l'immobilier",
+        "desc": "Modélisation 3D de propriétés, home staging virtuel et plans d'architecte."
+      },
+      "enterprise-development": {
+        "title": "Développement d'entreprise",
+        "desc": "Plateformes commerciales clés sur mesure à haute performance."
+      },
+      "saas-development": {
+        "title": "Développement SaaS",
+        "desc": "Construire, déployer et faire évoluer des produits SaaS multi-locataires."
+      },
+      "flutter-development": {
+        "title": "Développement Flutter",
+        "desc": "Applications mobiles multiplateformes performantes créées avec Flutter."
+      },
+      "react-development": {
+        "title": "Développement React",
+        "desc": "Applications front-end React dynamiques et interactives."
+      },
+      "wordpress-development": {
+        "title": "Développement WordPress",
+        "desc": "Thèmes sur mesure, WooCommerce et configurations WordPress headless."
+      },
+      "php-development": {
+        "title": "Développement PHP",
+        "desc": "Systèmes Web back-end sur mesure conçus sous Laravel et PHP."
+      },
+      "dotnet-development": {
+        "title": "Développement .NET",
+        "desc": "Microservices back-end C# .NET Core sécurisés et applications de bureau."
+      },
+      "ui-ux-design": {
+        "title": "Conception UI/UX",
+        "desc": "Recherche utilisateur moderne, maquettage filaire et prototypage Figma."
+      },
+      "seo-marketing": {
+        "title": "Optimisation SEO",
+        "desc": "Augmenter le trafic organique et améliorer le classement des mots-clés."
+      },
+      "iot-embedded": {
+        "title": "IoT et systèmes embarqués",
+        "desc": "Firmware ESP32, circuits imprimés personnalisés et capteurs connectés."
       }
     }
   },
@@ -1204,15 +1391,15 @@ export const translations: Record<string, Record<string, any>> = {
       "reviews": "Reseñas"
     },
     "hero": {
-      "statsDivisions": "Divisiones de Ingeniería",
-      "statsOperations": "Operaciones Globales",
+      "statsDivisions": "Alcance de la ingeniería",
+      "statsOperations": "Estándar de comunicación",
       "badge": "Socio Global de Transformación Digital",
       "title": "Ingeniería de Software Empresarial y Soluciones de IA",
       "subtitle": "SkillForge Technology crea software a medida premium, prototipos de IoT, aplicaciones web de alto rendimiento y agentes de IA integrados para empresas del futuro.",
       "ctaPrimary": "Reservar sesión gratuita",
       "ctaSecondary": "Ver casos de éxito",
-      "statsClients": "Clientes globales",
-      "statsRating": "Índice de satisfacción"
+      "statsClients": "Asociaciones con clientes",
+      "statsRating": "Compromiso con la calidad"
     },
     "common": {
       "bookCall": "Consulta Gratuita",
@@ -1299,16 +1486,16 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "metrics": [
         {
-          "label": "Client Deployments"
+          "label": "Entrega en el mercado"
         },
         {
-          "label": "Jira Sprint Iterations"
+          "label": "Metodología Sprint"
         },
         {
-          "label": "Global Operations Nodes"
+          "label": "Operaciones remotas"
         },
         {
-          "label": "Telemetry Uptime"
+          "label": "Tiempo de actividad"
         }
       ],
       "techBadge": "Operations Integrity",
@@ -1323,32 +1510,32 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "cards": [
         {
-          "title": "GDPR Compliance",
-          "desc": "Configured to align with European data security guidelines and user deletion APIs."
+          "title": "Desarrollo centrado en la privacidad",
+          "desc": "Creamos software siguiendo los principios de privacidad desde el diseño, implementando protocolos seguros de manejo y eliminación de datos de usuario."
         },
         {
-          "title": "HIPAA Aligned",
-          "desc": "Medical database encryptions and secure patient ledger architectures."
+          "title": "Arquitectura de software segura",
+          "desc": "Nuestros diseños incluyen cifrado de base de datos multicapa, puertas de enlace de autenticación segura y API tokenizadas."
         }
       ],
       "badgesBadge": "Recognitions",
       "badgesTitle": "Compliance & Security Shields",
       "badges": [
         {
-          "title": "GDPR Verified",
-          "desc": "Authorized data processing workflows."
+          "title": "Ingeniería centrada en la seguridad",
+          "desc": "Construido con las mejores prácticas de codificación segura."
         },
         {
-          "title": "HIPAA Compliant",
-          "desc": "Secure medical record handlings."
+          "title": "Desarrollo centrado en la privacidad",
+          "desc": "Diseñado para respetar la privacidad de los datos del usuario."
         },
         {
-          "title": "ISO 27001 Ready",
-          "desc": "Information safety protocols."
+          "title": "Estándares de desarrollo modernos",
+          "desc": "Código limpio y reglas de linting estrictas."
         },
         {
-          "title": "SOC 2 Type II",
-          "desc": "Verified database integrity."
+          "title": "Arquitectura empresarial preparada",
+          "desc": "Garantizar una alta disponibilidad y escalado modular."
         }
       ]
     },
@@ -1405,7 +1592,25 @@ export const translations: Record<string, Record<string, any>> = {
       "problemLabel": "Operational Challenge",
       "solutionLabel": "Technical Resolve",
       "outcomeLabel": "Key Metric Achieved",
-      "deploymentLabel": "Production Stack Status"
+      "deploymentLabel": "Production Stack Status",
+      "port-1": {
+        "title": "Healthcare Vitals Sync Suite",
+        "problem": "Pérdidas de conexión de sensores durante la sincronización.",
+        "solution": "Cola de reintentos y sincronización en base de datos local fuera de línea.",
+        "outcome": "Sincronización de telemetría del 99.9%"
+      },
+      "port-2": {
+        "title": "FinTech Headless Checkout Gateway",
+        "problem": "Carga lenta en Shopify durante campañas de tráfico alto.",
+        "solution": "Reconstrucción con React headless integrando las API de Stripe.",
+        "outcome": "Reducción del 48% en rebotes"
+      },
+      "port-3": {
+        "title": "Warehouse Smart Tracking Grid",
+        "problem": "Pérdida de paquetes en entornos metálicos de almacenes.",
+        "solution": "Nodos ESP32 LoRa para sobrepasar obstrucciones metálicas.",
+        "outcome": "Entrega de paquetes del 99.8%"
+      }
     },
     "reviews": {
       "submittedTitle": "Reseña Enviada con Éxito",
@@ -1478,6 +1683,30 @@ export const translations: Record<string, Record<string, any>> = {
       ]
     },
     "industries": {
+      "0": {
+        "name": "FinTech y Banca",
+        "desc": "Aplicaciones web seguras y conformes, integraciones de API a medida y pasarelas de pago robustas para instituciones financieras."
+      },
+      "1": {
+        "name": "Salud y Ciencias de la Vida",
+        "desc": "Portales de pacientes seguros, rastreadores móviles multiplataforma y análisis de documentos asistido por IA."
+      },
+      "2": {
+        "name": "E-Commerce y Retail",
+        "desc": "Tiendas headless rápidas, configuraciones en WooCommerce, páginas de aterrizaje optimizadas y checkout con Stripe."
+      },
+      "3": {
+        "name": "Logística y Cadena de Suministro",
+        "desc": "Pasarelas de rastreo GPS en tiempo real, placas con sensores IoT y algoritmos de optimización de rutas."
+      },
+      "4": {
+        "name": "Marketing Inmobiliario",
+        "desc": "Fusión HDR de imágenes, sustitución de cielos, home staging virtual y digitalización de planos."
+      },
+      "5": {
+        "name": "EdTech y Plataformas de Aprendizaje",
+        "desc": "Paneles interactivos, portales de formación corporativa, LMS a medida y métricas de progreso automáticas."
+      },
       "badge": "Target Markets Focus",
       "titlePart1": "Tailored Software for",
       "titlePart2": "Critical Industries",
@@ -1539,22 +1768,68 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "services": {
       "software-development": {
-        "title": "Desarrollo de Software"
+        "title": "Desarrollo de Software",
+        "desc": "Software empresarial de alto rendimiento y productos SaaS diseñados a escala."
       },
       "web-development": {
-        "title": "Desarrollo Web"
+        "title": "Desarrollo Web",
+        "desc": "Aplicaciones web rápidas y eficientes preparadas para el crecimiento."
       },
       "mobile-development": {
-        "title": "Desarrollo de Aplicaciones Móviles"
+        "title": "Desarrollo de Apps Móviles",
+        "desc": "Aplicaciones nativas y multiplataforma de calidad premium."
       },
       "ai-solutions": {
-        "title": "Soluciones de IA"
+        "title": "Soluciones de IA",
+        "desc": "Optimización de modelos de lenguaje (LLM), bases vectoriales y agentes."
       },
       "cloud-devops": {
-        "title": "Nube y DevOps"
+        "title": "Cloud y DevOps",
+        "desc": "Automatización de despliegues CI/CD y gestión de clústeres Kubernetes."
       },
       "real-estate-creative": {
-        "title": "Creativo Inmobiliario"
+        "title": "Creatividad Inmobiliaria",
+        "desc": "Recorridos en 3D, home staging virtual y planos de distribución detallados."
+      },
+      "enterprise-development": {
+        "title": "Desarrollo Corporativo",
+        "desc": "Plataformas de negocio centrales a medida y de alto rendimiento."
+      },
+      "saas-development": {
+        "title": "Desarrollo SaaS",
+        "desc": "Creación, despliegue y escalado de productos SaaS multi-inquilino."
+      },
+      "flutter-development": {
+        "title": "Desarrollo Flutter",
+        "desc": "Aplicaciones móviles multiplataforma construidas de forma ágil con Flutter."
+      },
+      "react-development": {
+        "title": "Desarrollo React",
+        "desc": "Interfaces interactivas y componentes web con React y Next.js."
+      },
+      "wordpress-development": {
+        "title": "Desarrollo WordPress",
+        "desc": "Temas a medida, WooCommerce y arquitecturas headless avanzadas."
+      },
+      "php-development": {
+        "title": "Desarrollo PHP",
+        "desc": "Sistemas back-end desarrollados con PHP y el framework Laravel."
+      },
+      "dotnet-development": {
+        "title": "Desarrollo .NET",
+        "desc": "Microservicios seguros bajo C# .NET Core para cargas pesadas."
+      },
+      "ui-ux-design": {
+        "title": "Diseño UI/UX",
+        "desc": "Investigación de usuarios, esquemas de diseño y prototipos en Figma."
+      },
+      "seo-marketing": {
+        "title": "Optimización SEO",
+        "desc": "Incrementar la visibilidad orgánica y el posicionamiento de palabras clave."
+      },
+      "iot-embedded": {
+        "title": "IoT y Sistemas Embebidos",
+        "desc": "Firmware para ESP32, diseño de placas de circuito impreso y sensores."
       }
     }
   },
@@ -1574,15 +1849,15 @@ export const translations: Record<string, Record<string, any>> = {
       "reviews": "Recensioni"
     },
     "hero": {
-      "statsDivisions": "Divisioni di Ingegneria",
-      "statsOperations": "Operazioni Globali",
+      "statsDivisions": "Ambito di ingegneria",
+      "statsOperations": "Standard di comunicazione",
       "badge": "Partner Globale per la Trasformazione Digitale",
       "title": "Sviluppiamo Software Enterprise e Soluzioni IA Scalabili",
       "subtitle": "SkillForge Technology progetta software personalizzati premium, prototipi IoT, applicazioni web ad alte prestazioni e agenti IA per aziende innovative in tutto il mondo.",
       "ctaPrimary": "Prenota una consulenza",
       "ctaSecondary": "Vedi Casi di Studio",
-      "statsClients": "Clienti Globali",
-      "statsRating": "Punteggio di Soddisfazione"
+      "statsClients": "Partnership con i clienti",
+      "statsRating": "Impegno per la qualità"
     },
     "common": {
       "bookCall": "Consulenza Gratuita",
@@ -1669,16 +1944,16 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "metrics": [
         {
-          "label": "Client Deployments"
+          "label": "Consegna sul mercato"
         },
         {
-          "label": "Jira Sprint Iterations"
+          "label": "Metodologia Sprint"
         },
         {
-          "label": "Global Operations Nodes"
+          "label": "Operazioni remote"
         },
         {
-          "label": "Telemetry Uptime"
+          "label": "Uptime di produzione"
         }
       ],
       "techBadge": "Operations Integrity",
@@ -1693,32 +1968,32 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "cards": [
         {
-          "title": "GDPR Compliance",
-          "desc": "Configured to align with European data security guidelines and user deletion APIs."
+          "title": "Sviluppato nel rispetto della privacy",
+          "desc": "Sviluppiamo software seguendo i principi di privacy-by-design, implementando protocolli sicuri per la gestione e l'eliminazione dei dati degli utenti."
         },
         {
-          "title": "HIPAA Aligned",
-          "desc": "Medical database encryptions and secure patient ledger architectures."
+          "title": "Architettura software sicura",
+          "desc": "I nostri progetti includono la crittografia dei database multilivello, gateway di autenticazione sicuri e API tokenizzate."
         }
       ],
       "badgesBadge": "Recognitions",
       "badgesTitle": "Compliance & Security Shields",
       "badges": [
         {
-          "title": "GDPR Verified",
-          "desc": "Authorized data processing workflows."
+          "title": "Ingegneria orientata alla sicurezza",
+          "desc": "Sviluppato seguendo le migliori pratiche di codifica sicura."
         },
         {
-          "title": "HIPAA Compliant",
-          "desc": "Secure medical record handlings."
+          "title": "Sviluppato nel rispetto della privacy",
+          "desc": "Progettato per rispettare la privacy dei dati degli utenti."
         },
         {
-          "title": "ISO 27001 Ready",
-          "desc": "Information safety protocols."
+          "title": "Standard di sviluppo moderni",
+          "desc": "Codice pulito e regole di linting rigorose."
         },
         {
-          "title": "SOC 2 Type II",
-          "desc": "Verified database integrity."
+          "title": "Architettura pronta per l'impresa",
+          "desc": "Garantire alta disponibilità e scalabilità modulare."
         }
       ]
     },
@@ -1775,7 +2050,25 @@ export const translations: Record<string, Record<string, any>> = {
       "problemLabel": "Operational Challenge",
       "solutionLabel": "Technical Resolve",
       "outcomeLabel": "Key Metric Achieved",
-      "deploymentLabel": "Production Stack Status"
+      "deploymentLabel": "Production Stack Status",
+      "port-1": {
+        "title": "Healthcare Vitals Sync Suite",
+        "problem": "Perdite di segnale dei sensori durante la sincronizzazione.",
+        "solution": "Implementazione di logica di coda buffer e sincronizzazione offline.",
+        "outcome": "Successo sincro telemetria al 99.9%"
+      },
+      "port-2": {
+        "title": "FinTech Headless Checkout Gateway",
+        "problem": "Lentezza di caricamento su Shopify durante le promozioni.",
+        "solution": "Ricostruzione in React headless utilizzando le API Stripe.",
+        "outcome": "Diminuzione del 48% del tasso di rimbalzo"
+      },
+      "port-3": {
+        "title": "Warehouse Smart Tracking Grid",
+        "problem": "Perdita pacchetti in ambienti industriali con barriere metalliche.",
+        "solution": "Nodi ESP32 LoRa per superare le ostruzioni metalliche.",
+        "outcome": "Consegna pacchetti al 99.8%"
+      }
     },
     "reviews": {
       "submittedTitle": "Recensione Inviata con Successo",
@@ -1848,6 +2141,30 @@ export const translations: Record<string, Record<string, any>> = {
       ]
     },
     "industries": {
+      "0": {
+        "name": "FinTech e Servizi Bancari",
+        "desc": "Applicazioni web sicure, integrazioni API personalizzate e gateway di pagamento robusti per istituti finanziari."
+      },
+      "1": {
+        "name": "Salute e Scienze della Vita",
+        "desc": "Portali pazienti protetti, tracker mobili multipiattaforma e sistemi di parsing documenti basati su IA."
+      },
+      "2": {
+        "name": "E-Commerce e Retail",
+        "desc": "Negozi headless ad alte prestazioni, setup WooCommerce, landing page ad alta conversione e sistemi Stripe."
+      },
+      "3": {
+        "name": "Logistica e Supply Chain",
+        "desc": "Sistemi di tracciamento GPS in tempo reale, schede sensori IoT e piattaforme di ottimizzazione percorsi basate su IA."
+      },
+      "4": {
+        "name": "Marketing Immobiliare",
+        "desc": "Ottimizzazione immagini HDR, sostituzione del cielo giorno-tramonto, home staging virtuale e planimetrie 2D/3D."
+      },
+      "5": {
+        "name": "EdTech e Piattaforme E-Learning",
+        "desc": "Dashboard interattive, portali per la formazione aziendale, sistemi LMS su misura e report di avanzamento automatici."
+      },
       "badge": "Target Markets Focus",
       "titlePart1": "Tailored Software for",
       "titlePart2": "Critical Industries",
@@ -1909,22 +2226,68 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "services": {
       "software-development": {
-        "title": "Sviluppo Software"
+        "title": "Sviluppo Software",
+        "desc": "Software aziendale ad alte prestazioni e prodotti SaaS pronti per la scalabilità."
       },
       "web-development": {
-        "title": "Sviluppo Web"
+        "title": "Sviluppo Web",
+        "desc": "Applicazioni web veloci, dinamiche e ottimizzate per la conversione."
       },
       "mobile-development": {
-        "title": "Sviluppo Applicazioni Mobili"
+        "title": "Sviluppo App Mobile",
+        "desc": "Applicazioni native e multipiattaforma stabili e performanti."
       },
       "ai-solutions": {
-        "title": "Soluzioni AI"
+        "title": "Soluzioni IA",
+        "desc": "Integrazione di modelli linguistici (LLM), ricerca vettoriale e RAG."
       },
       "cloud-devops": {
-        "title": "Cloud & DevOps"
+        "title": "Cloud & DevOps",
+        "desc": "Integrazione continua, pipeline di rilascio automatiche e Kubernetes."
       },
       "real-estate-creative": {
-        "title": "Creatività Immobiliare"
+        "title": "Servizi per l'Immobiliare",
+        "desc": "Virtual staging, rendering 3D di interni e planimetrie dettagliate."
+      },
+      "enterprise-development": {
+        "title": "Sviluppo Enterprise",
+        "desc": "Piattaforme di core business su misura ad alte prestazioni."
+      },
+      "saas-development": {
+        "title": "Sviluppo SaaS",
+        "desc": "Creazione, rilascio e scalabilità di applicazioni SaaS multi-tenant."
+      },
+      "flutter-development": {
+        "title": "Sviluppo Flutter",
+        "desc": "Applicazioni mobili cross-platform stabili realizzate in Flutter."
+      },
+      "react-development": {
+        "title": "Sviluppo React",
+        "desc": "Front-end interattivi moderni basati su React e Next.js."
+      },
+      "wordpress-development": {
+        "title": "Sviluppo WordPress",
+        "desc": "Temi personalizzati, WooCommerce e soluzioni headless avanzate."
+      },
+      "php-development": {
+        "title": "Sviluppo PHP",
+        "desc": "Sistemi back-end stabili e sicuri realizzati in PHP e Laravel."
+      },
+      "dotnet-development": {
+        "title": "Sviluppo .NET",
+        "desc": "Microservizi stabili basati su C# .NET Core e applicazioni desktop."
+      },
+      "ui-ux-design": {
+        "title": "Design UI/UX",
+        "desc": "Ricerca utenti, wireframing dell'interfaccia e prototipi Figma interattivi."
+      },
+      "seo-marketing": {
+        "title": "Ottimizzazione SEO",
+        "desc": "Miglioramento del posizionamento sui motori di ricerca e del traffico."
+      },
+      "iot-embedded": {
+        "title": "IoT e Sistemi Embedded",
+        "desc": "Programmazione di firmware ESP32, prototipazione PCB e sensori."
       }
     }
   },
@@ -1944,15 +2307,15 @@ export const translations: Record<string, Record<string, any>> = {
       "reviews": "Beoordelingen"
     },
     "hero": {
-      "statsDivisions": "Engineering-divisies",
-      "statsOperations": "Wereldwijde Activiteiten",
+      "statsDivisions": "Engineering scope",
+      "statsOperations": "Communicatiestandaard",
       "badge": "Wereldwijde Digitale Transformatiepartner",
       "title": "Wij Ontwerpen Enterprise Software & Schaalbare AI Oplossingen",
       "subtitle": "SkillForge Technology bouwt hoogwaardige maatwerksoftware, IoT prototypen, performante webapplicaties en geïntegreerde AI-agenten voor innovatieve bedrijven wereldwijd.",
       "ctaPrimary": "Boek een kennismakingsgesprek",
       "ctaSecondary": "Bekijk Casestudies",
-      "statsClients": "Wereldwijde Klanten",
-      "statsRating": "Tevredenheidsscore"
+      "statsClients": "Klantpartnerschappen",
+      "statsRating": "Toewijding aan kwaliteit"
     },
     "common": {
       "bookCall": "Gratis Consultatie Boeken",
@@ -2039,16 +2402,16 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "metrics": [
         {
-          "label": "Client Deployments"
+          "label": "Marktlevering"
         },
         {
-          "label": "Jira Sprint Iterations"
+          "label": "Sprint-methodologie"
         },
         {
-          "label": "Global Operations Nodes"
+          "label": "Afstandsbediening"
         },
         {
-          "label": "Telemetry Uptime"
+          "label": "Productie-uptime"
         }
       ],
       "techBadge": "Operations Integrity",
@@ -2063,32 +2426,32 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "cards": [
         {
-          "title": "GDPR Compliance",
-          "desc": "Configured to align with European data security guidelines and user deletion APIs."
+          "title": "Privacy-gerichte ontwikkeling",
+          "desc": "We bouwen software volgens privacy-by-design-principes, met implementatie van veilige protocollen voor gebruikersgegevensverwerking en -verwijdering."
         },
         {
-          "title": "HIPAA Aligned",
-          "desc": "Medical database encryptions and secure patient ledger architectures."
+          "title": "Veilige softwarearchitectuur",
+          "desc": "Onze ontwerpen omvatten meerlaagse databaseversleuteling, veilige authenticatiepoorten en getokeniseerde API's."
         }
       ],
       "badgesBadge": "Recognitions",
       "badgesTitle": "Compliance & Security Shields",
       "badges": [
         {
-          "title": "GDPR Verified",
-          "desc": "Authorized data processing workflows."
+          "title": "Security-first engineering",
+          "desc": "Gebouwd met best practices voor veilige codering."
         },
         {
-          "title": "HIPAA Compliant",
-          "desc": "Secure medical record handlings."
+          "title": "Privacy-gerichte ontwikkeling",
+          "desc": "Ontworpen om de privacy van gebruikersgegevens te respecteren."
         },
         {
-          "title": "ISO 27001 Ready",
-          "desc": "Information safety protocols."
+          "title": "Moderne ontwikkelingsstandaarden",
+          "desc": "Schone code en strikte linting-regels."
         },
         {
-          "title": "SOC 2 Type II",
-          "desc": "Verified database integrity."
+          "title": "Enterprise-ready architectuur",
+          "desc": "Hoge beschikbaarheid en modulaire schaalbaarheid garanderen."
         }
       ]
     },
@@ -2145,7 +2508,25 @@ export const translations: Record<string, Record<string, any>> = {
       "problemLabel": "Operational Challenge",
       "solutionLabel": "Technical Resolve",
       "outcomeLabel": "Key Metric Achieved",
-      "deploymentLabel": "Production Stack Status"
+      "deploymentLabel": "Production Stack Status",
+      "port-1": {
+        "title": "Healthcare Vitals Sync Suite",
+        "problem": "Verlies van sensorverbinding tijdens pakketsynchronisatie.",
+        "solution": "Wachtrijbuffer-logica en offline lokale databasesynchronisatie geïmplementeerd.",
+        "outcome": "99.9% Telemetrie-sync succespercentage"
+      },
+      "port-2": {
+        "title": "FinTech Headless Checkout Gateway",
+        "problem": "Trage laadtijden op Shopify tijdens campagnes.",
+        "solution": "Winkel herbouwd als React headless site met Stripe Checkout-API's.",
+        "outcome": "48% Daling in bouncepercentages"
+      },
+      "port-3": {
+        "title": "Warehouse Smart Tracking Grid",
+        "problem": "Groot pakketverlies in dichte metalen omgevingen.",
+        "solution": "ESP32 LoRa-knooppunten ingezet om metalen obstakels te omzeilen.",
+        "outcome": "99.8% Pakketaleveringspercentage"
+      }
     },
     "reviews": {
       "submittedTitle": "Beoordeling Succesvol Ingediend",
@@ -2218,6 +2599,30 @@ export const translations: Record<string, Record<string, any>> = {
       ]
     },
     "industries": {
+      "0": {
+        "name": "FinTech & Bankwezen",
+        "desc": "Veilige, compliant webapplicaties, aangepaste API-integraties en robuuste betalingsgateways voor financiële instellingen."
+      },
+      "1": {
+        "name": "Gezondheidszorg & Life Sciences",
+        "desc": "Compliant cliëntportalen, cross-platform mobiele trackers en door AI ondersteunde documentanalyse."
+      },
+      "2": {
+        "name": "E-Commerce & Retail",
+        "desc": "Headless e-commerce winkels, WooCommerce-setups, landingspagina's met hoge conversie en Stripe-systemen."
+      },
+      "3": {
+        "name": "Logistiek & Supply Chain",
+        "desc": "Real-time GPS-tracking gateways, IoT-sensorborden en algoritmen voor route-optimalisatie."
+      },
+      "4": {
+        "name": "Vastgoedmarketing",
+        "desc": "Visuele HDR-menging, dag-tot-avond luchtvervanging, virtuele staging en hertekende plattegronden."
+      },
+      "5": {
+        "name": "EdTech & Leerplatformen",
+        "desc": "Interactieve dashboards, leerportalen voor bedrijven, aangepaste LMS-setups en geautomatiseerde voortgangsanalyses."
+      },
       "badge": "Target Markets Focus",
       "titlePart1": "Tailored Software for",
       "titlePart2": "Critical Industries",
@@ -2279,22 +2684,68 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "services": {
       "software-development": {
-        "title": "Softwareontwikkeling"
+        "title": "Softwareontwikkeling",
+        "desc": "Hoogwaardige bedrijfssoftware en SaaS-producten gebouwd om te schalen."
       },
       "web-development": {
-        "title": "Webontwikkeling"
+        "title": "Webontwikkeling",
+        "desc": "Verbluffende, snelle webapplicaties die zijn gebouwd voor groei."
       },
       "mobile-development": {
-        "title": "Mobiele App-ontwikkeling"
+        "title": "Mobiele App-ontwikkeling",
+        "desc": "Premium native en cross-platform mobiele applicaties."
       },
       "ai-solutions": {
-        "title": "AI-oplossingen"
+        "title": "AI-oplossingen",
+        "desc": "Tuning van LLM's, vectorzoekopdrachten, RAG-pipelines en agenten."
       },
       "cloud-devops": {
-        "title": "Cloud & DevOps"
+        "title": "Cloud & DevOps",
+        "desc": "Automatiseer Kubernetes-operaties en CI/CD-pipelines."
       },
       "real-estate-creative": {
-        "title": "Vastgoed Creatief"
+        "title": "Vastgoed Creatief",
+        "desc": "3D-vastgoedpresentaties, virtuele staging en plattegronden."
+      },
+      "enterprise-development": {
+        "title": "Enterprise-ontwikkeling",
+        "desc": "Op maat gemaakte hoogwaardige kernplatformen voor bedrijven."
+      },
+      "saas-development": {
+        "title": "SaaS-ontwikkeling",
+        "desc": "Bouw, implementeer en schaal multi-tenant SaaS-producten."
+      },
+      "flutter-development": {
+        "title": "Flutter-ontwikkeling",
+        "desc": "Cross-platform mobiele applicaties gebouwd met Flutter."
+      },
+      "react-development": {
+        "title": "React-ontwikkeling",
+        "desc": "Dynamische single-page React frontend-applicaties."
+      },
+      "wordpress-development": {
+        "title": "WordPress-ontwikkeling",
+        "desc": "Aangepaste thema's, WooCommerce en headless WordPress-setups."
+      },
+      "php-development": {
+        "title": "PHP-ontwikkeling",
+        "desc": "Op maat gemaakte backend-websystemen ontwikkeld in Laravel en PHP."
+      },
+      "dotnet-development": {
+        "title": ".NET-ontwikkeling",
+        "desc": "Veilige C# .NET Core backend-microservices en desktop-apps."
+      },
+      "ui-ux-design": {
+        "title": "UI/UX-ontwerp",
+        "desc": "Modern gebruikersonderzoek, wireframing en Figma-prototyping."
+      },
+      "seo-marketing": {
+        "title": "SEO-optimalisatie",
+        "desc": "Verhoog organisch verkeer en posities van zoekwoorden."
+      },
+      "iot-embedded": {
+        "title": "IoT & Embedded",
+        "desc": "ESP32-firmware, aangepaste PCB-circuits en sensoren."
       }
     }
   },
@@ -2314,15 +2765,15 @@ export const translations: Record<string, Record<string, any>> = {
       "reviews": "التقييمات"
     },
     "hero": {
-      "statsDivisions": "أقسام الهندسة",
-      "statsOperations": "العمليات العالمية",
+      "statsDivisions": "نطاق الهندسة",
+      "statsOperations": "معيار الاتصال",
       "badge": "شريك التحول الرقمي العالمي",
       "title": "نصمم برمجيات المؤسسات وحلول الذكاء الاصطناعي القابلة للتوسع",
       "subtitle": "تقوم شركة SkillForge Technology ببناء برمجيات مخصصة متميزة، ونماذج أولية لإنترنت الأشياء (IoT)، وتطبيقات ويب عالية الأداء، ووكلاء ذكاء اصطناعي مدمجين للشركات العالمية.",
       "ctaPrimary": "احجز جلسة استشارية",
       "ctaSecondary": "عرض دراسات الحالة",
-      "statsClients": "عملاء حول العالم",
-      "statsRating": "معدل الرضا"
+      "statsClients": "شراكات العملاء",
+      "statsRating": "الالتزام بالجودة"
     },
     "common": {
       "bookCall": "احجز استشارة مجانية",
@@ -2409,16 +2860,16 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "metrics": [
         {
-          "label": "Client Deployments"
+          "label": "التسليم في السوق"
         },
         {
-          "label": "Jira Sprint Iterations"
+          "label": "منهجية سبرينت"
         },
         {
-          "label": "Global Operations Nodes"
+          "label": "العمليات عن بعد"
         },
         {
-          "label": "Telemetry Uptime"
+          "label": "وقت التشغيل الفعلي"
         }
       ],
       "techBadge": "Operations Integrity",
@@ -2433,32 +2884,32 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "cards": [
         {
-          "title": "GDPR Compliance",
-          "desc": "Configured to align with European data security guidelines and user deletion APIs."
+          "title": "التطوير الذي يركز على الخصوصية",
+          "desc": "نقوم ببناء البرمجيات باتباع مبادئ الخصوصية بالتصميم، مع تنفيذ بروتوكولات آمنة للتعامل مع بيانات المستخدم وحذفها."
         },
         {
-          "title": "HIPAA Aligned",
-          "desc": "Medical database encryptions and secure patient ledger architectures."
+          "title": "بنية برمجية آمنة",
+          "desc": "تشمل تصميماتنا تشفيرًا متعدد الطبقات لقواعد البيانات، وبوابات مصادقة آمنة، وواجهات برمجة تطبيقات مجهزة بالرموز المميزة."
         }
       ],
       "badgesBadge": "Recognitions",
       "badgesTitle": "Compliance & Security Shields",
       "badges": [
         {
-          "title": "GDPR Verified",
-          "desc": "Authorized data processing workflows."
+          "title": "الهندسة التي تركز على الأمن",
+          "desc": "تم بناؤه باتباع أفضل ممارسات الترميز الآمن."
         },
         {
-          "title": "HIPAA Compliant",
-          "desc": "Secure medical record handlings."
+          "title": "التطوير الذي يركز على الخصوصية",
+          "desc": "مصمم لاحترام خصوصية بيانات المستخدم."
         },
         {
-          "title": "ISO 27001 Ready",
-          "desc": "Information safety protocols."
+          "title": "معايير التطوير الحديثة",
+          "desc": "اتباع كود نظيف وقواعد تدقيق صارمة."
         },
         {
-          "title": "SOC 2 Type II",
-          "desc": "Verified database integrity."
+          "title": "بنية جاهزة للمؤسسات",
+          "desc": "ضمان توافرية عالية وتوسع معياري."
         }
       ]
     },
@@ -2515,7 +2966,25 @@ export const translations: Record<string, Record<string, any>> = {
       "problemLabel": "Operational Challenge",
       "solutionLabel": "Technical Resolve",
       "outcomeLabel": "Key Metric Achieved",
-      "deploymentLabel": "Production Stack Status"
+      "deploymentLabel": "Production Stack Status",
+      "port-1": {
+        "title": "Healthcare Vitals Sync Suite",
+        "problem": "انقطاع اتصال المستشعر أثناء مزامنة الحزم البيانات.",
+        "solution": "تنفيذ منطق زمام التخزين المؤقت للمحاولة والمزامنة المحلية دون اتصال.",
+        "outcome": "معدل نجاح مزامنة القياس عن بعد 99.9%"
+      },
+      "port-2": {
+        "title": "FinTech Headless Checkout Gateway",
+        "problem": "أوقات تحميل عالية على أنظمة شوبيفاي أثناء الحملات.",
+        "solution": "إعادة بناء المتجر كموقع تفاعلي بدون رأس باستخدام واجهات سترايب.",
+        "outcome": "انخفاض بنسبة 48% في معدلات الارتداد"
+      },
+      "port-3": {
+        "title": "Warehouse Smart Tracking Grid",
+        "problem": "فقدان شديد في الحزم في البيئات المعدنية المكتظة.",
+        "solution": "نشر عقد ESP32 LoRa مخصصة لتجاوز العقبات المعدنية.",
+        "outcome": "معدل تسليم الحزم الأساسية 99.8%"
+      }
     },
     "reviews": {
       "submittedTitle": "تم إرسال التقييم بنجاح",
@@ -2588,6 +3057,30 @@ export const translations: Record<string, Record<string, any>> = {
       ]
     },
     "industries": {
+      "0": {
+        "name": "التكنولوجيا المالية والبنوك",
+        "desc": "تطبيقات ويب آمنة ومتوافقة، وتكامل مخصص لواجهة برمجة التطبيقات، وبوابات دفع قوية مصممة للمؤسسات المالية."
+      },
+      "1": {
+        "name": "الرعاية الصحية وعلوم الحياة",
+        "desc": "بوابات عملاء متوافقة، وأجهزة تتبع المحمول عبر المنصات المختلفة، وتحليل المستندات بالذكاء الاصطناعي."
+      },
+      "2": {
+        "name": "التجارة الإلكترونية والتجزئة",
+        "desc": "متاجر تجارة إلكترونية بدون رأس، وإعدادات WooCommerce، وصفحات هبوط عالية التحويل، وأنظمة دفع سترايب."
+      },
+      "3": {
+        "name": "اللوجستيات وسلاسل الإمداد",
+        "desc": "بوابات تتبع نظام تحديد المواقع الجغرافي (GPS) في الوقت الفعلي، ولوحات مستشعرات إنترنت الأشياء، وخوارزميات تحسين الطرق بالذكاء الاصطناعي."
+      },
+      "4": {
+        "name": "التسويق العقاري",
+        "desc": "دمج صور HDR البصرية، واستبدال السماء من النهار إلى الغسق، والتأثيث الافتراضي، وإعادة رسم مخططات الأرضيات."
+      },
+      "5": {
+        "name": "تكنولوجيا التعليم ومنصات التعلم",
+        "desc": "لوحات معلومات تفاعلية، وبوابات تعلم للمؤسسات، وإعدادات LMS مخصصة، وتحليلات تقدم مؤتمتة."
+      },
       "badge": "Target Markets Focus",
       "titlePart1": "Tailored Software for",
       "titlePart2": "Critical Industries",
@@ -2649,22 +3142,68 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "services": {
       "software-development": {
-        "title": "تطوير البرمجيات"
+        "title": "تطوير البرمجيات",
+        "desc": "برمجيات مؤسسات عالية الأداء ومنتجات SaaS مبنية للتوسع."
       },
       "web-development": {
-        "title": "تطوير الويب"
+        "title": "تطوير الويب",
+        "desc": "تطبيقات ويب مذهلة وعالية الأداء مبنية للنمو والانتشار."
       },
       "mobile-development": {
-        "title": "تطوير تطبيقات الجوال"
+        "title": "تطوير تطبيقات الهاتف",
+        "desc": "تطبيقات هاتف ذكي أصلية وعابرة للمنصات بجودة ممتازة."
       },
       "ai-solutions": {
-        "title": "حلول الذكاء الاصطناعي"
+        "title": "حلول الذكاء الاصطناعي",
+        "desc": "ضبط نماذج اللغة الكبيرة، البحث المتجهي، خطوط أنابيب RAG وأنظمة الوكلاء."
       },
       "cloud-devops": {
-        "title": "السحابية والـ DevOps"
+        "title": "السحابة وديف أوبس",
+        "desc": "أتمتة عمليات كوبرنيتس وخطوط أنابيب التكامل والنشر المستمر."
       },
       "real-estate-creative": {
-        "title": "إبداع العقارات"
+        "title": "الإنتاج الإبداعي للعقارات",
+        "desc": "عرض العقارات ثلاثي الأبعاد، والتأثيث الافتراضي، والمخططات التفصيلية."
+      },
+      "enterprise-development": {
+        "title": "تطوير المؤسسات",
+        "desc": "منصات أعمال أساسية مخصصة وعالية الأداء."
+      },
+      "saas-development": {
+        "title": "تطوير SaaS",
+        "desc": "بناء ونشر وتوسيع منتجات SaaS متعددة المستأجرين."
+      },
+      "flutter-development": {
+        "title": "تطوير فلاتر",
+        "desc": "تطبيقات هاتف عابرة للمنصات مبنية بكفاءة باستخدام فلاتر."
+      },
+      "react-development": {
+        "title": "تطوير ريأكت",
+        "desc": "واجهات وتطبيقات ويب تفاعلية باستخدام ريأكت وNext.js."
+      },
+      "wordpress-development": {
+        "title": "تطوير وردبريس",
+        "desc": "قوالب مخصصة، و WooCommerce، وإعدادات وردبريس بدون رأس."
+      },
+      "php-development": {
+        "title": "تطوير PHP",
+        "desc": "أنظمة ويب خلفية مخصصة مبنية باستخدام لارافيل و PHP."
+      },
+      "dotnet-development": {
+        "title": "تطوير .NET",
+        "desc": "خدمات مصغرة خلفية آمنة باستخدام C# .NET Core وتطبيقات مكتبية."
+      },
+      "ui-ux-design": {
+        "title": "تصميم واجهة وتجربة المستخدم",
+        "desc": "أبحاث مستخدم حديثة، وتخطيط الهياكل السلكية، ونمذجة فيجما."
+      },
+      "seo-marketing": {
+        "title": "تحسين محركات البحث",
+        "desc": "تعزيز حركة المرور العضوية وظهور تصنيفات الكلمات الرئيسية."
+      },
+      "iot-embedded": {
+        "title": "إنترنت الأشياء والأنظمة المدمجة",
+        "desc": "برامج ESP32 الثابتة، وتصميم اللوحات الإلكترونية المخصصة، والمستشعرات."
       }
     }
   },
@@ -2684,15 +3223,15 @@ export const translations: Record<string, Record<string, any>> = {
       "reviews": "レビュー"
     },
     "hero": {
-      "statsDivisions": "エンジニアリング部門",
-      "statsOperations": "グローバル運用",
+      "statsDivisions": "エンジニアリング範囲",
+      "statsOperations": "コミュニケーション基準",
       "badge": "グローバル・デジタルトランスフォーメーション・パートナー",
       "title": "エンタープライズ・ソフトウェアと拡張可能なAIソリューションの構築",
       "subtitle": "SkillForge Technologyは、世界中の先進的なビジネス向けに、プレミアムなカスタムソフトウェア、IoTプロトタイプ、高性能なWebアプリケーション、統合型AIエージェントを構築します。",
       "ctaPrimary": "無料個別相談を予約",
       "ctaSecondary": "開発事例を見る",
-      "statsClients": "グローバル顧客",
-      "statsRating": "顧客満足度スコア"
+      "statsClients": "クライアントパートナーシップ",
+      "statsRating": "品質へのこだわり"
     },
     "common": {
       "bookCall": "無料相談の予約",
@@ -2779,16 +3318,16 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "metrics": [
         {
-          "label": "Client Deployments"
+          "label": "市場への提供"
         },
         {
-          "label": "Jira Sprint Iterations"
+          "label": "スプリント手法"
         },
         {
-          "label": "Global Operations Nodes"
+          "label": "リモートオペレーション"
         },
         {
-          "label": "Telemetry Uptime"
+          "label": "本番稼働率"
         }
       ],
       "techBadge": "Operations Integrity",
@@ -2803,32 +3342,32 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "cards": [
         {
-          "title": "GDPR Compliance",
-          "desc": "Configured to align with European data security guidelines and user deletion APIs."
+          "title": "プライバシー重視の開発",
+          "desc": "設計段階からのプライバシー保護を徹底し、安全なユーザーデータ処理と削除プロトコルを実装してソフトウェアを構築します。"
         },
         {
-          "title": "HIPAA Aligned",
-          "desc": "Medical database encryptions and secure patient ledger architectures."
+          "title": "安全なソフトウェアアーキテクチャ",
+          "desc": "多層データベース暗号化、安全な認証ゲート、およびトークン化されたAPIを組み込んだシステム設計を提供します。"
         }
       ],
       "badgesBadge": "Recognitions",
       "badgesTitle": "Compliance & Security Shields",
       "badges": [
         {
-          "title": "GDPR Verified",
-          "desc": "Authorized data processing workflows."
+          "title": "セキュリティ第一の設計",
+          "desc": "安全なコーディングのベストプラクティスに準拠。"
         },
         {
-          "title": "HIPAA Compliant",
-          "desc": "Secure medical record handlings."
+          "title": "プライバシー重視の開発",
+          "desc": "ユーザーデータのプライバシーを尊重するように設計。"
         },
         {
-          "title": "ISO 27001 Ready",
-          "desc": "Information safety protocols."
+          "title": "モダンな開発標準",
+          "desc": "クリーンなコードと厳格な静的解析ルールを遵守。"
         },
         {
-          "title": "SOC 2 Type II",
-          "desc": "Verified database integrity."
+          "title": "エンタープライズ対応のアーキテクチャ",
+          "desc": "高可用性とモジュール式の拡張性を確保。"
         }
       ]
     },
@@ -2885,7 +3424,25 @@ export const translations: Record<string, Record<string, any>> = {
       "problemLabel": "Operational Challenge",
       "solutionLabel": "Technical Resolve",
       "outcomeLabel": "Key Metric Achieved",
-      "deploymentLabel": "Production Stack Status"
+      "deploymentLabel": "Production Stack Status",
+      "port-1": {
+        "title": "Healthcare Vitals Sync Suite",
+        "problem": "データ同期中のセンサー接続切断エラー。",
+        "solution": "再試行バッファキューロジックとオフライン時のローカル同期の実装。",
+        "outcome": "テレメトリ同期成功率 99.9%"
+      },
+      "port-2": {
+        "title": "FinTech Headless Checkout Gateway",
+        "problem": "キャンペーン中のShopifyシステムの読み込み速度低下。",
+        "solution": "Stripe Checkout APIを利用したReactヘッドレスサイトへの刷新。",
+        "outcome": "直帰率の48%低減を達成"
+      },
+      "port-3": {
+        "title": "Warehouse Smart Tracking Grid",
+        "problem": "金属物が多い環境下での重度なデータパケット損失。",
+        "solution": "金属障害を回避するため独自のESP32 LoRaノードを配置。",
+        "outcome": "パケット到達率 99.8%"
+      }
     },
     "reviews": {
       "submittedTitle": "レビューの送信が完了しました",
@@ -2958,6 +3515,30 @@ export const translations: Record<string, Record<string, any>> = {
       ]
     },
     "industries": {
+      "0": {
+        "name": "フィンテック＆銀行",
+        "desc": "金融機関向けに設計された、安全で法規に準拠したWebアプリケーション、API連携、および堅牢な決済ゲートウェイ。"
+      },
+      "1": {
+        "name": "医療・ライフサイエンス",
+        "desc": "法規に準拠したクライアントポータル、クロスプラットフォーム対応のモバイルトラッカー、およびAIドキュメント解析。"
+      },
+      "2": {
+        "name": "Eコマース＆小売",
+        "desc": "ヘッドレスEコマース店舗、WooCommerce構築、高コンバージョンなLP、およびStripe決済システム。"
+      },
+      "3": {
+        "name": "物流＆サプライチェーン",
+        "desc": "リアルタイムGPS追跡ゲートウェイ、IoTセンサーボード、およびルート最適化AIエージェントプラットフォーム。"
+      },
+      "4": {
+        "name": "不動産マーケティング",
+        "desc": "HDR画像加工、空模様の入れ替え、バーチャルステージング、および高品質な2D/3D間取り図作成。"
+      },
+      "5": {
+        "name": "EdTech＆学習プラットフォーム",
+        "desc": "インタラクティブなダッシュボード、企業向け学習ポータル、カスタムLMS構築、および学習進捗の自動分析。"
+      },
       "badge": "Target Markets Focus",
       "titlePart1": "Tailored Software for",
       "titlePart2": "Critical Industries",
@@ -3019,22 +3600,68 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "services": {
       "software-development": {
-        "title": "ソフトウェア開発"
+        "title": "ソフトウェア開発",
+        "desc": "グローバルな拡張を見据えて構築された高性能な企業向けソフトウェア＆SaaS製品。"
       },
       "web-development": {
-        "title": "Web開発"
+        "title": "Web開発",
+        "desc": "ビジネスの成長を加速させる、高速で洗練されたWebアプリケーションの開発。"
       },
       "mobile-development": {
-        "title": "モバイルアプリ開発"
+        "title": "モバイルアプリ開発",
+        "desc": "最高品質のネイティブおよびクロスプラットフォーム対応のアプリ。"
       },
       "ai-solutions": {
-        "title": "AIソリューション"
+        "title": "AIソリューション",
+        "desc": "大規模言語モデル（LLM）の調整、ベクトル検索、RAG、およびエージェント設計。"
       },
       "cloud-devops": {
-        "title": "クラウド＆DevOps"
+        "title": "クラウド＆DevOps",
+        "desc": "CI/CD自動化パイプラインの構築とKubernetesによるオーケストレーション。"
       },
       "real-estate-creative": {
-        "title": "不動産クリエイティブ"
+        "title": "不動産クリエイティブ",
+        "desc": "HDR画像補正、バーチャルステージング、および3D間取り図の作成。"
+      },
+      "enterprise-development": {
+        "title": "エンタープライズ開発",
+        "desc": "中核業務向けにカスタマイズされた高性能な独自プラットフォームの開発。"
+      },
+      "saas-development": {
+        "title": "SaaS開発",
+        "desc": "マルチテナントSaaS製品の設計、展開、およびスケーリング。"
+      },
+      "flutter-development": {
+        "title": "Flutter開発",
+        "desc": "Flutterを採用した、高速で安定したクロスプラットフォームアプリ開発。"
+      },
+      "react-development": {
+        "title": "React開発",
+        "desc": "ReactやNext.jsを利用した、インタラクティブなWebフロントエンド開発。"
+      },
+      "wordpress-development": {
+        "title": "WordPress開発",
+        "desc": "独自テーマ設計、WooCommerce連携、およびヘッドレス構成の構築。"
+      },
+      "php-development": {
+        "title": "PHP開発",
+        "desc": "LaravelおよびPHPを採用した、拡張性に優れたバックエンドシステムの構築。"
+      },
+      "dotnet-development": {
+        "title": ".NET開発",
+        "desc": "C# .NET Coreによる、高負荷に耐える堅牢なマイクロサービスの設計。"
+      },
+      "ui-ux-design": {
+        "title": "UI/UXデザイン",
+        "desc": "ユーザーリサーチ、インターフェースの設計、Figmaによるプロトタイピング。"
+      },
+      "seo-marketing": {
+        "title": "SEO最適化",
+        "desc": "オーガニック検索トラフィックの増加とキーワード順位の向上。"
+      },
+      "iot-embedded": {
+        "title": "IoT＆組み込みシステム",
+        "desc": "ESP32用のファームウェア開発、基板（PCB）回路設計、およびセンサー制御。"
       }
     }
   },
@@ -3054,15 +3681,15 @@ export const translations: Record<string, Record<string, any>> = {
       "reviews": "மதிப்புரைகள்"
     },
     "hero": {
-      "statsDivisions": "பொறியியல் பிரிவுகள்",
-      "statsOperations": "உலகளாவிய செயல்பாடுகள்",
+      "statsDivisions": "பொறியியல் நோக்கம்",
+      "statsOperations": "தொடர்பு தரநிலை",
       "badge": "உலகளாவிய டிஜிட்டல் மாற்றம் கூட்டாளி",
       "title": "நாங்கள் எண்டர்பிரைஸ் மென்பொருள் & அளவிடக்கூடிய AI தீர்வுகளை உருவாக்குகிறோம்",
       "subtitle": "ஸ்கில்ஃபோர்ஜ் டெக்னாலஜி உலகெங்கிலும் உள்ள முன்னோடி வணிகங்களுக்காக பிரீமியம் தனிப்பயன் மென்பொருள், IoT முன்மாதிரிகள், அதிவேக வலைப் பயன்பாடுகள் மற்றும் ஒருங்கிணைந்த AI முகவர்களை உருவாக்குகிறது.",
       "ctaPrimary": "இலவச ஆலோசனை பதிவு செய்க",
       "ctaSecondary": "கேஸ் ஸ்டடீஸ் காண்க",
-      "statsClients": "உலகளாவிய வாடிக்கையாளர்கள்",
-      "statsRating": "வாடிக்கையாளர் திருப்தி"
+      "statsClients": "வாடிக்கையாளர் கூட்டாண்மை",
+      "statsRating": "தரத்திற்கான அர்ப்பணிப்பு"
     },
     "common": {
       "bookCall": "இலவச ஆலோசனையை பதிவு செய்க",
@@ -3149,16 +3776,16 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "metrics": [
         {
-          "label": "Client Deployments"
+          "label": "சந்தை விநியோகம்"
         },
         {
-          "label": "Jira Sprint Iterations"
+          "label": "ஸ்பிரிண்ட் முறை"
         },
         {
-          "label": "Global Operations Nodes"
+          "label": "தொலைதூர செயல்பாடுகள்"
         },
         {
-          "label": "Telemetry Uptime"
+          "label": "தயாரிப்பு இயக்க நேரம்"
         }
       ],
       "techBadge": "Operations Integrity",
@@ -3173,32 +3800,32 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "cards": [
         {
-          "title": "GDPR Compliance",
-          "desc": "Configured to align with European data security guidelines and user deletion APIs."
+          "title": "தனியுரிமை சார்ந்த வளர்ச்சி",
+          "desc": "வடிவமைப்பு மூலம் தனியுரிமை கொள்கைகளைப் பின்பற்றி மென்பொருளை உருவாக்குகிறோம்."
         },
         {
-          "title": "HIPAA Aligned",
-          "desc": "Medical database encryptions and secure patient ledger architectures."
+          "title": "பாதுகாப்பான மென்பொருள் கட்டமைப்பு",
+          "desc": "எங்கள் வடிவமைப்புகளில் பல அடுக்கு தரவுத்தள குறியாக்கம் மற்றும் பாதுகாப்பான அங்கீகார வாயில்கள் உள்ளன."
         }
       ],
       "badgesBadge": "Recognitions",
       "badgesTitle": "Compliance & Security Shields",
       "badges": [
         {
-          "title": "GDPR Verified",
-          "desc": "Authorized data processing workflows."
+          "title": "பாதுகாப்பு-முதல் பொறியியல்",
+          "desc": "பாதுகாப்பான குறியீட்டு முறைகளுடன் கட்டப்பட்டது."
         },
         {
-          "title": "HIPAA Compliant",
-          "desc": "Secure medical record handlings."
+          "title": "தனியுரிமை சார்ந்த வளர்ச்சி",
+          "desc": "பயனர் தரவு தனியுரிமையை மதிக்க வடிவமைக்கப்பட்டுள்ளது."
         },
         {
-          "title": "ISO 27001 Ready",
-          "desc": "Information safety protocols."
+          "title": "நவீன வளர்ச்சி தரநிலைகள்",
+          "desc": "சுத்தமான குறியீடு மற்றும் கண்டிப்பான விதிகளுடன்."
         },
         {
-          "title": "SOC 2 Type II",
-          "desc": "Verified database integrity."
+          "title": "நிறுவனத்திற்கு தயாராக உள்ள கட்டமைப்பு",
+          "desc": "அதிக கிடைக்கும் தன்மை மற்றும் மட்டு அளவை உறுதி செய்தல்."
         }
       ]
     },
@@ -3255,7 +3882,25 @@ export const translations: Record<string, Record<string, any>> = {
       "problemLabel": "Operational Challenge",
       "solutionLabel": "Technical Resolve",
       "outcomeLabel": "Key Metric Achieved",
-      "deploymentLabel": "Production Stack Status"
+      "deploymentLabel": "Production Stack Status",
+      "port-1": {
+        "title": "Healthcare Vitals Sync Suite",
+        "problem": "தரவு ஒத்திசைவின் போது சென்சார் இணைப்பு துண்டிக்கப்படுகிறது.",
+        "solution": "ஒத்திசைவு வரிசை தர்க்கம் மற்றும் ஆஃப்லைன் தரவு ஒத்திசைவு.",
+        "outcome": "99.9% தொலைநிலை ஒத்திசைவு வெற்றி விகிதம்"
+      },
+      "port-2": {
+        "title": "FinTech Headless Checkout Gateway",
+        "problem": "அதிக போக்குவரத்து காலங்களில் ஷாப்பிஃபை தளம் மெதுவாக இயங்குதல்.",
+        "solution": "ரியாக்ட் ஹெட்லெஸ் தளமாக மாற்றி ஸ்டிரைப் ஏபிஐகளை இணைத்தல்.",
+        "outcome": "48% பவுன்ஸ் விகிதக் குறைவு"
+      },
+      "port-3": {
+        "title": "Warehouse Smart Tracking Grid",
+        "problem": "நெருக்கமான உலோக சூழல்களில் அதிக தரவு இழப்பு.",
+        "solution": "உலோக தடைகளைத் தவிர்க்க பிரத்யேக இஎஸ்பி32 லோரா அமைப்புகள்.",
+        "outcome": "99.8% தரவு விநியோக விகிதம்"
+      }
     },
     "reviews": {
       "submittedTitle": "மதிப்பாய்வு வெற்றிகரமாக சமர்ப்பிக்கப்பட்டது",
@@ -3328,6 +3973,30 @@ export const translations: Record<string, Record<string, any>> = {
       ]
     },
     "industries": {
+      "0": {
+        "name": "பின்டெக் & வங்கி",
+        "desc": "நிதி நிறுவனங்களுக்கான பாதுகாப்பான இணைய பயன்பாடுகள், ஏபிஐ ஒருங்கிணைப்பு மற்றும் கொடுப்பனவு நுழைவாயில்கள்."
+      },
+      "1": {
+        "name": "சுகாதாரம் & உயிர் அறிவியல்",
+        "desc": "சுகாதார போர்ட்டல்கள், கிராஸ்-பிளாட்ஃபார்ம் கைபேசி டிராக்கர்கள் மற்றும் ஏஐ ஆவணப் பகுப்பாய்வு."
+      },
+      "2": {
+        "name": "மின் வணிகம் & சில்லறை வர்த்தகம்",
+        "desc": "ஹெட்லெஸ் மின் வணிக கடைகள், வேர்ட்பிரஸ் வூகாமர்ஸ் அமைப்புகள் மற்றும் ஸ்டிரைப் கொடுப்பனவு அமைப்புகள்."
+      },
+      "3": {
+        "name": "தளவாடங்கள் & விநியோக சங்கிலி",
+        "desc": "நேரடி ஜிபிஎஸ் டிராக்கிங் நுழைவாயில்கள், ஐஓடி சென்சார் பலகைகள் மற்றும் ஏஐ வழி மேம்படுத்தல்."
+      },
+      "4": {
+        "name": "ரியல் எஸ்டேட் சந்தைப்படுத்தல்",
+        "desc": "எச்டிஆர் பட எடிட்டிங், மெய்நிகர் வீடுகள் மற்றும் தளவமைப்பு வரைபடங்கள் தயாரித்தல்."
+      },
+      "5": {
+        "name": "எட்டெக் & கற்றல் தளங்கள்",
+        "desc": "ஊடாடும் டாஷ்போர்டுகள், நிறுவன கற்றல் போர்ட்டல்கள் மற்றும் தானியங்கி முன்னேற்ற பகுப்பாய்வு."
+      },
       "badge": "Target Markets Focus",
       "titlePart1": "Tailored Software for",
       "titlePart2": "Critical Industries",
@@ -3389,22 +4058,68 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "services": {
       "software-development": {
-        "title": "மென்பொருள் மேம்பாடு"
+        "title": "மென்பொருள் மேம்பாடு",
+        "desc": "உயர் செயல்திறன் கொண்ட நிறுவன மென்பொருள் மற்றும் அளவிடக்கூடிய சாஸ் தயாரிப்புகள்."
       },
       "web-development": {
-        "title": "வலை மேம்பாடு"
+        "title": "இணையதள மேம்பாடு",
+        "desc": "வளர்ச்சிக்காக உருவாக்கப்பட்ட உயர் செயல்திறன் கொண்ட இணையதளங்கள்."
       },
       "mobile-development": {
-        "title": "கைபேசி செயலி மேம்பாடு"
+        "title": "கைபேசி செயலி மேம்பாடு",
+        "desc": "நேட்டிவ் மற்றும் கிராஸ்-பிளாட்ஃபார்ம் கைபேசி செயலிகள்."
       },
       "ai-solutions": {
-        "title": "செயற்கை நுண்ணறிவு தீர்வுகள்"
+        "title": "செயற்கை நுண்ணறிவு தீர்வுகள்",
+        "desc": "எல்எல்எம் மாதிரிகள், திசையன் தேடல் மற்றும் ஏஜென்ட் அமைப்புகள்."
       },
       "cloud-devops": {
-        "title": "கிளவுट & டெவ்ஆப்ஸ்"
+        "title": "கிளவுட் & டெவ்ஆப்ஸ்",
+        "desc": "குபெர்னெட்ஸ் செயல்பாடுகள் மற்றும் தானியங்கி சிஐ/சிடி பைப்லைன்கள்."
       },
       "real-estate-creative": {
-        "title": "ரியல் எஸ்டேட் கிரியேட்டிவ்"
+        "title": "ரியல் எஸ்டேட் கிரியேட்டிவ்",
+        "desc": "3டி மெய்நிகர் வீடுகள் மற்றும் தளவமைப்பு வரைபடங்கள்."
+      },
+      "enterprise-development": {
+        "title": "நிறுவன மென்பொருள் மேம்பாடு",
+        "desc": "நிறுவனங்களுக்கான பிரத்யேக உயர் செயல்திறன் கொண்ட முக்கிய அமைப்புகள்."
+      },
+      "saas-development": {
+        "title": "சாஸ் (SaaS) மேம்பாடு",
+        "desc": "சாஸ் தயாரிப்புகளை உருவாக்குதல், வரிசைப்படுத்துதல் மற்றும் அளவிடுதல்."
+      },
+      "flutter-development": {
+        "title": "பிளட்டர் (Flutter) மேம்பாடு",
+        "desc": "பிளட்டர் கட்டமைப்பைப் பயன்படுத்தி உருவாக்கப்படும் கைபேசி செயலிகள்."
+      },
+      "react-development": {
+        "title": "ரியாக்ட் (React) மேம்பாடு",
+        "desc": "ரியாக்ட் மற்றும் நெக்ஸ்ட்.ஜேஎஸ் இணையதள முகப்புகள்."
+      },
+      "wordpress-development": {
+        "title": "வேர்ட்பிரஸ் மேம்பாடு",
+        "desc": "வேர்ட்பிரஸ் தீம்கள், வேர்ட்பிரஸ் ஆவணங்கள் மற்றும் ஹெட்லெஸ் அமைப்புகள்."
+      },
+      "php-development": {
+        "title": "பிஎச்பி (PHP) மேம்பாடு",
+        "desc": "லாராவெல் மற்றும் பிஎச்பி கொண்டு உருவாக்கப்படும் பின்தள அமைப்புகள்."
+      },
+      "dotnet-development": {
+        "title": ".நெட் (.NET) மேம்பாடு",
+        "desc": "பாதுகாப்பான சி# .நெட் கோர் பின்தள அமைப்புகள் மற்றும் கணினி மென்பொருட்கள்."
+      },
+      "ui-ux-design": {
+        "title": "பயனர் இடைமுக வடிவமைப்பு",
+        "desc": "பயனர் ஆராய்ச்சி, தள வடிவமைப்பு மற்றும் பிக்மா முன்மாதிரிகள்."
+      },
+      "seo-marketing": {
+        "title": "எஸ்சிஓ எஸ்சிஎம்",
+        "desc": "இணைய போக்குவரத்து மற்றும் முக்கிய வார்த்தைகளின் தரவரிசையை மேம்படுத்துதல்."
+      },
+      "iot-embedded": {
+        "title": "ஐஓடி & உட்பொதிக்கப்பட்ட அமைப்புகள்",
+        "desc": "இஎஸ்பி32 ஃபார்ம்வேர், பிசிபி சுற்று வடிவமைப்பு மற்றும் சென்சார்கள்."
       }
     }
   },
@@ -3424,15 +4139,15 @@ export const translations: Record<string, Record<string, any>> = {
       "reviews": "समीक्षाएं"
     },
     "hero": {
-      "statsDivisions": "इंजीनियरिंग प्रभाग",
-      "statsOperations": "वैश्विक संचालन",
+      "statsDivisions": "इंजीनियरिंग का दायरा",
+      "statsOperations": "संचार मानक",
       "badge": "वैश्विक डिजिटल परिवर्तन भागीदार",
       "title": "हम एंटरप्राइज़ सॉफ़्टवेयर और स्केलेबल AI समाधान बनाते हैं",
       "subtitle": "स्किलफोर्ज टेक्नोलॉजी दुनिया भर के आधुनिक व्यवसायों के लिए प्रीमियम कस्टम सॉफ़्टवेयर, IoT प्रोटोटाइप, उच्च-प्रदर्शन वेब एप्लिकेशन और एकीकृत AI एजेंट विकसित करती है।",
       "ctaPrimary": "परामर्श सत्र बुक करें",
       "ctaSecondary": "केस स्टडीज देखें",
-      "statsClients": "वैश्विक ग्राहक",
-      "statsRating": "संतुष्टि स्कोर"
+      "statsClients": "ग्राहक भागीदारी",
+      "statsRating": "गुणवत्ता के प्रति प्रतिबद्धता"
     },
     "common": {
       "bookCall": "निःशुल्क परामर्श बुक करें",
@@ -3519,16 +4234,16 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "metrics": [
         {
-          "label": "Client Deployments"
+          "label": "बाजार वितरण"
         },
         {
-          "label": "Jira Sprint Iterations"
+          "label": "स्प्रिंट कार्यप्रणाली"
         },
         {
-          "label": "Global Operations Nodes"
+          "label": "रिमोट ऑपरेशन्स"
         },
         {
-          "label": "Telemetry Uptime"
+          "label": "उत्पादन अपटाइम"
         }
       ],
       "techBadge": "Operations Integrity",
@@ -3543,32 +4258,32 @@ export const translations: Record<string, Record<string, any>> = {
       ],
       "cards": [
         {
-          "title": "GDPR Compliance",
-          "desc": "Configured to align with European data security guidelines and user deletion APIs."
+          "title": "गोपनीयता-केंद्रित विकास",
+          "desc": "हम गोपनीयता-दर-डिज़ाइन सिद्धांतों का पालन करते हुए सॉफ़्टवेयर बनाते हैं, सुरक्षित उपयोगकर्ता डेटा हैंडलिंग और हटाने के प्रोटोकॉल को लागू करते हैं।"
         },
         {
-          "title": "HIPAA Aligned",
-          "desc": "Medical database encryptions and secure patient ledger architectures."
+          "title": "सुरक्षित सॉफ़्टवेयर वास्तुकला",
+          "desc": "हमारे डिजाइनों में बहु-स्तरित डेटाबेस एन्क्रिप्शन, सुरक्षित प्रमाणीकरण गेट और टोकनयुक्त एपीआई शामिल हैं।"
         }
       ],
       "badgesBadge": "Recognitions",
       "badgesTitle": "Compliance & Security Shields",
       "badges": [
         {
-          "title": "GDPR Verified",
-          "desc": "Authorized data processing workflows."
+          "title": "सुरक्षा-प्रथम इंजीनियरिंग",
+          "desc": "सुरक्षित कोडिंग सर्वोत्तम प्रथाओं के साथ निर्मित।"
         },
         {
-          "title": "HIPAA Compliant",
-          "desc": "Secure medical record handlings."
+          "title": "गोपनीयता-केंद्रित विकास",
+          "desc": "उपयोगकर्ता डेटा गोपनीयता का सम्मान करने के लिए डिज़ाइन किया गया।"
         },
         {
-          "title": "ISO 27001 Ready",
-          "desc": "Information safety protocols."
+          "title": "आधुनिक विकास मानक",
+          "desc": "स्वच्छ कोड और सख्त लिंटिंग नियमों के बाद।"
         },
         {
-          "title": "SOC 2 Type II",
-          "desc": "Verified database integrity."
+          "title": "उद्यम-तैयार वास्तुकला",
+          "desc": "उच्च उपलब्धता और मॉड्यूलर स्केलिंग सुनिश्चित करना।"
         }
       ]
     },
@@ -3625,7 +4340,25 @@ export const translations: Record<string, Record<string, any>> = {
       "problemLabel": "Operational Challenge",
       "solutionLabel": "Technical Resolve",
       "outcomeLabel": "Key Metric Achieved",
-      "deploymentLabel": "Production Stack Status"
+      "deploymentLabel": "Production Stack Status",
+      "port-1": {
+        "title": "Healthcare Vitals Sync Suite",
+        "problem": "पैकेट सिंक्रोनाइज़ेशन के दौरान सेंसर कनेक्टिविटी बंद होना।",
+        "solution": "पुनः प्रयास बफर कतार तर्क और ऑफ़लाइन पैकेट स्थानीय डेटाबेस सिंक लागू किया।",
+        "outcome": "99.9% टेलीमेट्री सिंक सफलता दर"
+      },
+      "port-2": {
+        "title": "FinTech Headless Checkout Gateway",
+        "problem": "अभियानों के दौरान विरासत शॉपिफाई सिस्टम पर उच्च लोडिंग समय।",
+        "solution": "स्ट्राइप चेकआउट एपीआई का उपयोग करके स्टोर को रिएक्ट हेडलेस साइट के रूप में पुनर्निर्मित किया।",
+        "outcome": "बाउंस दरों में 48% की कमी"
+      },
+      "port-3": {
+        "title": "Warehouse Smart Tracking Grid",
+        "problem": "घने धातु के वातावरण में भारी पैकेट हानि।",
+        "solution": "धातु अवरोधों को दरकिनار करने के लिए कस्टम ESP32 LoRa नोड्स तैनात किए गए।",
+        "outcome": "99.8% कोर पैकेट वितरण दर"
+      }
     },
     "reviews": {
       "submittedTitle": "समीक्षा सफलतापूर्वक सबमिट की गई",
@@ -3698,6 +4431,30 @@ export const translations: Record<string, Record<string, any>> = {
       ]
     },
     "industries": {
+      "0": {
+        "name": "फिनटेक और बैंकिंग",
+        "desc": "वित्तीय संस्थानों के लिए सुरक्षित, अनुपालन वेब अनुप्रयोग, कस्टम एपीआई एकीकरण और मजबूत भुगतान गेटवे।"
+      },
+      "1": {
+        "name": "स्वास्थ्य सेवा और जीवन विज्ञान",
+        "desc": "स्वास्थ्य-अनुकूल क्लाइंट पोर्टल, क्रॉस-प्लेटफ़ॉर्म मोबाइल ट्रैकर और एआई-सक्षम दस्तावेज़ पार्सिंग।"
+      },
+      "2": {
+        "name": "ई-कॉमर्स और रिटेल",
+        "desc": "हेडलेस ई-कॉमर्स स्टोर, वूकॉमर्स सेटअप, उच्च-रूपांतरण लैंडिंग पृष्ठ और स्ट्राइप चेकआउट सिस्टम।"
+      },
+      "3": {
+        "name": "रसद और आपूर्ति श्रृंखला",
+        "desc": "वास्तविक समय जीपीएस ट्रैकिंग गेटवे, आईओटी सेंसर बोर्ड और मार्ग अनुकूलन एआई एजेंट प्लेटफॉर्म।"
+      },
+      "4": {
+        "name": "रियल एस्टेट मार्केटिंग",
+        "desc": "विजुअल एचडीआर ब्लेंडिंग, डे-टू-डस्क स्काई रिप्लेसमेंट, वर्चुअल स्टेजिंग और फ्लोर प्लान चित्र।"
+      },
+      "5": {
+        "name": "एडटेक और लर्निंग प्लेटफॉर्म",
+        "desc": "इंटरैक्टिव डैशबोर्ड, कॉर्पोरेट लर्निंग पोर्टल, कस्टम एलएमएस सेटअप और स्वचालित प्रगति विश्लेषण।"
+      },
       "badge": "Target Markets Focus",
       "titlePart1": "Tailored Software for",
       "titlePart2": "Critical Industries",
@@ -3759,22 +4516,68 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "services": {
       "software-development": {
-        "title": "सॉफ्टवेयर विकास"
+        "title": "सॉफ़्टवेयर विकास",
+        "desc": "उच्च प्रदर्शन वाले उद्यम सॉफ़्टवेयर और स्केलेबल सास उत्पाद।"
       },
       "web-development": {
-        "title": "वेब विकास"
+        "title": "वेब विकास",
+        "desc": "तेज़ गति और वृद्धि के लिए निर्मित उच्च प्रदर्शन वाले वेब अनुप्रयोग।"
       },
       "mobile-development": {
-        "title": "मोबाइल ऐप विकास"
+        "title": "मोबाइल ऐप विकास",
+        "desc": "प्रीमियम नेटिव और क्रॉस-प्लेटफ़ॉर्म मोबाइल ऐप्स।"
       },
       "ai-solutions": {
-        "title": "एआई समाधान"
+        "title": "एआई समाधान",
+        "desc": "एलएलएम ट्यूनिंग, वेक्टर खोज, आरएजी पाइपलाइन और एआई एजेंट।"
       },
       "cloud-devops": {
-        "title": "क्लाउड और डेवऑप्स"
+        "title": "क्लाउड और डेवऑप्स",
+        "desc": "कुबेरनेट्स संचालन और सीआई/सीडी पाइपलाइनों का स्वचालन।"
       },
       "real-estate-creative": {
-        "title": "रियल एस्टेट क्रिएटिव"
+        "title": "रियल एस्टेट क्रिएटिव",
+        "desc": "3डी संपत्ति प्रदर्शन, वर्चुअल स्टेजिंग और फ्लोर प्लान चित्र।"
+      },
+      "enterprise-development": {
+        "title": "उद्यम विकास",
+        "desc": "मांग पर निर्मित उच्च प्रदर्शन वाले मुख्य व्यावसायिक अनुप्रयोग।"
+      },
+      "saas-development": {
+        "title": "सास (SaaS) विकास",
+        "desc": "बहु-किराया सास उत्पादों का निर्माण, परिनियोजन और स्केलिंग।"
+      },
+      "flutter-development": {
+        "title": "फ्लटर विकास",
+        "desc": "फ्लटर फ्रेमवर्क के साथ तैयार क्रॉस-प्लेटफ़ॉर्म मोबाइल ऐप्स।"
+      },
+      "react-development": {
+        "title": "रिएक्ट विकास",
+        "desc": "रिएक्ट और नेक्स्ट.जेएस पर आधारित गतिशील फ्रंट-एंड विकास।"
+      },
+      "wordpress-development": {
+        "title": "वर्डप्रेस विकास",
+        "desc": "अनुकूलित वर्डप्रेस थीम, वूकॉमर्स और हेडलेस सेटअप।"
+      },
+      "php-development": {
+        "title": "पीएचपी विकास",
+        "desc": "लारवेल और पीएचपी का उपयोग करके निर्मित अनुकूलित बैक-एंड सिस्टम।"
+      },
+      "dotnet-development": {
+        "title": ".नेट (.NET) विकास",
+        "desc": "सी# .नेट कोर पर आधारित सुरक्षित बैक-एंड माइक्रोसर्विसेज।"
+      },
+      "ui-ux-design": {
+        "title": "यूआई/यूएक्स डिजाइन",
+        "desc": "उपयोगकर्ता अनुसंधान, वायरफ़्रेमिंग और फिग्मा प्रोटोटाइप।"
+      },
+      "seo-marketing": {
+        "title": "एसईओ अनुकूलन",
+        "desc": "वेबसाइट ट्रैफ़िक और खोजशब्दों की रैंकिंग में वृद्धि करना।"
+      },
+      "iot-embedded": {
+        "title": "आईओटी और एम्बेडेड",
+        "desc": "ईएसपी32 फ़र्मवेयर, सर्किट (पीसीबी) डिज़ाइन और सेंसर एकीकरण।"
       }
     }
   }

@@ -99,7 +99,7 @@ function ContactContentInner() {
   }
 
   return (
-    <div className="relative min-h-screen bg-white text-slate-900 py-24 px-4 sm:px-6 lg:px-8 text-left select-none bg-dot-pattern">
+    <div className="relative min-h-screen bg-white text-slate-900 py-24 px-4 sm:px-6 lg:px-8 text-left select-none bg-dot-pattern noise-bg">
       
       {/* Glow shapes */}
       <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/8 rounded-full blur-[120px] pointer-events-none" />
@@ -141,40 +141,41 @@ function ContactContentInner() {
 
             {/* Quick Cards */}
             <div className="space-y-4">
-              <div className="flex gap-4 p-5 bg-white border border-slate-200/80 rounded-2xl shadow-sm transition-all duration-300">
+              <div className="flex gap-4 p-5 bg-white border border-slate-200/80 rounded-3xl shadow-sm glass-card-premium relative overflow-hidden group">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-indigo-600" />
                 <div className="p-3 bg-blue-50 border border-blue-100 text-blue-600 rounded-xl shrink-0 h-fit">
                   <MapPin size={20} />
                 </div>
                 <div>
                   <h4 className="text-sm font-bold font-display text-slate-900">{t("contact.details.0.title" as any)}</h4>
                   <p className="text-slate-500 text-xs mt-1 leading-relaxed">
-                    Perundurai Road, Perundurai, <br />
-                    Erode, Tamil Nadu - 638052, India
+                    {t("contact.details.0.desc" as any)}
                   </p>
                 </div>
               </div>
 
-              <div className="flex gap-4 p-5 bg-white border border-slate-200/80 rounded-2xl shadow-sm transition-all duration-300">
+              <div className="flex gap-4 p-5 bg-white border border-slate-200/80 rounded-3xl shadow-sm glass-card-premium relative overflow-hidden group">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 to-purple-600" />
                 <div className="p-3 bg-purple-50 border border-purple-100 text-purple-600 rounded-xl shrink-0 h-fit">
                   <Phone size={20} />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold font-display text-slate-900">{t("contact.details.1.title" as any)}</h4>
-                  <a href="tel:+919345518760" className="text-slate-600 text-xs mt-1 hover:text-blue-600 transition-colors block font-semibold">
-                    +91 93455 18760
+                  <h4 className="text-sm font-bold font-display text-slate-900">{t("contact.details.3.title" as any)}</h4>
+                  <a href="tel:+919345518760" className="text-slate-655 text-xs mt-1 hover:text-blue-600 transition-colors block font-semibold">
+                    {t("contact.details.3.desc" as any)}
                   </a>
-                  <p className="text-[10px] text-slate-400 mt-0.5">{t("contact.details.1.desc" as any)}</p>
                 </div>
               </div>
 
-              <div className="flex gap-4 p-5 bg-white border border-slate-200/80 rounded-2xl shadow-sm transition-all duration-300">
+              <div className="flex gap-4 p-5 bg-white border border-slate-200/80 rounded-3xl shadow-sm glass-card-premium relative overflow-hidden group">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 to-pink-500" />
                 <div className="p-3 bg-emerald-50 border border-emerald-100 text-emerald-600 rounded-xl shrink-0 h-fit">
                   <Mail size={20} />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold font-display text-slate-900">{t("contact.details.2.title" as any)}</h4>
-                  <a href="mailto:info@skillforgetechnology.app" className="text-slate-600 text-xs mt-1 hover:text-blue-600 transition-colors block break-all font-semibold">
-                    info@skillforgetechnology.app
+                  <h4 className="text-sm font-bold font-display text-slate-900">{t("contact.details.1.title" as any)}</h4>
+                  <a href="mailto:info@skillforgetechnology.app" className="text-slate-655 text-xs mt-1 hover:text-blue-600 transition-colors block break-all font-semibold">
+                    {t("contact.details.1.desc" as any)}
                   </a>
                 </div>
               </div>
@@ -184,10 +185,10 @@ function ContactContentInner() {
             <div className="bg-slate-50 border border-slate-200/60 rounded-2xl p-5 space-y-2">
               <span className="flex items-center gap-2 text-xs font-bold text-slate-700">
                 <Clock size={14} className="text-blue-600" />
-                <span>{t("contact.details.3.title" as any)}</span>
+                <span>{t("contact.details.2.title" as any)}</span>
               </span>
               <p className="text-[11px] text-slate-500 leading-relaxed">
-                {t("contact.details.3.desc" as any)}
+                {t("contact.details.2.desc" as any)}
               </p>
             </div>
           </motion.div>
