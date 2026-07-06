@@ -1579,6 +1579,8 @@ export function HomeContent() {
                     <img
                       src="/gallery/real-estate-creative/twilight_after.jpg"
                       alt="Twilight Dusk Edited"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover pointer-events-none"
                     />
                     <div className="absolute bottom-3 right-3 bg-slate-900/80 text-white font-bold text-[8px] uppercase tracking-wider px-2 py-0.5 rounded">
@@ -1594,6 +1596,8 @@ export function HomeContent() {
                     <img
                       src="/gallery/real-estate-creative/twilight_before.jpg"
                       alt="Daylight Camera Raw"
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover pointer-events-none"
                     />
                     <div className="absolute bottom-3 left-3 bg-red-600/80 text-white font-bold text-[8px] uppercase tracking-wider px-2 py-0.5 rounded">

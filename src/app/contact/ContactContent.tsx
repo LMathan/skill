@@ -235,8 +235,9 @@ function ContactContentInner() {
                     ) : (
                       <form onSubmit={handleInquirySubmit} className="space-y-4">
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formName" as any)}</label>
+                          <label htmlFor="inq-name-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formName" as any)}</label>
                           <Input
+                            id="inq-name-input"
                             required
                             type="text"
                             placeholder={t("contact.formNamePlaceholder" as any)}
@@ -248,8 +249,9 @@ function ContactContentInner() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formEmail" as any)}</label>
+                            <label htmlFor="inq-email-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formEmail" as any)}</label>
                             <Input
+                              id="inq-email-input"
                               required
                               type="email"
                               placeholder={t("contact.formEmailPlaceholder" as any)}
@@ -259,8 +261,9 @@ function ContactContentInner() {
                             />
                           </div>
                           <div>
-                            <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formPhone" as any)}</label>
+                            <label htmlFor="inq-phone-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formPhone" as any)}</label>
                             <Input
+                              id="inq-phone-input"
                               required
                               type="tel"
                               placeholder={t("contact.formPhonePlaceholder" as any)}
@@ -272,8 +275,9 @@ function ContactContentInner() {
                         </div>
 
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formScope" as any)}</label>
+                          <label htmlFor="inq-scope-select" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formScope" as any)}</label>
                           <select
+                            id="inq-scope-select"
                             value={inqSubject}
                             onChange={(e) => setInqSubject(e.target.value)}
                             className="w-full bg-white border border-slate-200 text-slate-700 rounded-xl p-2.5 text-xs focus:outline-none focus:border-blue-650 transition-colors"
@@ -289,8 +293,9 @@ function ContactContentInner() {
                         </div>
 
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formMessage" as any)}</label>
+                          <label htmlFor="inq-message-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formMessage" as any)}</label>
                           <textarea
+                            id="inq-message-input"
                             required
                             rows={4}
                             placeholder={t("contact.formMessagePlaceholder" as any)}
@@ -340,8 +345,9 @@ function ContactContentInner() {
                     ) : (
                       <form onSubmit={handleTestimonialSubmit} className="space-y-4">
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formName" as any)}</label>
+                          <label htmlFor="test-name-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formName" as any)}</label>
                           <Input
+                            id="test-name-input"
                             required
                             type="text"
                             placeholder={t("reviews.formName" as any)}
@@ -352,8 +358,9 @@ function ContactContentInner() {
                         </div>
 
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formProject" as any)}</label>
+                          <label htmlFor="test-project-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formProject" as any)}</label>
                           <Input
+                            id="test-project-input"
                             required
                             type="text"
                             placeholder={t("reviews.formProjectPlaceholder" as any)}
@@ -364,7 +371,7 @@ function ContactContentInner() {
                         </div>
 
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formRating" as any)}</label>
+                          <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formRating" as any)}</span>
                           <div className="flex items-center gap-1.5 mt-1">
                             {[1, 2, 3, 4, 5].map((star) => (
                               <button
@@ -372,6 +379,7 @@ function ContactContentInner() {
                                 type="button"
                                 onClick={() => setTestRating(star)}
                                 className="focus:outline-none cursor-pointer"
+                                aria-label={`Rate ${star} Stars`}
                               >
                                 <Star
                                   size={22}
@@ -387,8 +395,9 @@ function ContactContentInner() {
                         </div>
 
                         <div>
-                          <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formMessage" as any)}</label>
+                          <label htmlFor="test-feedback-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formMessage" as any)}</label>
                           <textarea
+                            id="test-feedback-input"
                             required
                             rows={4}
                             placeholder={t("reviews.formMessagePlaceholder" as any)}
