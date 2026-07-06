@@ -40,7 +40,7 @@ export default function AboutContent() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="relative bg-transparent pt-24 text-left select-none bg-dot-pattern noise-bg"
     >
-      
+
       {/* Background colorful blurred blobs */}
       <div className="absolute top-10 right-10 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" />
       <div className="absolute top-1/3 left-10 w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -111,7 +111,7 @@ export default function AboutContent() {
       <section className="bg-slate-50/50 border-y border-slate-200/40 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             <div className="lg:col-span-6 space-y-6">
               <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block">{t("about.techBadge" as any)}</span>
               <h2 className="text-3xl font-bold tracking-tight font-display text-slate-900">
