@@ -529,5 +529,95 @@ export const galleryData: GalleryImage[] = [
       "Kubernetes cloud cluster pod tracking warning on memory leaks.",
       "Automated GitHub Actions workflow runners building static page assets."
     ]
+  },
+  {
+    projectTitle: "Aurelia Dental Clinic Patient Hub",
+    src: "/gallery/web-development/dentist-clinic-prototype.png",
+    alt: "Aurelia Dental Clinic Patient Hub designed by SkillForge Technology Erode showcasing digital scheduling calendar widgets, treatment pages, and patient reviews",
+    category: "Software Stacks",
+    technologies: ["Next.js", "TypeScript", "React Calendar", "Tailwind CSS", "Framer Motion"],
+    department: "Creative Web Development / Dental clinic",
+    shortDesc: "High-conversion modern clinic landing page with integrated consultation schedules.",
+    relatedService: "/services/web-development",
+    features: [
+      "Interactive calendar consultation schedule selecting dates and hour slots.",
+      "Soft sage green and pearl gold premium palette offering a calming look.",
+      "Responsive components adapting details perfectly for mobile viewing sizes."
+    ]
+  },
+  {
+    projectTitle: "Vertex Roofing Contractor Estimate Hub",
+    src: "/gallery/web-development/roofing-contractor-prototype.png",
+    alt: "Vertex Roofing Contractor Estimate Hub built by SkillForge Technology Erode showing bold slate design, instant quote selector, and project cards",
+    category: "Software Stacks",
+    technologies: ["Next.js", "React Form", "Tailwind CSS", "Lucide Icons", "Estimate Engine"],
+    department: "Creative Web Development / Construction",
+    shortDesc: "Bold contractor landing page integrating an automated instant estimation form.",
+    relatedService: "/services/web-development",
+    features: [
+      "Multi-step estimate bidding form collecting roof sizes and materials choices.",
+      "Slate and warm amber contrast highlights optimized for high lead conversions.",
+      "Optimized image loading showcasing high-resolution project grids quickly."
+    ]
+  },
+  {
+    projectTitle: "AquaFlow Commercial Plumbing Dispatcher",
+    src: "/gallery/web-development/plumbing-services-prototype.png",
+    alt: "AquaFlow Commercial Plumbing Dispatcher designed by SkillForge Technology Erode showcasing emergency service scheduler and dispatcher modules",
+    category: "Software Stacks",
+    technologies: ["React", "Tailwind CSS", "Lucide Icons", "Node.js", "Real-Time DB"],
+    department: "Creative Web Development / Maintenance",
+    shortDesc: "Sleek plumbing service dispatch page featuring real-time schedule grids.",
+    relatedService: "/services/web-development",
+    features: [
+      "High-contrast 24/7 hotline call-out section prioritizing emergency support.",
+      "Dynamic booking date table with options selectors updating dispatch systems.",
+      "Clean navy and copper corporate theme tailored for building client trust."
+    ]
+  },
+  {
+    projectTitle: "Apex Law Firm Legal Consultation Suites",
+    src: "/gallery/web-development/law-firm-prototype.png",
+    alt: "Apex Law Firm Legal Consultation Suites designed by SkillForge Technology Erode showcasing elite office study background, booking sidebar, and practice boxes",
+    category: "Software Stacks",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Google Fonts"],
+    department: "Creative Web Development / Professional Services",
+    shortDesc: "Prestigious legal service website showcasing lawyer directory and meeting bookings.",
+    relatedService: "/services/web-development",
+    features: [
+      "Secure legal booking sidebar scheduling meetings with target attorneys.",
+      "Serif typography and royal navy theme conveying authority and prestige.",
+      "Fully-accessible practice area cards built to meet WCAG design guidelines."
+    ]
+  },
+  {
+    projectTitle: "Crema Roast WordPress WooCommerce Storefront",
+    src: "/gallery/wordpress-development/wordpress-coffee-woocommerce.png",
+    alt: "Crema Roast WordPress WooCommerce Storefront developed by SkillForge Technology Erode showing espresso brown layouts, gourmet coffee bag grids, and subscription forms",
+    category: "Software Stacks",
+    technologies: ["WordPress", "WooCommerce", "PHP", "Tailwind CSS", "Stripe API"],
+    department: "WordPress E-Commerce / CMS",
+    shortDesc: "Artisanal coffee bean online storefront featuring warm custom subscription billing flows.",
+    relatedService: "/services/wordpress-development",
+    features: [
+      "Custom WooCommerce subscription options integrating periodic coffee checkouts.",
+      "Warm espresso theme with elegant product catalog hover card interactions.",
+      "Database schema query optimisations speeding up WordPress checkout sequences."
+    ]
+  },
+  {
+    projectTitle: "Horizon Realty Premium Property Catalog",
+    src: "/gallery/wordpress-development/wordpress-real-estate.png",
+    alt: "Horizon Realty Premium Property Catalog developed by SkillForge Technology Erode showing clean light layout, property listings grid, and search filters",
+    category: "Software Stacks",
+    technologies: ["WordPress", "PHP", "ACF Pro", "MySQL", "Tailwind CSS", "Search Filter"],
+    department: "WordPress E-Commerce / CMS",
+    shortDesc: "Clean property listing portal featuring search filters, pricing, and agent cards.",
+    relatedService: "/services/wordpress-development",
+    features: [
+      "ACF Pro custom fields rendering bedroom count, square footage, and prices.",
+      "Search panel filtering properties dynamically based on local category indexes.",
+      "Minimal light aesthetic utilizing luxury emerald accents driving user clicks."
+    ]
   }
 ];
