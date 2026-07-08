@@ -13,6 +13,9 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useLanguage } from "@/context/LanguageContext"
 import { Button } from "@/components/ui/button"
 import { agencyServices, agencyCaseStudies, agencyIndustries } from "@/data/agencyData"
+import InteractiveProjectShowcase from "@/components/InteractiveProjectShowcase"
+import PrototypeLabsShowroom from "@/components/PrototypeLabsShowroom"
+import AnimatedBackground from "@/components/AnimatedBackground"
 
 export function HomeContent() {
   const { t, locale, isRTL } = useLanguage()
@@ -36,81 +39,6 @@ export function HomeContent() {
     setHomeSliderPos(position)
   }
 
-  const ourWorkProjects = [
-    {
-      title: "SaaS Analytics Platform",
-      description: "A comprehensive analytics dashboard for tracking business performance in real-time.",
-      technologies: ["React", "Node.js", "MongoDB", "AWS"],
-      image: "/gallery/software-development/saas_dashboard_mockup.png",
-      icon: Cpu,
-      iconBg: "bg-blue-50/80",
-      iconColor: "text-blue-600"
-    },
-    {
-      title: "Mobile Banking App",
-      description: "Secure, fast, and modern banking experience designed for iOS and Android.",
-      technologies: ["Flutter", "Firebase", "Cart", "Stripe"],
-      image: "/gallery/mobile-development/mobile_app_mockup.png",
-      icon: Smartphone,
-      iconBg: "bg-purple-50/80",
-      iconColor: "text-purple-600"
-    },
-    {
-      title: "E-Commerce Platform",
-      description: "Full-featured e-commerce solution with modern UI, payment integration & admin panel.",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
-      image: "/gallery/wordpress-development/woocommerce-storefront.jpeg",
-      icon: Globe,
-      iconBg: "bg-teal-50/80",
-      iconColor: "text-teal-600"
-    },
-    {
-      title: "Healthcare Management System",
-      description: "A smart healthcare platform to manage patients, appointments, and clinical records.",
-      technologies: ["React", "Laravel", "MySQL", "Chart.js"],
-      image: "/gallery/enterprise-development/enterprise_erp_mockup.png",
-      icon: Activity,
-      iconBg: "bg-emerald-50/80",
-      iconColor: "text-emerald-600"
-    },
-    {
-      title: "AI Chat Assistant",
-      description: "Intelligent AI assistant with natural conversations and document understanding.",
-      technologies: ["Python", "OpenAI", "LangChain", "Pinecone"],
-      image: "/gallery/ai-solutions/ai_agent_mockup.jpeg",
-      icon: Brain,
-      iconBg: "bg-pink-50/80",
-      iconColor: "text-pink-600"
-    },
-    {
-      title: "Real Estate Platform",
-      description: "Property listing platform with advanced search, virtual tours & agent management.",
-      technologies: ["Next.js", "Prisma", "PostgreSQL", "Mapbox"],
-      image: "/gallery/real-estate-creative/real_estate_mockup.png",
-      icon: Home,
-      iconBg: "bg-blue-50/80",
-      iconColor: "text-blue-600"
-    },
-    {
-      title: "IoT Monitoring Dashboard",
-      description: "Real-time monitoring dashboard for IoT devices and industrial sensors.",
-      technologies: ["Vue.js", "Node.js", "InfluxDB", "WebSocket"],
-      image: "/gallery/iot/quadcopter-drone-uav-outdoor-flight-test.jpeg",
-      icon: Cpu,
-      iconBg: "bg-purple-50/80",
-      iconColor: "text-purple-600"
-    },
-    {
-      title: "Project Management Tool",
-      description: "Collaborative project management tool with kanban board, tasks, and team workspace.",
-      technologies: ["React", "Express", "MongoDB", "Socket.io"],
-      image: "/gallery/ui-ux-design/design_board_mockup.png",
-      icon: Layout,
-      iconBg: "bg-indigo-50/80",
-      iconColor: "text-indigo-600"
-    }
-  ]
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   // Interactive capabilities simulator states
   const [activeServiceTab, setActiveServiceTab] = useState<string>("software-development")
@@ -220,143 +148,52 @@ export function HomeContent() {
     ]
   }
 
-  // General Enterprise FAQ Data
-  const enterpriseFaqs = [
-    {
-      q: "What services does SkillForge Technology provide?",
-      a: "SkillForge Technology provides end-to-end software engineering services including custom software development, web development, mobile application development, AI solutions, cloud engineering, DevOps, enterprise software, IoT development, embedded systems, UI/UX design, SEO, WordPress development, and digital transformation consulting."
-    },
-    {
-      q: "Which industries do you work with?",
-      a: "We work with startups, small and medium businesses, enterprises, healthcare organizations, manufacturing companies, real estate businesses, educational institutions, logistics providers, retail companies, fintech businesses, and technology startups across multiple countries."
-    },
-    {
-      q: "Do you work with international clients?",
-      a: "Yes. We work with clients worldwide including the United States, Canada, the United Kingdom, Europe, Australia, Singapore, the UAE, and other international markets. Our team follows global development standards and collaborates remotely using modern communication tools."
-    },
-    {
-      q: "What technologies do you specialize in?",
-      a: "Our engineering team works with React, Next.js, Flutter, ASP.NET Core, Laravel, Node.js, Python, Java, AWS, Azure, Docker, Kubernetes, PostgreSQL, MySQL, MongoDB, Firebase, AI frameworks, ESP32, Raspberry Pi, STM32, and many other modern technologies."
-    },
-    {
-      q: "Can you build custom software from scratch?",
-      a: "Yes. We design, develop, test, deploy, and maintain fully customized software solutions tailored to your business requirements. Every solution is scalable, secure, and built for long-term growth."
-    },
-    {
-      q: "How does your development process work?",
-      a: "Our process includes Discovery, Business Analysis, UI/UX Design, Architecture Planning, Development, Quality Assurance, Deployment, Performance Optimization, and Continuous Support."
-    },
-    {
-      q: "Do you provide ongoing maintenance and support?",
-      a: "Absolutely. We offer long-term maintenance, feature enhancements, cloud monitoring, performance optimization, security updates, bug fixes, and technical support after project delivery."
-    },
-    {
-      q: "How do we start working together?",
-      a: "Simply schedule a free discovery call through our website. We'll discuss your business goals, understand your requirements, recommend the right technology stack, and prepare a detailed project roadmap with timeline and cost estimates."
-    }
-  ]
 
   // Technology Stack Logotypes for scrolling marquee
   const techStackLogos = [
     {
       name: "React",
-      logo: (
-        <svg viewBox="-11.5 -10.23174 23 20.46348" className="w-8 h-8 text-[#61dafb] fill-none stroke-current" strokeWidth="1.2">
-          <circle cx="0" cy="0" r="2.05" fill="#61dafb" />
-          <g stroke="#61dafb">
-            <ellipse rx="11" ry="4.2" />
-            <ellipse rx="11" ry="4.2" transform="rotate(60)" />
-            <ellipse rx="11" ry="4.2" transform="rotate(120)" />
-          </g>
-        </svg>
-      )
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
     },
     {
       name: "Next.js",
-      logo: (
-        <svg viewBox="0 0 128 128" className="w-8 h-8 fill-current text-black">
-          <path d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64 64-28.7 64-64S99.3 0 64 0zm37.5 98.7L54.7 39.5v52.6H43.9V30.5h10.8l40.4 51.5V30.5h10.8v68.2h-4.4z" />
-        </svg>
-      )
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
     },
     {
       name: "TypeScript",
-      logo: (
-        <svg viewBox="0 0 128 128" className="w-8 h-8 fill-[#3178c6] rounded-md overflow-hidden">
-          <rect width="128" height="128" rx="16" />
-          <path d="M107.5 91.5c-1.3 2.5-3.5 4.5-6.5 5.9-3 1.4-6.6 2.1-10.7 2.1-5.2 0-9.6-1.2-13.1-3.6-3.5-2.4-5.8-6-7-10.6l10.5-3c.8 2.8 2.2 4.9 4.2 6.2 2 1.3 4.5 2 7.4 2 2.7 0 4.8-.6 6.3-1.7 1.5-1.1 2.2-2.7 2.2-4.7 0-1.7-.5-3.1-1.6-4.1-1.1-1-2.9-1.9-5.4-2.7L87 78c-4.4-1.5-7.8-3.7-10.1-6.7-2.3-3-3.4-6.9-3.4-11.5 0-4.6 1.3-8.5 3.9-11.6s6.3-5.2 11.2-6.4c4.9-1.2 9.5-.9 13.9.7 4.4 1.6 7.6 4.3 9.7 8l-8.9 4.9c-1.4-2.2-3.1-3.7-5.1-4.5-2-.8-4.2-1.2-6.6-1.2-2.5 0-4.5.5-5.9 1.5-1.4 1-2.1 2.4-2.1 4.1 0 1.4.5 2.5 1.5 3.4s2.6 1.7 4.9 2.5l7.1 2.4c5.1 1.7 8.9 4.1 11.3 7.3s3.6 7.3 3.6 12.3c0 5-1.3 9.4-4 13.1zM64.9 33.6H38.7V100H27.5V33.6H1.3V24.5h63.6v9.1z" fill="white" />
-        </svg>
-      )
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
     },
     {
       name: "Node.js",
-      logo: (
-        <svg viewBox="0 0 128 128" className="w-8 h-8 fill-[#339933]">
-          <path d="M64 12.3L20 37.7v50.6L64 113.7l44-25.4V37.7L64 12.3zm32.8 69.1l-32.8 18.9-32.8-18.9V46.6l32.8-18.9 32.8 18.9v34.8z" />
-        </svg>
-      )
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
     },
     {
       name: "Flutter",
-      logo: (
-        <svg viewBox="0 0 128 128" className="w-8 h-8 fill-[#02569B]">
-          <path d="M72 10l-45 45 15 15 45-45zM42 70l-15 15 30 30 15-15zM87 55L57 85l15 15 30-30z" />
-        </svg>
-      )
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
     },
     {
       name: "Python",
-      logo: (
-        <svg viewBox="0 0 128 128" className="w-8 h-8">
-          <path d="M64 4c-32.9 0-32 14.3-32 14.3h12.9s.4-4.3 6.3-4.3c5.9 0 10 3.8 10 9.7V34h12.9V22.6c0-11-8.9-18.6-20.1-18.6zm-10 10c-2.8 0-5 2.2-5 5s2.2 5 5 5 5-2.2 5-5-2.2-5-5-5z" fill="#3776AB" />
-          <path d="M64 124c32.9 0 32-14.3 32-14.3H83.1s-.4 4.3-6.3 4.3c-5.9 0-10-3.8-10-9.7V94H53.9v11.4c0 11 8.9 18.6 20.1 18.6zM74 110c2.8 0 5-2.2 5-5s-2.2-5-5-5-5 2.2-5 5 2.2 5 5 5z" fill="#FFE873" />
-        </svg>
-      )
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
     },
     {
       name: "Amazon Web Services",
-      logo: (
-        <svg viewBox="0 0 128 128" className="w-9 h-9 fill-[#FF9900]">
-          <path d="M83.2 78.4c-8.9 7.6-21.8 11.2-33.8 11.2-19.1 0-35.8-9-44.4-23.2l7.7-5.5c6.9 11.3 20.2 18.3 35.8 18.3 10.4 0 21.6-3.2 29-9.5l5.7 8.7zM91.8 63.8l7.5-6.9 8.2 16.6-18.6 1.8 7.5-6.9C81.1 57.3 63.8 52.8 47.9 52.8c-18.2 0-35.4 6.2-46.2 16.8l-7.2-7.8C6.9 50.1 26.5 43.2 47.9 43.2c18.5 0 37.5 5.5 51.4 12.8l-7.5 7.8z" />
-        </svg>
-      )
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
     },
     {
       name: "Docker",
-      logo: (
-        <svg viewBox="0 0 128 128" className="w-8 h-8 fill-[#2496ed]">
-          <path d="M125 61c-1.3-3.6-4.5-6.2-8.5-7-2.1-.4-4.5.3-6.5 1.7-.8.5-1.5 1.2-2.1 2v-4c0-3.3-2.7-6-6-6h-6c-3.3 0-6 2.7-6 6v4h-6c-3.3 0-6 2.7-6 6v6c0 3.3 2.7 6 6 6h24c3.3 0 6-2.7 6-6V61c0-1 .4-2 .8-2.6 1.3-1.6 3.6-2 5.2-1 .6.5 1.3 1.3 1.3 2.3 0 2.3 1 4.2 3.3 4.2h1c3.3 0 6-2.7 6-6V61zM93 35c0-1.7-1.3-3-3-3H75c-1.7 0-3 1.3-3 3v12c0 1.7 1.3 3 3 3h15c1.7 0 3-1.3 3-3V35zM61 35c0-1.7-1.3-3-3-3H43c-1.7 0-3 1.3-3 3v12c0 1.7 1.3 3 3 3h15c1.7 0 3-1.3 3-3V35zM61 11c0-1.7-1.3-3-3-3H43c-1.7 0-3 1.3-3 3v12c0 1.7 1.3 3 3 3h15c1.7 0 3-1.3 3-3V11zM93 11c0-1.7-1.3-3-3-3H75c-1.7 0-3 1.3-3 3v12c0 1.7 1.3 3 3 3h15c1.7 0 3-1.3 3-3V11zM29 35c0-1.7-1.3-3-3-3H11c-1.7 0-3 1.3-3 3v12c0 1.7 1.3 3 3 3h15c1.7 0 3-1.3 3-3V35zM29 11c0-1.7-1.3-3-3-3H11c-1.7 0-3 1.3-3 3v12c0 1.7 1.3 3 3 3h15c1.7 0 3-1.3 3-3V11z" />
-          <path d="M6 72c0-3.3 2.7-6 6-6h110c3.3 0 6 2.7 6 6v12c0 11-9 20-20 20H26C15 104 6 95 6 84V72z" />
-        </svg>
-      )
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
     },
     {
       name: "PostgreSQL",
-      logo: (
-        <svg viewBox="0 0 128 128" className="w-8 h-8 fill-[#336791]">
-          <path d="M119.5 59.5c0-23.5-19.1-42.5-42.5-42.5S34.5 36 34.5 59.5c0 10.3 3.6 19.8 9.7 27.2L32 108.5h84l-12.2-21.8c6.1-7.4 9.7-16.9 9.7-27.2zM77 87.5c-15.5 0-28-12.5-28-28s12.5-28 28-28 28 12.5 28 28-12.5 28-28 28z" />
-        </svg>
-      )
-    },
-    {
-      name: "Stripe",
-      logo: (
-        <svg viewBox="0 0 128 128" className="w-8 h-8 fill-[#635BFF]">
-          <path d="M112.5 52.8H88.6c0-7.8-5.3-11.2-12.5-11.2-7 0-11.2 3.1-11.2 7.7 0 13.5 24 10.8 24 28 0 12.2-9.6 18.7-22.9 18.7-12.4 0-23.7-5.9-23.7-18.7h23.8c0 7.8 5.7 11.2 12.7 11.2 6.6 0 11.2-3.1 11.2-7.7 0-14.3-24-11.2-24-28.2 0-12.2 9.6-18.6 22.9-18.6 12.4 0 23.6 5.8 23.6 18.8z" />
-        </svg>
-      )
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
     },
     {
       name: "Figma",
-      logo: (
-        <svg viewBox="0 0 128 180" className="w-6 h-8">
-          <path d="M32 45a32 32 0 0 1 32-32h32v64H64A32 32 0 0 1 32 45z" fill="#F24E1E" />
-          <path d="M32 109a32 32 0 0 1 32-32h32v64H64A32 32 0 0 1 32 109z" fill="#A259FF" />
-          <path d="M32 173a32 32 0 0 1 64 0v-64H64a32 32 0 0 1-32 32z" fill="#1ABCFE" />
-          <circle cx="96" cy="109" r="32" fill="#0ACF83" />
-          <path d="M96 13v64H64V13h32z" fill="#FF7262" />
-        </svg>
-      )
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
+    },
+    {
+      name: "Tailwind CSS",
+      src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"
     }
   ]
 
@@ -380,7 +217,7 @@ export function HomeContent() {
   }
 
   return (
-    <div className="relative bg-transparent pt-24 overflow-x-hidden selection:bg-blue-500/20 text-slate-800 bg-dot-pattern noise-bg" dir={isRTL ? "rtl" : "ltr"}>
+    <div className="relative bg-transparent pt-24 overflow-x-clip selection:bg-blue-500/20 text-slate-800 bg-dot-pattern noise-bg" dir={isRTL ? "rtl" : "ltr"}>
 
       {/* Animated Floating Gradient Blobs (Mesh overlay) */}
       <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-blue-500/10 to-indigo-500/10 rounded-full blur-[120px] pointer-events-none -z-10 ambient-blob-slow" />
@@ -674,7 +511,11 @@ export function HomeContent() {
           ].map((card, idx) => (
             <motion.div
               key={idx}
-              whileHover={{ y: -6 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: idx * 0.1 }}
+              whileHover={{ y: -6, transition: { duration: 0.2 } }}
               className="p-6 bg-white border border-slate-200 rounded-3xl glass-card-premium relative overflow-hidden group noise-bg flex flex-col justify-between"
             >
               <div className="space-y-4">
@@ -716,19 +557,32 @@ export function HomeContent() {
                 { step: "03", title: "Automated Linting & Code Verification", desc: "Executing Jest, Cypress, and TypeScript compiler validation loops." },
                 { step: "04", title: "Edge CD Deployments & SLA Auditing", desc: "Pushing production assets to global CDN nodes with sub-400ms latency budgets." }
               ].map((item, idx) => (
-                <div key={idx} className="flex gap-4 items-start p-4 bg-slate-50/50 border border-slate-100 rounded-2xl">
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                  className="flex gap-4 items-start p-4 bg-slate-50/50 border border-slate-100 rounded-2xl hover:border-slate-350 hover:shadow-sm transition-all"
+                >
                   <span className="text-xs font-extrabold text-blue-600 font-mono">{item.step}</span>
                   <div className="space-y-0.5">
                     <h4 className="font-extrabold text-xs text-slate-900 leading-tight">{item.title}</h4>
                     <p className="text-[10px] text-slate-400 leading-relaxed font-medium">{item.desc}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
 
           {/* Visual interactive diagram column */}
-          <div className="lg:col-span-7 relative flex justify-center py-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="lg:col-span-7 relative flex justify-center py-6"
+          >
             <div className="absolute -inset-4 bg-gradient-to-tr from-purple-500/5 to-blue-500/5 rounded-3xl blur-xl" />
             <div className="relative border border-slate-200/80 bg-white/95 rounded-3xl p-6 sm:p-8 shadow-2xl max-w-lg w-full glass-card-premium noise-bg text-[10px] font-mono leading-relaxed space-y-5">
               {/* Header */}
@@ -757,7 +611,7 @@ export function HomeContent() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -768,19 +622,24 @@ export function HomeContent() {
           <p className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest text-center mb-8">
             Core Technology Stack & Frameworks We Employ
           </p>
-          <div className="marquee-container">
-            <div className="marquee-content">
-              {techStackLogos.concat(techStackLogos).map((item, idx) => (
-                <div
-                  key={idx}
-                  className="w-16 h-16 border border-slate-200/60 bg-white/80 shadow-sm rounded-2xl flex items-center justify-center shrink-0 select-none glass-card-premium hover:border-blue-500/40 hover:scale-105 transition-all cursor-default"
-                  title={item.name}
-                >
-                  {item.logo}
-                </div>
-              ))}
+            <div className="marquee-container">
+              <div className="marquee-content">
+                {techStackLogos.concat(techStackLogos).concat(techStackLogos).map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="w-16 h-16 border border-slate-200/60 bg-white/80 shadow-sm rounded-2xl flex items-center justify-center shrink-0 select-none glass-card-premium hover:border-blue-500/40 hover:scale-105 transition-all cursor-default p-3.5"
+                    title={item.name}
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.name}
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
         </div>
       </section>
 
@@ -1566,7 +1425,13 @@ export function HomeContent() {
             </div>
 
             {/* Right Column: Interactive Before/After Visual Slider */}
-            <div className="lg:col-span-7 flex flex-col justify-center items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-7 flex flex-col justify-center items-center"
+            >
               <div className="w-full max-w-xl bg-white border border-slate-200 p-3 rounded-3xl shadow-xl relative group">
                 <div
                   ref={homeSliderRef}
@@ -1581,6 +1446,8 @@ export function HomeContent() {
                       alt="Twilight Dusk Edited"
                       loading="lazy"
                       decoding="async"
+                      width={600}
+                      height={400}
                       className="w-full h-full object-cover pointer-events-none"
                     />
                     <div className="absolute bottom-3 right-3 bg-slate-900/80 text-white font-bold text-[8px] uppercase tracking-wider px-2 py-0.5 rounded">
@@ -1598,6 +1465,8 @@ export function HomeContent() {
                       alt="Daylight Camera Raw"
                       loading="lazy"
                       decoding="async"
+                      width={600}
+                      height={400}
                       className="w-full h-full object-cover pointer-events-none"
                     />
                     <div className="absolute bottom-3 left-3 bg-red-600/80 text-white font-bold text-[8px] uppercase tracking-wider px-2 py-0.5 rounded">
@@ -1622,7 +1491,7 @@ export function HomeContent() {
                   Drag slider horizontally to see daytime-to-twilight transformation quality
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
         </div>
@@ -1807,181 +1676,76 @@ export function HomeContent() {
             </p>
           </div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 font-sans">
-            {ourWorkProjects.map((project, idx) => {
-              const IconComponent = project.icon
-              return (
-                <div
-                  key={idx}
-                  className="bg-white/80 border border-slate-200/80 rounded-2xl overflow-hidden hover:border-blue-300/50 hover:shadow-lg shadow-sm transition-all flex flex-col justify-between group backdrop-blur-md"
-                >
-                  {/* Image container with floating card frame */}
-                  <div className="relative h-44 bg-gradient-to-br from-slate-50 via-slate-100/70 to-indigo-50/30 p-3.5 flex items-center justify-center border-b border-slate-150/40">
-                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-sm border border-slate-200/50 bg-white">
+          {/* Interactive showcase grid */}
+          <InteractiveProjectShowcase />
+
+          {/* Work Sample Redirection CTA Card */}
+          <div className="mt-16 flex justify-center">
+            <Link href="/gallery" className="group block w-full max-w-2xl cursor-pointer">
+              <div className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white/70 backdrop-blur-md p-6 sm:p-8 hover:border-blue-500/50 hover:shadow-xl transition-all duration-300 text-left flex flex-col sm:flex-row gap-6 items-center justify-between noise-bg">
+                {/* Left content details */}
+                <div className="space-y-3">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-blue-100 bg-blue-50/40 text-[9px] font-bold text-blue-600 uppercase tracking-wider">
+                    <Sparkles size={11} className="text-blue-600 animate-pulse" />
+                    <span>Design System Portfolio</span>
+                  </div>
+                  <h3 className="font-display font-extrabold text-lg sm:text-xl text-slate-900 leading-snug group-hover:text-blue-600 transition-colors">
+                    Explore 20+ Additional Layout Prototypes
+                  </h3>
+                  <p className="text-slate-500 text-[11px] font-medium leading-relaxed font-sans max-w-sm">
+                    View our full visual deck of custom SaaS templates, medical vital logs, law firm portals, and dental wireframes.
+                  </p>
+                </div>
+
+                {/* Right: Small overlapping mockup cards representing work samples */}
+                <div className="flex -space-x-4 items-center shrink-0">
+                  {[
+                    "/gallery/web-development/dentist-clinic-prototype.png",
+                    "/gallery/web-development/aura-wellness-sanctuary.png",
+                    "/gallery/web-development/luxe-skincare-cosmetics-store.png"
+                  ].map((img, idx) => (
+                    <div 
+                      key={idx} 
+                      className="w-16 h-16 rounded-xl border border-slate-200/60 bg-white shadow-md overflow-hidden relative transition-transform duration-500"
+                      style={{ transform: `rotate(${(idx - 1) * 8}deg) translateY(${idx * 2}px)` }}
+                    >
                       <Image
-                        src={project.image}
-                        alt={project.title}
+                        src={img}
+                        alt="Work sample preview"
                         fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
+                        sizes="64px"
+                        className="object-cover"
                       />
                     </div>
-                  </div>
-
-                  {/* Body Content */}
-                  <div className="p-5 flex-grow flex flex-col justify-between">
-                    <div>
-                      {/* Icon & Title */}
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${project.iconBg} ${project.iconColor}`}>
-                          <IconComponent size={16} />
-                        </div>
-                        <h3 className="font-bold text-slate-900 text-sm sm:text-base font-display">
-                          {project.title}
-                        </h3>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-xs text-slate-500 leading-relaxed mb-4">
-                        {project.description}
-                      </p>
-                    </div>
-
-                    {/* Tech chips & Action Button */}
-                    <div className="flex items-center justify-between border-t border-slate-100 pt-4 mt-auto">
-                      <div className="flex flex-wrap gap-1.5 max-w-[80%]">
-                        {project.technologies.map(tech => (
-                          <span
-                            key={tech}
-                            className="text-[9px] bg-slate-50 text-slate-600 border border-slate-100 px-2 py-0.5 rounded-md font-mono"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <Link href="/portfolio">
-                        <button
-                          className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:bg-blue-600 text-slate-400 hover:text-white hover:border-blue-600 transition-all hover:scale-105 cursor-pointer"
-                          aria-label={`View details of ${project.title}`}
-                        >
-                          <ArrowRight size={14} />
-                        </button>
-                      </Link>
-                    </div>
+                  ))}
+                  
+                  <div className="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-lg group-hover:bg-blue-600 transition-colors z-10 shrink-0 ml-4">
+                    <ArrowRight size={16} />
                   </div>
                 </div>
-              )
-            })}
+              </div>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Premium Enterprise FAQ Section */}
-      <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 select-none text-left">
-
-        {/* Background elements specific to the FAQ section */}
-        <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-indigo-500/[0.03] rounded-full blur-[100px] pointer-events-none -z-10" />
-        <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] bg-blue-500/[0.03] rounded-full blur-[100px] pointer-events-none -z-10" />
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-
-          {/* Left Column: Heading and Support Card */}
-          <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-28">
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200/80 bg-slate-50 text-[9px] font-extrabold text-slate-655 uppercase tracking-widest font-display">
-                <HelpCircle size={10} className="text-blue-600 animate-pulse" />
-                <span>{t("faq.badge")}</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-display text-slate-900 leading-tight">
-                {t("faq.title")}
-              </h2>
-              <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-sans">
-                {t("faq.description")}
-              </p>
-            </div>
-
-            {/* Premium Illustration Support Card */}
-            <div className="p-6 rounded-2xl border border-slate-200/80 bg-white/50 backdrop-blur-md glass-card relative overflow-hidden group shadow-lg shadow-slate-100/5">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
-
-              <div className="space-y-4 relative z-10">
-                <div className="w-10 h-10 rounded-xl bg-blue-50/80 border border-blue-100 flex items-center justify-center text-blue-600 shadow-inner">
-                  <MessageSquare size={18} />
-                </div>
-                <div className="space-y-1.5">
-                  <h4 className="font-bold text-sm text-slate-900 font-display">Still have questions?</h4>
-                  <p className="text-slate-500 text-xs leading-relaxed">
-                    Connect directly with our engineering architects to map your technical requirements and sprint scopes.
-                  </p>
-                </div>
-                <div className="flex gap-3 pt-2">
-                  <Link href="/contact" className="w-full sm:w-auto">
-                    <Button variant="gradient" size="sm" className="w-full text-[10px] font-bold py-2 cursor-pointer shadow-sm shadow-blue-500/10">
-                      Connect with Architects
-                    </Button>
-                  </Link>
-                  <Link href="/services" className="w-full sm:w-auto">
-                    <Button variant="outline" size="sm" className="w-full border-slate-200 hover:bg-slate-50 text-slate-700 bg-white text-[10px] font-bold py-2 cursor-pointer">
-                      Explore Services
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
+      {/* R&D Labs & Telemetry Simulator Showroom */}
+      <section className="bg-transparent py-16 text-left relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-mono">
+              R&D EXPERIMENTAL LABS
+            </span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-display text-slate-900 leading-tight">
+              Interactive <span className="text-gradient">Hardware Showroom.</span>
+            </h2>
+            <p className="text-slate-500 text-sm leading-relaxed max-w-2xl mx-auto">
+              Test and control our engineering prototypes in real-time. Arm drone engines, cycle AI object scanners, trigger eye-blink signals, or simulate fluid flow rate leaks.
+            </p>
           </div>
 
-          {/* Right Column: Custom Animated Accordion */}
-          <div className="lg:col-span-7 space-y-4">
-            {enterpriseFaqs.map((faq, idx) => {
-              const isOpen = openFaq === idx;
-              return (
-                <div
-                  key={idx}
-                  className={`border rounded-2xl overflow-hidden backdrop-blur-sm transition-all duration-300 ${isOpen
-                    ? "border-blue-500 bg-blue-50/10 shadow-md shadow-blue-500/5"
-                    : "border-slate-200 bg-white/60 hover:bg-slate-50/60 hover:border-slate-350"
-                    }`}
-                >
-                  <button
-                    onClick={() => setOpenFaq(isOpen ? null : idx)}
-                    className="w-full flex items-center justify-between p-5 sm:p-6 text-left focus:outline-none transition-colors group cursor-pointer"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className={`w-1.5 h-1.5 rounded-full transition-colors ${isOpen ? "bg-blue-600" : "bg-slate-300"}`} />
-                      <span className={`text-xs sm:text-sm font-bold font-display transition-colors ${isOpen ? "text-slate-900" : "text-slate-800 group-hover:text-slate-900"}`}>
-                        {t(`faq.${idx}.q` as any) || faq.q}
-                      </span>
-                    </div>
-                    <div className={`p-1 rounded-full border transition-all duration-350 shrink-0 ${isOpen ? "bg-blue-600 text-white border-blue-600" : "bg-white text-slate-400 border-slate-200 group-hover:border-slate-350"}`}>
-                      <motion.div
-                        animate={{ rotate: isOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <ChevronDown size={14} />
-                      </motion.div>
-                    </div>
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2, ease: "easeInOut" }}
-                      >
-                        <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-slate-500 text-xs sm:text-sm leading-relaxed border-t border-slate-100/60 font-sans">
-                          {t(`faq.${idx}.a` as any) || faq.a}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </div>
-
+          <PrototypeLabsShowroom />
         </div>
       </section>
 
@@ -2037,8 +1801,9 @@ export function HomeContent() {
                 <button onClick={() => handleDockNavigation("software-development")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">SaaS</button>
                 <button onClick={() => handleDockNavigation("mobile-development")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">Mobile</button>
                 <button onClick={() => handleDockNavigation("ai-solutions")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">AI</button>
-                <button onClick={() => handleDockNavigation("cloud-devops")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">Cloud</button>
                 <button onClick={() => handleDockNavigation("iot-embedded")} className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold bg-transparent border-none p-0">IoT</button>
+                <span className="text-slate-200 select-none">|</span>
+                <Link href="/gallery" className="hover:text-blue-600 transition-colors uppercase tracking-wider cursor-pointer font-bold">Gallery</Link>
               </div>
             </div>
 

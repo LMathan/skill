@@ -2,18 +2,54 @@
 
 import React, { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
-import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Send, Star, CheckCircle2, Loader2, Sparkles, Clock, MessageSquare, Heart } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Mail, Phone, MapPin, Send, Star, CheckCircle2, Loader2, Sparkles, Clock, MessageSquare, Heart, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { useLanguage } from "@/context/LanguageContext"
 
+const enterpriseFaqs = [
+  {
+    q: "What services does SkillForge Technology provide?",
+    a: "SkillForge Technology provides end-to-end software engineering services including custom software development, web development, mobile application development, AI solutions, cloud engineering, DevOps, enterprise software, IoT development, embedded systems, UI/UX design, SEO, WordPress development, and digital transformation consulting."
+  },
+  {
+    q: "Which industries do you work with?",
+    a: "We work with startups, small and medium businesses, enterprises, healthcare organizations, manufacturing companies, real estate businesses, educational institutions, logistics providers, retail companies, fintech businesses, and technology startups across multiple countries."
+  },
+  {
+    q: "Do you work with international clients?",
+    a: "Yes. We work with clients worldwide including the United States, Canada, the United Kingdom, Europe, Australia, Singapore, the UAE, and other international markets. Our team follows global development standards and collaborates remotely using modern communication tools."
+  },
+  {
+    q: "What technologies do you specialize in?",
+    a: "Our engineering team works with React, Next.js, Flutter, ASP.NET Core, Laravel, Node.js, Python, Java, AWS, Azure, Docker, Kubernetes, PostgreSQL, MySQL, MongoDB, Firebase, AI frameworks, ESP32, Raspberry Pi, STM32, and many other modern technologies."
+  },
+  {
+    q: "Can you build custom software from scratch?",
+    a: "Yes. We design, develop, test, deploy, and maintain fully customized software solutions tailored to your business requirements. Every solution is scalable, secure, and built for long-term growth."
+  },
+  {
+    q: "How does your development process work?",
+    a: "Our process includes Discovery, Business Analysis, UI/UX Design, Architecture Planning, Development, Quality Assurance, Deployment, Performance Optimization, and Continuous Support."
+  },
+  {
+    q: "Do you provide ongoing maintenance and support?",
+    a: "Absolutely. We offer long-term maintenance, feature enhancements, cloud monitoring, performance optimization, security updates, bug fixes, and technical support after project delivery."
+  },
+  {
+    q: "How do we start working together?",
+    a: "Simply schedule a free discovery call through our website. We'll discuss your business goals, understand your requirements, recommend the right technology stack, and prepare a detailed project roadmap with timeline and cost estimates."
+  }
+]
+
 function ContactContentInner() {
   const { t } = useLanguage()
   const searchParams = useSearchParams()
   const [activeTab, setActiveTab] = useState("inquiry")
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   // Inquiry Form State
   const [inqName, setInqName] = useState("")
@@ -439,6 +475,77 @@ function ContactContentInner() {
           </motion.div>
 
         </div>
+
+        {/* FAQ Section */}
+        <div className="mt-20 border-t border-slate-200/80 pt-16">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-mono">
+              FREQUENTLY ASKED QUESTIONS
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-display text-slate-900 leading-tight mt-2">
+              Have Questions? We Have Answers.
+            </h2>
+            <p className="text-slate-500 text-sm mt-3">
+              Find quick answers to common questions about our development process, technologies, and project workflows.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto space-y-4">
+            {enterpriseFaqs.map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div
+                  key={idx}
+                  className={`border rounded-2xl overflow-hidden backdrop-blur-sm transition-all duration-300 ${
+                    isOpen
+                      ? "border-blue-500 bg-blue-50/10 shadow-md shadow-blue-500/5"
+                      : "border-slate-200 bg-white/60 hover:bg-slate-50/60 hover:border-slate-350"
+                  }`}
+                >
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full flex items-center justify-between p-5 sm:p-6 text-left focus:outline-none transition-colors group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className={`w-1.5 h-1.5 rounded-full transition-colors ${isOpen ? "bg-blue-600" : "bg-slate-300"}`} />
+                      <span className={`text-xs sm:text-sm font-bold font-display transition-colors ${isOpen ? "text-slate-900" : "text-slate-800 group-hover:text-slate-900"}`}>
+                        {faq.q}
+                      </span>
+                    </div>
+                    <div className={`p-1 rounded-full border transition-all duration-350 shrink-0 ${
+                      isOpen 
+                        ? "bg-blue-600 text-white border-blue-600" 
+                        : "bg-white text-slate-400 border-slate-200 group-hover:border-slate-350"
+                    }`}>
+                      <motion.div
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <ChevronDown size={14} />
+                      </motion.div>
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                      >
+                        <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-slate-500 text-xs sm:text-sm leading-relaxed border-t border-slate-100/60 font-sans">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </div>
   )

@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/context/LanguageContext"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import FloatingWidgets from "@/components/FloatingWidgets"
+import AnimatedBackground from "@/components/AnimatedBackground"
 import "./globals.css"
 
 const inter = Inter({
@@ -27,10 +28,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "SkillForge Technology | Premium Enterprise Software & AI solutions",
-    template: "%s | SkillForge Technology"
+    default: "SkillForge Tech | Enterprise Software & AI",
+    template: "%s | SkillForge Tech"
   },
-  description: "SkillForge Technology is an international software development and digital transformation agency building premium custom software, IoT systems, cloud platforms, and AI agents worldwide.",
+  description: "SkillForge Technology is a global software agency building custom enterprise software, cloud platforms, IoT systems, and AI solutions.",
   keywords: [
     "Enterprise Software Development",
     "Digital Transformation Company",
@@ -86,6 +87,9 @@ export default function RootLayout({
       <body className={`${inter.variable} ${outfit.variable} font-sans min-h-screen flex flex-col bg-white text-slate-900`}>
         <LanguageProvider>
           <ThemeProvider>
+            {/* Global Animated Background */}
+            <AnimatedBackground />
+
             {/* Header */}
             <Navbar />
 
