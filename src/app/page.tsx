@@ -3,8 +3,8 @@ import HomeContent from "./HomeContent"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Premium Enterprise Software & AI Solutions | SkillForge Technology",
-  description: "SkillForge Technology is an international software development and digital transformation agency. We engineer custom enterprise software, AI agents, cloud architectures, and IoT hardware prototypes for global markets.",
+  title: "Enterprise Software & AI Solutions | SkillForge Tech",
+  description: "SkillForge Technology is a global agency engineering custom enterprise software, AI agents, cloud systems, and IoT prototypes for global markets.",
   keywords: [
     "Enterprise Software Development",
     "Digital Transformation Agency",
@@ -28,13 +28,26 @@ export default function Page() {
       "description": "Premium Enterprise Software, AI Agents, Cloud & Industrial IoT Consultancy.",
       "publisher": {
         "@id": "https://skillforgetechnology.app/#organization"
-      }
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://skillforgetechnology.app/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/skillforgetech/",
+        "https://x.com/skillforge_tech",
+        "https://facebook.com/skillforgetechnology",
+        "https://youtube.com/@skillforgetechnology",
+        "https://www.instagram.com/skillforge_technology?igsh=MTN2MWd2Y2t0ZmpzMw=="
+      ]
     },
     {
       "@context": "https://schema.org",
       "@type": "Organization",
       "@id": "https://skillforgetechnology.app/#organization",
       "name": "SkillForge Technology",
+      "description": "Premium Enterprise Software, AI Agents, Cloud & Industrial IoT Consultancy.",
       "url": "https://skillforgetechnology.app",
       "logo": {
         "@type": "ImageObject",
@@ -47,7 +60,14 @@ export default function Page() {
         "contactType": "sales",
         "areaServed": ["IN", "US", "GB", "CA", "AU", "EU", "AE", "SG"],
         "availableLanguage": ["en", "de", "fr", "es", "it", "nl", "ja", "ta", "hi"]
-      }
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/skillforgetech/",
+        "https://x.com/skillforge_tech",
+        "https://facebook.com/skillforgetechnology",
+        "https://youtube.com/@skillforgetechnology",
+        "https://www.instagram.com/skillforge_technology?igsh=MTN2MWd2Y2t0ZmpzMw=="
+      ]
     },
     {
       "@context": "https://schema.org",

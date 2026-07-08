@@ -3,10 +3,10 @@
 import React, { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, ChevronDown, Globe, X, Send } from "lucide-react"
+import { Menu, ChevronDown, X, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
-import { useLanguage, Locale } from "@/context/LanguageContext"
+import { useLanguage } from "@/context/LanguageContext"
 import { agencyServices } from "@/data/agencyData"
 
 export function Navbar() {
@@ -15,11 +15,8 @@ export function Navbar() {
 
   const [scrolled, setScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
-  const [isLangOpen, setIsLangOpen] = useState(false)
   const [isServicesHovered, setIsServicesHovered] = useState(false)
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
-
-  const langRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,29 +26,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (langRef.current && !langRef.current.contains(event.target as Node)) {
-        setIsLangOpen(false)
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [])
-
-  const languages: { code: Locale; name: string }[] = [
-    { code: "en", name: "English" },
-    { code: "de", name: "Deutsch" },
-    { code: "fr", name: "Français" },
-    { code: "es", name: "Español" },
-    { code: "it", name: "Italiano" },
-    { code: "nl", name: "Nederlands" },
-    { code: "ar", name: "العربية" },
-    { code: "ja", name: "日本語" },
-    { code: "ta", name: "தமிழ்" },
-    { code: "hi", name: "हिन्दी" }
-  ]
-
   const navLinks = [
     { name: t("nav.home"), path: "/" },
     { name: t("nav.services"), path: "/services", hasSubmenu: true },
@@ -60,9 +34,6 @@ export function Navbar() {
     { name: t("nav.about"), path: "/about" },
     { name: t("nav.contact"), path: "/contact" }
   ]
-
-  const activeLangName = languages.find((l) => l.code === locale)?.name || "English"
-
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-350 ${scrolled ? "glass-nav py-2 shadow-sm" : "bg-transparent py-5"
@@ -77,6 +48,8 @@ export function Navbar() {
               <img
                 src="/logo.png"
                 alt="SkillForge Technology"
+                width={180}
+                height={60}
                 className={`transition-all duration-350 w-auto block ${scrolled ? "h-11" : "h-[60px]"}`}
               />
             </Link>
@@ -221,49 +194,8 @@ export function Navbar() {
               })}
             </div>
 
-            {/* Actions: Lang selector & Discuss Button */}
+            {/* Actions: Discuss Button */}
             <div className="flex items-center gap-5 border-l border-slate-200/80 pl-6">
-              {/* Language Selector */}
-              <div className="relative" ref={langRef}>
-                <button
-                  onClick={() => setIsLangOpen(!isLangOpen)}
-                  className="flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
-                  aria-label="Select Language"
-                >
-                  <Globe size={15} className="text-slate-400" />
-                  <span>{activeLangName}</span>
-                  <ChevronDown size={12} className={`transition-transform duration-200 ${isLangOpen ? "rotate-180" : ""}`} />
-                </button>
-
-                <AnimatePresence>
-                  {isLangOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.15 }}
-                      className={`absolute right-0 mt-2.5 w-44 bg-white border border-slate-100 rounded-xl shadow-lg py-2 z-50 overflow-hidden`}
-                    >
-                      <div className="grid grid-cols-1 max-h-60 overflow-y-auto">
-                        {languages.map((lang) => (
-                          <button
-                            key={lang.code}
-                            onClick={() => {
-                              setLocale(lang.code)
-                              setIsLangOpen(false)
-                            }}
-                            className={`w-full text-left px-4 py-2 text-xs font-semibold hover:bg-slate-50 transition-colors ${locale === lang.code ? "text-blue-600 bg-blue-50/40" : "text-slate-700"
-                              }`}
-                          >
-                            {lang.name}
-                          </button>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
               {/* CTA Discuss Project */}
               <Button 
                 onClick={() => window.dispatchEvent(new CustomEvent("open-book-call-modal"))}
@@ -277,41 +209,6 @@ export function Navbar() {
 
           {/* Mobile Controller Buttons */}
           <div className="lg:hidden flex items-center gap-3">
-            {/* Lang Button (direct toggle shortcut or simple display) */}
-            <div className="relative" ref={langRef}>
-              <button
-                onClick={() => setIsLangOpen(!isLangOpen)}
-                className="p-2 rounded-xl text-slate-600 hover:bg-slate-105 transition-all"
-                aria-label="Select Language"
-              >
-                <Globe size={18} />
-              </button>
-              <AnimatePresence>
-                {isLangOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    className="absolute right-0 mt-2 w-40 bg-white border border-slate-100 rounded-xl shadow-lg py-1.5 z-50 max-h-48 overflow-y-auto"
-                  >
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setLocale(lang.code)
-                          setIsLangOpen(false)
-                        }}
-                        className={`w-full text-left px-3 py-1.5 text-xs font-bold ${locale === lang.code ? "text-blue-650 bg-blue-50" : "text-slate-750"
-                          }`}
-                      >
-                        {lang.name}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
               className="p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
