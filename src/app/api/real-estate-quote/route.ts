@@ -106,7 +106,7 @@ export async function POST(request: Request) {
           </p>
           <p>If you have any questions or require custom specifications, feel free to reply to this email.</p>
           <div style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 0.8em; color: #718096; text-align: center;">
-            SkillForge Technology &bull; Erode, India
+            SkillForge Technology &bull; India
           </div>
         </div>
       `

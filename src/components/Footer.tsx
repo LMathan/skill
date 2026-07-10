@@ -76,7 +76,7 @@ export function Footer() {
               </a>
               <div className="flex items-start gap-2 text-xs text-slate-650">
                 <MapPin size={14} className="text-slate-400 mt-0.5 shrink-0" />
-                <span className="leading-tight">Perundurai, Erode, Tamil Nadu, India</span>
+                <span className="leading-tight">Perundurai, Tamil Nadu, India</span>
               </div>
             </div>
           </div>

@@ -37,14 +37,14 @@ export const translations: Record<string, Record<string, any>> = {
     "contact": {
       "loading": "Sending request...",
       "badge": "Connect with Architects",
-      "titlePart1": "Book Project Scope",
-      "titlePart2": "Consultation",
+      "titlePart1": "Book a Technical",
+      "titlePart2": "Discovery Call",
       "subtitle": "Discuss deployment stacks, database structures, and development budgets with our solutions design coordinators.",
       "detailsTitle": "Headquarters Operation Node",
       "details": {
         "0": {
           "title": "Perundurai R&D Hub",
-          "desc": "Erode, Tamil Nadu, India"
+          "desc": "Tamil Nadu, India"
         },
         "1": {
           "title": "Primary Contact Email",
@@ -62,8 +62,8 @@ export const translations: Record<string, Record<string, any>> = {
       "formSubtitle": "Submit your target features to receive a granular architecture quote and timeframe schedule within 24 hours.",
       "formTitle": "Submit Scope Inquiry",
       "tabs": {
-        "inquiry": "Request Project Scope",
-        "review": "Submit Project Review"
+        "inquiry": "Request Technical Scope",
+        "review": "Submit Client Feedback"
       },
       "successTitle": "Scope Logged Successfully",
       "successMsg": "Our lead solutions architect will draft wireframe proposals and connect via email.",
@@ -502,7 +502,7 @@ export const translations: Record<string, Record<string, any>> = {
       "details": {
         "0": {
           "title": "Perundurai R&D Hub",
-          "desc": "Erode, Tamil Nadu, India"
+          "desc": "Tamil Nadu, India"
         },
         "1": {
           "title": "Primary Contact Email",
@@ -960,7 +960,7 @@ export const translations: Record<string, Record<string, any>> = {
       "details": {
         "0": {
           "title": "Perundurai R&D Hub",
-          "desc": "Erode, Tamil Nadu, India"
+          "desc": "Tamil Nadu, India"
         },
         "1": {
           "title": "Primary Contact Email",
@@ -1418,7 +1418,7 @@ export const translations: Record<string, Record<string, any>> = {
       "details": {
         "0": {
           "title": "Perundurai R&D Hub",
-          "desc": "Erode, Tamil Nadu, India"
+          "desc": "Tamil Nadu, India"
         },
         "1": {
           "title": "Primary Contact Email",
@@ -1876,7 +1876,7 @@ export const translations: Record<string, Record<string, any>> = {
       "details": {
         "0": {
           "title": "Perundurai R&D Hub",
-          "desc": "Erode, Tamil Nadu, India"
+          "desc": "Tamil Nadu, India"
         },
         "1": {
           "title": "Primary Contact Email",
@@ -2334,7 +2334,7 @@ export const translations: Record<string, Record<string, any>> = {
       "details": {
         "0": {
           "title": "Perundurai R&D Hub",
-          "desc": "Erode, Tamil Nadu, India"
+          "desc": "Tamil Nadu, India"
         },
         "1": {
           "title": "Primary Contact Email",
@@ -2792,7 +2792,7 @@ export const translations: Record<string, Record<string, any>> = {
       "details": {
         "0": {
           "title": "Perundurai R&D Hub",
-          "desc": "Erode, Tamil Nadu, India"
+          "desc": "Tamil Nadu, India"
         },
         "1": {
           "title": "Primary Contact Email",
@@ -3250,7 +3250,7 @@ export const translations: Record<string, Record<string, any>> = {
       "details": {
         "0": {
           "title": "Perundurai R&D Hub",
-          "desc": "Erode, Tamil Nadu, India"
+          "desc": "Tamil Nadu, India"
         },
         "1": {
           "title": "Primary Contact Email",
@@ -3708,7 +3708,7 @@ export const translations: Record<string, Record<string, any>> = {
       "details": {
         "0": {
           "title": "Perundurai R&D Hub",
-          "desc": "Erode, Tamil Nadu, India"
+          "desc": "Tamil Nadu, India"
         },
         "1": {
           "title": "Primary Contact Email",
@@ -4166,7 +4166,7 @@ export const translations: Record<string, Record<string, any>> = {
       "details": {
         "0": {
           "title": "Perundurai R&D Hub",
-          "desc": "Erode, Tamil Nadu, India"
+          "desc": "Tamil Nadu, India"
         },
         "1": {
           "title": "Primary Contact Email",

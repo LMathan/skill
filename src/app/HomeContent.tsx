@@ -688,12 +688,12 @@ export function HomeContent() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10 font-sans">
               <div className="p-5 bg-white border border-slate-200/60 rounded-2xl shadow-sm space-y-1">
                 <span className="font-bold text-xs text-slate-900 block">{t("home.officeSoftware")}</span>
-                <span className="text-[10px] text-slate-500 block">Perundurai, Erode, India</span>
+                <span className="text-[10px] text-slate-500 block">Perundurai, Tamil Nadu, India</span>
                 <span className="text-[9px] text-slate-450 block pt-1">Custom SaaS product engineering & development</span>
               </div>
               <div className="p-5 bg-white border border-slate-200/60 rounded-2xl shadow-sm space-y-1">
                 <span className="font-bold text-xs text-slate-900 block">{t("home.officeIot")}</span>
-                <span className="text-[10px] text-slate-500 block">Perundurai, Erode, India</span>
+                <span className="text-[10px] text-slate-500 block">Perundurai, Tamil Nadu, India</span>
                 <span className="text-[9px] text-slate-450 block pt-1">Embedded hardware calibration & physical assembly</span>
               </div>
             </div>
@@ -1060,7 +1060,7 @@ export function HomeContent() {
                                 <div className="absolute top-10 right-4 w-2 h-2 bg-green-500 rounded-full border border-white" />
 
                                 <span className="bg-white/95 px-1.5 py-0.5 border border-slate-200 rounded shadow-sm w-fit leading-none relative z-10 font-mono text-[6px]">
-                                  {"Erode Hub → Perundurai Node"}
+                                  {"Cloud Hub → Edge Node"}
                                 </span>
                               </div>
                             </div>

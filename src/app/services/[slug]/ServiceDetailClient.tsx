@@ -1136,7 +1136,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
             { name: "Smart Agriculture Edge Gateway", desc: "Environmental sensor network gateway.", tech: "Raspberry Pi • FreeRTOS • BLE" }
           ],
           faqs: [
-            { q: "Do you build physical PCB prototypes?", a: "Yes, we design schematics, route layouts, construct test boards, and flash firmware in our Erode hardware lab." },
+            { q: "Do you build physical PCB prototypes?", a: "Yes, we design schematics, route layouts, construct test boards, and flash firmware in our hardware prototyping lab." },
             { q: "Can you optimize firmware for battery-powered use?", a: "Yes, we implement deep sleep states and clock tuning to maximize device battery lifespans." }
           ]
         }

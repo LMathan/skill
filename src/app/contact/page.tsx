@@ -3,8 +3,8 @@ import ContactContent from "./ContactContent"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Contact Our Solutions Architects | SkillForge Technology",
-  description: "Schedule a free 30-minute discovery call or submit your project scope to receive a transparent estimate. Connect with our architects at our Perundurai, Erode office in Tamil Nadu, India.",
+  title: "Contact Our Solutions Architects",
+  description: "Schedule a free 30-minute discovery call or submit your technical scope to receive a transparent estimate. Connect with our solutions architects at our Perundurai office in Tamil Nadu, India.",
   keywords: [
     "Contact Software Engineers",
     "Request Software Quote",

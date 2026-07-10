@@ -84,7 +84,7 @@ export async function POST(req: Request) {
         <p>We look forward to helping you forge your technological milestones.</p>
         <hr style="border: 0; border-top: 1px dashed #e2e8f0; margin: 24px 0;" />
         <p style="font-size: 11px; color: #64748b; text-align: center;">
-          This is an auto-response from SkillForge Technology. Erode, Tamil Nadu, India.
+          This is an auto-response from SkillForge Technology. Tamil Nadu, India.
         </p>
       </div>
     `

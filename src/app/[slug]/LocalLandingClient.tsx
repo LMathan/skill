@@ -360,7 +360,7 @@ export default function LocalLandingClient({ content, slug }: LocalLandingClient
             <BorderBeam duration={12} size={300} />
             <div className="text-center mb-8 space-y-2">
               <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-950 dark:text-white">Start Your Custom Project</h2>
-              <p className="text-slate-500 dark:text-slate-400 text-sm">Submit your project parameters and consult directly with our Erode lab engineers.</p>
+              <p className="text-slate-500 dark:text-slate-400 text-sm">Submit your project parameters and consult directly with our core lab engineers.</p>
             </div>
 
             {formStatus === "success" ? (

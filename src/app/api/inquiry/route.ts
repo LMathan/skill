@@ -119,8 +119,8 @@ export async function POST(request: Request) {
         
         <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 30px 0;" />
         <div style="text-align: center; color: #a0aec0; font-size: 12px;">
-          <p style="margin: 0 0 5px 0;"><strong>SkillForge Technology Center</strong></p>
-          <p style="margin: 0;">Perundurai, Erode, Tamil Nadu, India</p>
+          <p style="margin: 0 0 5px 0;"><strong>SkillForge Technology</strong></p>
+          <p style="margin: 0;">Perundurai, Tamil Nadu, India</p>
         </div>
       </div>
     `

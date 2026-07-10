@@ -229,7 +229,7 @@ export default function PrivacyContent() {
               <div className="p-5 bg-slate-50 border border-slate-200/60 rounded-xl space-y-1.5 font-mono text-[11px]">
                 <div className="flex justify-between border-b border-slate-100 pb-1.5">
                   <span className="text-slate-400 font-bold">Office:</span>
-                  <span className="text-slate-800 font-bold">SkillForge Technology Erode, India</span>
+                  <span className="text-slate-800 font-bold">SkillForge Technology, India</span>
                 </div>
                 <div className="flex justify-between border-b border-slate-100 pb-1.5">
                   <span className="text-slate-400 font-bold">Designated DPO:</span>
