@@ -21,7 +21,7 @@ export const translations: Record<string, Record<string, any>> = {
       "statsOperations": "Communication Standard",
       "badge": "Global Digital Transformation Partner",
       "title": "We Engineer Enterprise Software & Scalable AI Solutions",
-      "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
+      "subtitle": "SkillForge Technology is a global software engineering and digital transformation partner delivering premium digital solutions for startups, SMEs, and enterprises. We design and develop modern websites, enterprise web applications, AI-powered systems, customer portals, and business automation platforms that help organizations compete more effectively in today's digital marketplace.",
       "ctaPrimary": "Book Discovery Call",
       "ctaSecondary": "View Case Studies",
       "statsClients": "Client Partnerships",
@@ -95,7 +95,7 @@ export const translations: Record<string, Record<string, any>> = {
       "storyBadge": "Our Corporate Story",
       "titlePart1": "We engineer high-performance",
       "titlePart2": "digital systems globally",
-      "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
+      "subtitle": "SkillForge Technology is a global software engineering and digital transformation partner delivering premium digital solutions for startups, SMEs, and enterprises. We design and develop modern websites, enterprise web applications, AI-powered systems, customer portals, and business automation platforms that help organizations compete more effectively in today's digital marketplace.",
       "values": [
         {
           "title": "Global Capabilities",

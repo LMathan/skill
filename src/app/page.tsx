@@ -3,16 +3,17 @@ import HomeContent from "./HomeContent"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Enterprise Software & AI Solutions | SkillForge Tech",
-  description: "SkillForge Technology is a global agency engineering custom enterprise software, AI agents, cloud systems, and IoT prototypes for global markets.",
+  title: "Global Software Engineering & Digital Transformation | SkillForge Technology",
+  description: "SkillForge Technology is a global software engineering and digital transformation partner delivering premium websites, custom web applications, enterprise software, AI-powered solutions, and digital automation platforms.",
   keywords: [
+    "Software Engineering",
+    "Digital Transformation",
+    "Custom Web Applications",
     "Enterprise Software Development",
-    "Digital Transformation Agency",
-    "AI Agent Integrations",
-    "Custom IoT Prototyping",
-    "SaaS Product Engineering",
-    "Global Cloud Solutions",
-    "USA UK Europe Software Partner"
+    "AI-Powered Solutions",
+    "Business Automation Platforms",
+    "SaaS Development",
+    "SkillForge Technology"
   ],
   path: "/"
 })

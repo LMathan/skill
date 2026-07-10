@@ -28,18 +28,19 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "SkillForge Tech | Enterprise Software & AI",
-    template: "%s | SkillForge Tech"
+    default: "SkillForge Technology | Software Engineering & Digital Transformation",
+    template: "%s | SkillForge Technology"
   },
-  description: "SkillForge Technology is a global software agency building custom enterprise software, cloud platforms, IoT systems, and AI solutions.",
+  description: "SkillForge Technology is a global software engineering and digital transformation partner delivering premium digital solutions, custom websites, AI systems, and enterprise web applications.",
   keywords: [
+    "Software Engineering",
+    "Digital Transformation",
+    "Custom Web Applications",
     "Enterprise Software Development",
-    "Digital Transformation Company",
-    "SaaS Product Engineering",
-    "Custom AI Agent Development",
-    "Industrial IoT & Embedded Systems",
-    "Premium Web Development Agency",
-    "Global Software Consulting"
+    "AI-Powered Solutions",
+    "Business Automation Platforms",
+    "SaaS Development",
+    "SkillForge Technology"
   ],
   authors: [{ name: "SkillForge Technology" }],
   metadataBase: new URL("https://skillforgetechnology.app"),
@@ -54,8 +55,8 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "SkillForge Technology | Enterprise Software & AI",
-    description: "Premium software development, AI agent deployment, IoT engineering, and digital transformation services globally.",
+    title: "SkillForge Technology | Software Engineering & Digital Transformation",
+    description: "Premium software engineering, custom enterprise web applications, AI systems, and digital transformation services globally.",
     url: "https://skillforgetechnology.app",
     siteName: "SkillForge Technology",
     images: [
@@ -72,7 +73,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "SkillForge Technology | Premium Global Software Engineering",
-    description: "Enterprise software, cloud migrations, AI integrations, and industrial IoT solutions worldwide.",
+    description: "Global software engineering and digital transformation partner delivering custom websites, AI systems, and enterprise web applications.",
     images: ["/og-image.png"],
   }
 }

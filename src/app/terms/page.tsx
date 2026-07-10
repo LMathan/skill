@@ -8,10 +8,10 @@ export const metadata: Metadata = getSeoMetadata({
   description: "Review the general terms of service, engagement models, and scoping conditions when collaborating with SkillForge Technology.",
   keywords: [
     "SkillForge Terms of Service",
-    "Client Engagement Model Erode",
+    "Client Engagement Model",
     "Statement of Work SOW Scopes",
     "Software Development Clauses",
-    "Erode Legal Disputes"
+    "Corporate Legal Disputes"
   ],
   path: "/terms"
 })

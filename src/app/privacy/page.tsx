@@ -9,7 +9,7 @@ export const metadata: Metadata = getSeoMetadata({
   keywords: [
     "SkillForge Privacy Policy",
     "Data Protection Officer",
-    "GDPR CCPA Compliance Erode",
+    "GDPR CCPA Compliance",
     "Secure Software Engineering",
     "Consultancy Data Processing"
   ],
