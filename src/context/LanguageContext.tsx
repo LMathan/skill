@@ -34,10 +34,10 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
       if (current && current[k] !== undefined) {
         current = current[k]
       } else {
-        return key
+        return undefined as any
       }
     }
-    return typeof current === "string" ? current : key
+    return typeof current === "string" ? current : (undefined as any)
   }
 
   return (

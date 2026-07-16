@@ -68,7 +68,7 @@ const ourWorkProjects: Project[] = [
     description: "Prestigious legal service website showcasing lawyer directories, online case consultation planners, and dynamic client intake document managers.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     image: "/gallery/web-development/law-firm-prototype.png",
-    mobileImage: "/gallery/web-development/law-firm_mobile.png",
+    mobileImage: "/gallery/web-development/law-firm_mobile.jpeg",
     icon: ShieldAlert,
     iconBg: "bg-indigo-50",
     iconColor: "text-indigo-600",

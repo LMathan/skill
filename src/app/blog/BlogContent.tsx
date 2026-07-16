@@ -154,16 +154,10 @@ export default function BlogContent() {
                       </span>
                     </div>
                     <CardTitle className="text-lg font-bold font-display text-slate-900 group-hover:text-blue-650 transition-colors duration-300">
-                      {(() => {
-                        const translatedTitle = t(`blogArticles.${blog.id}.title` as any)
-                        return translatedTitle.startsWith("blogArticles.") ? blog.title : translatedTitle
-                      })()}
+                      {t(`blogArticles.${blog.id}.title` as any) || blog.title}
                     </CardTitle>
                     <CardDescription className="text-slate-500 mt-2 text-xs leading-relaxed">
-                      {(() => {
-                        const translatedSummary = t(`blogArticles.${blog.id}.summary` as any)
-                        return translatedSummary.startsWith("blogArticles.") ? blog.summary : translatedSummary
-                      })()}
+                      {t(`blogArticles.${blog.id}.summary` as any) || blog.summary}
                     </CardDescription>
                   </CardHeader>
 
