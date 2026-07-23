@@ -460,5 +460,67 @@
   animation: float-ecosystem-3 7s ease-in-out infinite;
 }
 
+/* Active Pulse Specific Premium Themes */
+.ap-light-theme {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+.ap-dot-grid {
+  background-size: 32px 32px;
+  background-image: radial-gradient(rgba(13, 148, 136, 0.07) 1.2px, transparent 1.2px);
+}
+
+.ap-glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 10px 30px -15px rgba(15, 23, 42, 0.05);
+}
+
+.ap-glass-card:hover {
+  border-color: rgba(13, 148, 136, 0.25);
+  box-shadow: 0 20px 40px -15px rgba(13, 148, 136, 0.1);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+@keyframes pulse-wave {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.ap-pulse-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: pulse-wave 15s linear infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+.ap-glow-teal {
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.15) 0%, transparent 70%);
+  animation: glow-pulse 8s infinite ease-in-out;
+}
+
+.ap-glow-indigo {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+  animation: glow-pulse 10s infinite ease-in-out alternate;
+}
+
+
 
 

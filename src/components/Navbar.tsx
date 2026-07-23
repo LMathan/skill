@@ -31,6 +31,7 @@ export function Navbar() {
     { name: t("nav.services"), path: "/services", hasSubmenu: true },
     { name: t("nav.reviews"), path: "/reviews" },
     { name: t("nav.blog"), path: "/blog" },
+    { name: "Products", path: "/products" },
     { name: t("nav.about"), path: "/about" },
     { name: t("nav.contact"), path: "/contact" }
   ]
