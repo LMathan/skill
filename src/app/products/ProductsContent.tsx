@@ -24,7 +24,15 @@ import {
   Maximize2
 } from "lucide-react"
 
-export default function ProductsContent() {
+interface ProductsContentProps {
+  apkFileName?: string
+  apkVersion?: string
+}
+
+export default function ProductsContent({
+  apkFileName = "ActivePulse-v1.2.0.apk",
+  apkVersion = "v1.2.0"
+}: ProductsContentProps) {
   const [activeScreen, setActiveScreen] = useState(0)
   const [isAutoScrolling, setIsAutoScrolling] = useState(true)
   const [isPreRegisterOpen, setIsPreRegisterOpen] = useState(false)
@@ -356,11 +364,11 @@ export default function ProductsContent() {
               <div className="flex flex-wrap gap-4">
                 <a 
                   id="download-apk-link"
-                  href="/Product/ActivePulse-v1.0.0.apk"
+                  href={`/Product/${apkFileName}`}
                   download
                   className="flex items-center gap-2 bg-teal-600 hover:bg-teal-500 text-white font-bold px-7 py-3.5 rounded-xl transition-all duration-200 shadow-md shadow-teal-500/10 cursor-pointer"
                 >
-                  <Download size={18} /> Download APK (v1.0.0)
+                  <Download size={18} /> Download APK ({apkVersion})
                 </a>
                 <button 
                   id="view-docs-btn"

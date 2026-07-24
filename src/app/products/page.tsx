@@ -1,6 +1,7 @@
 import React from "react"
 import { Metadata } from "next"
 import ProductsContent from "./ProductsContent"
+import { getLatestApkInfo } from "@/lib/apk"
 
 // Meta SEO Details
 export const metadata: Metadata = {
@@ -41,7 +42,11 @@ export const metadata: Metadata = {
   }
 }
 
+export const dynamic = "force-dynamic"
+
 export default function ProductsPage() {
+  const { fileName, version } = getLatestApkInfo()
+
   // Structured Data Schema for Google SEO (Product & Software)
   const productSchema = {
     "@context": "https://schema.org",
@@ -69,7 +74,7 @@ export default function ProductsPage() {
         "name": "Active Pulse Companion App",
         "operatingSystem": "Android 8.0+",
         "applicationCategory": "BusinessApplication",
-        "downloadUrl": "https://skillforgetechnology.app/Product/ActivePulse-v1.0.0.apk",
+        "downloadUrl": `https://skillforgetechnology.app/Product/${fileName}`,
         "description": "Companion utility to configure, control, scanner-pair, and flash wireless OTA updates offline onto Active Pulse modules.",
         "offers": {
           "@type": "Offer",
@@ -87,7 +92,7 @@ export default function ProductsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
-      <ProductsContent />
+      <ProductsContent apkFileName={fileName} apkVersion={version} />
     </>
   )
 }
