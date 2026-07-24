@@ -220,9 +220,9 @@ export function HomeContent() {
     <div className="relative bg-transparent pt-24 overflow-x-clip selection:bg-blue-500/20 text-slate-800 bg-dot-pattern noise-bg" dir={isRTL ? "rtl" : "ltr"}>
 
       {/* Animated Floating Gradient Blobs (Mesh overlay) */}
-      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-blue-500/10 to-indigo-500/10 rounded-full blur-[120px] pointer-events-none -z-10 ambient-blob-slow" />
-      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-[140px] pointer-events-none -z-10 ambient-blob-medium" />
-      <div className="absolute bottom-1/3 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 rounded-full blur-[100px] pointer-events-none -z-10 ambient-blob-slow" />
+      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-blue-500/10 to-indigo-500/10 rounded-full blur-[120px] pointer-events-none -z-10 ambient-blob-slow transform-gpu will-change-transform" />
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-[140px] pointer-events-none -z-10 ambient-blob-medium transform-gpu will-change-transform" />
+      <div className="absolute bottom-1/3 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 rounded-full blur-[100px] pointer-events-none -z-10 ambient-blob-slow transform-gpu will-change-transform" />
 
       {/* Hero Section */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-left">
@@ -427,9 +427,9 @@ export function HomeContent() {
 
       {/* Metrics Section (Premium glass cards with border gradients) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-500/[0.01] rounded-full blur-[100px] pointer-events-none -z-10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-500/[0.01] rounded-full blur-[100px] pointer-events-none -z-10 transform-gpu will-change-transform" />
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 font-sans">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-sans">
           {[
             { metric: "Global", label: t("hero.statsClients"), desc: "Trusted by startups and global enterprises.", color: "from-blue-500 to-indigo-500" },
             { metric: "Quality", label: t("hero.statsRating"), desc: "Rigorous standards and robust architecture.", color: "from-emerald-500 to-teal-500" },
@@ -439,7 +439,7 @@ export function HomeContent() {
             <motion.div
               key={idx}
               whileHover={{ y: -6 }}
-              className="p-6 text-center border border-slate-200 bg-white/50 rounded-2xl glass-card-premium relative overflow-hidden group"
+              className="p-5 sm:p-6 text-center border border-slate-200 bg-white/50 rounded-2xl glass-card-premium relative overflow-hidden group"
             >
               {/* Highlight top bar matching color scheme */}
               <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${stat.color} opacity-80`} />
@@ -447,10 +447,10 @@ export function HomeContent() {
               {/* Soft background grid hover reveal */}
               <div className="absolute inset-0 bg-grid-pattern opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none" />
 
-              <span className="block text-4xl font-extrabold text-slate-900 font-display tracking-tight">
+              <span className="block text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-display tracking-tight break-words">
                 {stat.metric}
               </span>
-              <span className="text-[10px] text-slate-450 font-extrabold uppercase tracking-wider block mt-2.5 leading-tight">
+              <span className="text-[9px] sm:text-[10px] text-slate-450 font-extrabold uppercase tracking-wider block mt-2.5 leading-tight">
                 {stat.label}
               </span>
               <span className="text-[9px] text-slate-400 font-medium block mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-350">
@@ -463,7 +463,7 @@ export function HomeContent() {
 
       {/* Chapter 3: Business Problems we solve */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative select-none text-left border-t border-slate-100/50">
-        <div className="absolute top-1/4 right-10 w-96 h-96 bg-red-500/[0.01] rounded-full blur-[100px] pointer-events-none -z-10" />
+        <div className="absolute top-1/4 right-10 w-96 h-96 bg-red-500/[0.01] rounded-full blur-[100px] pointer-events-none -z-10 transform-gpu will-change-transform" />
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">Chapter 2: Scaling Bottlenecks</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-display text-slate-900 leading-tight">

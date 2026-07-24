@@ -20,7 +20,7 @@ import {
   ArrowRight,
   Sparkles,
   Settings,
-  BatteryCharging,
+  Power,
   Maximize2
 } from "lucide-react"
 
@@ -249,7 +249,7 @@ export default function ProductsContent({
                 { icon: <Bluetooth className="text-teal-600" size={18} />, label: "Bluetooth 5.3", desc: "Stable & fast connection to any OS" },
                 { icon: <Zap className="text-teal-600" size={18} />, label: "Smart Automation", desc: "Simulates human mouse & key actions" },
                 { icon: <Lock className="text-teal-600" size={18} />, label: "Never Shows Idle", desc: "Prevents lockouts and away status" },
-                { icon: <BatteryCharging className="text-teal-600" size={18} />, label: "Long Battery", desc: "100+ hours of continuous usage" },
+                { icon: <Power className="text-teal-600" size={18} />, label: "USB-C Powered", desc: "Constant power, no battery charging needed" },
                 { icon: <RefreshCw className="text-teal-600" size={18} />, label: "3 Years Support", desc: "Complimentary wireless OTA updates" },
                 { icon: <Maximize2 className="text-teal-600" size={18} />, label: "Compact Size", desc: "Pocket and keychain friendly puck" }
               ].map((spec, idx) => (
