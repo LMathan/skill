@@ -3,17 +3,17 @@
 import React, { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
-import { 
-  Cpu, 
-  Wifi, 
-  Bluetooth, 
-  Zap, 
-  Lock, 
-  Smartphone, 
-  Download, 
-  BookOpen, 
-  Sliders, 
-  RefreshCw, 
+import {
+  Cpu,
+  Wifi,
+  Bluetooth,
+  Zap,
+  Lock,
+  Smartphone,
+  Download,
+  BookOpen,
+  Sliders,
+  RefreshCw,
   Info,
   ChevronLeft,
   ChevronRight,
@@ -29,6 +29,39 @@ interface ProductsContentProps {
   apkVersion?: string
 }
 
+const productSlides = [
+  {
+    title: "Always Active, System Never Idle",
+    subtitle: "Anti-Idle Workspace Key",
+    image: "/Product/slide1.png",
+    description: "Actively simulates mouse movement paths and scroll patterns to prevent system idle state triggers, keeping your workspace online."
+  },
+  {
+    title: "Seamless BLE HID Emulation",
+    subtitle: "Untraceable Hardware Solution",
+    image: "/Product/slide2.png",
+    description: "Acts as a standard Bluetooth HID mouse/keyboard at the hardware level. No client software, script, or drivers required on your PC."
+  },
+  {
+    title: "Smart Automation & Real-time Clicks",
+    subtitle: "Custom Automation Sequences",
+    image: "/Product/slide3.png",
+    description: "Simulates realistic human-like clicks, keystrokes, and tab rotations with dynamic randomization patterns."
+  },
+  {
+    title: "Configurable Companion App",
+    subtitle: "Full Settings Control in Hand",
+    image: "/Product/slide4.png",
+    description: "Easily adjust mouse speed, custom device name, scroll rate, and automation profiles using the Android companion app."
+  },
+  {
+    title: "Over-the-Air (OTA) Updates",
+    subtitle: "3 Years Lifetime Firmware Support",
+    image: "/Product/slide5.png",
+    description: "Keep your Active Pulse device up-to-date. Upgrade your firmware wirelessly through local Wi-Fi in less than 30 seconds."
+  }
+]
+
 export default function ProductsContent({
   apkFileName = "ActivePulse-v1.2.0.apk",
   apkVersion = "v1.2.0"
@@ -39,6 +72,47 @@ export default function ProductsContent({
   const [email, setEmail] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
+
+  const [slideIdx, setSlideIdx] = useState(0)
+  const [windowWidth, setWindowWidth] = useState(0)
+  const slideTimerRef = useRef<NodeJS.Timeout | null>(null)
+
+  const resetSlideTimer = () => {
+    if (slideTimerRef.current) clearInterval(slideTimerRef.current)
+    slideTimerRef.current = setInterval(() => {
+      setSlideIdx((prev) => (prev + 1) % productSlides.length)
+    }, 1500)
+  }
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener("resize", handleResize, { passive: true })
+    
+    resetSlideTimer()
+    
+    return () => {
+      window.removeEventListener("resize", handleResize)
+      if (slideTimerRef.current) clearInterval(slideTimerRef.current)
+    }
+  }, [])
+
+  const handleManualSelect = (idx: number) => {
+    setSlideIdx(idx)
+    resetSlideTimer()
+  }
+
+  const handlePrevSlide = () => {
+    setSlideIdx((prev) => (prev - 1 + productSlides.length) % productSlides.length)
+    resetSlideTimer()
+  }
+
+  const handleNextSlide = () => {
+    setSlideIdx((prev) => (prev + 1) % productSlides.length)
+    resetSlideTimer()
+  }
+
+  const cardSpacing = windowWidth < 640 ? 90 : windowWidth < 768 ? 140 : 180
 
   // App screens details
   const appScreens = [
@@ -108,7 +182,7 @@ export default function ProductsContent({
   const handleInteraction = () => {
     setIsAutoScrolling(false)
     if (timerRef.current) clearInterval(timerRef.current)
-    
+
     // Restart auto scrolling after 15 seconds of inactivity
     setTimeout(() => {
       setIsAutoScrolling(true)
@@ -147,7 +221,7 @@ export default function ProductsContent({
 
   return (
     <main className="ap-light-theme font-sans min-h-screen bg-white overflow-hidden selection:bg-teal-500/25 relative pb-20 pt-24">
-      
+
       {/* Background Gradients & Glow Blobs */}
       <div className="absolute top-0 left-0 w-full h-[600px] overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-100px] left-[15%] w-[600px] h-[600px] rounded-full ap-glow-teal opacity-50 blur-[130px]" />
@@ -198,9 +272,9 @@ export default function ProductsContent({
       {/* Product 1: Hardware Device */}
       <section id="device-product-section" className="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-slate-100">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* Left Side: Device Image */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -208,23 +282,23 @@ export default function ProductsContent({
             className="lg:col-span-6 relative flex justify-center items-center group"
           >
             <div className="absolute w-[85%] h-[85%] rounded-full bg-gradient-to-tr from-teal-500/10 to-indigo-500/10 blur-3xl opacity-70 group-hover:scale-105 transition-transform duration-700" />
-            
+
             <div className="relative aspect-square w-full max-w-[450px] rounded-3xl bg-slate-50 border border-slate-200/80 p-2 flex items-center justify-center backdrop-blur-2xl shadow-xl overflow-hidden">
               <div className="absolute top-6 left-6 z-20 px-3.5 py-1 rounded-full bg-teal-500 border border-teal-500 text-white font-bold text-xs tracking-wider uppercase shadow-sm">
                 New
               </div>
 
               {/* High-fidelity ESP32 prototype hardware image */}
-              <img 
-                src="/Product/product_device_mockup.png" 
-                alt="Active Pulse Keyfob Wireless Device Mockup" 
+              <img
+                src="/Product/product_device_mockup.png"
+                alt="Active Pulse Keyfob Wireless Device Mockup"
                 className="w-full h-full object-cover rounded-2xl select-none"
               />
             </div>
           </motion.div>
 
           {/* Right Side: Text Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -267,8 +341,8 @@ export default function ProductsContent({
 
             {/* CTA Button */}
             <div className="pt-2">
-              <button 
-                id="pre-register-btn" 
+              <button
+                id="pre-register-btn"
                 onClick={() => setIsPreRegisterOpen(true)}
                 className="relative group px-8 py-3.5 rounded-xl border-2 border-teal-500 text-teal-700 font-bold tracking-wide overflow-hidden transition-all duration-300 hover:bg-teal-600 hover:text-white cursor-pointer"
               >
@@ -285,9 +359,9 @@ export default function ProductsContent({
       {/* Product 2: Companion App */}
       <section id="app-product-section" className="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-slate-100">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* Left Side: App Details */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -297,9 +371,9 @@ export default function ProductsContent({
             <div className="space-y-6">
               {/* App Logo and Title side-by-side */}
               <div className="flex items-center gap-4">
-                <img 
-                  src="/Product/app_logo.png" 
-                  alt="Active Pulse Mobile Companion App Logo" 
+                <img
+                  src="/Product/app_logo.png"
+                  alt="Active Pulse Mobile Companion App Logo"
                   className="w-16 h-16 rounded-2xl border border-slate-200 shadow-md object-cover flex-shrink-0"
                 />
                 <div>
@@ -328,23 +402,20 @@ export default function ProductsContent({
                 <button
                   key={idx}
                   onClick={() => selectScreen(idx)}
-                  className={`w-full text-left p-3.5 rounded-xl border transition-all duration-300 flex items-start gap-4 cursor-pointer ${
-                    activeScreen === idx 
-                      ? "bg-slate-50 border-teal-500/40 shadow-sm" 
+                  className={`w-full text-left p-3.5 rounded-xl border transition-all duration-300 flex items-start gap-4 cursor-pointer ${activeScreen === idx
+                      ? "bg-slate-50 border-teal-500/40 shadow-sm"
                       : "bg-transparent border-transparent hover:bg-slate-50/50"
-                  }`}
+                    }`}
                 >
-                  <div className={`p-2 rounded-lg border flex-shrink-0 transition-colors ${
-                    activeScreen === idx 
-                      ? "bg-teal-50 border-teal-100 text-teal-600" 
+                  <div className={`p-2 rounded-lg border flex-shrink-0 transition-colors ${activeScreen === idx
+                      ? "bg-teal-50 border-teal-100 text-teal-600"
                       : "bg-slate-100 border-slate-200 text-slate-500"
-                  }`}>
+                    }`}>
                     {feat.icon}
                   </div>
                   <div>
-                    <h3 className={`text-sm font-bold tracking-wide transition-colors ${
-                      activeScreen === idx ? "text-teal-700" : "text-slate-800"
-                    }`}>
+                    <h3 className={`text-sm font-bold tracking-wide transition-colors ${activeScreen === idx ? "text-teal-700" : "text-slate-800"
+                      }`}>
                       {feat.title} — <span className="font-semibold opacity-75">{feat.subtitle}</span>
                     </h3>
                     <p className="text-xs text-slate-500 mt-1 leading-relaxed">{feat.desc}</p>
@@ -362,7 +433,7 @@ export default function ProductsContent({
             {/* CTA Buttons */}
             <div className="space-y-4 pt-2">
               <div className="flex flex-wrap gap-4">
-                <a 
+                <a
                   id="download-apk-link"
                   href={`/Product/${apkFileName}`}
                   download
@@ -370,7 +441,7 @@ export default function ProductsContent({
                 >
                   <Download size={18} /> Download APK ({apkVersion})
                 </a>
-                <button 
+                <button
                   id="view-docs-btn"
                   className="flex items-center gap-2 border border-slate-200 hover:border-slate-350 hover:bg-slate-55 text-slate-700 font-bold px-7 py-3.5 rounded-xl transition-all duration-200 cursor-pointer"
                 >
@@ -384,7 +455,7 @@ export default function ProductsContent({
           </motion.div>
 
           {/* Right Side: Samsung Galaxy Mockup Carousel */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -396,9 +467,9 @@ export default function ProductsContent({
 
             {/* Interactive Carousel Frame Wrapper with Manual Side Scroll Arrows */}
             <div className="relative flex items-center justify-center gap-4">
-              
+
               {/* Left Arrow Button */}
-              <button 
+              <button
                 onClick={handlePrev}
                 className="absolute left-[-55px] z-30 p-2.5 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-55 text-slate-700 transition-colors cursor-pointer"
                 aria-label="Previous app screen"
@@ -408,20 +479,20 @@ export default function ProductsContent({
 
               {/* Samsung Mockup Frame */}
               <div className="relative w-[285px] h-[585px] bg-[#0c0f16] rounded-[44px] border-[6px] border-[#1e2330] shadow-2xl p-2.5 flex flex-col items-center justify-between overflow-hidden">
-                
+
                 {/* Outer Volume Button */}
                 <div className="absolute top-24 -left-[6px] w-[6px] h-12 bg-[#1e2330] rounded-l-md" />
                 <div className="absolute top-40 -left-[6px] w-[6px] h-12 bg-[#1e2330] rounded-l-md" />
                 {/* Power Button */}
                 <div className="absolute top-32 -right-[6px] w-[6px] h-16 bg-[#1e2330] rounded-r-md" />
-                 {/* Speaker Bar & Camera Cutout */}
+                {/* Speaker Bar & Camera Cutout */}
                 <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-1.5 bg-[#141822] rounded-full z-30" />
                 <div className="absolute top-6.5 left-1/2 -translate-x-1/2 w-4.5 h-4.5 rounded-full bg-[#080a0f] border-2 border-[#161a25] z-30" />
 
                 {/* Screenshot Display Screen - Zoomed and Framed perfectly to stretch edge-to-edge */}
                 <div className="relative w-full h-full bg-white rounded-[34px] overflow-hidden pt-10 pb-3 z-10">
                   <AnimatePresence initial={false} custom={direction} mode="popLayout">
-                    <motion.div 
+                    <motion.div
                       key={activeScreen}
                       custom={direction}
                       variants={slideVariants}
@@ -435,14 +506,14 @@ export default function ProductsContent({
                         Use object-cover with pt-10 top padding (clears notch/camera) and 
                         no horizontal padding so that the screenshot stretches edge-to-edge.
                       */}
-                      <img 
+                      <img
                         src={appScreens[activeScreen].image}
                         alt={appScreens[activeScreen].title}
                         className="w-full h-full object-cover select-none"
                       />
                     </motion.div>
                   </AnimatePresence>
-                  
+
                   {/* Simulated Glass Reflection Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/10 opacity-60 pointer-events-none z-20" />
                 </div>
@@ -452,7 +523,7 @@ export default function ProductsContent({
               </div>
 
               {/* Right Arrow Button */}
-              <button 
+              <button
                 onClick={handleNext}
                 className="absolute right-[-55px] z-30 p-2.5 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-55 text-slate-700 transition-colors cursor-pointer"
                 aria-label="Next app screen"
@@ -468,15 +539,128 @@ export default function ProductsContent({
                 <button
                   key={idx}
                   onClick={() => selectScreen(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeScreen === idx ? "w-5 bg-teal-500" : "w-1.5 bg-slate-300"
-                  }`}
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${activeScreen === idx ? "w-5 bg-teal-500" : "w-1.5 bg-slate-300"
+                    }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
               ))}
             </div>
           </motion.div>
 
+        </div>
+      </section>
+
+      {/* Product Feature Showcase Carousel */}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 py-12 border-t border-slate-100/80 overflow-hidden">
+        <div className="text-center space-y-4 mb-16">
+          <span className="text-[10px] font-extrabold uppercase tracking-widest text-teal-600 bg-teal-50 px-2.5 py-1 rounded-full border border-teal-100 inline-block font-display">
+            Interactive Showcase
+          </span>
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 font-display">
+            Features & Visual Guidelines
+          </h2>
+          <p className="text-slate-500 max-w-2xl mx-auto text-sm md:text-base">
+            Discover the premium features, custom configurations, and OTA updates of the Active Pulse system.
+          </p>
+        </div>
+
+        {/* 3D Interactive Carousel */}
+        <div className="relative h-[220px] xs:h-[260px] sm:h-[340px] md:h-[450px] flex items-center justify-center w-full select-none">
+          <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
+            {productSlides.map((slide, idx) => {
+              // Calculate relative index from active slide
+              let offset = idx - slideIdx
+              // Handle wrap-around for circular display
+              if (offset < -2) offset += productSlides.length
+              if (offset > 2) offset -= productSlides.length
+
+              const isActive = offset === 0
+              const isVisible = Math.abs(offset) <= 1 || (Math.abs(offset) === 2 && productSlides.length > 3)
+
+              if (!isVisible) return null
+
+              // Dynamic 3D positioning
+              const xValue = offset * cardSpacing
+              const scaleValue = isActive ? 1 : 0.8
+              const rotateYValue = offset * -25 // 3D perspective angle
+              const zIndexValue = 10 - Math.abs(offset)
+              const opacityValue = isActive ? 1 : 0.4
+
+              return (
+                <motion.div
+                  key={idx}
+                  style={{
+                    perspective: 1200,
+                    zIndex: zIndexValue
+                  }}
+                  animate={{
+                    x: xValue,
+                    scale: scaleValue,
+                    rotateY: rotateYValue,
+                    opacity: opacityValue
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 450,
+                    damping: 35
+                  }}
+                  onClick={() => handleManualSelect(idx)}
+                  className={`absolute w-[240px] xs:w-[280px] sm:w-[420px] md:w-[600px] aspect-[3/2] bg-white border border-slate-200/80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl cursor-pointer ${
+                    isActive ? "ring-2 ring-teal-500/20" : ""
+                  }`}
+                >
+                  {/* Card Image */}
+                  <div className="relative w-full h-full bg-slate-950">
+                    <img
+                      src={slide.image}
+                      alt={slide.title}
+                      className="w-full h-full object-cover select-none pointer-events-none"
+                    />
+
+                    {/* Badge showing index */}
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-slate-900/70 backdrop-blur-md border border-white/10 rounded-full px-2.5 py-0.5 text-white font-mono text-[8px] sm:text-[9px]">
+                      0{idx + 1} / 05
+                    </div>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Carousel Indicators & Controls */}
+        <div className="mt-8 flex flex-col items-center gap-4">
+          {/* Arrow Buttons & Dot Indicators */}
+          <div className="flex items-center gap-6">
+            <button
+              onClick={handlePrevSlide}
+              className="p-2.5 rounded-full bg-white border border-slate-200 shadow-sm hover:bg-slate-50 text-slate-700 transition-colors cursor-pointer"
+              aria-label="Previous slide"
+            >
+              <ChevronLeft size={18} />
+            </button>
+
+            <div className="flex gap-1.5">
+              {productSlides.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleManualSelect(idx)}
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    slideIdx === idx ? "w-5 bg-teal-500" : "w-1.5 bg-slate-300"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={handleNextSlide}
+              className="p-2.5 rounded-full bg-white border border-slate-200 shadow-sm hover:bg-slate-55 text-slate-700 transition-colors cursor-pointer"
+              aria-label="Next slide"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
         </div>
       </section>
 
@@ -498,7 +682,7 @@ export default function ProductsContent({
             { step: "3", title: "Install", text: "Open the downloaded APK file and click install in the system prompt." },
             { step: "4", title: "Connect", text: "Open Active Pulse, power on your ESP32 module, and connect to Wi-Fi." }
           ].map((item, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -522,23 +706,23 @@ export default function ProductsContent({
       <section id="why-activepulse-section" className="relative z-10 max-w-7xl mx-auto px-6 py-16 border-t border-slate-100">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           {[
-            { 
-              icon: <Zap className="text-teal-600" size={26} />, 
-              title: "Zero Setup", 
-              body: "Connect and go. No pairing app, no cloud account, no complex drivers needed to get started immediately." 
+            {
+              icon: <Zap className="text-teal-600" size={26} />,
+              title: "Zero Setup",
+              body: "Connect and go. No pairing app, no cloud account, no complex drivers needed to get started immediately."
             },
-            { 
-              icon: <Lock className="text-indigo-650" size={26} />, 
-              title: "Private by Design", 
-              body: "All configuration stays completely stored on-device. No data ever leaves your secure local network." 
+            {
+              icon: <Lock className="text-indigo-650" size={26} />,
+              title: "Private by Design",
+              body: "All configuration stays completely stored on-device. No data ever leaves your secure local network."
             },
-            { 
-              icon: <Settings className="text-purple-600" size={26} />, 
-              title: "Always Improving", 
-              body: "OTA firmware updates push premium features directly to your device completely wirelessly." 
+            {
+              icon: <Settings className="text-purple-600" size={26} />,
+              title: "Always Improving",
+              body: "OTA firmware updates push premium features directly to your device completely wirelessly."
             }
           ].map((item, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -560,10 +744,10 @@ export default function ProductsContent({
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-12 border-t border-slate-100 mt-12">
         <div className="p-8 md:p-12 rounded-3xl bg-gradient-to-r from-slate-50 to-slate-100/50 border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4 text-center md:text-left flex-col md:flex-row">
-            <img 
-              src="/logo-mark.png" 
-              alt="SkillForge Technology Logo" 
-              className="w-10 h-10 object-contain" 
+            <img
+              src="/logo-mark.png"
+              alt="SkillForge Technology Logo"
+              className="w-10 h-10 object-contain"
             />
             <div>
               <h2 className="text-slate-800 font-bold text-base tracking-wide">
@@ -574,12 +758,12 @@ export default function ProductsContent({
               </p>
             </div>
           </div>
-          
-          <Link 
-            href="/contact" 
+
+          <Link
+            href="/contact"
             className="flex items-center gap-2 group text-teal-600 font-semibold hover:text-teal-700 transition-colors text-sm"
           >
-            <span>Partner with our Hardware Division</span> 
+            <span>Partner with our Hardware Division</span>
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
@@ -590,22 +774,22 @@ export default function ProductsContent({
         {isPreRegisterOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             {/* Backdrop blur */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsPreRegisterOpen(false)}
               className="absolute inset-0 bg-[#000000]/40 backdrop-blur-md"
             />
-            
+
             {/* Modal Body */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               className="relative w-full max-w-md bg-white rounded-3xl border border-slate-200 p-8 shadow-2xl z-10 space-y-6 text-center select-none"
             >
-              <button 
+              <button
                 onClick={() => setIsPreRegisterOpen(false)}
                 className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-100 transition-colors cursor-pointer"
                 aria-label="Close modal"
@@ -624,7 +808,7 @@ export default function ProductsContent({
               </div>
 
               {isSubmitted ? (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="p-4 bg-teal-50 border border-teal-100 rounded-2xl space-y-2 text-center"
@@ -633,7 +817,7 @@ export default function ProductsContent({
                   <span className="text-xs text-slate-500 block">We've added your email to the Active Pulse queue.</span>
                 </motion.div>
               ) : (
-                <form 
+                <form
                   onSubmit={(e) => {
                     e.preventDefault();
                     if (email) {
@@ -647,7 +831,7 @@ export default function ProductsContent({
                   }}
                   className="space-y-4"
                 >
-                  <input 
+                  <input
                     type="email"
                     required
                     value={email}
@@ -655,7 +839,7 @@ export default function ProductsContent({
                     placeholder="Enter your email address"
                     className="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-slate-800 text-sm"
                   />
-                  <button 
+                  <button
                     type="submit"
                     className="w-full py-3.5 bg-teal-600 hover:bg-teal-500 text-white font-bold rounded-xl transition-colors shadow-md shadow-teal-500/10 text-sm cursor-pointer"
                   >
