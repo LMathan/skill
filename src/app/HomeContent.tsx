@@ -220,9 +220,9 @@ export function HomeContent() {
     <div className="relative bg-transparent pt-24 overflow-x-clip selection:bg-blue-500/20 text-slate-800 bg-dot-pattern noise-bg" dir={isRTL ? "rtl" : "ltr"}>
 
       {/* Animated Floating Gradient Blobs (Mesh overlay) */}
-      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-blue-500/10 to-indigo-500/10 rounded-full blur-[120px] pointer-events-none -z-10 ambient-blob-slow transform-gpu will-change-transform" />
-      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-[140px] pointer-events-none -z-10 ambient-blob-medium transform-gpu will-change-transform" />
-      <div className="absolute bottom-1/3 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 rounded-full blur-[100px] pointer-events-none -z-10 ambient-blob-slow transform-gpu will-change-transform" />
+      <div className="hidden md:block absolute top-10 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-blue-500/10 to-indigo-500/10 rounded-full blur-[120px] pointer-events-none -z-10 ambient-blob-slow transform-gpu will-change-transform" />
+      <div className="hidden md:block absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-[140px] pointer-events-none -z-10 ambient-blob-medium transform-gpu will-change-transform" />
+      <div className="hidden md:block absolute bottom-1/3 left-10 w-[400px] h-[400px] bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 rounded-full blur-[100px] pointer-events-none -z-10 ambient-blob-slow transform-gpu will-change-transform" />
 
       {/* Hero Section */}
       <section className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-left">
@@ -427,7 +427,7 @@ export function HomeContent() {
 
       {/* Metrics Section (Premium glass cards with border gradients) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-500/[0.01] rounded-full blur-[100px] pointer-events-none -z-10 transform-gpu will-change-transform" />
+        <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-500/[0.01] rounded-full blur-[100px] pointer-events-none -z-10 transform-gpu will-change-transform" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-sans">
           {[
@@ -463,7 +463,7 @@ export function HomeContent() {
 
       {/* Chapter 3: Business Problems we solve */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative select-none text-left border-t border-slate-100/50">
-        <div className="absolute top-1/4 right-10 w-96 h-96 bg-red-500/[0.01] rounded-full blur-[100px] pointer-events-none -z-10 transform-gpu will-change-transform" />
+        <div className="hidden md:block absolute top-1/4 right-10 w-96 h-96 bg-red-500/[0.01] rounded-full blur-[100px] pointer-events-none -z-10 transform-gpu will-change-transform" />
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">Chapter 2: Scaling Bottlenecks</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-display text-slate-900 leading-tight">
@@ -538,7 +538,7 @@ export function HomeContent() {
 
       {/* Chapter 4: Design-to-Deployment Journey */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative select-none text-left border-t border-slate-100/50">
-        <div className="absolute top-10 left-10 w-[500px] h-[500px] bg-blue-500/[0.01] rounded-full blur-[120px] pointer-events-none -z-10" />
+        <div className="hidden md:block absolute top-10 left-10 w-[500px] h-[500px] bg-blue-500/[0.01] rounded-full blur-[120px] pointer-events-none -z-10 transform-gpu will-change-transform" />
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5 space-y-6">
@@ -707,8 +707,8 @@ export function HomeContent() {
         <div className="absolute inset-0 bg-dot-pattern opacity-60 pointer-events-none" />
 
         {/* Floating background gradient circles for visual depth */}
-        <div className="absolute top-10 left-10 w-96 h-96 bg-blue-500/[0.02] rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-purple-500/[0.02] rounded-full blur-[120px] pointer-events-none" />
+        <div className="hidden md:block absolute top-10 left-10 w-96 h-96 bg-blue-500/[0.02] rounded-full blur-[100px] pointer-events-none transform-gpu will-change-transform" />
+        <div className="hidden md:block absolute bottom-10 right-10 w-[450px] h-[450px] bg-purple-500/[0.02] rounded-full blur-[120px] pointer-events-none transform-gpu will-change-transform" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 

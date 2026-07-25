@@ -23,8 +23,8 @@ export default function CaseStudiesContent() {
     <div className="relative bg-white pt-24 pb-20 select-none text-left bg-dot-pattern">
       
       {/* Background patterns */}
-      <div className="absolute top-0 right-10 w-96 h-96 bg-blue-500/8 rounded-full blur-3xl pointer-events-none -z-10 transform-gpu will-change-transform" />
-      <div className="absolute bottom-1/4 left-10 w-[300px] h-[300px] bg-purple-500/8 rounded-full blur-3xl pointer-events-none -z-10 transform-gpu will-change-transform" />
+      <div className="hidden md:block absolute top-0 right-10 w-96 h-96 bg-blue-500/8 rounded-full blur-3xl pointer-events-none -z-10 transform-gpu will-change-transform" />
+      <div className="hidden md:block absolute bottom-1/4 left-10 w-[300px] h-[300px] bg-purple-500/8 rounded-full blur-3xl pointer-events-none -z-10 transform-gpu will-change-transform" />
 
       {/* Hero Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">

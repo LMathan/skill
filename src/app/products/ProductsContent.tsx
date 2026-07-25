@@ -252,8 +252,8 @@ export default function ProductsContent({
 
       {/* Background Gradients & Glow Blobs */}
       <div className="absolute top-0 left-0 w-full h-[600px] overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[-100px] left-[15%] w-[600px] h-[600px] rounded-full ap-glow-teal opacity-50 blur-[130px]" />
-        <div className="absolute top-[180px] right-[10%] w-[550px] h-[550px] rounded-full ap-glow-indigo opacity-40 blur-[140px]" />
+        <div className="hidden md:block absolute top-[-100px] left-[15%] w-[600px] h-[600px] rounded-full ap-glow-teal opacity-50 blur-[130px] transform-gpu will-change-transform" />
+        <div className="hidden md:block absolute top-[180px] right-[10%] w-[550px] h-[550px] rounded-full ap-glow-indigo opacity-40 blur-[140px] transform-gpu will-change-transform" />
       </div>
 
       <div className="absolute inset-0 ap-dot-grid opacity-40 pointer-events-none z-0" />
@@ -309,9 +309,9 @@ export default function ProductsContent({
             transition={{ duration: 0.7 }}
             className="lg:col-span-6 relative flex justify-center items-center group"
           >
-            <div className="absolute w-[85%] h-[85%] rounded-full bg-gradient-to-tr from-teal-500/10 to-indigo-500/10 blur-3xl opacity-70 group-hover:scale-105 transition-transform duration-700" />
+            <div className="hidden md:block absolute w-[85%] h-[85%] rounded-full bg-gradient-to-tr from-teal-500/10 to-indigo-500/10 blur-3xl opacity-70 group-hover:scale-105 transition-transform duration-700 transform-gpu will-change-transform" />
 
-            <div className="relative aspect-square w-full max-w-[450px] rounded-3xl bg-slate-50 border border-slate-200/80 p-2 flex items-center justify-center backdrop-blur-2xl shadow-xl overflow-hidden">
+            <div className="relative aspect-[3/2] w-full max-w-[500px] rounded-3xl bg-slate-50 border border-slate-200/80 p-2 flex items-center justify-center backdrop-blur-2xl shadow-xl overflow-hidden">
               <div className="absolute top-6 left-6 z-20 px-3.5 py-1 rounded-full bg-teal-500 border border-teal-500 text-white font-bold text-xs tracking-wider uppercase shadow-sm">
                 New
               </div>
@@ -346,7 +346,7 @@ export default function ProductsContent({
             </div>
 
             {/* Specs Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 { icon: <Bluetooth className="text-teal-600" size={18} />, label: "Bluetooth 5.3", desc: "Stable & fast connection to any OS" },
                 { icon: <Zap className="text-teal-600" size={18} />, label: "Smart Automation", desc: "Simulates human mouse & key actions" },
@@ -491,7 +491,7 @@ export default function ProductsContent({
             className="lg:col-span-6 lg:order-2 flex flex-col items-center justify-center relative min-h-[640px]"
           >
             {/* Phone Shadow & Background Glow */}
-            <div className="absolute w-[280px] h-[580px] rounded-[48px] bg-teal-500/10 blur-3xl -z-10 pointer-events-none" />
+            <div className="absolute w-[280px] h-[580px] rounded-[48px] bg-teal-500/10 blur-3xl -z-10 pointer-events-none transform-gpu will-change-transform" />
 
             {/* Interactive Carousel Frame Wrapper with Manual Side Scroll Arrows */}
             <div className="relative flex items-center justify-center gap-4">
@@ -499,7 +499,7 @@ export default function ProductsContent({
               {/* Left Arrow Button */}
               <button
                 onClick={handlePrev}
-                className="absolute left-[-55px] z-30 p-2.5 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-55 text-slate-700 transition-colors cursor-pointer"
+                className="hidden md:flex absolute left-[-55px] z-30 p-2.5 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-55 text-slate-700 transition-colors cursor-pointer"
                 aria-label="Previous app screen"
               >
                 <ChevronLeft size={20} />
@@ -553,7 +553,7 @@ export default function ProductsContent({
               {/* Right Arrow Button */}
               <button
                 onClick={handleNext}
-                className="absolute right-[-55px] z-30 p-2.5 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-55 text-slate-700 transition-colors cursor-pointer"
+                className="hidden md:flex absolute right-[-55px] z-30 p-2.5 rounded-full bg-white border border-slate-200 shadow-md hover:bg-slate-55 text-slate-700 transition-colors cursor-pointer"
                 aria-label="Next app screen"
               >
                 <ChevronRight size={20} />
