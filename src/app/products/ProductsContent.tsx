@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -75,27 +75,33 @@ export default function ProductsContent({
 
   const [slideIdx, setSlideIdx] = useState(0)
   const [windowWidth, setWindowWidth] = useState(0)
+  const [isSlideHovered, setIsSlideHovered] = useState(false)
   const slideTimerRef = useRef<NodeJS.Timeout | null>(null)
 
-  const resetSlideTimer = () => {
+  const resetSlideTimer = useCallback(() => {
     if (slideTimerRef.current) clearInterval(slideTimerRef.current)
+    if (isSlideHovered) return
     slideTimerRef.current = setInterval(() => {
       setSlideIdx((prev) => (prev + 1) % productSlides.length)
-    }, 1500)
-  }
+    }, 3500)
+  }, [isSlideHovered])
 
   useEffect(() => {
     setWindowWidth(window.innerWidth)
     const handleResize = () => setWindowWidth(window.innerWidth)
     window.addEventListener("resize", handleResize, { passive: true })
     
-    resetSlideTimer()
-    
     return () => {
       window.removeEventListener("resize", handleResize)
-      if (slideTimerRef.current) clearInterval(slideTimerRef.current)
     }
   }, [])
+
+  useEffect(() => {
+    resetSlideTimer()
+    return () => {
+      if (slideTimerRef.current) clearInterval(slideTimerRef.current)
+    }
+  }, [resetSlideTimer])
 
   const handleManualSelect = (idx: number) => {
     setSlideIdx(idx)
@@ -565,7 +571,11 @@ export default function ProductsContent({
         </div>
 
         {/* 3D Interactive Carousel */}
-        <div className="relative h-[220px] xs:h-[260px] sm:h-[340px] md:h-[450px] flex items-center justify-center w-full select-none">
+        <div 
+          onMouseEnter={() => setIsSlideHovered(true)}
+          onMouseLeave={() => setIsSlideHovered(false)}
+          className="relative h-[220px] xs:h-[260px] sm:h-[340px] md:h-[450px] flex items-center justify-center w-full select-none"
+        >
           <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
             {productSlides.map((slide, idx) => {
               // Calculate relative index from active slide
