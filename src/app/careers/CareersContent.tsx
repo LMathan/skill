@@ -14,18 +14,39 @@ export default function CareersContent() {
   const [applied, setApplied] = useState(false)
   const [resumeName, setResumeName] = useState("")
 
+  const [isApplying, setIsApplying] = useState(false)
+  const [applyError, setApplyError] = useState("")
+
   const toggleJob = (id: string) => {
     setActiveJob(activeJob === id ? null : id)
   }
 
-  const handleApply = (e: React.FormEvent) => {
+  const handleApply = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setApplied(true)
-    setTimeout(() => {
-      setApplied(false)
-      setResumeName("")
-      setActiveJob(null)
-    }, 3000)
+    setIsApplying(true)
+    setApplyError("")
+    try {
+      const formData = new FormData(e.currentTarget)
+      const res = await fetch("/api/careers-apply", {
+        method: "POST",
+        body: formData
+      })
+      const data = await res.json()
+      if (res.ok && data.success) {
+        setApplied(true)
+        setTimeout(() => {
+          setApplied(false)
+          setResumeName("")
+          setActiveJob(null)
+        }, 3000)
+      } else {
+        setApplyError(data.error || "Failed to submit application. Please try again.")
+      }
+    } catch (err) {
+      setApplyError("A connection error occurred. Please try again.")
+    } finally {
+      setIsApplying(false)
+    }
   }
 
   return (
@@ -132,19 +153,29 @@ export default function CareersContent() {
                         </div>
                       </div>
 
-                      {/* Application Mini-Form */}
                       <form onSubmit={handleApply} className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm space-y-4 text-left mt-6">
                         <span className="font-bold text-slate-900 block font-display text-sm">{t("careers.formTitle" as any)}</span>
+                        
+                        {/* Hidden inputs to pass job context */}
+                        <input type="hidden" name="jobId" value={job.id} />
+                        <input type="hidden" name="jobTitle" value={t(`careers.${job.id}.title` as any) || job.title} />
+
+                        {applyError && (
+                          <p className="text-xs text-rose-600 font-semibold text-left">{applyError}</p>
+                        )}
+
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <input 
                             type="text" 
                             required 
+                            name="name"
                             placeholder={t("careers.formNamePlaceholder" as any)}
                             className="bg-slate-50 border border-slate-200/60 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:ring-1 focus:ring-blue-650 text-slate-900 placeholder:text-slate-400"
                           />
                           <input 
                             type="email" 
                             required 
+                            name="email"
                             placeholder={t("careers.formEmailPlaceholder" as any)}
                             className="bg-slate-50 border border-slate-200/60 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:ring-1 focus:ring-blue-650 text-slate-900 placeholder:text-slate-400"
                           />
@@ -154,14 +185,20 @@ export default function CareersContent() {
                           <input 
                             type="file" 
                             required 
+                            name="resume"
                             accept=".pdf"
                             onChange={(e) => setResumeName(e.target.files?.[0]?.name || "")}
                             className="text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
                           />
                         </div>
                         <div className="flex justify-between items-center pt-2">
-                          <Button type="submit" variant="gradient" className="font-bold text-xs py-2 px-5">
-                            {t("careers.formSubmit" as any)}
+                          <Button 
+                            type="submit" 
+                            variant="gradient" 
+                            disabled={isApplying}
+                            className="font-bold text-xs py-2 px-5 disabled:opacity-50"
+                          >
+                            {isApplying ? "Submitting..." : t("careers.formSubmit" as any)}
                           </Button>
                           {applied && (
                             <span className="text-xs text-green-600 font-bold">{t("careers.formSuccess" as any)}</span>

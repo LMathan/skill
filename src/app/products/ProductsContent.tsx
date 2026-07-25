@@ -71,6 +71,8 @@ export default function ProductsContent({
   const [isPreRegisterOpen, setIsPreRegisterOpen] = useState(false)
   const [email, setEmail] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isPreRegisterLoading, setIsPreRegisterLoading] = useState(false)
+  const [preRegisterError, setPreRegisterError] = useState("")
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
   const [slideIdx, setSlideIdx] = useState(0)
@@ -828,19 +830,39 @@ export default function ProductsContent({
                 </motion.div>
               ) : (
                 <form
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
                     e.preventDefault();
-                    if (email) {
-                      setIsSubmitted(true);
-                      setTimeout(() => {
-                        setIsPreRegisterOpen(false);
-                        setIsSubmitted(false);
-                        setEmail("");
-                      }, 2500);
+                    if (!email) return;
+                    setIsPreRegisterLoading(true);
+                    setPreRegisterError("");
+                    try {
+                      const res = await fetch("/api/pre-register", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ email })
+                      });
+                      const data = await res.json();
+                      if (res.ok && data.success) {
+                        setIsSubmitted(true);
+                        setTimeout(() => {
+                          setIsPreRegisterOpen(false);
+                          setIsSubmitted(false);
+                          setEmail("");
+                        }, 3000);
+                      } else {
+                        setPreRegisterError(data.error || "Failed to pre-register. Please try again.");
+                      }
+                    } catch (err) {
+                      setPreRegisterError("A connection error occurred. Please try again.");
+                    } finally {
+                      setIsPreRegisterLoading(false);
                     }
                   }}
                   className="space-y-4"
                 >
+                  {preRegisterError && (
+                    <p className="text-xs text-rose-600 font-semibold text-center">{preRegisterError}</p>
+                  )}
                   <input
                     type="email"
                     required
@@ -851,9 +873,10 @@ export default function ProductsContent({
                   />
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-teal-600 hover:bg-teal-500 text-white font-bold rounded-xl transition-colors shadow-md shadow-teal-500/10 text-sm cursor-pointer"
+                    disabled={isPreRegisterLoading}
+                    className="w-full py-3.5 bg-teal-600 hover:bg-teal-500 disabled:bg-teal-600/60 text-white font-bold rounded-xl transition-colors shadow-md shadow-teal-500/10 text-sm cursor-pointer flex items-center justify-center"
                   >
-                    Pre-register Now
+                    {isPreRegisterLoading ? "Processing..." : "Pre-register Now"}
                   </button>
                 </form>
               )}
