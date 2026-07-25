@@ -75,6 +75,26 @@ export default function ProductsContent({
   const [preRegisterError, setPreRegisterError] = useState("")
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
+  useEffect(() => {
+    const handleHashScroll = () => {
+      const hash = window.location.hash
+      if (hash === "#pre-register-btn" || hash === "#pre-register") {
+        setTimeout(() => {
+          const el = document.getElementById("pre-register-btn")
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "center" })
+          }
+        }, 300)
+      }
+    }
+
+    handleHashScroll()
+    window.addEventListener("hashchange", handleHashScroll, { passive: true })
+    return () => {
+      window.removeEventListener("hashchange", handleHashScroll)
+    }
+  }, [])
+
   const [slideIdx, setSlideIdx] = useState(0)
   const [windowWidth, setWindowWidth] = useState(0)
   const [isSlideHovered, setIsSlideHovered] = useState(false)

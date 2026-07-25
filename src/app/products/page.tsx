@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Suspense } from "react"
 import { Metadata } from "next"
 import ProductsContent from "./ProductsContent"
 import { getLatestApkInfo } from "@/lib/apk"
@@ -92,7 +92,9 @@ export default function ProductsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
-      <ProductsContent apkFileName={fileName} apkVersion={version} />
+      <Suspense fallback={<div className="min-h-screen bg-white flex items-center justify-center text-slate-500 font-sans text-sm">Loading Products...</div>}>
+        <ProductsContent apkFileName={fileName} apkVersion={version} />
+      </Suspense>
     </>
   )
 }
