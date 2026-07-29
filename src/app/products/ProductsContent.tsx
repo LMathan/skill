@@ -17,11 +17,17 @@ import {
   Info,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   ArrowRight,
   Sparkles,
   Settings,
   Power,
-  Maximize2
+  Maximize2,
+  Briefcase,
+  HelpCircle,
+  AlertTriangle,
+  FileText,
+  ShoppingBag
 } from "lucide-react"
 
 interface ProductsContentProps {
@@ -69,7 +75,13 @@ export default function ProductsContent({
   const [activeScreen, setActiveScreen] = useState(0)
   const [isAutoScrolling, setIsAutoScrolling] = useState(true)
   const [isPreRegisterOpen, setIsPreRegisterOpen] = useState(false)
+  const [isAboutVideoOpen, setIsAboutVideoOpen] = useState(false)
+  const [expandedSection, setExpandedSection] = useState<string | null>(null)
   const [email, setEmail] = useState("")
+  const [orderName, setOrderName] = useState("")
+  const [orderPhone, setOrderPhone] = useState("")
+  const [orderAddress, setOrderAddress] = useState("")
+  const [orderQuantity, setOrderQuantity] = useState(1)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isPreRegisterLoading, setIsPreRegisterLoading] = useState(false)
   const [preRegisterError, setPreRegisterError] = useState("")
@@ -259,9 +271,25 @@ export default function ProductsContent({
       <div className="absolute inset-0 ap-dot-grid opacity-40 pointer-events-none z-0" />
 
       {/* Hero Section */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-20 md:py-28 flex flex-col items-center text-center">
+      <section className="relative w-full min-h-[85vh] py-32 md:py-40 flex flex-col items-center justify-center text-center overflow-hidden bg-slate-950 text-white border-b border-slate-900">
+        
+        {/* Full-bleed Background Launch Banner */}
+        <div className="absolute inset-0 z-0 select-none pointer-events-none">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-50 scale-[1.02] transform-gpu transition-transform duration-700"
+          >
+            <source src="/Product/hero-section.mp4" type="video/mp4" />
+          </video>
+          {/* Subtle gradient overlays to ensure text contrast and bleed edges to slate-950 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-950/30 to-slate-950" />
+        </div>
+
         {/* Animated Heartbeat Pulse background SVG */}
-        <div className="absolute inset-0 w-full h-full max-h-[500px] overflow-hidden pointer-events-none opacity-20 flex items-center justify-center">
+        <div className="absolute inset-0 w-full h-full max-h-[500px] overflow-hidden pointer-events-none opacity-[0.07] flex items-center justify-center z-0">
           <svg className="w-full max-w-5xl h-64" viewBox="0 0 1000 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <motion.path
               d="M0 100 H350 L370 80 L390 120 L410 30 L430 170 L450 90 L470 110 L490 100 H1000"
@@ -281,19 +309,43 @@ export default function ProductsContent({
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6 max-w-3xl"
+          className="relative z-10 w-full max-w-4xl mx-auto px-6 space-y-8 flex flex-col items-center"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-500/20 text-teal-700 text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
-            <Sparkles size={12} className="animate-pulse text-teal-600" />
-            <span>Premium Hardware Ecosystem</span>
+          <div className="flex flex-col items-center gap-2">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-teal-500/15 backdrop-blur-md border border-teal-500/30 text-teal-300 text-[10px] font-extrabold tracking-widest uppercase shadow-sm">
+              <span>✨ NOW AVAILABLE</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-300 text-xs font-semibold uppercase tracking-wider backdrop-blur-md">
+              <Sparkles size={12} className="animate-pulse text-teal-400" />
+              <span>Premium Hardware Ecosystem</span>
+            </div>
           </div>
-          <h1 id="products-hero-title" className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
-            Active Pulse <br />
-            <span className="text-2xl md:text-4xl font-semibold text-teal-600 block mt-2">Engineered for the Modern Workspace</span>
-          </h1>
-          <p className="text-slate-600 text-base md:text-lg font-normal max-w-2xl mx-auto leading-relaxed">
-            Intelligent wireless control. Seamless OTA updates. Zero compromises. Complete physical peripheral mastery.
-          </p>
+          
+          <div className="space-y-4 max-w-3xl">
+            <h1 id="products-hero-title" className="text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+              Active Pulse <br />
+              <span className="text-2xl md:text-4xl font-semibold text-teal-400 block mt-2">Engineered for the Modern Workspace</span>
+            </h1>
+            <p className="text-slate-300 text-base md:text-lg font-normal max-w-2xl mx-auto leading-relaxed">
+              Intelligent wireless control. Seamless OTA updates. Zero compromises. Complete physical peripheral mastery.
+            </p>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap gap-4 pt-2 justify-center">
+            <button
+              onClick={() => setIsPreRegisterOpen(true)}
+              className="bg-teal-600 hover:bg-teal-500 text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 shadow-md shadow-teal-500/20 cursor-pointer text-sm transform hover:scale-[1.02]"
+            >
+              Buy Now
+            </button>
+            <button
+              onClick={() => setIsAboutVideoOpen(true)}
+              className="border border-white/20 hover:border-white/40 hover:bg-white/10 text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 cursor-pointer text-sm backdrop-blur-md transform hover:scale-[1.02]"
+            >
+              About
+            </button>
+          </div>
         </motion.div>
       </section>
 
@@ -311,7 +363,7 @@ export default function ProductsContent({
           >
             <div className="hidden md:block absolute w-[85%] h-[85%] rounded-full bg-gradient-to-tr from-teal-500/10 to-indigo-500/10 blur-3xl opacity-70 group-hover:scale-105 transition-transform duration-700 transform-gpu will-change-transform" />
 
-            <div className="relative aspect-[3/2] w-full max-w-[500px] rounded-3xl bg-slate-50 border border-slate-200/80 p-2 flex items-center justify-center backdrop-blur-2xl shadow-xl overflow-hidden">
+            <div className="relative aspect-square w-full max-w-[460px] rounded-3xl bg-slate-50 border border-slate-200/80 p-2 flex items-center justify-center backdrop-blur-2xl shadow-xl overflow-hidden">
               <div className="absolute top-6 left-6 z-20 px-3.5 py-1 rounded-full bg-teal-500 border border-teal-500 text-white font-bold text-xs tracking-wider uppercase shadow-sm">
                 New
               </div>
@@ -367,16 +419,19 @@ export default function ProductsContent({
               ))}
             </div>
 
-            {/* CTA Button */}
-            <div className="pt-2">
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4 pt-2">
               <button
-                id="pre-register-btn"
                 onClick={() => setIsPreRegisterOpen(true)}
-                className="relative group px-8 py-3.5 rounded-xl border-2 border-teal-500 text-teal-700 font-bold tracking-wide overflow-hidden transition-all duration-300 hover:bg-teal-600 hover:text-white cursor-pointer"
+                className="bg-teal-600 hover:bg-teal-500 text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 shadow-md shadow-teal-500/10 cursor-pointer text-sm"
               >
-                <span className="relative flex items-center gap-2">
-                  Coming Soon — Pre-register <ChevronRight size={16} />
-                </span>
+                Buy Now
+              </button>
+              <button
+                onClick={() => setIsAboutVideoOpen(true)}
+                className="border border-slate-200 hover:border-slate-350 hover:bg-slate-50 text-slate-700 font-bold px-8 py-3.5 rounded-xl transition-all duration-200 cursor-pointer text-sm"
+              >
+                About
               </button>
             </div>
           </motion.div>
@@ -772,6 +827,266 @@ export default function ProductsContent({
         </div>
       </section>
 
+      {/* Information Accordion Section */}
+      <section className="relative z-10 max-w-4xl mx-auto px-6 py-20 border-t border-slate-100">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-3">
+            Need More Information?
+          </h2>
+          <p className="text-slate-500 text-sm md:text-base">
+            Everything you need to know about Active Pulse.
+          </p>
+        </div>
+
+        <div className="space-y-5">
+          {[
+            {
+              id: "features",
+              title: "Features",
+              icon: <Sliders className="text-teal-600" size={15} />,
+              content: (
+                <div className="flex flex-wrap gap-2.5 pt-4">
+                  {[
+                    "Bluetooth HID Connectivity",
+                    "Plug & Play",
+                    "Human-like Mouse Movement",
+                    "Auto Scroll",
+                    "Auto Tab Switching",
+                    "Left & Right Click",
+                    "USB-C Powered",
+                    "OTA Firmware Updates",
+                    "Companion Mobile App",
+                    "Windows Support",
+                    "macOS Support",
+                    "Android Companion App"
+                  ].map((feat, idx) => (
+                    <span 
+                      key={idx} 
+                      className="bg-slate-50 border border-slate-200/60 hover:border-teal-500/20 text-slate-700 px-3.5 py-2.5 rounded-2xl text-xs font-semibold tracking-wide flex items-center gap-2 shadow-sm transition-all duration-200 select-none hover:shadow-md hover:bg-white"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+                      {feat}
+                    </span>
+                  ))}
+                </div>
+              )
+            },
+            {
+              id: "use-cases",
+              title: "Professional Use Cases",
+              icon: <Briefcase className="text-indigo-650" size={15} />,
+              content: (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                  {[
+                    "Prevent systems from entering sleep mode during software installations and long-running setup processes.",
+                    "Keep workstations active during development, testing, and QA workflows.",
+                    "Support long compilation, rendering, and build operations.",
+                    "Maintain workstation availability during meetings, phone calls, and short workplace interruptions.",
+                    "Ideal for engineers, developers, IT professionals, researchers, and technical teams."
+                  ].map((useCase, idx) => (
+                    <div 
+                      key={idx} 
+                      className="p-4.5 rounded-2xl bg-slate-50/40 border border-slate-200/50 flex gap-3 text-slate-600 text-xs md:text-sm leading-relaxed shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <span className="text-teal-500 font-extrabold text-sm flex-shrink-0 mt-0.5">✓</span>
+                      <span>{useCase}</span>
+                    </div>
+                  ))}
+                </div>
+              )
+            },
+            {
+              id: "faq",
+              title: "Frequently Asked Questions",
+              icon: <HelpCircle className="text-purple-600" size={15} />,
+              content: (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                  {[
+                    {
+                      q: "What is Active Pulse?",
+                      a: "Active Pulse is a premium, drive-free physical hardware module that emulates standard BLE keyboard and mouse activity. It keeps your workstation active during background tasks or short breaks, completely offline and driverless."
+                    },
+                    {
+                      q: "How does it work?",
+                      a: "The device emulates human peripheral interactions by transmitting standard, randomized HID keyboard or mouse events at custom intervals. This registers native input to prevent inactivity lockdowns."
+                    },
+                    {
+                      q: "Does it require software?",
+                      a: "No driver, software, or agent is required on the host workstation. It connects directly over BLE or USB. Optional settings, timing profiles, and modes can be customized wirelessly via our companion Android app."
+                    },
+                    {
+                      q: "Which operating systems are supported?",
+                      a: "It supports all modern operating systems with keyboard and mouse integration, including Windows, macOS, Linux, iPadOS, ChromeOS, and Android."
+                    },
+                    {
+                      q: "Can I customize the actions?",
+                      a: "Yes. Using the Companion App, you can configure mouse movement intervals, click speeds, auto-scroll patterns, active times, and OTA updates."
+                    },
+                    {
+                      q: "Does it support OTA updates?",
+                      a: "Yes. Firmware revisions, bug fixes, and feature releases are pushed wirelessly over Bluetooth via the mobile companion app."
+                    },
+                    {
+                      q: "Is internet required?",
+                      a: "No. Active Pulse operates completely local and offline. The Bluetooth pairing is direct and secures your workstation privacy."
+                    }
+                  ].map((faq, idx) => (
+                    <div 
+                      key={idx} 
+                      className="p-5 rounded-2xl bg-slate-50/30 border border-slate-200/50 space-y-2.5 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <h4 className="font-extrabold text-slate-800 text-sm flex items-center gap-2">
+                        <span className="text-teal-650 font-mono">Q:</span>
+                        {faq.q}
+                      </h4>
+                      <p className="text-slate-500 text-xs md:text-sm leading-relaxed pl-5">
+                        {faq.a}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )
+            },
+            {
+              id: "notice",
+              title: "Professional Use Notice",
+              isNotice: true,
+              icon: <AlertTriangle className="text-amber-500" size={15} />,
+              content: (
+                <div className="p-6 rounded-2xl bg-amber-500/[0.02] border border-amber-500/20 text-slate-600 text-sm leading-relaxed space-y-4 pt-4 shadow-sm">
+                  <div className="flex items-center gap-2 text-amber-600 font-extrabold text-xs uppercase tracking-widest">
+                    <span>Important Legal Notice</span>
+                  </div>
+                  <p className="font-semibold text-slate-800">
+                    Active Pulse is designed for legitimate professional productivity workflows.
+                  </p>
+                  <p>
+                    Typical use cases include software installation, development, testing, long-running build processes, engineering workflows, meetings, presentations, and other workplace scenarios where maintaining workstation availability improves productivity.
+                  </p>
+                  <p>
+                    Users are solely responsible for ensuring that the product is used in accordance with applicable laws, workplace policies, organizational requirements, and contractual obligations.
+                  </p>
+                  <p className="border-l-2 border-amber-500 pl-3.5 italic text-slate-500 text-xs">
+                    SkillForge Technologies does not authorize, encourage, or endorse the use of Active Pulse for any unauthorized, deceptive, or policy-violating activities. Any use of the product outside its intended professional purpose is the sole responsibility of the user.
+                  </p>
+                </div>
+              )
+            },
+            {
+              id: "terms",
+              title: "Terms & Conditions",
+              icon: <FileText className="text-slate-500" size={15} />,
+              content: (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-4 text-slate-600 text-sm leading-relaxed">
+                  {[
+                    {
+                      title: "Intended Use",
+                      desc: "Designed exclusively as an automated physical hardware peripheral to assist in software testing, compilation, QA environments, and development workflows."
+                    },
+                    {
+                      title: "User Responsibilities",
+                      desc: "Users agree to comply with organizational policies, employment agreements, security covenants, and local laws during hardware operations."
+                    },
+                    {
+                      title: "Warranty",
+                      desc: "Comes with a 1-year limited warranty covering native component or hardware defects. Does not cover user damages or modified firmware."
+                    },
+                    {
+                      title: "Firmware Updates",
+                      desc: "Distributed OTA. Users should not flash or load unauthorized firmware which may render the ESP32 chip unstable."
+                    },
+                    {
+                      title: "Product Specifications",
+                      desc: "BLE HID / USB-C HID profile, 5V power, ESP32 custom chip, LED status light, compact enclosure."
+                    },
+                    {
+                      title: "Limitation of Liability",
+                      desc: "SkillForge Technologies is not liable for structural workstation issues, policy infractions, or indirect damages of any kind."
+                    }
+                  ].map((term, idx) => (
+                    <div 
+                      key={idx} 
+                      className="p-4 rounded-xl bg-slate-50/50 border border-slate-200/60 space-y-1.5 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      <h4 className="font-extrabold text-slate-800 text-xs uppercase tracking-wider">{term.title}</h4>
+                      <p className="text-slate-500 text-[11px] leading-relaxed">{term.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              )
+            }
+          ].map((section, idx) => {
+            const isActive = expandedSection === section.id;
+            return (
+              <div
+                key={section.id}
+                className={`border rounded-[24px] overflow-hidden transition-all duration-300 transform ${
+                  isActive 
+                    ? "border-teal-500/60 bg-gradient-to-r from-teal-500/[0.02] to-indigo-500/[0.01] shadow-lg shadow-teal-500/[0.02]" 
+                    : "border-slate-200/80 bg-white shadow-sm hover:border-slate-350 hover:-translate-y-0.5 hover:shadow-md"
+                }`}
+              >
+                <button
+                  onClick={() => setExpandedSection(isActive ? null : section.id)}
+                  className="w-full px-6 py-5.5 flex items-center justify-between font-bold text-slate-800 hover:text-teal-600 transition-colors text-left group"
+                >
+                  <div className="flex items-center gap-4.5">
+                    {/* Index Number Widget */}
+                    <div className={`w-9 h-9 rounded-xl border flex items-center justify-center text-xs font-black font-mono shadow-inner transition-colors duration-300 ${
+                      isActive 
+                        ? "bg-teal-50 border-teal-200/60 text-teal-600" 
+                        : "bg-slate-50 border-slate-200 text-slate-400 group-hover:bg-teal-500/[0.02] group-hover:border-teal-500/20 group-hover:text-teal-600"
+                    }`}>
+                      0{idx + 1}
+                    </div>
+
+                    {/* Section Icon Badge */}
+                    <div className={`w-9 h-9 rounded-xl border flex items-center justify-center transition-colors duration-300 ${
+                      isActive 
+                        ? "bg-teal-50 border-teal-200/60" 
+                        : "bg-slate-50 border-slate-200 group-hover:bg-teal-500/[0.02] group-hover:border-teal-500/20"
+                    }`}>
+                      {section.icon}
+                    </div>
+
+                    <span className="font-extrabold tracking-tight text-sm md:text-base text-slate-800 select-none">
+                      {section.title}
+                    </span>
+                  </div>
+
+                  {/* Circular Chevron Button */}
+                  <div className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 shadow-sm ${
+                    isActive 
+                      ? "bg-teal-600 border-teal-600 text-white shadow-teal-500/20" 
+                      : "bg-white border-slate-200 text-slate-400 group-hover:bg-slate-50"
+                  }`}>
+                    <ChevronDown
+                      size={15}
+                      className={`transition-transform duration-300 ${isActive ? "rotate-180" : ""}`}
+                    />
+                  </div>
+                </button>
+                
+                <AnimatePresence initial={false}>
+                  {isActive && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                    >
+                      <div className="px-6 pb-6 pt-2 border-t border-slate-100 bg-slate-50/20">
+                        {section.content}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* Footer CTA Banner */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 py-12 border-t border-slate-100 mt-12">
         <div className="p-8 md:p-12 rounded-3xl bg-gradient-to-r from-slate-50 to-slate-100/50 border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -819,7 +1134,7 @@ export default function ProductsContent({
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-md bg-white rounded-3xl border border-slate-200 p-8 shadow-2xl z-10 space-y-6 text-center select-none"
+              className="relative w-full max-w-lg bg-white rounded-3xl border border-slate-200 p-8 shadow-2xl z-10 space-y-6 text-center select-none"
             >
               <button
                 onClick={() => setIsPreRegisterOpen(false)}
@@ -831,11 +1146,11 @@ export default function ProductsContent({
 
               <div className="space-y-2">
                 <div className="w-12 h-12 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center mx-auto mb-2 text-teal-600">
-                  <Sparkles size={24} />
+                  <ShoppingBag size={22} />
                 </div>
-                <h3 className="text-xl font-extrabold text-slate-900 tracking-tight">Active Pulse Pre-registration</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  Sign up to receive early prototype release notices, product updates, and developer discounts.
+                <h3 className="text-xl font-extrabold text-slate-900 tracking-tight">Checkout — Active Pulse Order</h3>
+                <p className="text-sm text-slate-500 leading-relaxed max-w-sm mx-auto">
+                  Enter your delivery details to reserve and place your hardware order.
                 </p>
               </div>
 
@@ -843,23 +1158,34 @@ export default function ProductsContent({
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="p-4 bg-teal-50 border border-teal-100 rounded-2xl space-y-2 text-center"
+                  className="p-6 bg-teal-50 border border-teal-100 rounded-3xl space-y-3 text-center"
                 >
-                  <span className="text-sm font-bold text-teal-700 block">Registration Complete!</span>
-                  <span className="text-xs text-slate-500 block">We've added your email to the Active Pulse queue.</span>
+                  <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center mx-auto text-teal-600">
+                    <Sparkles size={20} className="animate-pulse" />
+                  </div>
+                  <span className="text-sm font-extrabold text-teal-800 block">Order Queue Registered!</span>
+                  <span className="text-xs text-slate-500 block leading-relaxed">
+                    We have successfully queued your batch order. A confirmation invoice has been sent to <strong>{email}</strong>.
+                  </span>
                 </motion.div>
               ) : (
                 <form
                   onSubmit={async (e) => {
                     e.preventDefault();
-                    if (!email) return;
+                    if (!email || !orderName || !orderPhone || !orderAddress) return;
                     setIsPreRegisterLoading(true);
                     setPreRegisterError("");
                     try {
-                      const res = await fetch("/api/pre-register", {
+                      const res = await fetch("/api/place-order", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ email })
+                        body: JSON.stringify({ 
+                          name: orderName,
+                          email,
+                          phone: orderPhone,
+                          address: orderAddress,
+                          quantity: orderQuantity
+                        })
                       });
                       const data = await res.json();
                       if (res.ok && data.success) {
@@ -867,10 +1193,14 @@ export default function ProductsContent({
                         setTimeout(() => {
                           setIsPreRegisterOpen(false);
                           setIsSubmitted(false);
+                          setOrderName("");
                           setEmail("");
-                        }, 3000);
+                          setOrderPhone("");
+                          setOrderAddress("");
+                          setOrderQuantity(1);
+                        }, 5000);
                       } else {
-                        setPreRegisterError(data.error || "Failed to pre-register. Please try again.");
+                        setPreRegisterError(data.error || "Failed to submit order request. Please try again.");
                       }
                     } catch (err) {
                       setPreRegisterError("A connection error occurred. Please try again.");
@@ -878,28 +1208,149 @@ export default function ProductsContent({
                       setIsPreRegisterLoading(false);
                     }
                   }}
-                  className="space-y-4"
+                  className="space-y-4 text-left"
                 >
                   {preRegisterError && (
                     <p className="text-xs text-rose-600 font-semibold text-center">{preRegisterError}</p>
                   )}
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email address"
-                    className="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-slate-800 text-sm"
-                  />
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black uppercase tracking-wider text-slate-400">Full Name</label>
+                      <input
+                        type="text"
+                        required
+                        value={orderName}
+                        onChange={(e) => setOrderName(e.target.value)}
+                        placeholder="e.g. John Doe"
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-slate-800 text-xs"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-black uppercase tracking-wider text-slate-400">Phone Number</label>
+                      <input
+                        type="tel"
+                        required
+                        value={orderPhone}
+                        onChange={(e) => setOrderPhone(e.target.value)}
+                        placeholder="e.g. +1 555-0199"
+                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-slate-800 text-xs"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-black uppercase tracking-wider text-slate-400">Email Address</label>
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="e.g. john@example.com"
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-slate-800 text-xs"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-black uppercase tracking-wider text-slate-400">Shipping Address</label>
+                    <textarea
+                      required
+                      value={orderAddress}
+                      onChange={(e) => setOrderAddress(e.target.value)}
+                      placeholder="Street, City, State, Zip Code"
+                      rows={2}
+                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500/50 text-slate-800 text-xs resize-none"
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between border border-slate-100 rounded-xl px-4 py-2.5 bg-slate-50/50">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-slate-400">Quantity</span>
+                    <div className="flex items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setOrderQuantity(q => Math.max(1, q - 1))}
+                        className="w-7 h-7 rounded-lg border border-slate-200 bg-white flex items-center justify-center text-slate-500 font-extrabold text-sm hover:bg-slate-50 active:scale-95 transition-all select-none cursor-pointer"
+                      >
+                        -
+                      </button>
+                      <span className="font-extrabold text-slate-800 text-xs w-5 text-center">{orderQuantity}</span>
+                      <button
+                        type="button"
+                        onClick={() => setOrderQuantity(q => Math.min(10, q + 1))}
+                        className="w-7 h-7 rounded-lg border border-slate-200 bg-white flex items-center justify-center text-slate-500 font-extrabold text-sm hover:bg-slate-50 active:scale-95 transition-all select-none cursor-pointer"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="border border-slate-100 rounded-2xl p-4 bg-slate-50/30 text-xs space-y-2">
+                    <div className="flex justify-between text-slate-500">
+                      <span>Item price</span>
+                      <span>₹439.00 INR</span>
+                    </div>
+                    <div className="flex justify-between text-slate-500">
+                      <span>Subtotal</span>
+                      <span>₹{(orderQuantity * 439).toFixed(2)} INR</span>
+                    </div>
+                    <div className="flex justify-between text-slate-500">
+                      <span>Shipping</span>
+                      <span className="text-teal-650 font-bold">FREE</span>
+                    </div>
+                    <div className="border-t border-slate-200/80 pt-2 flex justify-between font-extrabold text-slate-850 text-xs">
+                      <span>Total</span>
+                      <span>₹{(orderQuantity * 439).toFixed(2)} INR</span>
+                    </div>
+                  </div>
+
                   <button
                     type="submit"
                     disabled={isPreRegisterLoading}
-                    className="w-full py-3.5 bg-teal-600 hover:bg-teal-500 disabled:bg-teal-600/60 text-white font-bold rounded-xl transition-colors shadow-md shadow-teal-500/10 text-sm cursor-pointer flex items-center justify-center"
+                    className="w-full py-3.5 bg-teal-600 hover:bg-teal-500 disabled:bg-teal-600/60 text-white font-bold rounded-xl transition-all shadow-md shadow-teal-500/10 text-sm cursor-pointer flex items-center justify-center active:scale-[0.99] mt-2"
                   >
-                    {isPreRegisterLoading ? "Processing..." : "Pre-register Now"}
+                    {isPreRegisterLoading ? "Processing..." : `Confirm & Place Order — ₹${(orderQuantity * 439).toFixed(2)}`}
                   </button>
                 </form>
               )}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* About Video Modal */}
+      <AnimatePresence>
+        {isAboutVideoOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsAboutVideoOpen(false)}
+              className="absolute inset-0 bg-[#000000]/70 backdrop-blur-md"
+            />
+
+            {/* Modal Body */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative h-[85vh] max-h-[820px] aspect-[9/16] bg-slate-950 rounded-[36px] border border-white/20 p-2 shadow-2xl z-10 overflow-hidden flex items-center justify-center group"
+            >
+              <button
+                onClick={() => setIsAboutVideoOpen(false)}
+                className="absolute top-4 right-4 text-white bg-black/60 hover:bg-black/80 backdrop-blur-md p-2 rounded-full border border-white/10 transition-colors z-25 shadow-lg cursor-pointer"
+                aria-label="Close video"
+              >
+                ✕
+              </button>
+
+              <video
+                src="/Product/about.mp4"
+                controls
+                autoPlay
+                className="w-full h-full object-cover rounded-[28px]"
+              />
             </motion.div>
           </div>
         )}

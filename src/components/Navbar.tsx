@@ -31,7 +31,7 @@ export function Navbar() {
     { name: t("nav.services"), path: "/services", hasSubmenu: true },
     { name: t("nav.reviews"), path: "/reviews" },
     { name: t("nav.blog"), path: "/blog" },
-    { name: "Products", path: "/products" },
+    { name: "Products", path: "/products/active-pulse", hasBadge: true },
     { name: t("nav.about"), path: "/about" },
     { name: t("nav.contact"), path: "/contact" }
   ]
@@ -179,10 +179,15 @@ export function Navbar() {
                   <Link
                     key={link.name}
                     href={link.path}
-                    className={`relative text-[13px] font-semibold transition-colors duration-250 hover:text-blue-650 ${isActive ? "text-blue-600" : "text-slate-650"
+                    className={`relative text-[13px] font-semibold transition-colors duration-250 hover:text-blue-650 flex items-center ${isActive ? "text-blue-600" : "text-slate-650"
                       }`}
                   >
-                    {link.name}
+                    <span>{link.name}</span>
+                    {link.hasBadge && (
+                      <span className="ml-1 px-1 py-0.5 rounded bg-teal-500 text-white text-[8px] font-black tracking-wider uppercase leading-none select-none animate-pulse scale-[0.85] origin-left shadow-sm">
+                        New
+                      </span>
+                    )}
                     {pathname === link.path && (
                       <motion.span
                         layoutId="navIndicator"
@@ -268,9 +273,14 @@ export function Navbar() {
                     key={link.name}
                     href={link.path}
                     onClick={() => setIsMobileOpen(false)}
-                    className="block py-2 text-[15px] font-bold text-slate-800 hover:text-blue-600 transition-colors"
+                    className="flex items-center gap-1.5 py-2 text-[15px] font-bold text-slate-800 hover:text-blue-600 transition-colors"
                   >
-                    {link.name}
+                    <span>{link.name}</span>
+                    {link.hasBadge && (
+                      <span className="px-1.5 py-0.5 rounded bg-teal-500 text-white text-[9px] font-black tracking-wider uppercase leading-none select-none animate-pulse shadow-sm">
+                        New
+                      </span>
+                    )}
                   </Link>
                 )
               })}
