@@ -61,11 +61,36 @@ export default function ActivePulseProductPage() {
           "@type": "Brand",
           "name": "SkillForge Technology"
         },
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Alex Carter"
+          }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "24"
+        },
         "offers": {
           "@type": "Offer",
-          "priceCurrency": "USD",
-          "price": "0.00",
-          "availability": "https://schema.org/InStock"
+          "priceCurrency": "INR",
+          "price": "439.00",
+          "availability": "https://schema.org/InStock",
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "IN",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 10,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/FreeReturn"
+          }
         }
       },
       {

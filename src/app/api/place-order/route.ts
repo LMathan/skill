@@ -27,7 +27,7 @@ export async function POST(request: Request) {
       console.log("=== MOCK EMAIL MODE: ACTIVE PULSE PURCHASE ORDER ===")
       console.log(`To: Owner (${ownerEmail})`)
       console.log(`Subject: [Active Pulse Order Alert] ${quantity}x Device(s) - ${name}`)
-      console.log(`Details:\n  Customer: ${name}\n  Phone: ${phone}\n  Address: ${address}\n  Total: ₹${(quantity * 439).toFixed(2)} INR`)
+      console.log(`Details:\n  Customer: ${name}\n  Phone: ${phone}\n  Address: ${address}\n  Total: ₹${(quantity * 439).toFixed(2)} INR + Shipping`)
       console.log("------------------------")
       console.log(`To: Client (${email})`)
       console.log(`Subject: Order Confirmation - Active Pulse Receipt`)
@@ -69,7 +69,7 @@ export async function POST(request: Request) {
             </tr>
             <tr>
               <td style="padding: 6px 0; font-weight: bold;">Order Total:</td>
-              <td style="padding: 6px 0; color: #0d9488; font-weight: bold;">₹${(quantity * 439).toFixed(2)} INR (Free Shipping)</td>
+              <td style="padding: 6px 0; color: #0d9488; font-weight: bold;">₹${(quantity * 439).toFixed(2)} INR + Shipping</td>
             </tr>
             <tr>
               <td style="padding: 6px 0; font-weight: bold; vertical-align: top;">Address:</td>
@@ -133,11 +133,11 @@ export async function POST(request: Request) {
             </tr>
             <tr>
               <td style="padding: 6px 0; font-weight: bold;">Shipping:</td>
-              <td style="padding: 6px 0; text-align: right; color: #0d9488; font-weight: bold;">FREE</td>
+              <td style="padding: 6px 0; text-align: right; color: #475569;">Calculated at dispatch</td>
             </tr>
             <tr style="border-top: 1px solid #e2e8f0;">
-              <td style="padding: 10px 0 0 0; font-weight: bold; font-size: 15px; color: #0f172a;">Total:</td>
-              <td style="padding: 10px 0 0 0; text-align: right; font-weight: bold; font-size: 15px; color: #0d9488;">₹${(quantity * 439).toFixed(2)} INR</td>
+              <td style="padding: 10px 0 0 0; font-weight: bold; font-size: 15px; color: #0f172a;">Subtotal Total:</td>
+              <td style="padding: 10px 0 0 0; text-align: right; font-weight: bold; font-size: 15px; color: #0d9488;">₹${(quantity * 439).toFixed(2)} INR + Shipping</td>
             </tr>
           </table>
         </div>

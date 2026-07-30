@@ -1002,6 +1002,14 @@ export default function ProductsContent({
                     {
                       title: "Limitation of Liability",
                       desc: "SkillForge Technologies is not liable for structural workstation issues, policy infractions, or indirect damages of any kind."
+                    },
+                    {
+                      title: "Shipping Policy",
+                      desc: "We provide standard shipping to all addresses in India. Orders are processed within 24 hours and shipping costs are calculated at dispatch."
+                    },
+                    {
+                      title: "Return Policy",
+                      desc: "Enjoy a 10-day return policy. If you're not completely satisfied, return the device in original packaging via mail for a full refund. Return shipping is free."
                     }
                   ].map((term, idx) => (
                     <div 
@@ -1295,7 +1303,7 @@ export default function ProductsContent({
                     </div>
                     <div className="flex justify-between text-slate-500">
                       <span>Shipping</span>
-                      <span className="text-teal-650 font-bold">FREE</span>
+                      <span className="text-slate-500 font-semibold">Calculated at dispatch</span>
                     </div>
                     <div className="border-t border-slate-200/80 pt-2 flex justify-between font-extrabold text-slate-850 text-xs">
                       <span>Total</span>
