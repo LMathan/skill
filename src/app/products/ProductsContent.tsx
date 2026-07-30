@@ -1005,7 +1005,7 @@ export default function ProductsContent({
                     },
                     {
                       title: "Shipping Policy",
-                      desc: "We provide standard shipping to all addresses in India. Orders are processed within 24 hours and shipping costs are calculated at dispatch."
+                      desc: "We provide standard shipping to all addresses in India. Standard shipping rates start from ₹50.00 INR (varying based on location). Orders are processed within 24 hours and delivered in 2–5 business days."
                     },
                     {
                       title: "Return Policy",
@@ -1303,11 +1303,11 @@ export default function ProductsContent({
                     </div>
                     <div className="flex justify-between text-slate-500">
                       <span>Shipping</span>
-                      <span className="text-slate-500 font-semibold">Calculated at dispatch</span>
+                      <span className="text-slate-500 font-semibold">Starts from ₹50.00 INR</span>
                     </div>
                     <div className="border-t border-slate-200/80 pt-2 flex justify-between font-extrabold text-slate-850 text-xs">
                       <span>Total</span>
-                      <span>₹{(orderQuantity * 439).toFixed(2)} INR</span>
+                      <span>₹{(orderQuantity * 439 + 50).toFixed(2)} INR (Base Total)</span>
                     </div>
                   </div>
 
@@ -1316,7 +1316,7 @@ export default function ProductsContent({
                     disabled={isPreRegisterLoading}
                     className="w-full py-3.5 bg-teal-600 hover:bg-teal-500 disabled:bg-teal-600/60 text-white font-bold rounded-xl transition-all shadow-md shadow-teal-500/10 text-sm cursor-pointer flex items-center justify-center active:scale-[0.99] mt-2"
                   >
-                    {isPreRegisterLoading ? "Processing..." : `Confirm & Place Order — ₹${(orderQuantity * 439).toFixed(2)}`}
+                    {isPreRegisterLoading ? "Processing..." : `Confirm & Place Order — ₹${(orderQuantity * 439 + 50).toFixed(2)}*`}
                   </button>
                 </form>
               )}
