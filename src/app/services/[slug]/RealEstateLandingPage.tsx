@@ -217,7 +217,7 @@ export default function RealEstateLandingPage({ service, localImages }: RealEsta
       />
 
       {/* Floating Sticky CTA Strip */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-2">
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-2 local-floating-cta">
         <Link href="#quote-form" className="bg-gradient-to-r from-blue-650 to-indigo-650 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-5 rounded-full shadow-xl flex items-center gap-2 text-xs transition-all hover:scale-105">
           <Zap size={14} className="animate-bounce" />
           <span>Get Free Sample</span>

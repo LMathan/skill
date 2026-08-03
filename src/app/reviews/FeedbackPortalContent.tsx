@@ -337,7 +337,7 @@ export default function FeedbackPortalContent() {
               className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-3 px-6 rounded-xl flex items-center gap-1.5 cursor-pointer shadow-sm"
             >
               <Plus size={14} />
-              <span>Add Client Review</span>
+              <span>Add Your Review</span>
             </Button>
           </motion.div>
         </motion.div>
@@ -533,7 +533,7 @@ export default function FeedbackPortalContent() {
               <div className="flex justify-between items-center pb-2 border-b border-slate-100">
                 <h3 className="font-display font-extrabold text-lg text-slate-950 flex items-center gap-2">
                   <Sparkles className="text-blue-600 animate-pulse" size={16} />
-                  <span>Submit Client Review</span>
+                  <span>Submit Your Review</span>
                 </h3>
                 <button 
                   onClick={() => setShowForm(false)}
@@ -557,7 +557,7 @@ export default function FeedbackPortalContent() {
                     <p className="text-red-500 font-semibold">{submitError}</p>
                   )}
                   <div className="space-y-1">
-                    <label htmlFor="feedback-customer-name" className="font-bold text-slate-500 uppercase tracking-wider block">Client Name / Representative</label>
+                    <label htmlFor="feedback-customer-name" className="font-bold text-slate-500 uppercase tracking-wider block">Your Name / Representative</label>
                     <input
                       id="feedback-customer-name"
                       required

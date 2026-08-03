@@ -1786,7 +1786,7 @@ export function HomeContent() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-lg bg-white/80 backdrop-blur-md border border-slate-200 rounded-2xl shadow-xl overflow-hidden px-4 py-3.5 flex items-center justify-between"
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-lg bg-white/80 backdrop-blur-md border border-slate-200 rounded-2xl shadow-xl overflow-hidden px-4 py-3.5 flex items-center justify-between local-floating-dock"
           >
             {/* Scroll reading progress bar */}
             <div 
