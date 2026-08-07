@@ -128,11 +128,15 @@ export default function SitemapContent() {
     },
     {
       id: "portfolio",
-      title: "Portfolio & Insights",
-      description: "Discover our technical case studies, success stories, and active hardware-software R&D codebases.",
+      title: "Products & Portfolio",
+      description: "Discover our consumer software products, technical case studies, and active engineering projects.",
       icon: <Briefcase size={20} />,
       color: "from-amber-500/10 to-orange-500/10 text-amber-600 border-amber-100",
       links: [
+        { name: "ExpenseMate App (Personal Finance)", href: "/products/expense-mate", badge: "New App" },
+        { name: "ExpenseMate Privacy Policy", href: "/privacy/expense-mate" },
+        { name: "Active Pulse Workspace Device", href: "/products/active-pulse" },
+        { name: "Products Overview Hub", href: "/products" },
         { name: "Active Engineering Projects", href: "/projects" },
         { name: "Enterprise Case Studies", href: "/case-studies" },
         { name: "Client Testimonials Portal", href: "/reviews" },

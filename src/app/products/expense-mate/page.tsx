@@ -2,27 +2,82 @@ import { Metadata } from "next"
 import ExpenseMateProductContent from "./ExpenseMateProductContent"
 
 export const metadata: Metadata = {
-  title: "ExpenseMate — Personal Finance & Group Bill Split App | SkillForge Technology",
-  description: "Manage daily personal expenses, track budget limits, analyze visual spending charts, and split group bills effortlessly with ExpenseMate by SkillForge Technology.",
+  title: "ExpenseMate — Smart Personal Finance & Group Bill Splitter App | SkillForge Technology",
+  description: "Master your money with ExpenseMate. Track daily personal expenses, split group bills with zero conflict, get real-time AI budget advice, and secure your wallet with biometric protection. 100% Ad-Free.",
   keywords: [
     "ExpenseMate",
     "ExpenseMate App",
     "Personal Finance App",
-    "Group Expense Splitter",
+    "Group Bill Splitter",
     "Bill Splitter App",
-    "Flutter Expense Tracker",
+    "Roommate Expense Tracker",
+    "Best Splitwise Alternative",
+    "Ad-Free Expense Tracker",
+    "AI Budget Advisor",
+    "Biometric Finance Vault",
+    "Expense Tracker India",
     "SkillForge Technology Products"
   ],
+  alternates: {
+    canonical: "https://skillforgetechnology.app/products/expense-mate"
+  },
   openGraph: {
-    title: "ExpenseMate — Personal Finance & Group Split",
-    description: "Take complete control of your financial life. Track personal expenses and split group bills effortlessly.",
+    title: "ExpenseMate — Smart Personal Finance & Group Bill Splitter App",
+    description: "Master your money with ExpenseMate. Track daily personal expenses, split group bills effortlessly, get real-time AI budget guidance, and secure your wallet. 100% Ad-Free.",
     url: "https://skillforgetechnology.app/products/expense-mate",
     siteName: "SkillForge Technology",
+    images: [
+      {
+        url: "https://skillforgetechnology.app/Product/ExpenseMate/home-dashboard.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ExpenseMate Smart Personal Finance App"
+      }
+    ],
     locale: "en_US",
     type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ExpenseMate — Smart Personal Finance & Group Bill Splitter App",
+    description: "Track daily expenses, split roommate bills effortlessly, and get AI financial advice. 100% Ad-Free.",
+    images: ["https://skillforgetechnology.app/Product/ExpenseMate/home-dashboard.jpg"]
+  }
+}
+
+// Google JSON-LD Rich Snippet Structured Data for SoftwareApplication
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ExpenseMate",
+  "operatingSystem": "Android, iOS",
+  "applicationCategory": "FinanceApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "128"
+  },
+  "description": "Smart personal budget manager and group bill splitter with AI financial advice and biometric vault protection.",
+  "author": {
+    "@type": "Organization",
+    "name": "SkillForge Technology",
+    "url": "https://skillforgetechnology.app"
   }
 }
 
 export default function ExpenseMateProductPage() {
-  return <ExpenseMateProductContent />
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ExpenseMateProductContent />
+    </>
+  )
 }

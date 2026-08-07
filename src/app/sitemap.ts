@@ -8,7 +8,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseRoutes = [
     "",
     "/about",
+    "/products",
     "/products/active-pulse",
+    "/products/expense-mate",
+    "/privacy/expense-mate",
     "/services",
     "/industries",
     "/technologies",
