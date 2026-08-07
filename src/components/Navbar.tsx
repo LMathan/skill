@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, ChevronDown, X, Send } from "lucide-react"
@@ -11,12 +11,14 @@ import { agencyServices } from "@/data/agencyData"
 
 export function Navbar() {
   const pathname = usePathname()
-  const { locale, setLocale, t, isRTL } = useLanguage()
+  const { t, isRTL } = useLanguage()
 
   const [scrolled, setScrolled] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [isServicesHovered, setIsServicesHovered] = useState(false)
+  const [isProductsHovered, setIsProductsHovered] = useState(false)
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,14 +33,16 @@ export function Navbar() {
     { name: t("nav.services"), path: "/services", hasSubmenu: true },
     { name: t("nav.reviews"), path: "/reviews" },
     { name: t("nav.blog"), path: "/blog" },
-    { name: "Products", path: "/products/active-pulse", hasBadge: true },
+    { name: "Products", path: "/products", hasProductsSubmenu: true, hasBadge: true },
     { name: t("nav.about"), path: "/about" },
     { name: t("nav.contact"), path: "/contact" }
   ]
+
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-350 ${scrolled ? "glass-nav py-2 shadow-sm" : "bg-transparent py-5"
-        }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-350 ${
+        scrolled ? "glass-nav py-2 shadow-sm" : "bg-transparent py-5"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`flex items-center justify-between transition-all duration-350 ${scrolled ? "h-14" : "h-20"}`}>
@@ -60,8 +64,9 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-7">
             <div className="flex items-center gap-6">
               {navLinks.map((link) => {
-                const isActive = pathname === link.path || (link.hasSubmenu && pathname.startsWith("/services"))
+                const isActive = pathname === link.path || (link.hasSubmenu && pathname.startsWith("/services")) || (link.hasProductsSubmenu && pathname.startsWith("/products"))
 
+                // Services Dropdown
                 if (link.hasSubmenu) {
                   return (
                     <div
@@ -71,8 +76,9 @@ export function Navbar() {
                       onMouseLeave={() => setIsServicesHovered(false)}
                     >
                       <button
-                        className={`flex items-center gap-1 text-[13px] font-semibold transition-colors duration-250 hover:text-blue-650 cursor-pointer ${isActive ? "text-blue-600" : "text-slate-600"
-                          }`}
+                        className={`flex items-center gap-1 text-[13px] font-semibold transition-colors duration-250 hover:text-blue-650 cursor-pointer ${
+                          isActive ? "text-blue-600" : "text-slate-600"
+                        }`}
                       >
                         <span>{link.name}</span>
                         <ChevronDown size={14} className={`transition-transform duration-200 ${isServicesHovered ? "rotate-180" : ""}`} />
@@ -86,13 +92,13 @@ export function Navbar() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 8 }}
                             transition={{ duration: 0.2 }}
-                            className={`absolute top-full ${isRTL ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} mt-2 w-[760px] bg-white border border-slate-200/60 rounded-3xl shadow-xl p-6 grid grid-cols-3 gap-6 z-50`}
+                            className={`absolute top-full ${isRTL ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} mt-2 w-[760px] bg-white border border-slate-200/60 rounded-3xl shadow-xl p-6 grid grid-cols-3 gap-6 z-50 text-left`}
                           >
                             {/* Column 1: Software & Cloud */}
                             <div className="space-y-3">
                               <div className="pb-1.5 border-b border-slate-100">
                                 <span className="text-[9px] font-extrabold uppercase tracking-widest text-blue-600">
-                                  Software & Cloud
+                                  Software &amp; Cloud
                                 </span>
                               </div>
                               <div className="space-y-1">
@@ -119,7 +125,7 @@ export function Navbar() {
                             <div className="space-y-3">
                               <div className="pb-1.5 border-b border-slate-100">
                                 <span className="text-[9px] font-extrabold uppercase tracking-widest text-indigo-650">
-                                  Web & Mobile
+                                  Web &amp; Mobile
                                 </span>
                               </div>
                               <div className="space-y-1">
@@ -146,7 +152,7 @@ export function Navbar() {
                             <div className="space-y-3">
                               <div className="pb-1.5 border-b border-slate-100">
                                 <span className="text-[9px] font-extrabold uppercase tracking-widest text-emerald-600">
-                                  Specialized & AI
+                                  Specialized &amp; AI
                                 </span>
                               </div>
                               <div className="space-y-1">
@@ -175,12 +181,80 @@ export function Navbar() {
                   )
                 }
 
+                // Products Dropdown
+                if (link.hasProductsSubmenu) {
+                  return (
+                    <div
+                      key={link.name}
+                      className="relative py-2"
+                      onMouseEnter={() => setIsProductsHovered(true)}
+                      onMouseLeave={() => setIsProductsHovered(false)}
+                    >
+                      <button
+                        className={`flex items-center gap-1 text-[13px] font-semibold transition-colors duration-250 hover:text-blue-650 cursor-pointer ${
+                          isActive ? "text-blue-600" : "text-slate-600"
+                        }`}
+                      >
+                        <span>{link.name}</span>
+                        {link.hasBadge && (
+                          <span className="ml-0.5 px-1 py-0.5 rounded bg-teal-500 text-white text-[8px] font-black tracking-wider uppercase leading-none select-none animate-pulse scale-[0.85] origin-left shadow-sm">
+                            New
+                          </span>
+                        )}
+                        <ChevronDown size={14} className={`transition-transform duration-200 ${isProductsHovered ? "rotate-180" : ""}`} />
+                      </button>
+
+                      {/* Products Dropdown menu */}
+                      <AnimatePresence>
+                        {isProductsHovered && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 8 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[340px] bg-white border border-slate-200/80 rounded-2xl shadow-xl p-3 grid grid-cols-1 gap-1 z-50 text-left"
+                          >
+                            <Link
+                              href="/products/active-pulse"
+                              className="flex flex-col p-3 rounded-xl hover:bg-slate-50 transition-colors group"
+                              onClick={() => setIsProductsHovered(false)}
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Active Pulse</span>
+                                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-blue-50 text-blue-600 border border-blue-100 font-bold">Workspace Device</span>
+                              </div>
+                              <span className="text-[10px] text-slate-500 line-clamp-1 mt-0.5">
+                                Smart workspace anti-idle device &amp; companion app.
+                              </span>
+                            </Link>
+
+                            <Link
+                              href="/products/expense-mate"
+                              className="flex flex-col p-3 rounded-xl hover:bg-slate-50 transition-colors group"
+                              onClick={() => setIsProductsHovered(false)}
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">ExpenseMate</span>
+                                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-600 border border-emerald-100 font-bold">Personal Finance App</span>
+                              </div>
+                              <span className="text-[10px] text-slate-500 line-clamp-1 mt-0.5">
+                                Personal budget manager &amp; group bill splitter.
+                              </span>
+                            </Link>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )
+                }
+
                 return (
                   <Link
                     key={link.name}
                     href={link.path}
-                    className={`relative text-[13px] font-semibold transition-colors duration-250 hover:text-blue-650 flex items-center ${isActive ? "text-blue-600" : "text-slate-650"
-                      }`}
+                    className={`relative text-[13px] font-semibold transition-colors duration-250 hover:text-blue-650 flex items-center ${
+                      isActive ? "text-blue-600" : "text-slate-650"
+                    }`}
                   >
                     <span>{link.name}</span>
                     {link.hasBadge && (
@@ -202,7 +276,6 @@ export function Navbar() {
 
             {/* Actions: Discuss Button */}
             <div className="flex items-center gap-5 border-l border-slate-200/80 pl-6">
-              {/* CTA Discuss Project */}
               <Button 
                 onClick={() => window.dispatchEvent(new CustomEvent("open-book-call-modal"))}
                 variant="gradient" 
@@ -268,6 +341,44 @@ export function Navbar() {
                   )
                 }
 
+                if (link.hasProductsSubmenu) {
+                  return (
+                    <div key={link.name} className="space-y-1">
+                      <button
+                        onClick={() => setIsMobileProductsOpen(!isMobileProductsOpen)}
+                        className="w-full flex items-center justify-between py-2 text-[15px] font-bold text-slate-800"
+                      >
+                        <span className="flex items-center gap-1.5">
+                          <span>{link.name}</span>
+                          <span className="px-1.5 py-0.5 rounded bg-teal-500 text-white text-[9px] font-black tracking-wider uppercase leading-none select-none shadow-sm">
+                            New
+                          </span>
+                        </span>
+                        <ChevronDown size={16} className={`transition-transform duration-200 ${isMobileProductsOpen ? "rotate-180" : ""}`} />
+                      </button>
+
+                      {isMobileProductsOpen && (
+                        <div className="pl-4 border-l border-slate-100 grid grid-cols-1 gap-1.5 py-1 text-left">
+                          <Link
+                            href="/products/active-pulse"
+                            onClick={() => setIsMobileOpen(false)}
+                            className="py-1 text-xs text-slate-700 font-bold hover:text-blue-600 block"
+                          >
+                            Active Pulse (BLE Hardware)
+                          </Link>
+                          <Link
+                            href="/products/expense-mate"
+                            onClick={() => setIsMobileOpen(false)}
+                            className="py-1 text-xs text-slate-700 font-bold hover:text-blue-600 block"
+                          >
+                            ExpenseMate (Flutter &amp; Firebase)
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+                  )
+                }
+
                 return (
                   <Link
                     key={link.name}
@@ -276,11 +387,6 @@ export function Navbar() {
                     className="flex items-center gap-1.5 py-2 text-[15px] font-bold text-slate-800 hover:text-blue-600 transition-colors"
                   >
                     <span>{link.name}</span>
-                    {link.hasBadge && (
-                      <span className="px-1.5 py-0.5 rounded bg-teal-500 text-white text-[9px] font-black tracking-wider uppercase leading-none select-none animate-pulse shadow-sm">
-                        New
-                      </span>
-                    )}
                   </Link>
                 )
               })}

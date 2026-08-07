@@ -1,8 +1,8 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Cpu, Smartphone, Globe, Activity, Brain, Home, ShieldAlert, ArrowRight, Sparkles, ExternalLink, ArrowUpRight } from "lucide-react"
+import { Cpu, Smartphone, Activity, Brain, Home, ShieldAlert, ArrowRight, ExternalLink, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -185,7 +185,7 @@ export default function InteractiveProjectShowcase() {
   const [activeCategory, setActiveCategory] = useState("all")
   const [activeIndex, setActiveIndex] = useState(0)
   const [progress, setProgress] = useState(0)
-  const [cycleTime, setCycleTime] = useState(3000) // Default 3 seconds
+  const [isPaused, setIsPaused] = useState(false)
 
   const filteredProjects = ourWorkProjects.filter(project => {
     if (activeCategory === "all") return true
@@ -196,23 +196,21 @@ export default function InteractiveProjectShowcase() {
   useEffect(() => {
     setActiveIndex(0)
     setProgress(0)
-    setCycleTime(3000)
   }, [activeCategory])
 
-  // Progress timer for auto-cycling
+  // Fluid Auto-cycling timer with smooth progress bar
   useEffect(() => {
+    if (isPaused || filteredProjects.length === 0) return
+
     setProgress(0)
-    const intervalTick = 50
-    const increment = (intervalTick * 100) / cycleTime
+    const intervalTick = 40
+    const totalDuration = 4500 // 4.5 seconds per project
+    const increment = (intervalTick * 100) / totalDuration
 
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) {
-          setActiveIndex(prevIndex => {
-            // Revert back to fast 3s cycle after an automatic slide movement
-            setCycleTime(3000)
-            return (prevIndex + 1) % filteredProjects.length
-          })
+          setActiveIndex(prevIdx => (prevIdx + 1) % filteredProjects.length)
           return 0
         }
         return prev + increment
@@ -220,14 +218,60 @@ export default function InteractiveProjectShowcase() {
     }, intervalTick)
 
     return () => clearInterval(interval)
-  }, [activeIndex, filteredProjects.length, cycleTime])
+  }, [activeIndex, filteredProjects.length, isPaused])
+
+  const handleNext = () => {
+    setActiveIndex(prev => (prev + 1) % filteredProjects.length)
+    setProgress(0)
+  }
+
+  const handlePrev = () => {
+    setActiveIndex(prev => (prev - 1 + filteredProjects.length) % filteredProjects.length)
+    setProgress(0)
+  }
 
   const activeProject = filteredProjects[activeIndex] || filteredProjects[0]
 
   return (
-    <div className="space-y-12 max-w-6xl mx-auto font-sans">
-      
-      {/* Category Pills with glowing animations */}
+    <div
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      className="w-full max-w-6xl mx-auto px-4 py-8 font-sans space-y-6"
+    >
+      {/* Header Controls & Counter */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+          <span className="text-xs font-mono text-blue-600 font-bold uppercase tracking-widest">
+            FEATURED ENGINEERING SHOWCASE
+          </span>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-xs font-mono font-medium shadow-sm">
+            <span>PROJECT {activeIndex + 1} OF {filteredProjects.length}</span>
+          </div>
+
+          <div className="flex items-center gap-1">
+            <button
+              onClick={handlePrev}
+              className="p-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-2xs"
+              aria-label="Previous project"
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <button
+              onClick={handleNext}
+              className="p-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-2xs"
+              aria-label="Next project"
+            >
+              <ChevronRight size={16} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Category Pills */}
       <div className="flex flex-wrap gap-2.5 justify-center items-center">
         {categories.map((cat) => {
           const isActive = activeCategory === cat.id
@@ -236,7 +280,7 @@ export default function InteractiveProjectShowcase() {
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
               className={`relative px-5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer select-none ${
-                isActive ? "text-white" : "text-slate-500 hover:text-slate-800 bg-white/40 hover:bg-white/80 border border-slate-200/50 shadow-sm"
+                isActive ? "text-white" : "text-slate-500 hover:text-slate-800 bg-white/60 hover:bg-white border border-slate-200/60 shadow-xs"
               }`}
             >
               {isActive && (
@@ -252,11 +296,8 @@ export default function InteractiveProjectShowcase() {
         })}
       </div>
 
-      {/* 
-        Horizontal Stepper Timeline:
-        Lists all the projects inside the current category with expanding progress bar metrics.
-      */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4 border-b border-slate-200/40 pb-6">
+      {/* Horizontal Stepper Tabs */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 border-b border-slate-200/60 pb-4">
         {filteredProjects.map((p, idx) => {
           const isActive = activeIndex === idx
           return (
@@ -265,7 +306,6 @@ export default function InteractiveProjectShowcase() {
               onClick={() => {
                 setActiveIndex(idx)
                 setProgress(0)
-                setCycleTime(7000) // 7s delay on manual selection click
               }}
               className="text-left group flex flex-col justify-between h-14 relative outline-none select-none cursor-pointer"
             >
@@ -279,14 +319,14 @@ export default function InteractiveProjectShowcase() {
               </div>
 
               {/* Progress Bar Indicator */}
-              <div className="w-full h-[2.5px] bg-slate-200/50 rounded-full overflow-hidden mt-3">
+              <div className="w-full h-[3px] bg-slate-200/60 rounded-full overflow-hidden mt-2">
                 {isActive ? (
                   <div 
-                    className="h-full bg-blue-600 transition-all duration-100 ease-linear"
+                    className="h-full bg-blue-600 transition-all duration-75 ease-linear"
                     style={{ width: `${progress}%` }}
                   />
                 ) : (
-                  <div className="h-full bg-transparent group-hover:bg-slate-300 w-0 group-hover:w-full transition-all duration-350" />
+                  <div className="h-full bg-transparent group-hover:bg-slate-300 w-0 group-hover:w-full transition-all duration-300" />
                 )}
               </div>
             </button>
@@ -294,17 +334,12 @@ export default function InteractiveProjectShowcase() {
         })}
       </div>
 
-      {/* 
-        Main Frame Viewport:
-        Frameless architecture containing a technical blueprint grid background, glowing color meshes, 
-        and overlapping 3D perspective browser/mobile mockups floating freely.
-      */}
-      <div className="relative w-full min-h-[500px] flex items-center justify-center py-8 overflow-hidden rounded-[40px]">
+      {/* Main Frame Viewport */}
+      <div className="relative w-full min-h-[440px] flex items-center justify-center py-6 overflow-hidden rounded-[32px] bg-slate-50/50 border border-slate-200/80">
         
-        {/* Technical Blueprint Grid overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] -z-10 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_80%,transparent_100%)] opacity-80" />
+        {/* Blueprint Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem] -z-10 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_50%,#000_80%,transparent_100%)] opacity-70" />
         
-        {/* Dynamic color glow overlay */}
         {activeProject && (
           <div className={`absolute top-1/2 left-[70%] -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-br ${activeProject.glowColor} rounded-full blur-[100px] opacity-70 transition-all duration-700 -z-10`} />
         )}
@@ -313,134 +348,103 @@ export default function InteractiveProjectShowcase() {
           {activeProject && (
             <motion.div
               key={activeProject.title}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full flex flex-col lg:flex-row gap-12 items-center justify-between text-left px-4 lg:px-6"
+              initial={{ opacity: 0, y: 15, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -15, scale: 0.98 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full flex flex-col lg:flex-row gap-10 items-center justify-between text-left px-6 lg:px-10"
             >
               
-              {/* Left Side: Editorial Typography & Tech Specs */}
-              <div className="w-full lg:w-[45%] space-y-6">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-extrabold text-blue-600 font-mono tracking-wider bg-blue-50/70 border border-blue-100 px-3 py-1 rounded-lg">
-                      SPECIFICATION 0{activeProject.number}
-                    </span>
-                    <div className={`p-1.5 rounded-lg ${activeProject.iconBg} ${activeProject.iconColor} border border-slate-200/40 shadow-sm`}>
-                      {React.createElement(activeProject.icon, { size: 14 })}
-                    </div>
+              {/* Left Column: Project Details */}
+              <div className="w-full lg:w-5/12 space-y-6">
+                <div className="flex items-center gap-3">
+                  <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-mono font-bold tracking-wider uppercase border border-blue-100">
+                    SPECIFICATION {activeProject.number}
+                  </span>
+                  <div className={`w-8 h-8 rounded-xl ${activeProject.iconBg} ${activeProject.iconColor} flex items-center justify-center shadow-xs`}>
+                    <activeProject.icon size={16} />
                   </div>
-                  <h3 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-display text-slate-900 leading-none">
-                    {activeProject.title}
-                  </h3>
                 </div>
 
-                <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-medium font-sans">
-                  {activeProject.description}
-                </p>
+                <div>
+                  <h3 className="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 tracking-tight leading-tight">
+                    {activeProject.title}
+                  </h3>
+                  <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed">
+                    {activeProject.description}
+                  </p>
+                </div>
 
-                {/* Tech chips */}
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {activeProject.technologies.map(tech => (
-                    <span
-                      key={tech}
-                      className="text-[9px] bg-white border border-slate-200/80 text-slate-500 px-2.5 py-1 rounded-lg font-mono font-bold shadow-sm"
-                    >
+                <div className="flex flex-wrap gap-2">
+                  {activeProject.technologies.map((tech, idx) => (
+                    <span key={idx} className="px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 text-xs font-mono font-semibold shadow-2xs">
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                {/* Metrics highlights and dynamic details */}
-                <div className="flex items-center gap-6 pt-6 border-t border-slate-200/40 mt-8 justify-between lg:justify-start">
-                  <div className="bg-white/90 border border-slate-200/80 p-3.5 rounded-2xl flex items-center gap-4 shadow-sm w-fit">
+                <div className="pt-2 flex items-center gap-6">
+                  <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center gap-3">
                     <div>
-                      <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest block leading-none">{activeProject.metricLabel}</span>
-                      <span className="block text-sm font-extrabold text-slate-900 font-display mt-1">{activeProject.metric}</span>
+                      <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">{activeProject.metricLabel}</div>
+                      <div className="text-xl font-bold font-mono text-slate-900 mt-0.5">{activeProject.metric}</div>
                     </div>
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="w-2 h-2 rounded-full bg-emerald-500" />
                   </div>
 
-                  <Link href={activeProject.url}>
-                    <button className="flex items-center gap-2 bg-slate-900 hover:bg-blue-600 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all hover:scale-[1.03] shadow-md shadow-slate-900/10 cursor-pointer">
-                      <span>View Case Study</span>
-                      <ArrowUpRight size={14} />
-                    </button>
+                  <Link
+                    href={activeProject.url}
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                  >
+                    <span>View Case Study</span>
+                    <ArrowUpRight size={16} />
                   </Link>
                 </div>
               </div>
 
-              {/* Right Side: Mockups Floating in 3D Perspective Space */}
-              <div className="w-full lg:w-[50%] flex items-center justify-center relative min-h-[300px] sm:min-h-[380px]">
-                
-                {/* Floating active status board */}
-                <div className="absolute -top-4 left-0 bg-white/95 border border-slate-200/80 p-4 rounded-2xl shadow-xl flex flex-col gap-1.5 z-20">
-                  <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Active Operations</span>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    <span className="text-[9px] font-extrabold text-slate-900 font-mono">{activeProject.telemetryText}</span>
-                  </div>
-                </div>
-
-                {/* Primary Browser Mockup (With custom rotation) */}
-                <div className="relative w-[90%] aspect-[16/10] bg-white border border-slate-250/90 shadow-[0_24px_50px_rgba(0,0,0,0.06)] rounded-2xl overflow-hidden z-10 -rotate-1 hover:rotate-0 transition-transform duration-500">
-                  {/* Browser top-bar */}
-                  <div className="bg-slate-50 border-b border-slate-200 px-4 py-2.5 flex items-center justify-between shrink-0">
-                    <div className="flex gap-1.5 shrink-0">
-                      <div className="w-2 h-2 rounded-full bg-red-400" />
-                      <div className="w-2 h-2 rounded-full bg-yellow-400" />
-                      <div className="w-2 h-2 rounded-full bg-green-400" />
+              {/* Right Column: Interactive Browser Frame Mockup */}
+              <div className="w-full lg:w-7/12 relative">
+                <div className="relative rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden group">
+                  
+                  {/* Top Browser Bar */}
+                  <div className="px-4 py-3 bg-slate-100/90 border-b border-slate-200 flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                     </div>
-                    <div className="bg-slate-100 border border-slate-200/50 px-5 py-0.5 rounded-md text-[8px] text-slate-400 font-bold uppercase tracking-widest font-mono truncate max-w-[65%]">
+                    <div className="px-3 py-0.5 rounded-md bg-white border border-slate-200 text-[10px] font-mono text-slate-500 truncate max-w-[240px]">
                       skillforgetechnology.app/demo
                     </div>
-                    <ExternalLink size={8} className="text-slate-350 shrink-0" />
+                    <ExternalLink size={12} className="text-slate-400" />
                   </div>
 
-                  {/* Browser content */}
-                  <div className="relative w-full h-[calc(100%-32px)] bg-slate-50 overflow-hidden">
+                  {/* Main Image Container with Next.js Image sizes prop fix */}
+                  <div className="relative aspect-[16/10] w-full bg-slate-900 overflow-hidden">
                     <Image
                       src={activeProject.image}
                       alt={activeProject.title}
                       fill
-                      sizes="40vw"
-                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 50vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                       priority
                     />
                   </div>
                 </div>
 
-                {/* Secondary Smartphone Mockup (Overlaps Browser Frame) */}
-                {activeProject.category !== "iot" && (
-                  <div className="absolute bottom-[-36px] right-[-16px] w-[35%] aspect-[3/4] z-20 hidden sm:block rounded-[24px] border border-slate-200/70 bg-white p-1.5 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.18)] overflow-hidden hover:scale-[1.03] transition-all duration-500">
-                    <div className="relative w-full h-full rounded-[18px] overflow-hidden bg-slate-50">
-                      <Image
-                        src={activeProject.mobileImage}
-                        alt={`${activeProject.title} mobile view`}
-                        fill
-                        sizes="20vw"
-                        className="object-cover object-center"
-                        priority
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {/* Interactive tele-widget */}
-                <div className="absolute bottom-4 left-4 z-20 bg-white border border-slate-200/80 p-3 rounded-2xl shadow-xl flex items-center gap-3">
-                  <Sparkles size={14} className="text-blue-600 animate-pulse" />
-                  <span className="text-[9px] font-extrabold text-slate-900 font-display uppercase tracking-widest">
-                    Interactive Showcase Active
-                  </span>
+                {/* Overlapping Telemetry Badge */}
+                <div className="absolute -top-4 right-6 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-slate-200 shadow-lg flex items-center gap-2 text-[11px] font-mono font-semibold text-slate-700">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>{activeProject.telemetryText}</span>
                 </div>
-
               </div>
 
             </motion.div>
           )}
         </AnimatePresence>
+
       </div>
+
     </div>
   )
 }
