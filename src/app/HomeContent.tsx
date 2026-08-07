@@ -7,7 +7,7 @@ import {
   ArrowRight, CheckCircle2, Globe, Cpu, Brain,
   Smartphone, Cloud, Code, Layers, ShieldAlert,
   TrendingUp, Layout, Activity, Home, Sparkles, Terminal, Database, Server,
-  HelpCircle, ChevronDown, MessageSquare, Briefcase, HeartHandshake, Users, Award,
+  HelpCircle, ChevronDown, ChevronLeft, ChevronRight, MessageSquare, Briefcase, HeartHandshake, Users, Award,
   Play, Check, Zap, Maximize2, RefreshCw, Sliders, Star, ArrowUpRight, Lock
 } from "lucide-react"
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion"
@@ -16,6 +16,10 @@ import { useLanguage } from "@/context/LanguageContext"
 import { Button } from "@/components/ui/button"
 import { agencyServices, agencyCaseStudies, agencyIndustries } from "@/data/agencyData"
 import { defaultFeedbacks, projectsData } from "@/data/siteData"
+
+// Firebase imports for live client reviews
+import { collection, getDocs, query, orderBy } from "firebase/firestore"
+import { db } from "@/lib/firebase"
 import InteractiveProjectShowcase from "@/components/InteractiveProjectShowcase"
 import PrototypeLabsShowroom from "@/components/PrototypeLabsShowroom"
 import SplitScreenServiceScroll from "@/components/SplitScreenServiceScroll"
@@ -35,6 +39,66 @@ export default function HomeContent() {
   const [showDock, setShowDock] = useState(false)
   const [readProgress, setReadProgress] = useState(0)
 
+  // Firebase Live Client Reviews State & Auto-Loop (4 at a time)
+  interface HomeFeedback {
+    id?: string;
+    customerName: string;
+    projectName: string;
+    message: string;
+    rating: number;
+  }
+
+  const [firebaseFeedbacks, setFirebaseFeedbacks] = useState<HomeFeedback[]>([])
+  const [reviewsPageIndex, setReviewsPageIndex] = useState(0)
+
+  useEffect(() => {
+    async function fetchFirebaseReviews() {
+      try {
+        const ref = collection(db, "feedbacks")
+        const q = query(ref, orderBy("createdAt", "desc"))
+        const snapshot = await getDocs(q)
+        const list = snapshot.docs.map(doc => {
+          const data = doc.data()
+          return {
+            id: doc.id,
+            customerName: data.customerName || "Anonymous",
+            projectName: data.projectName || "Verified Project",
+            message: data.message || "",
+            rating: Number(data.rating) || 5
+          } as HomeFeedback
+        })
+
+        if (list.length > 0) {
+          setFirebaseFeedbacks(list)
+        } else {
+          setFirebaseFeedbacks(defaultFeedbacks)
+        }
+      } catch (err) {
+        console.warn("Failed to fetch Firestore reviews:", err)
+        setFirebaseFeedbacks(defaultFeedbacks)
+      }
+    }
+
+    fetchFirebaseReviews()
+  }, [])
+
+  const activeReviewsList = firebaseFeedbacks.length > 0 ? firebaseFeedbacks : defaultFeedbacks
+  const reviewsPerPage = 4
+  const totalReviewPages = Math.ceil(activeReviewsList.length / reviewsPerPage)
+
+  useEffect(() => {
+    if (totalReviewPages <= 1) return
+    const interval = setInterval(() => {
+      setReviewsPageIndex(prev => (prev + 1) % totalReviewPages)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [totalReviewPages])
+
+  const visible4Reviews = activeReviewsList.slice(
+    reviewsPageIndex * reviewsPerPage,
+    (reviewsPageIndex + 1) * reviewsPerPage
+  )
+
   // Mouse Parallax coordinates for Hero floating elements
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const heroRef = useRef<HTMLDivElement>(null)
@@ -49,12 +113,18 @@ export default function HomeContent() {
     }
   }, [])
 
+  const animFrameRef = useRef<number | null>(null)
   const handleHeroMouseMove = (e: React.MouseEvent) => {
     if (!heroRef.current) return
     const rect = heroRef.current.getBoundingClientRect()
     const x = (e.clientX - rect.left) / rect.width - 0.5
     const y = (e.clientY - rect.top) / rect.height - 0.5
-    setMousePos({ x, y })
+
+    if (animFrameRef.current !== null) return
+    animFrameRef.current = requestAnimationFrame(() => {
+      setMousePos({ x, y })
+      animFrameRef.current = null
+    })
   }
 
   useEffect(() => {
@@ -318,10 +388,12 @@ export default function HomeContent() {
               muted
               playsInline
               preload="auto"
-              className="w-full h-full object-cover object-center contrast-[1.08] brightness-[1.02] saturate-[1.05]"
+              disablePictureInPicture
+              disableRemotePlayback
+              style={{ transform: "translateZ(0)", willChange: "transform" }}
+              className="w-full h-full object-cover object-center"
             >
               <source src="/hero-background.mp4" type="video/mp4" />
-              <source src="/Creating_engineering_company_her…_202608061302.mp4" type="video/mp4" />
             </video>
 
             {/* Soft Edge Overlays (Clean top & bottom fading without masking central video resolution) */}
@@ -784,11 +856,11 @@ export default function HomeContent() {
         </section>
 
         {/* ========================================================================= */}
-        {/* SECTION 7: VERIFIED CLIENT FEEDBACK & TESTIMONIALS (REAL CODEBASE DATA)  */}
+        {/* SECTION 7: VERIFIED CLIENT FEEDBACK & TESTIMONIALS (LIVE FIREBASE FIRESTORE DATA) */}
         {/* ========================================================================= */}
         <section className="py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-12">
               <span className="text-xs font-mono text-blue-600 uppercase tracking-widest font-semibold">VERIFIED ENGINEERING FEEDBACK</span>
               <h2 className="mt-3 text-4xl sm:text-5xl font-display font-extrabold text-slate-900 tracking-tight">
                 Trusted by Innovators
@@ -799,33 +871,78 @@ export default function HomeContent() {
             </div>
           </ScrollReveal>
 
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {defaultFeedbacks.map((fb, idx) => (
-              <StaggerItem key={idx}>
-                <div className="p-8 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-1 text-amber-400">
-                        {Array.from({ length: fb.rating }).map((_, rIdx) => (
-                          <Star key={rIdx} size={16} fill="currentColor" />
-                        ))}
+          {/* 4-at-a-time Animated Batch Grid */}
+          <div className="relative min-h-[460px] flex flex-col justify-between">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={reviewsPageIndex}
+                initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -15, scale: 0.98 }}
+                transition={{ duration: 0.45, ease: "easeInOut" }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-8"
+              >
+                {visible4Reviews.map((fb, idx) => (
+                  <div key={idx} className="p-8 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full">
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-1 text-amber-400">
+                          {Array.from({ length: fb.rating || 5 }).map((_, rIdx) => (
+                            <Star key={rIdx} size={16} fill="currentColor" />
+                          ))}
+                        </div>
+                        <span className="text-xs font-mono text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md font-semibold">
+                          {fb.projectName}
+                        </span>
                       </div>
-                      <span className="text-xs font-mono text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md font-semibold">
-                        {fb.projectName}
-                      </span>
+                      <p className="text-slate-700 text-base leading-relaxed italic">
+                        &quot;{fb.message}&quot;
+                      </p>
                     </div>
-                    <p className="text-slate-700 text-base leading-relaxed italic">
-                      "{fb.message}"
-                    </p>
+                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                      <span className="font-bold text-slate-900 font-display text-sm">{fb.customerName}</span>
+                      <span className="text-xs text-slate-400 font-mono">VERIFIED CLIENT</span>
+                    </div>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <span className="font-bold text-slate-900 font-display text-sm">{fb.customerName}</span>
-                    <span className="text-xs text-slate-400 font-mono">VERIFIED CLIENT</span>
-                  </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Pagination Controls (if more than 4 reviews exist) */}
+            {totalReviewPages > 1 && (
+              <div className="mt-10 flex items-center justify-between border-t border-slate-100 pt-6">
+                <div className="flex items-center gap-2">
+                  {Array.from({ length: totalReviewPages }).map((_, pageIdx) => (
+                    <button
+                      key={pageIdx}
+                      onClick={() => setReviewsPageIndex(pageIdx)}
+                      className={`h-2.5 rounded-full transition-all duration-300 ${
+                        pageIdx === reviewsPageIndex ? "w-8 bg-blue-600" : "w-2.5 bg-slate-200 hover:bg-slate-400"
+                      }`}
+                      aria-label={`Go to review batch page ${pageIdx + 1}`}
+                    />
+                  ))}
                 </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setReviewsPageIndex((prev) => (prev - 1 + totalReviewPages) % totalReviewPages)}
+                    className="w-10 h-10 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 transition-all flex items-center justify-center cursor-pointer shadow-xs"
+                    aria-label="Previous Review Batch"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button
+                    onClick={() => setReviewsPageIndex((prev) => (prev + 1) % totalReviewPages)}
+                    className="w-10 h-10 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 transition-all flex items-center justify-center cursor-pointer shadow-xs"
+                    aria-label="Next Review Batch"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </section>
 
         {/* ========================================================================= */}
