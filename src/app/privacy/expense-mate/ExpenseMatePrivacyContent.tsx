@@ -2,23 +2,34 @@
 
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
-import { Shield, Lock, FileText, CheckCircle2, Server, Smartphone, Trash2, Mail } from "lucide-react"
+import { Shield, Lock, FileText, CheckCircle2, Server, Smartphone, Trash2, Mail, AlertTriangle, Loader2 } from "lucide-react"
 
 export default function ExpenseMatePrivacyContent() {
   const [activeSection, setActiveSection] = useState("intro")
+
+  // Form states for Account Deletion Request
+  const [deleteEmail, setDeleteEmail] = useState("")
+  const [displayName, setDisplayName] = useState("")
+  const [deleteReason, setDeleteReason] = useState("Closing Account")
+  const [customReasonDetails, setCustomReasonDetails] = useState("")
+  const [confirmed, setConfirmed] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState("")
 
   const sections = [
     { id: "intro", label: "Overview & Scope" },
     { id: "data-collection", label: "Data We Collect" },
     { id: "data-usage", label: "Data Usage & Storage" },
     { id: "permissions", label: "Device Permissions" },
-    { id: "deletion", label: "Account & Data Deletion" },
+    { id: "deletion", label: "Account & Data Deletion Rights" },
+    { id: "delete-account", label: "Account Deletion Form" },
     { id: "contact", label: "Contact Developer" }
   ]
 
   useEffect(() => {
     const handleScrollObserver = () => {
-      const sectionIds = ["intro", "data-collection", "data-usage", "permissions", "deletion", "contact"]
+      const sectionIds = ["intro", "data-collection", "data-usage", "permissions", "deletion", "delete-account", "contact"]
       const scrollPosition = window.scrollY + 200
 
       for (const id of sectionIds) {
@@ -46,6 +57,49 @@ export default function ExpenseMatePrivacyContent() {
       const yOffset = -120
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset
       window.scrollTo({ top: y, behavior: "smooth" })
+    }
+  }
+
+  const handleDeleteSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitError("")
+
+    if (!deleteEmail.trim()) {
+      setSubmitError("Please enter your registered Firebase account email address.")
+      return
+    }
+
+    if (!confirmed) {
+      setSubmitError("Please accept the confirmation checkbox to authorize data deletion.")
+      return
+    }
+
+    setSubmitting(true)
+
+    try {
+      const res = await fetch("/api/expense-mate-delete-account", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: deleteEmail.trim(),
+          displayName: displayName.trim(),
+          reason: deleteReason,
+          details: customReasonDetails.trim(),
+          confirmed: true
+        })
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to submit account deletion request.")
+      }
+
+      setSubmitSuccess(true)
+    } catch (err: any) {
+      setSubmitError(err.message || "An unexpected error occurred. Please try again.")
+    } finally {
+      setSubmitting(false)
     }
   }
 
@@ -178,22 +232,162 @@ export default function ExpenseMatePrivacyContent() {
                 <span>5. Account & Data Deletion Rights</span>
               </h2>
               <p className="text-slate-600 text-sm leading-relaxed">
-                In compliance with Google Play Account Deletion requirements, users have full ownership of their data. You can delete your account and all associated transaction data at any time:
+                In compliance with Google Play Account Deletion requirements, users have full ownership of their data. You can delete your account and all associated transaction data at any time via the form below or inside the app under <strong>Settings &gt; Account &gt; Delete Account</strong>.
               </p>
-              <div className="p-4 rounded-xl bg-red-50/50 border border-red-200 text-slate-700 text-sm space-y-2">
-                <div className="font-bold text-red-900">How to request data deletion:</div>
-                <ol className="list-decimal list-inside space-y-1 text-slate-600">
-                  <li>In App: Navigate to <strong>Settings &gt; Account &gt; Delete Account &amp; Data</strong>.</li>
-                  <li>Via Email: Send a deletion request to <strong className="text-slate-900">support@skillforgetechnology.app</strong> with your registered account email. All user cloud records will be permanently erased within 14 days.</li>
-                </ol>
-              </div>
             </section>
 
-            {/* Section 6: Contact */}
+            {/* Section 6: Request Account Deletion Form (Anchor ID: #delete-account) */}
+            <section id="delete-account" className="space-y-6 border-2 border-red-200 p-6 sm:p-8 rounded-3xl bg-red-50/30 scroll-mt-32">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs font-mono font-bold">
+                  <Trash2 size={14} />
+                  <span>GOOGLE PLAY DELETION COMPLIANCE FORM</span>
+                </div>
+                <h3 className="text-2xl font-black font-display text-slate-900">
+                  ExpenseMate Account Deletion Request
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed font-medium">
+                  Submit this form to request permanent erasure of your ExpenseMate account, authentication credentials, personal transaction ledgers, budget limits, and group split entries from our Firebase cloud servers.
+                </p>
+              </div>
+
+              {submitSuccess ? (
+                <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-3">
+                  <div className="flex items-center gap-2 font-bold text-lg text-emerald-700 font-display">
+                    <CheckCircle2 size={24} />
+                    <span>Deletion Request Submitted Successfully!</span>
+                  </div>
+                  <p className="text-xs sm:text-sm leading-relaxed font-medium text-emerald-800">
+                    A confirmation email has been dispatched to <strong>{deleteEmail}</strong> and our operations team has been notified. Your account and associated cloud data will be reviewed and permanently deleted <strong>within 90 days</strong>.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSubmitSuccess(false)
+                      setDeleteEmail("")
+                      setDisplayName("")
+                      setConfirmed(false)
+                    }}
+                    className="mt-2 text-xs font-mono font-bold text-emerald-700 underline cursor-pointer hover:text-emerald-900"
+                  >
+                    Submit another request
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleDeleteSubmit} className="space-y-5">
+                  {submitError && (
+                    <div className="p-4 rounded-xl bg-red-100 border border-red-300 text-red-900 text-xs font-medium flex items-center gap-2">
+                      <AlertTriangle size={16} className="shrink-0 text-red-600" />
+                      <span>{submitError}</span>
+                    </div>
+                  )}
+
+                  {/* Registered Email (Mandatory) */}
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
+                      Registered Email Address <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={deleteEmail}
+                      onChange={(e) => setDeleteEmail(e.target.value)}
+                      placeholder="e.g. user@example.com (Firebase Account Email)"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none text-sm text-slate-900 bg-white"
+                    />
+                    <p className="text-[11px] text-slate-500 font-sans">
+                      Used to identify your specific Firebase Authentication UID and Firestore database documents.
+                    </p>
+                  </div>
+
+                  {/* Display Name (Optional) */}
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
+                      Account Name / Display Name <span className="text-slate-400 font-normal">(Optional)</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={displayName}
+                      onChange={(e) => setDisplayName(e.target.value)}
+                      placeholder="e.g. John Doe"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none text-sm text-slate-900 bg-white"
+                    />
+                  </div>
+
+                  {/* Reason for Deletion Dropdown */}
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
+                      Reason for Deletion
+                    </label>
+                    <select
+                      value={deleteReason}
+                      onChange={(e) => setDeleteReason(e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none text-sm text-slate-900 bg-white cursor-pointer"
+                    >
+                      <option value="Closing Account">Closing Account</option>
+                      <option value="Privacy Concern">Privacy Concern</option>
+                      <option value="No longer need app">No longer need app</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  {/* Additional Reason Details Textarea Box */}
+                  <div className="space-y-1.5">
+                    <label className="block text-xs font-mono font-bold text-slate-700 uppercase tracking-wider">
+                      Additional Details / Feedback <span className="text-slate-400 font-normal">(Optional)</span>
+                    </label>
+                    <textarea
+                      rows={3}
+                      value={customReasonDetails}
+                      onChange={(e) => setCustomReasonDetails(e.target.value)}
+                      placeholder="Please share any specific feedback or reasons for deleting your account..."
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none text-sm text-slate-900 bg-white font-sans resize-y"
+                    />
+                  </div>
+
+                  {/* Confirmation Checkbox */}
+                  <div className="pt-2">
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={confirmed}
+                        onChange={(e) => setConfirmed(e.target.checked)}
+                        className="mt-1 w-4 h-4 rounded border-slate-300 text-red-600 focus:ring-red-500 cursor-pointer"
+                      />
+                      <span className="text-xs font-semibold text-slate-700 group-hover:text-slate-900 leading-relaxed">
+                        I understand that all my expense history, budget goals, and group balances will be permanently deleted within 90 days.
+                      </span>
+                    </label>
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full py-3.5 px-6 rounded-2xl bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-extrabold text-sm font-display tracking-tight transition-all shadow-lg shadow-red-600/25 flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      {submitting ? (
+                        <>
+                          <Loader2 size={18} className="animate-spin" />
+                          <span>Submitting Request...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Trash2 size={18} />
+                          <span>Submit Account Deletion Request</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              )}
+            </section>
+
+            {/* Section 7: Contact */}
             <section id="contact" className="space-y-4 border-t border-slate-100 pt-8 scroll-mt-32">
               <h2 className="text-xl sm:text-2xl font-bold font-display text-slate-900 flex items-center gap-2">
                 <Mail size={20} className="text-blue-600" />
-                <span>6. Developer Contact</span>
+                <span>7. Developer Contact</span>
               </h2>
               <div className="text-slate-600 text-sm space-y-1 font-mono">
                 <div><strong>Developer:</strong> SkillForge Technology</div>
