@@ -27,7 +27,8 @@ import {
   HelpCircle,
   AlertTriangle,
   FileText,
-  ShoppingBag
+  ShoppingBag,
+  Shield
 } from "lucide-react"
 
 interface ProductsContentProps {
@@ -1121,6 +1122,30 @@ export default function ProductsContent({
             <span>Partner with our Hardware Division</span>
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
+        </div>
+      </section>
+
+      {/* ── FOOTER LEGAL & PRIVACY POLICY REDIRECT BAR ──────────────── */}
+      <section className="py-12 border-t border-slate-200/80 bg-slate-50/60 font-sans">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+          <div className="flex items-center gap-2">
+            <Shield size={14} className="text-teal-600" />
+            <span>© 2026 SkillForge Technology. Active Pulse Hardware &amp; App.</span>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <Link
+              href="/privacy/active-pulse"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-700 font-bold border border-teal-200 transition-all shadow-xs group"
+            >
+              <Shield size={14} />
+              <span>Active Pulse Privacy Policy</span>
+              <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+            <Link href="/terms" className="hover:text-teal-600 transition-colors">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/products",
     "/products/active-pulse",
+    "/privacy/active-pulse",
     "/products/expense-mate",
     "/privacy/expense-mate",
     "/services",
