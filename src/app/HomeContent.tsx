@@ -153,62 +153,6 @@ export default function HomeContent() {
     }
   }
 
-  // Interactive Simulator States (Preserved & Enhanced)
-  const [activeMobileAppScreen, setActiveMobileAppScreen] = useState<"fintech" | "healthcare" | "logistics">("fintech")
-  const [activeEnterpriseTable, setActiveEnterpriseTable] = useState<"users" | "orders" | "logs">("users")
-  const [aiPromptsList, setAiPromptsList] = useState<string[]>([
-    "Process Q2 invoice PDFs and check tax values.",
-    "Initiating OCR scan over 14 documents... Extracted $28,450.00 total. Cross-referenced with Ledger: Status OK."
-  ])
-  const [aiTyping, setAiTyping] = useState<boolean>(false)
-  const [cloudNodeStatus, setCloudNodeStatus] = useState<"idle" | "building" | "testing" | "deployed">("idle")
-  const [cloudDeployProgress, setCloudDeployProgress] = useState<number>(0)
-  const [iotRelayOn, setIotRelayOn] = useState<boolean>(true)
-  const [iotFanOn, setIotFanOn] = useState<boolean>(false)
-
-  const aiSimResponses: Record<string, string> = {
-    "Cross-reference ledger with invoice PDF values.": "Executing RAG matching... Found mismatch on Invoice #8409. Ledger: $1,250.00. PDF Tax total: $1,350.00 (Variance: +$100.00). Alert flag emitted.",
-    "Extract table nodes from standard text block.": "Parsing JSON blocks... Found columns: ['customer_id', 'renew_date', 'plan']. Records output: 1. ID: 894, Plan: 'Enterprise', Renew: '2026-11-20'.",
-    "Identify outliers in billing telemetry logs.": "Running anomaly detection model... Identified spike of 450% normal throughput on Node-04 at 02:14:05 UTC. Correlates with bulk sync task. Safe status.",
-    "Initiate database performance cluster check.": "Cluster health: OK. Primary latency: 4ms. Replicas synchronization: 100%. Cache hit ratio: 94.2%. Autoclean task completed successfully."
-  }
-
-  const addAiPromptMessage = (prompt: string) => {
-    if (aiTyping) return
-    setAiPromptsList(prev => [...prev, prompt])
-    setAiTyping(true)
-    setTimeout(() => {
-      const response = aiSimResponses[prompt] || "Request received. Processing telemetry nodes... Execution succeeded."
-      setAiPromptsList(prev => [...prev, response])
-      setAiTyping(false)
-    }, 1000)
-  }
-
-  const startCloudDeployment = () => {
-    if (cloudNodeStatus !== "idle") return
-    setCloudNodeStatus("building")
-    setCloudDeployProgress(15)
-
-    setTimeout(() => {
-      setCloudDeployProgress(55)
-      setCloudNodeStatus("testing")
-    }, 1000)
-
-    setTimeout(() => {
-      setCloudDeployProgress(85)
-    }, 2000)
-
-    setTimeout(() => {
-      setCloudDeployProgress(100)
-      setCloudNodeStatus("deployed")
-    }, 3000)
-  }
-
-  const resetCloudDeployment = () => {
-    setCloudNodeStatus("idle")
-    setCloudDeployProgress(0)
-  }
-
   // Tech stack definition
   const techStacks: Record<string, { name: string; tools: string[] }[]> = {
     frontend: [
@@ -240,7 +184,7 @@ export default function HomeContent() {
   // Scrolling Technology & Company Logos data for marquee
   const techLogos = [
     {
-      name: "SkillForge Technology",
+      name: "SkillForge Technologies",
       badge: "ENGINEERING LABS",
       logo: (
         <Image
@@ -377,38 +321,21 @@ export default function HomeContent() {
         <section
           ref={heroRef}
           onMouseMove={handleHeroMouseMove}
-          className="relative pt-32 pb-28 md:pt-40 md:pb-40 overflow-hidden bg-white"
+          className="relative w-full pt-32 pb-24 md:pt-40 md:pb-40 flex flex-col justify-center items-center overflow-hidden bg-white"
         >
-          {/* Layer 1: Background Video Container (Crystal-Clear Video Layer) */}
-          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-100">
-            <video
-              ref={heroVideoRef}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              disablePictureInPicture
-              disableRemotePlayback
+          {/* Layer 1: High-Resolution Background Image Layout */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            {/* Generated Schematic Image (Covering full screen, fully visible) */}
+            <img
+              src="/hero-background-image.png"
+              alt="Hero Background Schematic"
+              className="w-full h-full object-cover object-center opacity-95"
               style={{ transform: "translateZ(0)", willChange: "transform" }}
-              className="w-full h-full object-cover object-center"
-            >
-              <source src="/hero-background.mp4" type="video/mp4" />
-            </video>
+            />
 
-            {/* Soft Edge Overlays (Clean top & bottom fading without masking central video resolution) */}
-            <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-transparent to-white/90" />
-
-            {/* Targeted Corner Shield for bottom-right watermark */}
-            <div className="absolute bottom-0 right-0 w-80 h-32 bg-gradient-to-tl from-white via-white/95 to-transparent z-10 pointer-events-none" />
-          </div>
-
-          {/* Layer 2: Deep Middle Ground - Scaled Down AI Hologram Node (35% Smaller, 25% Opacity, Centered) */}
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-10 z-0 pointer-events-none opacity-25 scale-75 hidden md:block">
-            <div className="relative w-[600px] h-[350px] rounded-full bg-gradient-to-tr from-blue-400/20 via-indigo-400/20 to-violet-400/20 blur-[90px] animate-pulse" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Brain size={240} className="text-blue-500/30 stroke-[1]" />
-            </div>
+            {/* Seamless Edge Blending Overlays (Only fades the very top and bottom edges) */}
+            <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-white to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
           </div>
 
           {/* Layer 3: Foreground Main Headline & CTAs (100% Opacity, Top Z-Index 30) */}
@@ -484,217 +411,6 @@ export default function HomeContent() {
                 <span>Schedule Architecture Audit</span>
               </button>
             </motion.div>
-
-            {/* Layer 4: Independent Center-Oriented Interactive Control Center Windows (Opacity: 85%-95%, Independent Parallax) */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 40 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-16 relative max-w-6xl mx-auto z-20"
-            >
-
-              {/* Floating Engineering Card 1: Mobile UI Workspace (Top Left, 18% Size, Independent Mouse Movement) */}
-              <motion.div
-                style={{
-                  x: mousePos.x * -26,
-                  y: mousePos.y * -18,
-                }}
-                className="hidden lg:block absolute -top-16 -left-12 z-30 w-72 p-4 rounded-2xl bg-white/90 border border-slate-200/90 backdrop-blur-xl shadow-xl hover:border-blue-400 transition-all"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono font-bold text-slate-700 flex items-center gap-1.5">
-                    <Smartphone size={14} className="text-purple-600" /> FLUTTER MOBILE UI
-                  </span>
-                  <span className="text-[10px] font-mono text-purple-600 bg-purple-50 px-2 py-0.5 rounded">60 FPS</span>
-                </div>
-                <div className="p-3 rounded-xl bg-slate-900 text-white font-mono text-[11px] space-y-1.5">
-                  <div className="flex justify-between text-slate-400">
-                    <span>Active Workspace</span>
-                    <span className="text-emerald-400">SYNC OK</span>
-                  </div>
-                  <div className="text-slate-200 font-semibold text-xs">
-                    {activeMobileAppScreen === "fintech" && "Fintech Core Transfer"}
-                    {activeMobileAppScreen === "healthcare" && "Patient Vital Stream"}
-                    {activeMobileAppScreen === "logistics" && "Fleet Telemetry Hub"}
-                  </div>
-                  <div className="flex gap-1 pt-1">
-                    {(["fintech", "healthcare", "logistics"] as const).map((sc) => (
-                      <button
-                        key={sc}
-                        onClick={() => setActiveMobileAppScreen(sc)}
-                        className={`text-[9px] px-2 py-0.5 rounded uppercase ${activeMobileAppScreen === sc ? "bg-blue-600 text-white" : "bg-slate-800 text-slate-400"
-                          }`}
-                      >
-                        {sc}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Floating Engineering Card 2: Cloud Architecture K8s Pipeline (Top Right, 15% Size, Independent Parallax) */}
-              <motion.div
-                style={{
-                  x: mousePos.x * 28,
-                  y: mousePos.y * -18,
-                }}
-                className="hidden lg:block absolute -top-16 -right-12 z-30 w-72 p-4 rounded-2xl bg-white/90 border border-slate-200/90 backdrop-blur-xl shadow-xl hover:border-blue-400 transition-all"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono font-bold text-slate-700 flex items-center gap-1.5">
-                    <Cloud size={14} className="text-blue-600" /> CLOUD DEPLOYMENT
-                  </span>
-                  <span className={`text-[10px] font-mono px-2 py-0.5 rounded font-semibold ${cloudNodeStatus === "deployed" ? "bg-emerald-100 text-emerald-700" : "bg-blue-100 text-blue-700"
-                    }`}>
-                    {cloudNodeStatus.toUpperCase()}
-                  </span>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-[11px] font-mono text-slate-600">
-                    <span>AWS US-EAST K8s</span>
-                    <span>{cloudDeployProgress}%</span>
-                  </div>
-                  <div className="w-full h-1.5 rounded-full bg-slate-100 overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-500"
-                      style={{ width: `${cloudDeployProgress}%` }}
-                    />
-                  </div>
-                  <button
-                    onClick={cloudNodeStatus === "idle" ? startCloudDeployment : resetCloudDeployment}
-                    className="w-full py-1 rounded bg-slate-900 text-white text-[10px] font-mono font-semibold"
-                  >
-                    {cloudNodeStatus === "idle" ? "DEPLOY CLUSTER" : "RESET TELEMETRY"}
-                  </button>
-                </div>
-              </motion.div>
-
-              {/* Floating Engineering Card 3: ESP32 Hardware PCB Node (Bottom Left, 10% Size, Independent Parallax) */}
-              <motion.div
-                style={{
-                  x: mousePos.x * -32,
-                  y: mousePos.y * 22,
-                }}
-                className="hidden lg:block absolute -bottom-12 -left-16 z-30 w-72 p-4 rounded-2xl bg-white/90 border border-slate-200/90 backdrop-blur-xl shadow-xl hover:border-blue-400 transition-all"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono font-bold text-slate-800 flex items-center gap-1.5">
-                    <Cpu size={14} className="text-indigo-600" /> ESP32 PCB HARDWARE
-                  </span>
-                  <span className="text-[10px] font-mono text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded">100Hz MCU</span>
-                </div>
-                <div className="grid grid-cols-2 gap-2 text-[10px] font-mono">
-                  <button
-                    onClick={() => setIotRelayOn(!iotRelayOn)}
-                    className="p-2 rounded bg-slate-50 border border-slate-200 text-left"
-                  >
-                    <div className="text-slate-400">RELAY CH-1</div>
-                    <div className={`font-bold mt-0.5 ${iotRelayOn ? "text-emerald-600" : "text-slate-400"}`}>
-                      {iotRelayOn ? "ON" : "OFF"}
-                    </div>
-                  </button>
-                  <button
-                    onClick={() => setIotFanOn(!iotFanOn)}
-                    className="p-2 rounded bg-slate-50 border border-slate-200 text-left"
-                  >
-                    <div className="text-slate-400">FAN MCU</div>
-                    <div className={`font-bold mt-0.5 ${iotFanOn ? "text-blue-600" : "text-slate-400"}`}>
-                      {iotFanOn ? "ACTIVE" : "IDLE"}
-                    </div>
-                  </button>
-                </div>
-              </motion.div>
-
-              {/* Floating Engineering Card 4: VS Code & API Telemetry Console (Bottom Right, 15% Size, Independent Parallax) */}
-              <motion.div
-                style={{
-                  x: mousePos.x * 32,
-                  y: mousePos.y * 22,
-                }}
-                className="hidden lg:block absolute -bottom-12 -right-16 z-30 w-72 p-4 rounded-2xl bg-slate-900 text-white border border-slate-800 shadow-xl hover:border-blue-500 transition-all"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[11px] font-mono text-blue-400 flex items-center gap-1.5">
-                    <Terminal size={14} /> VS CODE / API CONSOLE
-                  </span>
-                  <span className="text-[10px] font-mono text-emerald-400">200 OK</span>
-                </div>
-                <div className="text-[10px] font-mono space-y-1 text-slate-300">
-                  <div className="text-slate-500">// GraphQL Engine Response</div>
-                  <div className="text-emerald-400">HTTP/2 200 (3.8ms)</div>
-                  <div className="text-slate-400 truncate">{`{ status: "success", cache: "99.8%" }`}</div>
-                </div>
-              </motion.div>
-
-              {/* Main Center Control Center Dashboard (25% Weight Centerpiece) */}
-              <div className="relative rounded-2xl border border-slate-200/90 bg-white/90 backdrop-blur-xl p-4 sm:p-6 shadow-2xl shadow-slate-300/50 overflow-hidden">
-
-                {/* Control Center Top Bar */}
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-400/80" />
-                    <div className="w-3 h-3 rounded-full bg-amber-400/80" />
-                    <div className="w-3 h-3 rounded-full bg-emerald-400/80" />
-                    <span className="ml-3 text-xs font-mono text-slate-600 flex items-center gap-2">
-                      <Lock size={12} className="text-slate-400" />
-                      skillforge-control-center.sys v4.8
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-4 text-xs font-mono text-slate-600">
-                    <span className="hidden sm:inline-flex items-center gap-1.5">
-                      <Activity size={12} className="text-emerald-500" /> LATENCY: 4ms
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-100">
-                      <Zap size={12} /> ALL NODES ONLINE
-                    </span>
-                  </div>
-                </div>
-
-                {/* Main Center Dashboard View */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="p-5 rounded-xl bg-slate-900 text-white font-mono text-xs space-y-3">
-                    <div className="flex items-center justify-between text-blue-400">
-                      <span>RAG VECTOR ENGINE</span>
-                      <span>v4.2</span>
-                    </div>
-                    <div className="p-3 rounded bg-slate-800 border border-slate-700 text-slate-300 text-[11px]">
-                      <span className="text-emerald-400">$ </span>
-                      <span>{aiPromptsList[aiPromptsList.length - 1]}</span>
-                    </div>
-                    <button
-                      onClick={() => addAiPromptMessage("Initiate database performance cluster check.")}
-                      className="text-blue-400 hover:text-blue-300 text-[11px] font-medium flex items-center gap-1"
-                    >
-                      <span>Trigger Inference Scan</span>
-                      <Play size={10} />
-                    </button>
-                  </div>
-
-                  <div className="p-5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 space-y-3 text-xs font-mono">
-                    <div className="flex justify-between text-slate-600 font-semibold">
-                      <span>ENTERPRISE METRICS</span>
-                      <span className="text-emerald-600">● REAL-TIME</span>
-                    </div>
-                    <div className="space-y-1.5 text-[11px]">
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">API Throughput:</span>
-                        <span className="font-bold">48,200 req/sec</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">Uptime SLA:</span>
-                        <span className="font-bold text-emerald-600">99.98%</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">Cache Hit Ratio:</span>
-                        <span className="font-bold">98.4%</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </motion.div>
-
           </div>
         </section>
 
@@ -916,9 +632,8 @@ export default function HomeContent() {
                     <button
                       key={pageIdx}
                       onClick={() => setReviewsPageIndex(pageIdx)}
-                      className={`h-2.5 rounded-full transition-all duration-300 ${
-                        pageIdx === reviewsPageIndex ? "w-8 bg-blue-600" : "w-2.5 bg-slate-200 hover:bg-slate-400"
-                      }`}
+                      className={`h-2.5 rounded-full transition-all duration-300 ${pageIdx === reviewsPageIndex ? "w-8 bg-blue-600" : "w-2.5 bg-slate-200 hover:bg-slate-400"
+                        }`}
                       aria-label={`Go to review batch page ${pageIdx + 1}`}
                     />
                   ))}

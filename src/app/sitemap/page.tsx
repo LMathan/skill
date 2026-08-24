@@ -4,8 +4,8 @@ import SitemapContent from "./SitemapContent"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Site Map | SkillForge Technology",
-  description: "Browse every page on the SkillForge Technology website including software development services, mobile app development, AI solutions, portfolio, blogs, and company information.",
+  title: "Site Map | SkillForge Technologies",
+  description: "Browse every page on the SkillForge Technologies website including software development services, mobile app development, AI solutions, portfolio, blogs, and company information.",
   keywords: [
     "SkillForge Sitemap",
     "HTML Site Map",
@@ -41,8 +41,8 @@ export default function SitemapPage() {
     "@type": "WebPage",
     "@id": "https://skillforgetechnology.app/sitemap#webpage",
     "url": "https://skillforgetechnology.app/sitemap",
-    "name": "Site Map | SkillForge Technology",
-    "description": "Explore every page and service offered by SkillForge Technology. Quickly navigate through our services, solutions, portfolio, resources, and company information.",
+    "name": "Site Map | SkillForge Technologies",
+    "description": "Explore every page and service offered by SkillForge Technologies. Quickly navigate through our services, solutions, portfolio, resources, and company information.",
     "isPartOf": {
       "@id": "https://skillforgetechnology.app/#website"
     }

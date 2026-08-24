@@ -93,7 +93,7 @@ export default function SlaContent() {
             <div className="mt-6 pt-6 border-t border-slate-100 space-y-4">
               <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Dedicated Support?</div>
               <p className="text-[11px] text-slate-500 font-sans leading-relaxed">
-                SkillForge Technology offers custom SLA additions (e.g. 24/7 dedicated Slack channels or hot-standby nodes) for enterprise-tier plans.
+                SkillForge Technologies offers custom SLA additions (e.g. 24/7 dedicated Slack channels or hot-standby nodes) for enterprise-tier plans.
               </p>
               <Link href="/contact">
                 <button className="w-full py-2.5 px-4 rounded-xl border border-slate-200 hover:border-blue-600 bg-white hover:bg-blue-50/20 text-xs font-bold text-slate-700 hover:text-blue-655 transition-colors flex items-center justify-center gap-1.5 cursor-pointer mt-1">
@@ -114,7 +114,7 @@ export default function SlaContent() {
                 SLA Overview
               </h2>
               <p>
-                This Service Level Agreement (SLA) outlines the standard operational targets and uptime commitments provided by SkillForge Technology. We construct cloud-native software and support databases with high availability parameters to ensure smooth performance.
+                This Service Level Agreement (SLA) outlines the standard operational targets and uptime commitments provided by SkillForge Technologies. We construct cloud-native software and support databases with high availability parameters to ensure smooth performance.
               </p>
               <p>
                 Our standard commitments apply to active client portals, API nodes under maintenance retainers, and staging pipelines managed by our teams.

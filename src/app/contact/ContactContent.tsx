@@ -12,8 +12,8 @@ import { useLanguage } from "@/context/LanguageContext"
 
 const enterpriseFaqs = [
   {
-    q: "What services does SkillForge Technology provide?",
-    a: "SkillForge Technology provides end-to-end software engineering services including custom software development, web development, mobile application development, AI solutions, cloud engineering, DevOps, enterprise software, IoT development, embedded systems, UI/UX design, SEO, WordPress development, and digital transformation consulting."
+    q: "What services does SkillForge Technologies provide?",
+    a: "SkillForge Technologies provides end-to-end software engineering services including custom software development, web development, mobile application development, AI solutions, cloud engineering, DevOps, enterprise software, IoT development, embedded systems, UI/UX design, SEO, WordPress development, and digital transformation consulting."
   },
   {
     q: "Which industries do you work with?",

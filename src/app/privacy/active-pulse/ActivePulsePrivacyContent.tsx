@@ -77,7 +77,7 @@ export default function ActivePulsePrivacyContent() {
             Active Pulse Privacy Policy
           </h1>
           <p className="text-slate-600 text-sm leading-relaxed font-medium">
-            Effective Date: August 10, 2026. This Privacy Policy governs the Active Pulse mobile application (&quot;Active Pulse&quot;), developed and operated by SkillForge Technology.
+            Effective Date: August 10, 2026. This Privacy Policy governs the Active Pulse mobile application (&quot;Active Pulse&quot;), developed and operated by SkillForge Technologies.
           </p>
         </div>
 
@@ -169,7 +169,7 @@ export default function ActivePulsePrivacyContent() {
                   Active Pulse includes support for Over-The-Air (OTA) firmware maintenance, allowing users to upgrade their paired ESP32 hardware device with performance improvements and bug fixes:
                 </p>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>Firmware binary packages (<code>.bin</code>) are transferred directly to the hardware over local Wi-Fi or secure HTTPS channels from SkillForge Technology release mirrors.</li>
+                  <li>Firmware binary packages (<code>.bin</code>) are transferred directly to the hardware over local Wi-Fi or secure HTTPS channels from SkillForge Technologies release mirrors.</li>
                   <li>During OTA update flashing, only hardware health parameters (current firmware version string, chip model, and binary transfer byte counts) are processed.</li>
                   <li>No personal user information, private network credentials, or phone files are accessed, read, or modified during the OTA flashing process.</li>
                 </ul>
@@ -236,7 +236,7 @@ export default function ActivePulsePrivacyContent() {
                 <span>7. Developer Contact</span>
               </h2>
               <div className="text-slate-600 text-sm space-y-1 font-mono">
-                <div><strong>Developer:</strong> SkillForge Technology</div>
+                <div><strong>Developer:</strong> SkillForge Technologies</div>
                 <div><strong>Email:</strong> support@skillforgetechnology.app</div>
                 <div><strong>Website:</strong> https://skillforgetechnology.app</div>
               </div>

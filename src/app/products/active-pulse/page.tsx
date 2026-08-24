@@ -5,8 +5,8 @@ import { getLatestApkInfo } from "@/lib/apk"
 
 // Meta SEO Details for Active Pulse Product Route
 export const metadata: Metadata = {
-  title: "Active Pulse Workspace Hardware & Companion App | SkillForge Technology",
-  description: "Discover Active Pulse by SkillForge Technology. Compact ESP32-C3 hardware BLE controller & companion Android app for smart workspace automation.",
+  title: "Active Pulse Workspace Hardware & Companion App | SkillForge Technologies",
+  description: "Discover Active Pulse by SkillForge Technologies. Compact ESP32-C3 hardware BLE controller & companion Android app for smart workspace automation.",
   keywords: [
     "Active Pulse Device",
     "Active Pulse App",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Wireless mouse controller",
     "OTA firmware flash ESP32",
     "Bluetooth mouse simulator",
-    "SkillForge Technology products",
+    "SkillForge Technologies products",
     "Workspace automation hardware",
     "Private BLE controller"
   ],
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: "Active Pulse — Engineered for the Modern Workspace",
     description: "Intelligent wireless control. Seamless OTA updates. Zero compromises.",
     url: "https://skillforgetechnology.app/products/active-pulse",
-    siteName: "SkillForge Technology",
+    siteName: "SkillForge Technologies",
     images: [
       {
         url: "/Product/app_logo.png",
@@ -59,7 +59,7 @@ export default function ActivePulseProductPage() {
         "description": "A compact, ultra-light intelligent BLE mouse controller built on the ESP32-C3 SuperMini platform for smart workspace window management and clicking.",
         "brand": {
           "@type": "Brand",
-          "name": "SkillForge Technology"
+          "name": "SkillForge Technologies"
         },
         "review": {
           "@type": "Review",

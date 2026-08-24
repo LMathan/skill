@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       })
     }
 
-    // 1. Send Alert Email to SkillForge Technology Operations Team
+    // 1. Send Alert Email to SkillForge Technologies Operations Team
     const ownerEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 16px; background-color: #ffffff;">
         <div style="border-bottom: 2px solid #ef4444; padding-bottom: 12px; margin-bottom: 20px;">
@@ -100,7 +100,7 @@ export async function POST(request: Request) {
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 16px; background-color: #ffffff;">
         <div style="text-align: center; margin-bottom: 20px; border-bottom: 1px solid #f1f5f9; padding-bottom: 16px;">
           <h1 style="color: #2563eb; margin: 0; font-size: 22px; font-weight: 800;">ExpenseMate</h1>
-          <p style="color: #64748b; margin: 4px 0 0 0; font-size: 13px;">SkillForge Technology Mobile Application</p>
+          <p style="color: #64748b; margin: 4px 0 0 0; font-size: 13px;">SkillForge Technologies Mobile Application</p>
         </div>
 
         <p style="color: #1e293b; font-size: 15px; line-height: 1.6;">Dear ExpenseMate User,</p>
@@ -120,7 +120,7 @@ export async function POST(request: Request) {
 
         <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 28px 0 16px 0;" />
         <div style="text-align: center; color: #94a3b8; font-size: 12px;">
-          <p style="margin: 0 0 4px 0;"><strong>SkillForge Technology</strong></p>
+          <p style="margin: 0 0 4px 0;"><strong>SkillForge Technologies</strong></p>
           <p style="margin: 0;">ExpenseMate App Privacy & Data Governance Team</p>
         </div>
       </div>

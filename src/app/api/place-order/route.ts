@@ -83,7 +83,7 @@ export async function POST(request: Request) {
         </div>
 
         <div style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; text-align: center;">
-          Sent automatically from SkillForge Technology Hub
+          Sent automatically from SkillForge Technologies Hub
         </div>
       </div>
     `
@@ -156,7 +156,7 @@ export async function POST(request: Request) {
         
         <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 30px 0;" />
         <div style="text-align: center; color: #94a3b8; font-size: 11px;">
-          <p style="margin: 0 0 5px 0; font-weight: bold;">SkillForge Technology</p>
+          <p style="margin: 0 0 5px 0; font-weight: bold;">SkillForge Technologies</p>
           <p style="margin: 0;">Hardware Engineering Division</p>
         </div>
       </div>

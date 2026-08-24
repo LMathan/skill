@@ -3,8 +3,8 @@ import HomeContent from "./HomeContent"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Global Software Engineering & Digital Transformation | SkillForge Technology",
-  description: "SkillForge Technology is a global software engineering and digital transformation partner delivering premium websites, custom web applications, enterprise software, AI-powered solutions, and digital automation platforms.",
+  title: "Global Software Engineering & Digital Transformation | SkillForge Technologies",
+  description: "SkillForge Technologies is a global software engineering and digital transformation partner delivering premium websites, custom web applications, enterprise software, AI-powered solutions, and digital automation platforms.",
   keywords: [
     "Software Engineering",
     "Digital Transformation",
@@ -13,7 +13,7 @@ export const metadata: Metadata = getSeoMetadata({
     "AI-Powered Solutions",
     "Business Automation Platforms",
     "SaaS Development",
-    "SkillForge Technology"
+    "SkillForge Technologies"
   ],
   path: "/"
 })
@@ -25,7 +25,7 @@ export default function Page() {
       "@type": "WebSite",
       "@id": "https://skillforgetechnology.app/#website",
       "url": "https://skillforgetechnology.app/",
-      "name": "SkillForge Technology",
+      "name": "SkillForge Technologies",
       "description": "Premium Enterprise Software, AI Agents, Cloud & Industrial IoT Consultancy.",
       "publisher": {
         "@id": "https://skillforgetechnology.app/#organization"
@@ -40,20 +40,20 @@ export default function Page() {
         "https://x.com/skillforge_tech",
         "https://facebook.com/skillforgetechnology",
         "https://youtube.com/@skillforgetechnology",
-        "https://www.instagram.com/skillforge_technology?igsh=MTN2MWd2Y2t0ZmpzMw=="
+        "https://www.instagram.com/skillforge_technologies/?igsh=MTN2MWd2Y2t0ZmpzMw=="
       ]
     },
     {
       "@context": "https://schema.org",
       "@type": "Organization",
       "@id": "https://skillforgetechnology.app/#organization",
-      "name": "SkillForge Technology",
+      "name": "SkillForge Technologies",
       "description": "Premium Enterprise Software, AI Agents, Cloud & Industrial IoT Consultancy.",
       "url": "https://skillforgetechnology.app",
       "logo": {
         "@type": "ImageObject",
         "url": "https://skillforgetechnology.app/logo.png",
-        "caption": "SkillForge Technology Logo"
+        "caption": "SkillForge Technologies Logo"
       },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -67,14 +67,14 @@ export default function Page() {
         "https://x.com/skillforge_tech",
         "https://facebook.com/skillforgetechnology",
         "https://youtube.com/@skillforgetechnology",
-        "https://www.instagram.com/skillforge_technology?igsh=MTN2MWd2Y2t0ZmpzMw=="
+        "https://www.instagram.com/skillforge_technologies/?igsh=MTN2MWd2Y2t0ZmpzMw=="
       ]
     },
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "@id": "https://skillforgetechnology.app/#corporateservice",
-      "name": "SkillForge Technology",
+      "name": "SkillForge Technologies",
       "image": "https://skillforgetechnology.app/og-image.png",
       "telephone": "+919345518760",
       "email": "info@skillforgetechnology.app",

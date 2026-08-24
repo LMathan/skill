@@ -5,7 +5,7 @@ import TechnologiesContent from "./TechnologiesContent"
 
 export const metadata: Metadata = getSeoMetadata({
   title: "Technologies Matrix | Frontend, Cloud & AI Stacks",
-  description: "Review SkillForge Technology's engineering command over Next.js, C# .NET, Python ML modeling, AWS infrastructure orchestration, and STM32 embedded C firmware.",
+  description: "Review SkillForge Technologies's engineering command over Next.js, C# .NET, Python ML modeling, AWS infrastructure orchestration, and STM32 embedded C firmware.",
   keywords: [
     "Next.js React Frontend Stack",
     "C# .NET Core Development",

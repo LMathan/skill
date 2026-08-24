@@ -52,7 +52,7 @@ export function Navbar() {
             <Link href="/" className="flex items-center">
               <img
                 src="/logo.png"
-                alt="SkillForge Technology"
+                alt="SkillForge Technologies"
                 width={180}
                 height={60}
                 className={`transition-all duration-350 w-auto block ${scrolled ? "h-11" : "h-[60px]"}`}

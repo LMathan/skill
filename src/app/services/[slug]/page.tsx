@@ -191,7 +191,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return getSeoMetadata({
-    title: `${service.title} Solutions | SkillForge Technology`,
+    title: `${service.title} Solutions | SkillForge Technologies`,
     description: service.longDesc,
     keywords: serviceKeywords[slug] || [],
     path: `/services/${slug}`
@@ -233,7 +233,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     "description": service.longDesc,
     "provider": {
       "@type": "Organization",
-      "name": "SkillForge Technology",
+      "name": "SkillForge Technologies",
       "url": "https://skillforgetechnology.app",
       "logo": "https://skillforgetechnology.app/logo.png"
     },

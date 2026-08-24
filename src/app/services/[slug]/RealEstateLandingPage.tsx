@@ -169,7 +169,7 @@ export default function RealEstateLandingPage({ service, localImages }: RealEsta
               "serviceType": "Real Estate Photo Editing Services",
               "provider": {
                 "@type": "Organization",
-                "name": "SkillForge Technology",
+                "name": "SkillForge Technologies",
                 "url": "https://skillforge.tech",
                 "logo": "https://skillforge.tech/logo.png"
               },

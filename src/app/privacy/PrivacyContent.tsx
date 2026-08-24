@@ -56,7 +56,7 @@ export default function PrivacyContent() {
             Global Data Privacy & Protection Policy
           </h1>
           <p className="text-slate-500 text-xs sm:text-sm font-sans font-medium">
-            Last Updated: July 2, 2026. This document explains how SkillForge Technology processes, secures, and maintains user data in compliance with international privacy mandates.
+            Last Updated: July 2, 2026. This document explains how SkillForge Technologies processes, secures, and maintains user data in compliance with international privacy mandates.
           </p>
         </div>
 
@@ -114,7 +114,7 @@ export default function PrivacyContent() {
                 Introduction
               </h2>
               <p>
-                At SkillForge Technology, we are committed to defending personal privacy and engineering systems that hold data integrity above all else. This privacy policy applies to our operations globally and outlines our practices concerning data collection, transmission, storage, and processing.
+                At SkillForge Technologies, we are committed to defending personal privacy and engineering systems that hold data integrity above all else. This privacy policy applies to our operations globally and outlines our practices concerning data collection, transmission, storage, and processing.
               </p>
               <p>
                 As a cloud-first software consultancy and custom systems engineering partner, we implement privacy-by-design methodologies. Whether you visit our main portal, request a scope estimate, or partner with us for dedicated engineering resources, your data is handled with rigorous security parameters.
@@ -176,7 +176,7 @@ export default function PrivacyContent() {
                 Global Compliance (GDPR & CCPA)
               </h2>
               <p>
-                SkillForge Technology operates globally, aligning data practices with the European Union General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).
+                SkillForge Technologies operates globally, aligning data practices with the European Union General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).
               </p>
               <div className="p-4 border border-blue-100 bg-blue-50/20 rounded-xl space-y-2">
                 <span className="font-bold text-slate-900 block">Your Rights Under GDPR:</span>
@@ -229,7 +229,7 @@ export default function PrivacyContent() {
               <div className="p-5 bg-slate-50 border border-slate-200/60 rounded-xl space-y-1.5 font-mono text-[11px]">
                 <div className="flex justify-between border-b border-slate-100 pb-1.5">
                   <span className="text-slate-400 font-bold">Office:</span>
-                  <span className="text-slate-800 font-bold">SkillForge Technology, India</span>
+                  <span className="text-slate-800 font-bold">SkillForge Technologies, India</span>
                 </div>
                 <div className="flex justify-between border-b border-slate-100 pb-1.5">
                   <span className="text-slate-400 font-bold">Designated DPO:</span>

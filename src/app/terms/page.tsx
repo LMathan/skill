@@ -4,8 +4,8 @@ import TermsContent from "./TermsContent"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Terms of Service | Operational & Scoping Policies | SkillForge Technology",
-  description: "Review the general terms of service, engagement models, and scoping conditions when collaborating with SkillForge Technology.",
+  title: "Terms of Service | Operational & Scoping Policies | SkillForge Technologies",
+  description: "Review the general terms of service, engagement models, and scoping conditions when collaborating with SkillForge Technologies.",
   keywords: [
     "SkillForge Terms of Service",
     "Client Engagement Model",

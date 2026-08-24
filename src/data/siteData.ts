@@ -385,7 +385,7 @@ export const blogSummaryData: BlogSummary[] = generatedBlogSummaryData.filter(b 
 
 export const faqData: FAQ[] = [
   {
-    question: "What core engineering services does SkillForge Technology provide?",
+    question: "What core engineering services does SkillForge Technologies provide?",
     answer: "We deliver full-cycle software engineering, custom enterprise platforms, high-performance web applications, native cross-platform mobile apps, cloud-native DevOps configurations, and cloud-connected IoT prototypes."
   },
   {

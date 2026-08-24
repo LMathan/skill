@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!blog) return notFound()
 
   return getSeoMetadata({
-    title: `${blog.title} | SkillForge Technology Insights`,
+    title: `${blog.title} | SkillForge Technologies Insights`,
     description: blog.summary,
     keywords: blog.tags,
     path: `/blog/${slug}`
@@ -107,7 +107,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     },
     "publisher": {
       "@type": "Organization",
-      "name": "SkillForge Technology",
+      "name": "SkillForge Technologies",
       "logo": {
         "@type": "ImageObject",
         "url": "https://skillforgetechnology.app/logo.png"

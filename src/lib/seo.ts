@@ -23,7 +23,7 @@ const OG_IMAGE = {
   url: "https://skillforgetechnology.app/og-image.png",
   width: 1200,
   height: 630,
-  alt: "SkillForge Technology",
+  alt: "SkillForge Technologies",
 }
 
 /**
@@ -57,7 +57,7 @@ export function getSeoMetadata(options: SeoOptions): Metadata {
       title: title || undefined,
       description: description || undefined,
       url: cleanPath,
-      siteName: "SkillForge Technology",
+      siteName: "SkillForge Technologies",
       locale: "en_US",
       type: "website",
       images: [OG_IMAGE],

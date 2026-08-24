@@ -56,7 +56,7 @@ export default function SecurityContent() {
             Enterprise Security & Systems Standards
           </h1>
           <p className="text-slate-500 text-xs sm:text-sm font-sans font-medium">
-            Last Updated: July 2, 2026. How SkillForge Technology builds secure software, hardens cloud pipelines, and shields client source code directories.
+            Last Updated: July 2, 2026. How SkillForge Technologies builds secure software, hardens cloud pipelines, and shields client source code directories.
           </p>
         </div>
 
@@ -115,7 +115,7 @@ export default function SecurityContent() {
                 Security Overview
               </h2>
               <p>
-                At SkillForge Technology, information security is built into our core workflows rather than added as an afterthought. We implement industry-proven security paradigms to protect our internal services, build staging pipelines, and final client source code directories.
+                At SkillForge Technologies, information security is built into our core workflows rather than added as an afterthought. We implement industry-proven security paradigms to protect our internal services, build staging pipelines, and final client source code directories.
               </p>
               <p>
                 Our defense-in-depth model spans network topologies, secure code packaging compilation, container vulnerability check routines, and absolute database access control parameters.
@@ -192,7 +192,7 @@ export default function SecurityContent() {
                 Compliance & Audits
               </h2>
               <p>
-                SkillForge Technology regularly reviews internal processes. Our custom engineering works are designed to help clients satisfy SOC 2, HIPAA (for clinical health records), and PCI-DSS (for secure payment checkouts) compliance.
+                SkillForge Technologies regularly reviews internal processes. Our custom engineering works are designed to help clients satisfy SOC 2, HIPAA (for clinical health records), and PCI-DSS (for secure payment checkouts) compliance.
               </p>
             </section>
 

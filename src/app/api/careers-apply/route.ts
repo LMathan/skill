@@ -70,7 +70,7 @@ export async function POST(request: Request) {
         </table>
         <p style="font-size: 13px; color: #6b7280; margin-top: 20px;">*The applicant's PDF resume is attached directly to this email notification.</p>
         <div style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #9ca3af; text-align: center;">
-          Sent automatically from SkillForge Technology Careers Hub
+          Sent automatically from SkillForge Technologies Careers Hub
         </div>
       </div>
     `
@@ -109,13 +109,13 @@ export async function POST(request: Request) {
     const clientEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff;">
         <div style="text-align: center; margin-bottom: 25px; border-bottom: 1px solid #edf2f7; padding-bottom: 20px;">
-          <h1 style="color: #6366f1; margin: 0; font-size: 24px; tracking-tight: -0.025em;">SkillForge Technology</h1>
+          <h1 style="color: #6366f1; margin: 0; font-size: 24px; tracking-tight: -0.025em;">SkillForge Technologies</h1>
           <p style="color: #6b7280; margin: 5px 0 0 0; font-size: 14px;">Electronics & Software Systems Engineering Laboratory</p>
         </div>
         
         <p style="font-size: 15px; line-height: 1.5; color: #374151;">Hello <strong>${name}</strong>,</p>
         
-        <p style="font-size: 15px; line-height: 1.5; color: #374151;">Thank you for applying for the position of <strong>${jobTitle}</strong> at SkillForge Technology. We have successfully received your details and attached resume.</p>
+        <p style="font-size: 15px; line-height: 1.5; color: #374151;">Thank you for applying for the position of <strong>${jobTitle}</strong> at SkillForge Technologies. We have successfully received your details and attached resume.</p>
         
         <div style="margin: 25px 0; padding: 18px; background-color: #f5f3ff; border-left: 4px solid #8b5cf6; border-radius: 6px;">
           <h4 style="margin: 0 0 8px 0; color: #5b21b6; font-size: 14.5px;">What's next?</h4>
@@ -130,7 +130,7 @@ export async function POST(request: Request) {
         
         <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 30px 0;" />
         <div style="text-align: center; color: #9ca3af; font-size: 12px;">
-          <p style="margin: 0 0 5px 0;"><strong>SkillForge Technology</strong></p>
+          <p style="margin: 0 0 5px 0;"><strong>SkillForge Technologies</strong></p>
           <p style="margin: 0;">Perundurai, Tamil Nadu, India</p>
         </div>
       </div>
@@ -148,7 +148,7 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           from: `SkillForge Careers <${fromAddress}>`,
           to: [email],
-          subject: `Application Received: ${jobTitle} - SkillForge Technology`,
+          subject: `Application Received: ${jobTitle} - SkillForge Technologies`,
           html: clientEmailHtml
         })
       })

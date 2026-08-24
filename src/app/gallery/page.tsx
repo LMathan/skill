@@ -6,15 +6,15 @@ import { agencyCaseStudies } from "@/data/agencyData"
 const BASE_URL = "https://skillforgetechnology.app"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Engineering Showcase & Product Demos | SkillForge Technology",
+  title: "Engineering Showcase & Product Demos | SkillForge Technologies",
   description:
-    "Explore our engineering showcases, technical prototypes, and custom UI/UX layouts developed at SkillForge Technology. Review our solutions in web apps, mobile systems, and IoT.",
+    "Explore our engineering showcases, technical prototypes, and custom UI/UX layouts developed at SkillForge Technologies. Review our solutions in web apps, mobile systems, and IoT.",
   keywords: [
     "Enterprise Software Showcase",
     "IoT Embedded Systems Prototypes",
     "AI Agent Platform Demos",
     "UI/UX Design Concepts",
-    "SkillForge Technology Case Studies"
+    "SkillForge Technologies Case Studies"
   ],
   path: "/gallery",
 })
@@ -36,11 +36,11 @@ export default function GalleryPage() {
     author: {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
-      name: "SkillForge Technology",
+      name: "SkillForge Technologies",
     },
     copyrightHolder: {
       "@type": "Organization",
-      name: "SkillForge Technology",
+      name: "SkillForge Technologies",
     }
   }))
 
@@ -48,7 +48,7 @@ export default function GalleryPage() {
     "@context": "https://schema.org",
     "@type": "ImageGallery",
     "@id": `${BASE_URL}/gallery#imagegallery`,
-    name: "SkillForge Technology — Engineering Case Showcase Gallery",
+    name: "SkillForge Technologies — Engineering Case Showcase Gallery",
     description:
       "Photographic and visual renders of custom enterprise dashboards, cross-platform mobile apps, and IoT boards built by our R&D squads.",
     url: `${BASE_URL}/gallery`,
@@ -56,7 +56,7 @@ export default function GalleryPage() {
     publisher: {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
-      name: "SkillForge Technology",
+      name: "SkillForge Technologies",
       url: BASE_URL,
       logo: {
         "@type": "ImageObject",

@@ -3,8 +3,8 @@ import Link from "next/link"
 import { Cpu, Wallet, ArrowRight, Sparkles, Shield, CheckCircle2 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Flagship Products | SkillForge Technology",
-  description: "Discover flagship consumer products developed by SkillForge Technology, including Active Pulse workspace companion and ExpenseMate financial manager.",
+  title: "Flagship Products | SkillForge Technologies",
+  description: "Discover flagship consumer products developed by SkillForge Technologies, including Active Pulse workspace companion and ExpenseMate financial manager.",
 }
 
 export default function ProductsHubPage() {

@@ -5,7 +5,7 @@ import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
   title: "Our Services | Software Development, AI Stacks & Cloud DevOps",
-  description: "Explore the 12 primary software engineering, custom mobile development, cloud migrations, AI integrations, and real estate creative divisions offered by SkillForge Technology.",
+  description: "Explore the 12 primary software engineering, custom mobile development, cloud migrations, AI integrations, and real estate creative divisions offered by SkillForge Technologies.",
   keywords: [
     "Enterprise Software Solutions",
     "Offshore Custom Development",
@@ -25,7 +25,7 @@ export default function ServicesPage() {
     "serviceType": "Enterprise Software Engineering & Digital Transformation Solutions",
     "provider": {
       "@type": "Organization",
-      "name": "SkillForge Technology",
+      "name": "SkillForge Technologies",
       "telephone": "+919345518760",
       "address": {
         "@type": "PostalAddress",

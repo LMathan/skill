@@ -1,5 +1,5 @@
 /**
- * Gallery Data — SkillForge Technology Project Gallery
+ * Gallery Data — SkillForge Technologies Project Gallery
  *
  * HOW TO ADD A NEW IMAGE:
  * 1. Name the file descriptively: e.g. esp32-smart-home-iot-project.jpeg
@@ -43,7 +43,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Eye Blink Controlled Car with Obstacle Avoidance",
     src: "/gallery/iot/eye-blink-car-obstacle-avoidance-front-view.jpeg",
-    alt: "Eye Blink Controlled Car with Obstacle Avoidance built by SkillForge Technology Erode — front view showing Arduino UNO, HC-SR04 ultrasonic sensor and 18650 Li-Ion battery pack",
+    alt: "Eye Blink Controlled Car with Obstacle Avoidance built by SkillForge Technologies Erode — front view showing Arduino UNO, HC-SR04 ultrasonic sensor and 18650 Li-Ion battery pack",
     category: "Robotics",
     technologies: ["Arduino UNO", "Ultrasonic Sensor", "Eye Blink Sensor", "L298N Motor Driver"],
     department: "ECE / EEE Final Year Project",
@@ -58,7 +58,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Eye Blink Controlled Car with Obstacle Avoidance",
     src: "/gallery/iot/eye-blink-car-obstacle-avoidance-top-view.jpeg",
-    alt: "Eye Blink Controlled Car with Obstacle Avoidance — top-down view of PCB layout, L298N motor driver and 18650 Li-Ion battery holder built at SkillForge Technology lab, Erode",
+    alt: "Eye Blink Controlled Car with Obstacle Avoidance — top-down view of PCB layout, L298N motor driver and 18650 Li-Ion battery holder built at SkillForge Technologies lab, Erode",
     category: "Robotics",
     technologies: ["Arduino UNO", "Ultrasonic Sensor", "Eye Blink Sensor", "L298N Motor Driver"],
     department: "ECE / EEE Final Year Project",
@@ -75,7 +75,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Smart Irrigation System",
     src: "/gallery/iot/smart-irrigation-system-esp8266-arduino-sensors.jpeg",
-    alt: "Smart Irrigation System developed at SkillForge Technology Erode — capacitive soil moisture sensor V1.2, ESP8266 NodeMCU, Arduino UNO, dual relay module and solenoid water valves",
+    alt: "Smart Irrigation System developed at SkillForge Technologies Erode — capacitive soil moisture sensor V1.2, ESP8266 NodeMCU, Arduino UNO, dual relay module and solenoid water valves",
     category: "IoT & Embedded",
     technologies: ["ESP8266 NodeMCU", "Arduino UNO", "Soil Moisture Sensor", "Relay Module", "Solenoid Valve"],
     department: "ECE / Agriculture Engineering Final Year Project",
@@ -90,7 +90,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Smart Irrigation System",
     src: "/gallery/iot/smart-irrigation-system-mobile-dashboard-iot.png",
-    alt: "Smart Irrigation System IoT hardware with mobile app dashboard showing real-time irrigation control — developed by SkillForge Technology, Erode Tamil Nadu",
+    alt: "Smart Irrigation System IoT hardware with mobile app dashboard showing real-time irrigation control — developed by SkillForge Technologies, Erode Tamil Nadu",
     category: "IoT & Embedded",
     technologies: ["ESP8266 NodeMCU", "Arduino UNO", "Flutter Mobile App", "Firebase"],
     department: "ECE / Agriculture Engineering Final Year Project",
@@ -107,7 +107,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "AI Smart Waste Monitoring System",
     src: "/gallery/iot/ai-smart-waste-monitoring-system-dashboard.png",
-    alt: "AI Smart Waste Monitoring System developed by SkillForge Technology Erode — web dashboard interface on Lenovo Legion laptop with circular AI vision sensor module connected via USB",
+    alt: "AI Smart Waste Monitoring System developed by SkillForge Technologies Erode — web dashboard interface on Lenovo Legion laptop with circular AI vision sensor module connected via USB",
     category: "AI & ML",
     technologies: ["Python", "Computer Vision", "OpenCV", "React Dashboard", "USB Camera Module"],
     department: "CSE / IT Final Year Project",
@@ -124,7 +124,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Automatic & Remote Motor Control System",
     src: "/gallery/iot/automatic-remote-motor-control-dashboard-laptops.jpeg",
-    alt: "Automatic and Remote Motor Control System by SkillForge Technology Erode — mobile control dashboard, development setup on two laptops with VS Code and motor controller hardware enclosure",
+    alt: "Automatic and Remote Motor Control System by SkillForge Technologies Erode — mobile control dashboard, development setup on two laptops with VS Code and motor controller hardware enclosure",
     category: "IoT & Embedded",
     technologies: ["ESP32", "Flutter Mobile App", "Firebase", "Relay Module", "Motor Driver"],
     department: "EEE / Mechatronics Final Year Project",
@@ -139,7 +139,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Automatic & Remote Motor Control System",
     src: "/gallery/iot/automatic-remote-motor-control-hardware-relay.jpeg",
-    alt: "Automatic and Remote Motor Control System hardware internals — relay module, custom wiring, motor driver circuit inside enclosure, built at SkillForge Technology laboratory Erode",
+    alt: "Automatic and Remote Motor Control System hardware internals — relay module, custom wiring, motor driver circuit inside enclosure, built at SkillForge Technologies laboratory Erode",
     category: "IoT & Embedded",
     technologies: ["Relay Module", "Motor Driver", "ESP32", "Custom Enclosure", "Power Electronics"],
     department: "EEE / Mechatronics Final Year Project",
@@ -156,7 +156,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Smart Irrigation and Water Flow Control System",
     src: "/gallery/iot/smart-irrigation-system-water-flow-sensor-hardware.jpeg",
-    alt: "Smart Irrigation and Water Flow Control System hardware built by SkillForge Technology Erode — showing NodeMCU ESP8266, soil moisture sensor v1.2, YF-S201 flow sensor, solenoid valve, and power adapter on a wooden test board",
+    alt: "Smart Irrigation and Water Flow Control System hardware built by SkillForge Technologies Erode — showing NodeMCU ESP8266, soil moisture sensor v1.2, YF-S201 flow sensor, solenoid valve, and power adapter on a wooden test board",
     category: "IoT & Embedded",
     technologies: ["ESP8266 NodeMCU", "Arduino UNO", "Soil Moisture Sensor", "Water Flow Sensor YF-S201", "Solenoid Valve", "Relay Module"],
     department: "ECE / Agriculture Engineering Final Year Project",
@@ -171,7 +171,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "IoT Vehicle Tracking & GPS Alert System",
     src: "/gallery/iot/iot-gps-vehicle-tracking-system-hardware.jpeg",
-    alt: "IoT Vehicle Tracking and GPS Alert System hardware developed by SkillForge Technology Erode — showing ESP8266 NodeMCU, NEO-6M GPS receiver module, and ceramic GPS patch antenna on a dot matrix prototyping PCB",
+    alt: "IoT Vehicle Tracking and GPS Alert System hardware developed by SkillForge Technologies Erode — showing ESP8266 NodeMCU, NEO-6M GPS receiver module, and ceramic GPS patch antenna on a dot matrix prototyping PCB",
     category: "IoT & Embedded",
     technologies: ["ESP8266 NodeMCU", "NEO-6M GPS Module", "GPS Ceramic Antenna", "Sound Level Sensor"],
     department: "ECE / CSE Final Year Project",
@@ -186,7 +186,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "IoT Water Pipeline Leakage & Theft Detection System",
     src: "/gallery/iot/iot-water-leakage-detection-system-hardware.jpeg",
-    alt: "IoT Water Pipeline Leakage and Theft Detection System prototype by SkillForge Technology Erode — dual YF-S201 water flow sensors connected to PVC piping, LCD display showing flow metrics, and submersible pump on wood base",
+    alt: "IoT Water Pipeline Leakage and Theft Detection System prototype by SkillForge Technologies Erode — dual YF-S201 water flow sensors connected to PVC piping, LCD display showing flow metrics, and submersible pump on wood base",
     category: "IoT & Embedded",
     technologies: ["ESP8266", "Water Flow Sensor YF-S201", "16x2 LCD Display", "Submersible Water Pump", "Buzzer", "Relay Module"],
     department: "ECE / EEE / Mechatronics Project",
@@ -201,7 +201,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "IoT Alcohol Detection & Vehicle Ignition Locking System",
     src: "/gallery/iot/alcohol-detection-engine-locking-system-esp32.jpeg",
-    alt: "IoT Alcohol Detection and Vehicle Ignition Locking System built by SkillForge Technology Erode — ESP32 microcontroller, MQ-3 alcohol sensor module, dual relay board, and 16x2 LCD screen showing 'Alc: 0 SAFE Waiting'",
+    alt: "IoT Alcohol Detection and Vehicle Ignition Locking System built by SkillForge Technologies Erode — ESP32 microcontroller, MQ-3 alcohol sensor module, dual relay board, and 16x2 LCD screen showing 'Alc: 0 SAFE Waiting'",
     category: "IoT & Embedded",
     technologies: ["ESP32 WROOM", "MQ-3 Alcohol Sensor", "16x2 LCD Display", "Dual Relay Module", "Buzzer"],
     department: "ECE / EEE Final Year Project",
@@ -216,7 +216,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "IoT Smart Drainage & Blockage Monitoring System",
     src: "/gallery/iot/iot-smart-drainage-system-hardware-solenoid-valve.png",
-    alt: "IoT Smart Drainage and Blockage Monitoring System built by SkillForge Technology Erode — showing NodeMCU ESP8266, Arduino UNO, solenoid control valves, gas level sensors, and a web dashboard on a laptop displaying live drainage metrics",
+    alt: "IoT Smart Drainage and Blockage Monitoring System built by SkillForge Technologies Erode — showing NodeMCU ESP8266, Arduino UNO, solenoid control valves, gas level sensors, and a web dashboard on a laptop displaying live drainage metrics",
     category: "IoT & Embedded",
     technologies: ["ESP8266 NodeMCU", "Arduino UNO", "Solenoid Valve", "Gas Sensor", "Relay Module", "Web Dashboard"],
     department: "ECE / CSE Final Year Project",
@@ -233,7 +233,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "F450 Quadcopter Drone with FlySky RC Transmitter",
     src: "/gallery/iot/f450-quadcopter-drone-uav-assembly.jpeg",
-    alt: "Assembled F450 quadcopter drone on wooden table by SkillForge Technology Erode — showcasing red and black arms, FlySky FS-iA6B receiver, brushless motors, propellers, and FS-i6 remote transmitter in foreground",
+    alt: "Assembled F450 quadcopter drone on wooden table by SkillForge Technologies Erode — showcasing red and black arms, FlySky FS-iA6B receiver, brushless motors, propellers, and FS-i6 remote transmitter in foreground",
     category: "Robotics",
     technologies: ["F450 Quadcopter Frame", "A2212 Brushless Motors", "FlySky FS-i6 Transmitter", "FS-iA6B Receiver", "ESC", "Flight Controller"],
     department: "Aeronautical / ECE / Mechatronics Project",
@@ -248,11 +248,11 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Autonomous Drone Flight Testing",
     src: "/gallery/iot/quadcopter-drone-uav-outdoor-flight-test.jpeg",
-    alt: "Autonomous quadcopter drone in mid-air flight during test run by SkillForge Technology Erode — showcasing spinning brushless motors and propellers against a blurred background building",
+    alt: "Autonomous quadcopter drone in mid-air flight during test run by SkillForge Technologies Erode — showcasing spinning brushless motors and propellers against a blurred background building",
     category: "Robotics",
     technologies: ["Quadcopter UAV", "Brushless Motors", "LiPo Battery", "Flight Controller", "Telemetry"],
     department: "Aeronautical / ECE / Mechatronics Project",
-    shortDesc: "Real-time outdoor flight stability testing of a custom-built quadcopter drone at SkillForge Technology center.",
+    shortDesc: "Real-time outdoor flight stability testing of a custom-built quadcopter drone at SkillForge Technologies center.",
     relatedService: "/services/iot-embedded",
     features: [
       "Flight controller calibration tuning PID roll and pitch values.",
@@ -263,7 +263,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "FlySky FS-i6 RC Transmitter Ground Calibration",
     src: "/gallery/iot/flysky-remote-controller-drone-ground-setup.jpeg",
-    alt: "FlySky FS-i6 radio remote control transmitter on green grass during outdoor drone flight testing by SkillForge Technology Erode — quadcopter drone visible out of focus in background",
+    alt: "FlySky FS-i6 radio remote control transmitter on green grass during outdoor drone flight testing by SkillForge Technologies Erode — quadcopter drone visible out of focus in background",
     category: "Robotics",
     technologies: ["FlySky FS-i6 Transmitter", "Quadcopter Drone", "Radio Frequency (RF) Control"],
     department: "Aeronautical / ECE / Mechatronics Project",
@@ -278,7 +278,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Omnisphere Enterprise ERP Cloud Suite",
     src: "/gallery/software/enterprise-erp-dashboard.png",
-    alt: "Omnisphere Enterprise ERP Cloud Suite web interface built by SkillForge Technology Erode showing glassmorphic layout, analytics line charts, revenue indicators, and database query lists",
+    alt: "Omnisphere Enterprise ERP Cloud Suite web interface built by SkillForge Technologies Erode showing glassmorphic layout, analytics line charts, revenue indicators, and database query lists",
     category: "Software Stacks",
     technologies: ["Next.js", "Prisma ORM", "Tailwind CSS", "Postgres", "Redis Caching"],
     department: "Custom Enterprise Software Development",
@@ -293,7 +293,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Aura Organics WooCommerce Storefront",
     src: "/gallery/software/woocommerce-storefront.png",
-    alt: "Aura Organics WooCommerce Storefront developed by SkillForge Technology Erode showing minimalist design, product grids, custom shopping cart configurations, and clean typography",
+    alt: "Aura Organics WooCommerce Storefront developed by SkillForge Technologies Erode showing minimalist design, product grids, custom shopping cart configurations, and clean typography",
     category: "Software Stacks",
     technologies: ["WordPress", "WooCommerce", "Tailwind CSS", "Stripe Gateway", "Core Web Vitals"],
     department: "E-Commerce Solutions / CMS",
@@ -308,7 +308,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Enterprise CI/CD Cloud Pipeline Monitor",
     src: "/gallery/software/devops-pipeline-console.png",
-    alt: "Enterprise CI/CD Cloud Pipeline Monitor dashboard created by SkillForge Technology Erode showcasing containerized deployment status, build latency metrics, and AWS cluster graphs",
+    alt: "Enterprise CI/CD Cloud Pipeline Monitor dashboard created by SkillForge Technologies Erode showcasing containerized deployment status, build latency metrics, and AWS cluster graphs",
     category: "Software Stacks",
     technologies: ["AWS ECS", "Docker", "GitHub Actions", "Kubernetes", "Datadog Telemetry"],
     department: "Cloud Operations & DevOps",
@@ -323,7 +323,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Multi-Agent Cognitive Workflow Graph Workspace",
     src: "/gallery/software/ai-agentic-dashboard.png",
-    alt: "Multi-Agent Cognitive Workflow Graph Workspace developed by SkillForge Technology Erode showcasing neural semantic nodes, AI agent chat logs, and vector embedding visualizations",
+    alt: "Multi-Agent Cognitive Workflow Graph Workspace developed by SkillForge Technologies Erode showcasing neural semantic nodes, AI agent chat logs, and vector embedding visualizations",
     category: "AI & ML",
     technologies: ["LangChain", "Python", "OpenAI API", "Vector Databases", "LangGraph Graph Flow"],
     department: "AI Agents & Intelligent Automation",
@@ -338,7 +338,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Elara Reed Premium Personal Portfolio Website",
     src: "/gallery/software/wordpress-portfolio-site.png",
-    alt: "Elara Reed Premium Personal Portfolio Website layout built by SkillForge Technology Erode showing artistic 3D geometries, modern typeface layouts, and filterable work galleries",
+    alt: "Elara Reed Premium Personal Portfolio Website layout built by SkillForge Technologies Erode showing artistic 3D geometries, modern typeface layouts, and filterable work galleries",
     category: "Software Stacks",
     technologies: ["WordPress", "PHP", "Framer Motion", "GSAP Animations", "Custom Design System"],
     department: "Creative Web Development",
@@ -353,7 +353,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "ChatGPT Custom AI Assistant Integration Panel",
     src: "/gallery/saas-development/chatgpt-ai-chat-assistant.png",
-    alt: "ChatGPT Custom AI Assistant Integration Panel developed by SkillForge Technology Erode showcasing user prompts, ChatGPT API chat flows, custom dashboard widgets, and sidebar histories",
+    alt: "ChatGPT Custom AI Assistant Integration Panel developed by SkillForge Technologies Erode showcasing user prompts, ChatGPT API chat flows, custom dashboard widgets, and sidebar histories",
     category: "AI & ML",
     technologies: ["Next.js", "OpenAI API", "Tailwind CSS", "SaaS Billing", "Pinecone Vector DB"],
     department: "Custom AI Solutions / SaaS",
@@ -368,7 +368,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Aurelia Skincare & Cosmetics E-Commerce",
     src: "/gallery/web-development/luxe-skincare-cosmetics-store.png",
-    alt: "Aurelia Skincare and Cosmetics E-Commerce website built by SkillForge Technology Erode showing minimalist design, luxury pastel rose-gold grids, cosmetics collections, and ingredients stories",
+    alt: "Aurelia Skincare and Cosmetics E-Commerce website built by SkillForge Technologies Erode showing minimalist design, luxury pastel rose-gold grids, cosmetics collections, and ingredients stories",
     category: "Software Stacks",
     technologies: ["Next.js", "Shopify Storefront API", "Tailwind CSS", "Framer Motion", "Stripe API"],
     department: "Creative Web Development / E-Commerce",
@@ -383,7 +383,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Aura Yoga & Wellness Sanctuary Hub",
     src: "/gallery/web-development/aura-wellness-sanctuary.png",
-    alt: "Aura Yoga and Wellness Sanctuary Hub designed by SkillForge Technology Erode showcasing digital scheduling calendar widgets, upcoming wellness classes, and natural herbal product panels",
+    alt: "Aura Yoga and Wellness Sanctuary Hub designed by SkillForge Technologies Erode showcasing digital scheduling calendar widgets, upcoming wellness classes, and natural herbal product panels",
     category: "Software Stacks",
     technologies: ["React", "Tailwind CSS", "Node.js", "MongoDB", "Calendly Integration"],
     department: "Custom Web Application / Health & Wellness",
@@ -398,7 +398,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Quantum Cyber-Grid Developer Portfolio",
     src: "/gallery/web-development/quantum-studio-portfolio.png",
-    alt: "Quantum Cyber-Grid Developer Portfolio website built by SkillForge Technology Erode showing glowing neon purple lines, 3D abstract grid sphere rendering, and dark slate layout modules",
+    alt: "Quantum Cyber-Grid Developer Portfolio website built by SkillForge Technologies Erode showing glowing neon purple lines, 3D abstract grid sphere rendering, and dark slate layout modules",
     category: "Software Stacks",
     technologies: ["React", "Three.js", "WebGL", "GSAP Animations", "Tailwind CSS"],
     department: "Creative Web Development",
@@ -413,7 +413,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Vortex Collaborative Task Management Dashboard",
     src: "/gallery/web-development/vortex-task-dashboard.png",
-    alt: "Vortex Collaborative Task Management Dashboard developed by SkillForge Technology Erode showing teal glassmorphic task cards, project progress meters, and task activity feeds",
+    alt: "Vortex Collaborative Task Management Dashboard developed by SkillForge Technologies Erode showing teal glassmorphic task cards, project progress meters, and task activity feeds",
     category: "Software Stacks",
     technologies: ["Next.js", "TypeScript", "Dnd-kit", "Recharts", "Supabase Backend"],
     department: "SaaS Application Development",
@@ -428,7 +428,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Terra Luxury Villa Travel & Reservation Platform",
     src: "/gallery/web-development/terrene-travel-villa.png",
-    alt: "Terra Luxury Villa Travel and Reservation Platform built by SkillForge Technology Erode showing large clean typography, warm terracotta resort photo cards, and guest destination selector consoles",
+    alt: "Terra Luxury Villa Travel and Reservation Platform built by SkillForge Technologies Erode showing large clean typography, warm terracotta resort photo cards, and guest destination selector consoles",
     category: "Software Stacks",
     technologies: ["Next.js", "PostgreSQL", "Google Maps API", "Prisma ORM", "Tailwind CSS"],
     department: "Custom Web Development",
@@ -443,7 +443,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Couture Atelier Creative Designer Workspace",
     src: "/gallery/software-development/couture-atelier-workspace.png",
-    alt: "Couture Atelier Creative Designer Workspace layout built by SkillForge Technology Erode showcasing premium fashion model catalog listings, textile inventory logs, and order book tables",
+    alt: "Couture Atelier Creative Designer Workspace layout built by SkillForge Technologies Erode showcasing premium fashion model catalog listings, textile inventory logs, and order book tables",
     category: "Software Stacks",
     technologies: ["React SPA", "Node.js", "Tailwind CSS", "Three.js WebGL", "PostgreSQL"],
     department: "Creative & Fashion Software Stacks",
@@ -458,7 +458,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Aegis Clinical Healthcare & Patient Workspace",
     src: "/gallery/software-development/healthcare-management-dashboard.png",
-    alt: "Aegis Clinical Healthcare and Patient Workspace developed by SkillForge Technology Erode showcasing doctor patient metrics, appointment charts, and medical history feeds",
+    alt: "Aegis Clinical Healthcare and Patient Workspace developed by SkillForge Technologies Erode showcasing doctor patient metrics, appointment charts, and medical history feeds",
     category: "Software Stacks",
     technologies: ["React", "Laravel Framework", "MySQL Database", "Chart.js Charts", "WebSockets Sync"],
     department: "Healthcare Information Systems",
@@ -473,7 +473,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Cognitive AI Dialogue & Chat Integration",
     src: "/gallery/software-development/ai-chat-assistant-page.png",
-    alt: "Cognitive AI Dialogue and Chat Integration created by SkillForge Technology Erode showcasing user prompt inputs, ChatGPT sidebar dialogue history logs, and vector query matches",
+    alt: "Cognitive AI Dialogue and Chat Integration created by SkillForge Technologies Erode showcasing user prompt inputs, ChatGPT sidebar dialogue history logs, and vector query matches",
     category: "AI & ML",
     technologies: ["Next.js", "Python API", "OpenAI Embeddings", "SaaS Billing", "Pinecone DB"],
     department: "Custom AI Solutions & SaaS",
@@ -488,7 +488,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Malibu Luxury Real Estate Brokerage Portal",
     src: "/gallery/software-development/real-estate-listing-platform.png",
-    alt: "Malibu Luxury Real Estate Brokerage Portal built by SkillForge Technology Erode showcasing visual listing grids, villa card lists, and real estate reservation buttons",
+    alt: "Malibu Luxury Real Estate Brokerage Portal built by SkillForge Technologies Erode showcasing visual listing grids, villa card lists, and real estate reservation buttons",
     category: "Software Stacks",
     technologies: ["React SPA", "PostgreSQL", "Google Maps SDK", "Tailwind CSS", "Prisma ORM"],
     department: "Custom Web Development",
@@ -503,7 +503,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Apex Mobile Banking & Card Wallet UI",
     src: "/gallery/software-development/mobile-banking-app.png",
-    alt: "Apex Mobile Banking and Card Wallet UI developed by SkillForge Technology Erode showcasing credit card digital layout, active account statistics, and transfer forms",
+    alt: "Apex Mobile Banking and Card Wallet UI developed by SkillForge Technologies Erode showcasing credit card digital layout, active account statistics, and transfer forms",
     category: "Software Stacks",
     technologies: ["Flutter Framework", "Firebase Auth", "Stripe SDK", "Recharts", "Node.js API"],
     department: "Mobile Application Development",
@@ -518,7 +518,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "DevOps Pipeline Container Orchestration Console",
     src: "/gallery/software-development/devops-pipeline-console.png",
-    alt: "DevOps Pipeline Container Orchestration Console created by SkillForge Technology Erode showcasing static builds compilation, pod telemetry graphs, and deploy status columns",
+    alt: "DevOps Pipeline Container Orchestration Console created by SkillForge Technologies Erode showcasing static builds compilation, pod telemetry graphs, and deploy status columns",
     category: "Software Stacks",
     technologies: ["AWS ECS", "Docker Containers", "Kubernetes", "GitHub Actions", "Datadog Logs"],
     department: "Cloud Operations & DevOps",
@@ -533,7 +533,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Aurelia Dental Clinic Patient Hub",
     src: "/gallery/web-development/dentist-clinic-prototype.png",
-    alt: "Aurelia Dental Clinic Patient Hub designed by SkillForge Technology Erode showcasing digital scheduling calendar widgets, treatment pages, and patient reviews",
+    alt: "Aurelia Dental Clinic Patient Hub designed by SkillForge Technologies Erode showcasing digital scheduling calendar widgets, treatment pages, and patient reviews",
     category: "Software Stacks",
     technologies: ["Next.js", "TypeScript", "React Calendar", "Tailwind CSS", "Framer Motion"],
     department: "Creative Web Development / Dental clinic",
@@ -548,7 +548,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Vertex Roofing Contractor Estimate Hub",
     src: "/gallery/web-development/roofing-contractor-prototype.png",
-    alt: "Vertex Roofing Contractor Estimate Hub built by SkillForge Technology Erode showing bold slate design, instant quote selector, and project cards",
+    alt: "Vertex Roofing Contractor Estimate Hub built by SkillForge Technologies Erode showing bold slate design, instant quote selector, and project cards",
     category: "Software Stacks",
     technologies: ["Next.js", "React Form", "Tailwind CSS", "Lucide Icons", "Estimate Engine"],
     department: "Creative Web Development / Construction",
@@ -563,7 +563,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "AquaFlow Commercial Plumbing Dispatcher",
     src: "/gallery/web-development/plumbing-services-prototype.png",
-    alt: "AquaFlow Commercial Plumbing Dispatcher designed by SkillForge Technology Erode showcasing emergency service scheduler and dispatcher modules",
+    alt: "AquaFlow Commercial Plumbing Dispatcher designed by SkillForge Technologies Erode showcasing emergency service scheduler and dispatcher modules",
     category: "Software Stacks",
     technologies: ["React", "Tailwind CSS", "Lucide Icons", "Node.js", "Real-Time DB"],
     department: "Creative Web Development / Maintenance",
@@ -578,7 +578,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Apex Law Firm Legal Consultation Suites",
     src: "/gallery/web-development/law-firm-prototype.png",
-    alt: "Apex Law Firm Legal Consultation Suites designed by SkillForge Technology Erode showcasing elite office study background, booking sidebar, and practice boxes",
+    alt: "Apex Law Firm Legal Consultation Suites designed by SkillForge Technologies Erode showcasing elite office study background, booking sidebar, and practice boxes",
     category: "Software Stacks",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Google Fonts"],
     department: "Creative Web Development / Professional Services",
@@ -593,7 +593,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Crema Roast WordPress WooCommerce Storefront",
     src: "/gallery/wordpress-development/wordpress-coffee-woocommerce.png",
-    alt: "Crema Roast WordPress WooCommerce Storefront developed by SkillForge Technology Erode showing espresso brown layouts, gourmet coffee bag grids, and subscription forms",
+    alt: "Crema Roast WordPress WooCommerce Storefront developed by SkillForge Technologies Erode showing espresso brown layouts, gourmet coffee bag grids, and subscription forms",
     category: "Software Stacks",
     technologies: ["WordPress", "WooCommerce", "PHP", "Tailwind CSS", "Stripe API"],
     department: "WordPress E-Commerce / CMS",
@@ -608,7 +608,7 @@ export const galleryData: GalleryImage[] = [
   {
     projectTitle: "Horizon Realty Premium Property Catalog",
     src: "/gallery/wordpress-development/wordpress-real-estate.png",
-    alt: "Horizon Realty Premium Property Catalog developed by SkillForge Technology Erode showing clean light layout, property listings grid, and search filters",
+    alt: "Horizon Realty Premium Property Catalog developed by SkillForge Technologies Erode showing clean light layout, property listings grid, and search filters",
     category: "Software Stacks",
     technologies: ["WordPress", "PHP", "ACF Pro", "MySQL", "Tailwind CSS", "Search Filter"],
     department: "WordPress E-Commerce / CMS",

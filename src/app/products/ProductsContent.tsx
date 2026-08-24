@@ -759,7 +759,7 @@ export default function ProductsContent({
             How to Install the Active Pulse App
           </h2>
           <p className="text-slate-500 max-w-2xl mx-auto text-sm md:text-base">
-            Since Active Pulse is hosted privately by SkillForge Technology, sideloading is required on Android. Follow these simple steps.
+            Since Active Pulse is hosted privately by SkillForge Technologies, sideloading is required on Android. Follow these simple steps.
           </p>
         </div>
 
@@ -1102,12 +1102,12 @@ export default function ProductsContent({
           <div className="flex items-center gap-4 text-center md:text-left flex-col md:flex-row">
             <img
               src="/logo-mark.png"
-              alt="SkillForge Technology Logo"
+              alt="SkillForge Technologies Logo"
               className="w-10 h-10 object-contain"
             />
             <div>
               <h2 className="text-slate-800 font-bold text-base tracking-wide">
-                Built by SkillForge Technology
+                Built by SkillForge Technologies
               </h2>
               <p className="text-slate-500 text-xs mt-0.5">
                 Pushing the limits of premium embedded hardware and custom software applications.
@@ -1130,7 +1130,7 @@ export default function ProductsContent({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div className="flex items-center gap-2">
             <Shield size={14} className="text-teal-600" />
-            <span>© 2026 SkillForge Technology. Active Pulse Hardware &amp; App.</span>
+            <span>© 2026 SkillForge Technologies. Active Pulse Hardware &amp; App.</span>
           </div>
 
           <div className="flex items-center gap-4">

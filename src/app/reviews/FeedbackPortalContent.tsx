@@ -386,7 +386,7 @@ export default function FeedbackPortalContent() {
                   Our Policy on Transparency & Trust
                 </h3>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  At SkillForge Technology, integrity is central to our engineering practice. We do not display fabricated customer testimonials, mock ratings, or unverified statistical claims. We demonstrate our capabilities through open-source code repositories, detailed technology prototypes, and verifiable technical walkthroughs.
+                  At SkillForge Technologies, integrity is central to our engineering practice. We do not display fabricated customer testimonials, mock ratings, or unverified statistical claims. We demonstrate our capabilities through open-source code repositories, detailed technology prototypes, and verifiable technical walkthroughs.
                 </p>
                 <p className="text-xs text-slate-500 leading-relaxed">
                   If you require direct project validations, architecture records, or reference check connections with our global partners, please contact our solution design team.

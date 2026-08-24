@@ -759,7 +759,7 @@ export default function ExpenseMateProductContent() {
         {/* ── FOOTER LEGAL & PRIVACY POLICY SECTION ───────────────── */}
         <div className="pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
           <div>
-            © 2026 SkillForge Technology. ExpenseMate Mobile App.
+            © 2026 SkillForge Technologies. ExpenseMate Mobile App.
           </div>
           <div className="flex items-center gap-6">
             <Link href="/privacy/expense-mate" className="hover:text-blue-600 transition-colors font-bold underline">

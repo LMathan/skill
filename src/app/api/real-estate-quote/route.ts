@@ -23,7 +23,7 @@ export async function POST(request: Request) {
       console.log(`Body: Client Email: ${email}, Service: ${service}, Files: ${filesList.join(", ") || "None"}`)
       console.log("-------------------------------------")
       console.log(`To: Client (${email})`)
-      console.log(`Subject: Free Sample Request Received - SkillForge Technology`)
+      console.log(`Subject: Free Sample Request Received - SkillForge Technologies`)
       console.log(`Body: Thank you! We are processing your sample images.`)
       console.log("=====================================")
 
@@ -61,7 +61,7 @@ export async function POST(request: Request) {
           </tr>
         </table>
         <div style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 0.8em; color: #718096; text-align: center;">
-          Sent automatically from SkillForge Technology Hub
+          Sent automatically from SkillForge Technologies Hub
         </div>
       </div>
     `
@@ -97,7 +97,7 @@ export async function POST(request: Request) {
       const clientEmailHtml = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #f0fdf4;">
           <h2 style="color: #16a34a; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">Free Sample Request Logged</h2>
-          <p>Thank you for requesting a free sample edit from SkillForge Technology!</p>
+          <p>Thank you for requesting a free sample edit from SkillForge Technologies!</p>
           <p>Our professional editing team has received your files and is preparing the sample. We will return the edited high-resolution files to this email address within 24 hours.</p>
           <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
           <p style="font-size: 0.9em; color: #4b5563;">
@@ -106,7 +106,7 @@ export async function POST(request: Request) {
           </p>
           <p>If you have any questions or require custom specifications, feel free to reply to this email.</p>
           <div style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 0.8em; color: #718096; text-align: center;">
-            SkillForge Technology &bull; India
+            SkillForge Technologies &bull; India
           </div>
         </div>
       `
@@ -120,7 +120,7 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           from: `SkillForge Real Estate <${fromAddress}>`,
           to: [email],
-          subject: `Free Sample Request Received - SkillForge Technology`,
+          subject: `Free Sample Request Received - SkillForge Technologies`,
           html: clientEmailHtml
         })
       })

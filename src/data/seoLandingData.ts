@@ -16,7 +16,7 @@ export interface SEOPageData {
 
 export const seoPagesContent: Record<string, SEOPageData> = {
   "final-year-project-center-erode": {
-    title: "Final Year Project Center in Erode | SkillForge Technology",
+    title: "Final Year Project Center in Erode | SkillForge Technologies",
     description: "Looking for the best final year project center in Erode? We offer 100% working hardware prototypes, code explanations, and viva support for ECE, CSE & EEE.",
     h1: "Premium Final Year Project Center in Erode",
     h2: "Custom Engineering Prototypes & Laboratory Mentorship",
@@ -44,7 +44,7 @@ export const seoPagesContent: Record<string, SEOPageData> = {
     projects: ["Eye Blink Controlled Wheelchair", "Smart Farm Security System", "Smart Emergency Vehicle Traffic Control"],
     longContent: `### Comprehensive Project Mentorship for Final Year Engineering Students in Erode
 
-For engineering graduates in Erode and Perundurai districts, final year project reviews are a crucial milestone. SkillForge Technology is dedicated to providing high-quality, practical mentorship that moves beyond theoretical designs. We support streams like Electronics and Communication Engineering (ECE), Electrical and Electronics Engineering (EEE), Computer Science and Engineering (CSE), and Information Technology (IT) with fully realized physical prototypes.
+For engineering graduates in Erode and Perundurai districts, final year project reviews are a crucial milestone. SkillForge Technologies is dedicated to providing high-quality, practical mentorship that moves beyond theoretical designs. We support streams like Electronics and Communication Engineering (ECE), Electrical and Electronics Engineering (EEE), Computer Science and Engineering (CSE), and Information Technology (IT) with fully realized physical prototypes.
 
 ### Industry-Grade Prototyping and Engineering Standards
 
@@ -62,7 +62,7 @@ We prepare students for their academic presentations by offering structured docu
 
 ### Strategic Location & College Coordination
 
-Our laboratory is located along Perundurai Road in Erode, a strategic location close to major engineering institutions like Kongu Engineering College (KEC), Velalar College of Engineering and Technology (VCET), Nandha Engineering College (NEC), Erode Sengunthar Engineering College (ESEC), and Excel Engineering College. This allows students to visit the lab physically for reviews, hands-on training sessions, and debugging. By offering locally accessible, certified guidance, SkillForge Technology helps Erode students secure top marks in their project vivas.`
+Our laboratory is located along Perundurai Road in Erode, a strategic location close to major engineering institutions like Kongu Engineering College (KEC), Velalar College of Engineering and Technology (VCET), Nandha Engineering College (NEC), Erode Sengunthar Engineering College (ESEC), and Excel Engineering College. This allows students to visit the lab physically for reviews, hands-on training sessions, and debugging. By offering locally accessible, certified guidance, SkillForge Technologies helps Erode students secure top marks in their project vivas.`
   },
   "iot-project-center-erode": {
     title: "IoT Project Center in Erode | ESP32 & Arduino Prototypes",
@@ -92,7 +92,7 @@ Our laboratory is located along Perundurai Road in Erode, a strategic location c
     projects: ["Smart Drainage Monitoring System", "IoT Based Smart Home Automation", "Smart Water Tank Level Monitoring System"],
     longContent: `### Designing Advanced Internet of Things (IoT) Systems in Erode
 
-The Internet of Things (IoT) is a rapidly growing field that bridges physical electronics and cloud databases. SkillForge Technology is the leading IoT Project Center in Erode, providing hands-on instruction in sensor telemetry, network protocols, and real-time visualization systems. Our lab near Perundurai has all the resources needed for building complex connected systems.
+The Internet of Things (IoT) is a rapidly growing field that bridges physical electronics and cloud databases. SkillForge Technologies is the leading IoT Project Center in Erode, providing hands-on instruction in sensor telemetry, network protocols, and real-time visualization systems. Our lab near Perundurai has all the resources needed for building complex connected systems.
 
 ### Hardware Prototyping with ESP32 & ESP8266
 
@@ -141,7 +141,7 @@ Our center provides physical space for Erode students from Kongu Engineering Col
     projects: ["Drone Based Noise Pollution Monitoring", "Smart Emergency Vehicle Traffic Control", "AI Object Detection Security System"],
     longContent: `### Certified IEEE Project Implementation in Erode
 
-SkillForge Technology provides technical guidance for engineering scholars who wish to implement complex IEEE conference and journal papers. Academic panels value IEEE projects due to their rigorous research standards, mathematical models, and societal impact. We help students turn these academic papers into working physical prototypes and simulation files.
+SkillForge Technologies provides technical guidance for engineering scholars who wish to implement complex IEEE conference and journal papers. Academic panels value IEEE projects due to their rigorous research standards, mathematical models, and societal impact. We help students turn these academic papers into working physical prototypes and simulation files.
 
 ### Support Across Multiple Engineering Domains
 
@@ -191,7 +191,7 @@ Located near Kongu Engineering College (KEC), Nandha Engineering College (NEC), 
     projects: ["Eye Blink Controlled Wheelchair", "Automatic Railway Gate Control System", "Smart Blind Stick for Visually Impaired"],
     longContent: `### Premium Embedded Systems Prototyping in Erode
 
-Embedded systems bridge physical circuits and software programming. SkillForge Technology is the premier Embedded Systems Project Center in Erode, helping students learn microcontroller programming, PCB layout design, and firmware optimization. Our lab near Perundurai has all the resources needed for building complex hardware.
+Embedded systems bridge physical circuits and software programming. SkillForge Technologies is the premier Embedded Systems Project Center in Erode, helping students learn microcontroller programming, PCB layout design, and firmware optimization. Our lab near Perundurai has all the resources needed for building complex hardware.
 
 ### Microcontroller Frameworks & Firmware
 
@@ -242,7 +242,7 @@ Our Erode lab is close to major campuses like Kongu Engineering College (KEC), N
     projects: ["AI Based Face Recognition Attendance System", "AI Object Detection Security System", "AI Based Driver Drowsiness Detection System"],
     longContent: `### Designing Intelligent Systems: AI & Machine Learning in Erode
 
-Artificial Intelligence (AI) and Machine Learning (ML) are transforming how modern applications work. SkillForge Technology is the premier AI Project Center in Erode, guiding students through the process of building intelligent systems, from dataset collection to deploying models on physical hardware.
+Artificial Intelligence (AI) and Machine Learning (ML) are transforming how modern applications work. SkillForge Technologies is the premier AI Project Center in Erode, guiding students through the process of building intelligent systems, from dataset collection to deploying models on physical hardware.
 
 ### Computer Vision & Object Detection
 
@@ -290,7 +290,7 @@ Our Perundurai lab is a convenient hub for students from Kongu Engineering Colle
     projects: ["Smart Irrigation System", "IoT Based Smart Home Automation", "AI Based Face Recognition Attendance System"],
     longContent: `### Practical Technical Internship Programs in Erode
 
-SkillForge Technology provides certified, hands-on internship training for engineering students and recent graduates in Erode. Our programs focus on practical lab work, letting students work directly with hardware components, microcontrollers, and code repositories to build real-world engineering skills.
+SkillForge Technologies provides certified, hands-on internship training for engineering students and recent graduates in Erode. Our programs focus on practical lab work, letting students work directly with hardware components, microcontrollers, and code repositories to build real-world engineering skills.
 
 ### Structured Learning Tracks
 
@@ -312,7 +312,7 @@ Our internships are designed to give students practical project experience:
 Our center is located on Perundurai Road, Erode, close to campuses like Kongu Engineering College (KEC), Velalar College of Engineering and Technology (VCET), Nandha Engineering College (NEC), and KSR College of Technology. This makes it easy for students to attend physical sessions and build the core technical skills needed for today's engineering industry.`
   },
   "project-center-erode": {
-    title: "Engineering Project Center in Erode | SkillForge Technology",
+    title: "Engineering Project Center in Erode | SkillForge Technologies",
     description: "Looking for an engineering project center in Erode? Visit our lab for working prototype implementations in IoT, Robotics, & AI with full reports.",
     h1: "Leading Engineering Project Center in Erode",
     h2: "Developing Functional Electronic Prototypes & Real-Time Dashboards",
@@ -334,7 +334,7 @@ Our center is located on Perundurai Road, Erode, close to campuses like Kongu En
     projects: ["Eye Blink Controlled Wheelchair", "Drone Based Noise Pollution Monitoring", "AI Based Face Recognition Attendance System"],
     longContent: `### Your Trusted Partner for Engineering Projects in Erode
 
-For engineering graduates in Erode and Perundurai districts, final year project reviews are a crucial milestone. SkillForge Technology is dedicated to providing high-quality, practical mentorship that moves beyond theoretical designs. We support streams like Electronics and Communication Engineering (ECE), Electrical and Electronics Engineering (EEE), Computer Science and Engineering (CSE), and Information Technology (IT) with fully realized physical prototypes.
+For engineering graduates in Erode and Perundurai districts, final year project reviews are a crucial milestone. SkillForge Technologies is dedicated to providing high-quality, practical mentorship that moves beyond theoretical designs. We support streams like Electronics and Communication Engineering (ECE), Electrical and Electronics Engineering (EEE), Computer Science and Engineering (CSE), and Information Technology (IT) with fully realized physical prototypes.
 
 ### Industry-Grade Prototyping and Engineering Standards
 
@@ -352,6 +352,6 @@ We prepare students for their academic presentations by offering structured docu
 
 ### Strategic Location & College Coordination
 
-Our laboratory is located along Perundurai Road in Erode, a strategic location close to major engineering institutions like Kongu Engineering College (KEC), Velalar College of Engineering and Technology (VCET), Nandha Engineering College (NEC), Erode Sengunthar Engineering College (ESEC), and Excel Engineering College. This allows students to visit the lab physically for reviews, hands-on training sessions, and debugging. By offering locally accessible, certified guidance, SkillForge Technology helps Erode students secure top marks in their project vivas.`
+Our laboratory is located along Perundurai Road in Erode, a strategic location close to major engineering institutions like Kongu Engineering College (KEC), Velalar College of Engineering and Technology (VCET), Nandha Engineering College (NEC), Erode Sengunthar Engineering College (ESEC), and Excel Engineering College. This allows students to visit the lab physically for reviews, hands-on training sessions, and debugging. By offering locally accessible, certified guidance, SkillForge Technologies helps Erode students secure top marks in their project vivas.`
   }
 }

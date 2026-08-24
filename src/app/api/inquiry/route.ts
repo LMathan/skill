@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       console.log(`Body: Name: ${name}, Email: ${email}, Phone: ${phone}, Message: ${message}`)
       console.log("------------------------")
       console.log(`To: Client (${email})`)
-      console.log(`Subject: Inquiry Received - SkillForge Technology`)
+      console.log(`Subject: Inquiry Received - SkillForge Technologies`)
       console.log(`Body: Thank you ${name}! We have received your inquiry.`)
       console.log("========================")
 
@@ -67,7 +67,7 @@ export async function POST(request: Request) {
           </tr>
         </table>
         <div style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 0.8em; color: #718096; text-align: center;">
-          Sent automatically from SkillForge Technology Hub
+          Sent automatically from SkillForge Technologies Hub
         </div>
       </div>
     `
@@ -100,11 +100,11 @@ export async function POST(request: Request) {
     const clientEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff;">
         <div style="text-align: center; margin-bottom: 25px;">
-          <h1 style="color: #06b6d4; margin: 0; font-size: 24px;">SkillForge Technology</h1>
+          <h1 style="color: #06b6d4; margin: 0; font-size: 24px;">SkillForge Technologies</h1>
           <p style="color: #718096; margin: 5px 0 0 0; font-size: 14px;">Electronics & IoT Prototyping Laboratory</p>
         </div>
         <p>Dear <strong>${name}</strong>,</p>
-        <p>Thank you for contacting SkillForge Technology. We have successfully received your inquiry regarding <strong>"${theme || "Custom Projects"}"</strong>.</p>
+        <p>Thank you for contacting SkillForge Technologies. We have successfully received your inquiry regarding <strong>"${theme || "Custom Projects"}"</strong>.</p>
         <p>Our engineering laboratory coordinators and project designers will review your parameters and get in touch with you via email or phone within the next 24 business hours.</p>
         
         <div style="margin: 20px 0; padding: 15px; background-color: #f7fafc; border-left: 4px solid #06b6d4; border-radius: 4px;">
@@ -119,7 +119,7 @@ export async function POST(request: Request) {
         
         <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 30px 0;" />
         <div style="text-align: center; color: #a0aec0; font-size: 12px;">
-          <p style="margin: 0 0 5px 0;"><strong>SkillForge Technology</strong></p>
+          <p style="margin: 0 0 5px 0;"><strong>SkillForge Technologies</strong></p>
           <p style="margin: 0;">Perundurai, Tamil Nadu, India</p>
         </div>
       </div>
@@ -137,9 +137,9 @@ export async function POST(request: Request) {
           Authorization: `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-          from: `SkillForge Technology <${fromAddress}>`,
+          from: `SkillForge Technologies <${fromAddress}>`,
           to: [email],
-          subject: "We received your inquiry - SkillForge Technology",
+          subject: "We received your inquiry - SkillForge Technologies",
           html: clientEmailHtml
         })
       })

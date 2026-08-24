@@ -56,7 +56,7 @@ export default function TermsContent() {
             Terms of Service & Engagement
           </h1>
           <p className="text-slate-500 text-xs sm:text-sm font-sans font-medium">
-            Last Updated: July 2, 2026. These terms govern your access to the SkillForge Technology portals, custom estimates, and software consulting services.
+            Last Updated: July 2, 2026. These terms govern your access to the SkillForge Technologies portals, custom estimates, and software consulting services.
           </p>
         </div>
 
@@ -115,7 +115,7 @@ export default function TermsContent() {
                 Acceptance of Terms
               </h2>
               <p>
-                By navigating the SkillForge Technology web applications, requesting a custom scope quote estimate, or registering for automated pipeline notifications, you explicitly agree to compile and abide by these general Terms of Service. If you do not accept these policies in full, you must exit our digital platforms immediately.
+                By navigating the SkillForge Technologies web applications, requesting a custom scope quote estimate, or registering for automated pipeline notifications, you explicitly agree to compile and abide by these general Terms of Service. If you do not accept these policies in full, you must exit our digital platforms immediately.
               </p>
               <p>
                 We reserve the right to modify these parameters at any time. Operational updates are immediately applicable upon being published on this page, and your continued usage represents consent to modified covenants.
@@ -143,7 +143,7 @@ export default function TermsContent() {
                 Intellectual Property
               </h2>
               <p>
-                All web layout models, graphic mockups, animated vectors, copy documents, and custom simulator scripts displayed on this website are the exclusive property of SkillForge Technology and are protected by international trademark and copyright treaties.
+                All web layout models, graphic mockups, animated vectors, copy documents, and custom simulator scripts displayed on this website are the exclusive property of SkillForge Technologies and are protected by international trademark and copyright treaties.
               </p>
               <div className="p-4 border border-blue-100 bg-blue-50/20 rounded-xl space-y-2">
                 <div className="font-bold text-slate-900 flex items-center gap-1.5">
@@ -177,7 +177,7 @@ export default function TermsContent() {
                 Liability Limitations
               </h2>
               <p>
-                To the maximum extent permitted by applicable jurisdiction, SkillForge Technology, its engineering directors, and offshore developers shall not be liable for any indirect, consequential, special, or incidental damages arising from web downtime, data loss during audits, or business interruptions.
+                To the maximum extent permitted by applicable jurisdiction, SkillForge Technologies, its engineering directors, and offshore developers shall not be liable for any indirect, consequential, special, or incidental damages arising from web downtime, data loss during audits, or business interruptions.
               </p>
             </section>
 

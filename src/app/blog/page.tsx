@@ -20,7 +20,7 @@ export default function BlogPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "SkillForge Technology Insights Hub",
+    "name": "SkillForge Technologies Insights Hub",
     "description": "Technical tutorials, SaaS design patterns, and AI integration blueprints written by SkillForge architects.",
     "blogPost": blogData.map((blog) => ({
       "@type": "BlogPosting",
@@ -33,7 +33,7 @@ export default function BlogPage() {
       },
       "publisher": {
         "@type": "Organization",
-        "name": "SkillForge Technology",
+        "name": "SkillForge Technologies",
         "logo": "https://skillforgetechnology.app/logo.png"
       }
     }))

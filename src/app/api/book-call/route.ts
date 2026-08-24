@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       console.log(`Body: Client Email: ${email}, Scheduled Date: ${date}`)
       console.log("------------------------")
       console.log(`To: Client (${email})`)
-      console.log(`Subject: Consultation Confirmed - SkillForge Technology`)
+      console.log(`Subject: Consultation Confirmed - SkillForge Technologies`)
       console.log(`Body: Your discovery consultation is registered for ${date}.`)
       console.log("========================")
 
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
           </tr>
         </table>
         <div style="margin-top: 30px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 0.8em; color: #718096; text-align: center;">
-          Sent automatically from SkillForge Technology Scheduler Hub
+          Sent automatically from SkillForge Technologies Scheduler Hub
         </div>
       </div>
     `
@@ -84,7 +84,7 @@ export async function POST(req: Request) {
         <p>We look forward to helping you forge your technological milestones.</p>
         <hr style="border: 0; border-top: 1px dashed #e2e8f0; margin: 24px 0;" />
         <p style="font-size: 11px; color: #64748b; text-align: center;">
-          This is an auto-response from SkillForge Technology. Tamil Nadu, India.
+          This is an auto-response from SkillForge Technologies. Tamil Nadu, India.
         </p>
       </div>
     `
@@ -96,9 +96,9 @@ export async function POST(req: Request) {
         Authorization: `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        from: `SkillForge Technology <${fromAddress}>`,
+        from: `SkillForge Technologies <${fromAddress}>`,
         to: [email],
-        subject: "Consultation Booked - SkillForge Technology",
+        subject: "Consultation Booked - SkillForge Technologies",
         html: clientEmailHtml
       })
     })

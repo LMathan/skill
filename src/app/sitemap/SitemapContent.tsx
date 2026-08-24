@@ -227,7 +227,7 @@ export default function SitemapContent() {
               Site Map
             </h1>
             <p className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-2xl">
-              Explore every page and service offered by SkillForge Technology. Quickly navigate through our software development divisions, client case studies, industries served, technical resources, and organizational profiles.
+              Explore every page and service offered by SkillForge Technologies. Quickly navigate through our software development divisions, client case studies, industries served, technical resources, and organizational profiles.
             </p>
           </div>
 

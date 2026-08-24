@@ -4,8 +4,8 @@ import SecurityContent from "./SecurityContent"
 import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
-  title: "Security Standards | Cloud Infrastructure & Pipeline Shield | SkillForge Technology",
-  description: "Learn about the security standards, encryption policies, access controls, and pipeline checks implemented by SkillForge Technology to protect client projects.",
+  title: "Security Standards | Cloud Infrastructure & Pipeline Shield | SkillForge Technologies",
+  description: "Learn about the security standards, encryption policies, access controls, and pipeline checks implemented by SkillForge Technologies to protect client projects.",
   keywords: [
     "SkillForge Security Standards",
     "Secure Software Lifecycle",

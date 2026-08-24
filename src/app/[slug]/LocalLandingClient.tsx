@@ -174,7 +174,7 @@ export default function LocalLandingClient({ content, slug }: LocalLandingClient
         <section className="mb-20">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold font-display text-slate-900 dark:text-white">{content.h2}</h2>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mt-2">Why engineering students across Tamil Nadu trust SkillForge Technology</p>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-2">Why engineering students across Tamil Nadu trust SkillForge Technologies</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

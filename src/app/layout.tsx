@@ -28,10 +28,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "SkillForge Technology | Software Engineering & Digital Transformation",
-    template: "%s | SkillForge Technology"
+    default: "SkillForge Technologies | Software Engineering & Digital Transformation",
+    template: "%s | SkillForge Technologies"
   },
-  description: "SkillForge Technology is a global software engineering and digital transformation partner delivering premium digital solutions, custom websites, AI systems, and enterprise web applications.",
+  description: "SkillForge Technologies is a global software engineering and digital transformation partner delivering premium digital solutions, custom websites, AI systems, and enterprise web applications.",
   keywords: [
     "Software Engineering",
     "Digital Transformation",
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
     "AI-Powered Solutions",
     "Business Automation Platforms",
     "SaaS Development",
-    "SkillForge Technology"
+    "SkillForge Technologies"
   ],
-  authors: [{ name: "SkillForge Technology" }],
+  authors: [{ name: "SkillForge Technologies" }],
   metadataBase: new URL("https://skillforgetechnology.app"),
   icons: {
     icon: "/favicon.ico",
@@ -55,16 +55,16 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: "SkillForge Technology | Software Engineering & Digital Transformation",
+    title: "SkillForge Technologies | Software Engineering & Digital Transformation",
     description: "Premium software engineering, custom enterprise web applications, AI systems, and digital transformation services globally.",
     url: "https://skillforgetechnology.app",
-    siteName: "SkillForge Technology",
+    siteName: "SkillForge Technologies",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "SkillForge Technology Showcase"
+        alt: "SkillForge Technologies Showcase"
       }
     ],
     locale: "en_US",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SkillForge Technology | Premium Global Software Engineering",
+    title: "SkillForge Technologies | Premium Global Software Engineering",
     description: "Global software engineering and digital transformation partner delivering custom websites, AI systems, and enterprise web applications.",
     images: ["/og-image.png"],
   }

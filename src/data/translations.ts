@@ -21,7 +21,7 @@ export const translations: Record<string, Record<string, any>> = {
       "statsOperations": "Communication Standard",
       "badge": "Global Digital Transformation Partner",
       "title": "We Engineer Enterprise Software & Scalable AI Solutions",
-      "subtitle": "SkillForge Technology is a global software engineering and digital transformation partner delivering premium digital solutions for startups, SMEs, and enterprises. We design and develop modern websites, enterprise web applications, AI-powered systems, customer portals, and business automation platforms that help organizations compete more effectively in today's digital marketplace.",
+      "subtitle": "SkillForge Technologies is a global software engineering and digital transformation partner delivering premium digital solutions for startups, SMEs, and enterprises. We design and develop modern websites, enterprise web applications, AI-powered systems, customer portals, and business automation platforms that help organizations compete more effectively in today's digital marketplace.",
       "ctaPrimary": "Book Discovery Call",
       "ctaSecondary": "View Case Studies",
       "statsClients": "Client Partnerships",
@@ -84,18 +84,18 @@ export const translations: Record<string, Record<string, any>> = {
       "feedbackSuccessMsg": "Thank you! Your feedback has been verified and registered on our Firestore public records."
     },
     "footer": {
-      "desc": "SkillForge Technology is a premier international software engineering and digital transformation consultancy serving clients globally.",
+      "desc": "SkillForge Technologies is a premier international software engineering and digital transformation consultancy serving clients globally.",
       "services": "Services",
       "industries": "Industries",
       "company": "Company",
       "legal": "Legal",
-      "rights": "© 2026 SkillForge Technology. All rights reserved."
+      "rights": "© 2026 SkillForge Technologies. All rights reserved."
     },
     "about": {
       "storyBadge": "Our Corporate Story",
       "titlePart1": "We engineer high-performance",
       "titlePart2": "digital systems globally",
-      "subtitle": "SkillForge Technology is a global software engineering and digital transformation partner delivering premium digital solutions for startups, SMEs, and enterprises. We design and develop modern websites, enterprise web applications, AI-powered systems, customer portals, and business automation platforms that help organizations compete more effectively in today's digital marketplace.",
+      "subtitle": "SkillForge Technologies is a global software engineering and digital transformation partner delivering premium digital solutions for startups, SMEs, and enterprises. We design and develop modern websites, enterprise web applications, AI-powered systems, customer portals, and business automation platforms that help organizations compete more effectively in today's digital marketplace.",
       "values": [
         {
           "title": "Global Capabilities",
@@ -342,8 +342,8 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "faq": {
       "0": {
-        "q": "What services does SkillForge Technology provide?",
-        "a": "SkillForge Technology provides end-to-end software engineering services including custom software development, web development, mobile application development, AI solutions, cloud engineering, DevOps, enterprise software, IoT development, embedded systems, UI/UX design, SEO, WordPress development, and digital transformation consulting."
+        "q": "What services does SkillForge Technologies provide?",
+        "a": "SkillForge Technologies provides end-to-end software engineering services including custom software development, web development, mobile application development, AI solutions, cloud engineering, DevOps, enterprise software, IoT development, embedded systems, UI/UX design, SEO, WordPress development, and digital transformation consulting."
       },
       "1": {
         "q": "Which industries do you work with?",
@@ -479,7 +479,7 @@ export const translations: Record<string, Record<string, any>> = {
       "statsOperations": "Kommunikationsstandard",
       "badge": "Globaler Partner für digitale Transformation",
       "title": "Wir entwickeln Enterprise-Software & skalierbare KI-Lösungen",
-      "subtitle": "SkillForge Technology entwickelt erstklassige Individualsoftware, IoT-Prototypen, Hochleistungs-Web-Apps und integrierte KI-Agenten für zukunftsorientierte Unternehmen weltweit.",
+      "subtitle": "SkillForge Technologies entwickelt erstklassige Individualsoftware, IoT-Prototypen, Hochleistungs-Web-Apps und integrierte KI-Agenten für zukunftsorientierte Unternehmen weltweit.",
       "ctaPrimary": "Erstgespräch buchen",
       "ctaSecondary": "Fallstudien ansehen",
       "statsClients": "Kundenpartnerschaften",
@@ -542,18 +542,18 @@ export const translations: Record<string, Record<string, any>> = {
       "feedbackSuccessMsg": "Thank you! Your feedback has been verified and registered on our Firestore public records."
     },
     "footer": {
-      "desc": "SkillForge Technology ist ein führendes internationales Beratungsunternehmen für Software-Engineering und digitale Transformation, das Kunden weltweit unterstützt.",
+      "desc": "SkillForge Technologies ist ein führendes internationales Beratungsunternehmen für Software-Engineering und digitale Transformation, das Kunden weltweit unterstützt.",
       "services": "Dienstleistungen",
       "industries": "Branchen",
       "company": "Unternehmen",
       "legal": "Rechtliches",
-      "rights": "© 2026 SkillForge Technology. Alle Rechte vorbehalten."
+      "rights": "© 2026 SkillForge Technologies. Alle Rechte vorbehalten."
     },
     "about": {
       "storyBadge": "Our Corporate Story",
       "titlePart1": "We engineer high-performance",
       "titlePart2": "digital systems globally",
-      "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
+      "subtitle": "SkillForge Technologies builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
       "values": [
         {
           "title": "Global Capabilities",
@@ -800,8 +800,8 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "faq": {
       "0": {
-        "q": "Welche Dienstleistungen bietet SkillForge Technology an?",
-        "a": "SkillForge Technology bietet End-to-End-Softwareentwicklungsdienste an, darunter kundenspezifische Softwareentwicklung, Webentwicklung, mobile App-Entwicklung, KI-Lösungen, Cloud-Engineering, DevOps, Unternehmenssoftware, IoT-Entwicklung, eingebettete Systeme, UI/UX-Design, SEO, WordPress-Entwicklung und Beratung zur digitalen Transformation."
+        "q": "Welche Dienstleistungen bietet SkillForge Technologies an?",
+        "a": "SkillForge Technologies bietet End-to-End-Softwareentwicklungsdienste an, darunter kundenspezifische Softwareentwicklung, Webentwicklung, mobile App-Entwicklung, KI-Lösungen, Cloud-Engineering, DevOps, Unternehmenssoftware, IoT-Entwicklung, eingebettete Systeme, UI/UX-Design, SEO, WordPress-Entwicklung und Beratung zur digitalen Transformation."
       },
       "1": {
         "q": "Mit welchen Branchen arbeiten Sie zusammen?",
@@ -937,7 +937,7 @@ export const translations: Record<string, Record<string, any>> = {
       "statsOperations": "Norme de communication",
       "badge": "Partenaire Global de Transformation Digitale",
       "title": "Nous concevons des logiciels d'entreprise & des solutions d'IA",
-      "subtitle": "SkillForge Technology conçoit des logiciels personnalisés haut de gamme, des prototypes IoT, des applications web performantes et des agents d'IA intégrés pour les entreprises innovantes.",
+      "subtitle": "SkillForge Technologies conçoit des logiciels personnalisés haut de gamme, des prototypes IoT, des applications web performantes et des agents d'IA intégrés pour les entreprises innovantes.",
       "ctaPrimary": "Réserver un appel découverte",
       "ctaSecondary": "Voir nos études de cas",
       "statsClients": "Partenariats clients",
@@ -1000,18 +1000,18 @@ export const translations: Record<string, Record<string, any>> = {
       "feedbackSuccessMsg": "Thank you! Your feedback has been verified and registered on our Firestore public records."
     },
     "footer": {
-      "desc": "SkillForge Technology est un cabinet de conseil international de premier plan en ingénierie logicielle et transformation digitale.",
+      "desc": "SkillForge Technologies est un cabinet de conseil international de premier plan en ingénierie logicielle et transformation digitale.",
       "services": "Services",
       "industries": "Secteurs d'activité",
       "company": "Société",
       "legal": "Mentions légales",
-      "rights": "© 2026 SkillForge Technology. Tous droits réservés."
+      "rights": "© 2026 SkillForge Technologies. Tous droits réservés."
     },
     "about": {
       "storyBadge": "Our Corporate Story",
       "titlePart1": "We engineer high-performance",
       "titlePart2": "digital systems globally",
-      "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
+      "subtitle": "SkillForge Technologies builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
       "values": [
         {
           "title": "Global Capabilities",
@@ -1258,8 +1258,8 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "faq": {
       "0": {
-        "q": "Quels services propose SkillForge Technology ?",
-        "a": "SkillForge Technology propose des services complets d'ingénierie logicielle, notamment le développement de logiciels sur mesure, le développement web, le développement d'applications mobiles, les solutions d'IA, l'ingénierie cloud, le DevOps, les logiciels d'entreprise, le développement IoT, les systèmes embarqués, la conception UI/UX, le référencement (SEO), le développement WordPress et le conseil en transformation numérique."
+        "q": "Quels services propose SkillForge Technologies ?",
+        "a": "SkillForge Technologies propose des services complets d'ingénierie logicielle, notamment le développement de logiciels sur mesure, le développement web, le développement d'applications mobiles, les solutions d'IA, l'ingénierie cloud, le DevOps, les logiciels d'entreprise, le développement IoT, les systèmes embarqués, la conception UI/UX, le référencement (SEO), le développement WordPress et le conseil en transformation numérique."
       },
       "1": {
         "q": "Avec quels secteurs d'activité travaillez-vous ?",
@@ -1395,7 +1395,7 @@ export const translations: Record<string, Record<string, any>> = {
       "statsOperations": "Estándar de comunicación",
       "badge": "Socio Global de Transformación Digital",
       "title": "Ingeniería de Software Empresarial y Soluciones de IA",
-      "subtitle": "SkillForge Technology crea software a medida premium, prototipos de IoT, aplicaciones web de alto rendimiento y agentes de IA integrados para empresas del futuro.",
+      "subtitle": "SkillForge Technologies crea software a medida premium, prototipos de IoT, aplicaciones web de alto rendimiento y agentes de IA integrados para empresas del futuro.",
       "ctaPrimary": "Reservar sesión gratuita",
       "ctaSecondary": "Ver casos de éxito",
       "statsClients": "Asociaciones con clientes",
@@ -1458,18 +1458,18 @@ export const translations: Record<string, Record<string, any>> = {
       "feedbackSuccessMsg": "Thank you! Your feedback has been verified and registered on our Firestore public records."
     },
     "footer": {
-      "desc": "SkillForge Technology es una consultora internacional líder en ingeniería de software y transformación digital.",
+      "desc": "SkillForge Technologies es una consultora internacional líder en ingeniería de software y transformación digital.",
       "services": "Servicios",
       "industries": "Sectores",
       "company": "Compañía",
       "legal": "Legal",
-      "rights": "© 2026 SkillForge Technology. Todos los derechos reservados."
+      "rights": "© 2026 SkillForge Technologies. Todos los derechos reservados."
     },
     "about": {
       "storyBadge": "Our Corporate Story",
       "titlePart1": "We engineer high-performance",
       "titlePart2": "digital systems globally",
-      "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
+      "subtitle": "SkillForge Technologies builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
       "values": [
         {
           "title": "Global Capabilities",
@@ -1716,8 +1716,8 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "faq": {
       "0": {
-        "q": "¿Qué servicios proporciona SkillForge Technology?",
-        "a": "SkillForge Technology proporciona servicios de ingeniería de software de extremo a extremo, incluyendo desarrollo de software a medida, desarrollo web, desarrollo de aplicaciones móviles, soluciones de IA, ingeniería en la nube, DevOps, software empresarial, desarrollo de IoT, sistemas embebidos, diseño de UI/UX, SEO, desarrollo de WordPress y consultoría de transformación digital."
+        "q": "¿Qué servicios proporciona SkillForge Technologies?",
+        "a": "SkillForge Technologies proporciona servicios de ingeniería de software de extremo a extremo, incluyendo desarrollo de software a medida, desarrollo web, desarrollo de aplicaciones móviles, soluciones de IA, ingeniería en la nube, DevOps, software empresarial, desarrollo de IoT, sistemas embebidos, diseño de UI/UX, SEO, desarrollo de WordPress y consultoría de transformación digital."
       },
       "1": {
         "q": "¿Con qué industrias trabajan?",
@@ -1853,7 +1853,7 @@ export const translations: Record<string, Record<string, any>> = {
       "statsOperations": "Standard di comunicazione",
       "badge": "Partner Globale per la Trasformazione Digitale",
       "title": "Sviluppiamo Software Enterprise e Soluzioni IA Scalabili",
-      "subtitle": "SkillForge Technology progetta software personalizzati premium, prototipi IoT, applicazioni web ad alte prestazioni e agenti IA per aziende innovative in tutto il mondo.",
+      "subtitle": "SkillForge Technologies progetta software personalizzati premium, prototipi IoT, applicazioni web ad alte prestazioni e agenti IA per aziende innovative in tutto il mondo.",
       "ctaPrimary": "Prenota una consulenza",
       "ctaSecondary": "Vedi Casi di Studio",
       "statsClients": "Partnership con i clienti",
@@ -1916,18 +1916,18 @@ export const translations: Record<string, Record<string, any>> = {
       "feedbackSuccessMsg": "Thank you! Your feedback has been verified and registered on our Firestore public records."
     },
     "footer": {
-      "desc": "SkillForge Technology è una società di consulenza internazionale leader nell'ingegneria del software e nella trasformazione digitale.",
+      "desc": "SkillForge Technologies è una società di consulenza internazionale leader nell'ingegneria del software e nella trasformazione digitale.",
       "services": "Servizi",
       "industries": "Settori",
       "company": "Azienda",
       "legal": "Note Legali",
-      "rights": "© 2026 SkillForge Technology. Tutti i diritti riservati."
+      "rights": "© 2026 SkillForge Technologies. Tutti i diritti riservati."
     },
     "about": {
       "storyBadge": "Our Corporate Story",
       "titlePart1": "We engineer high-performance",
       "titlePart2": "digital systems globally",
-      "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
+      "subtitle": "SkillForge Technologies builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
       "values": [
         {
           "title": "Global Capabilities",
@@ -2174,8 +2174,8 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "faq": {
       "0": {
-        "q": "Quali servizi offre SkillForge Technology?",
-        "a": "SkillForge Technology offre servizi di ingegneria del software end-to-end, tra cui sviluppo software personalizzato, sviluppo web, sviluppo di applicazioni mobili, soluzioni AI, ingegneria cloud, DevOps, software aziendale, sviluppo IoT, sistemi embedded, design UI/UX, SEO, sviluppo WordPress e consulenza per la trasformazione digitale."
+        "q": "Quali servizi offre SkillForge Technologies?",
+        "a": "SkillForge Technologies offre servizi di ingegneria del software end-to-end, tra cui sviluppo software personalizzato, sviluppo web, sviluppo di applicazioni mobili, soluzioni AI, ingegneria cloud, DevOps, software aziendale, sviluppo IoT, sistemi embedded, design UI/UX, SEO, sviluppo WordPress e consulenza per la trasformazione digitale."
       },
       "1": {
         "q": "Con quali settori lavorate?",
@@ -2311,7 +2311,7 @@ export const translations: Record<string, Record<string, any>> = {
       "statsOperations": "Communicatiestandaard",
       "badge": "Wereldwijde Digitale Transformatiepartner",
       "title": "Wij Ontwerpen Enterprise Software & Schaalbare AI Oplossingen",
-      "subtitle": "SkillForge Technology bouwt hoogwaardige maatwerksoftware, IoT prototypen, performante webapplicaties en geïntegreerde AI-agenten voor innovatieve bedrijven wereldwijd.",
+      "subtitle": "SkillForge Technologies bouwt hoogwaardige maatwerksoftware, IoT prototypen, performante webapplicaties en geïntegreerde AI-agenten voor innovatieve bedrijven wereldwijd.",
       "ctaPrimary": "Boek een kennismakingsgesprek",
       "ctaSecondary": "Bekijk Casestudies",
       "statsClients": "Klantpartnerschappen",
@@ -2374,18 +2374,18 @@ export const translations: Record<string, Record<string, any>> = {
       "feedbackSuccessMsg": "Thank you! Your feedback has been verified and registered on our Firestore public records."
     },
     "footer": {
-      "desc": "SkillForge Technology is een toonaangevend internationaal adviesbureau voor software engineering en digitale transformatie.",
+      "desc": "SkillForge Technologies is een toonaangevend internationaal adviesbureau voor software engineering en digitale transformatie.",
       "services": "Diensten",
       "industries": "Sectoren",
       "company": "Bedrijf",
       "legal": "Juridisch",
-      "rights": "© 2026 SkillForge Technology. Alle rechten voorbehouden."
+      "rights": "© 2026 SkillForge Technologies. Alle rechten voorbehouden."
     },
     "about": {
       "storyBadge": "Our Corporate Story",
       "titlePart1": "We engineer high-performance",
       "titlePart2": "digital systems globally",
-      "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
+      "subtitle": "SkillForge Technologies builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
       "values": [
         {
           "title": "Global Capabilities",
@@ -2632,8 +2632,8 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "faq": {
       "0": {
-        "q": "Welke diensten levert SkillForge Technology?",
-        "a": "SkillForge Technology levert complete software engineering diensten, waaronder maatwerksoftwareontwikkeling, webontwikkeling, mobiele app-ontwikkeling, AI-oplossingen, cloud engineering, DevOps, enterprise software, IoT-ontwikkeling, embedded systemen, UI/UX-ontwerp, SEO, WordPress-ontwikkeling en advies over digitale transformatie."
+        "q": "Welke diensten levert SkillForge Technologies?",
+        "a": "SkillForge Technologies levert complete software engineering diensten, waaronder maatwerksoftwareontwikkeling, webontwikkeling, mobiele app-ontwikkeling, AI-oplossingen, cloud engineering, DevOps, enterprise software, IoT-ontwikkeling, embedded systemen, UI/UX-ontwerp, SEO, WordPress-ontwikkeling en advies over digitale transformatie."
       },
       "1": {
         "q": "Met welke sectoren werken jullie samen?",
@@ -2769,7 +2769,7 @@ export const translations: Record<string, Record<string, any>> = {
       "statsOperations": "معيار الاتصال",
       "badge": "شريك التحول الرقمي العالمي",
       "title": "نصمم برمجيات المؤسسات وحلول الذكاء الاصطناعي القابلة للتوسع",
-      "subtitle": "تقوم شركة SkillForge Technology ببناء برمجيات مخصصة متميزة، ونماذج أولية لإنترنت الأشياء (IoT)، وتطبيقات ويب عالية الأداء، ووكلاء ذكاء اصطناعي مدمجين للشركات العالمية.",
+      "subtitle": "تقوم شركة SkillForge Technologies ببناء برمجيات مخصصة متميزة، ونماذج أولية لإنترنت الأشياء (IoT)، وتطبيقات ويب عالية الأداء، ووكلاء ذكاء اصطناعي مدمجين للشركات العالمية.",
       "ctaPrimary": "احجز جلسة استشارية",
       "ctaSecondary": "عرض دراسات الحالة",
       "statsClients": "شراكات العملاء",
@@ -2832,18 +2832,18 @@ export const translations: Record<string, Record<string, any>> = {
       "feedbackSuccessMsg": "Thank you! Your feedback has been verified and registered on our Firestore public records."
     },
     "footer": {
-      "desc": "SkillForge Technology هي شركة استشارية عالمية رائدة في هندسة البرمجيات والتحول الرقمي لخدمة الشركات في جميع أنحاء العالم.",
+      "desc": "SkillForge Technologies هي شركة استشارية عالمية رائدة في هندسة البرمجيات والتحول الرقمي لخدمة الشركات في جميع أنحاء العالم.",
       "services": "الخدمات",
       "industries": "القطاعات",
       "company": "الشركة",
       "legal": "القانونية",
-      "rights": "© 2026 SkillForge Technology. جميع الحقوق محفوظة."
+      "rights": "© 2026 SkillForge Technologies. جميع الحقوق محفوظة."
     },
     "about": {
       "storyBadge": "Our Corporate Story",
       "titlePart1": "We engineer high-performance",
       "titlePart2": "digital systems globally",
-      "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
+      "subtitle": "SkillForge Technologies builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
       "values": [
         {
           "title": "Global Capabilities",
@@ -3090,8 +3090,8 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "faq": {
       "0": {
-        "q": "ما هي الخدمات التي تقدمها شركة SkillForge Technology؟",
-        "a": "توفر شركة SkillForge Technology خدمات هندسة البرمجيات المتكاملة بما في ذلك تطوير البرمجيات المخصصة، وتطوير الويب، وتطوير تطبيقات الهاتف المحمول، وحلول الذكاء الاصطناعي، وهندسة السحاب، وDevOps، وبرمجيات المؤسسات، وتطوير إنترنت الأشياء (IoT)، والأنظمة المدمجة، وتصميم UI/UX، وتحسين محركات البحث (SEO)، وتطوير مواقع الوردبريس، واستشارات التحول الرقمي."
+        "q": "ما هي الخدمات التي تقدمها شركة SkillForge Technologies؟",
+        "a": "توفر شركة SkillForge Technologies خدمات هندسة البرمجيات المتكاملة بما في ذلك تطوير البرمجيات المخصصة، وتطوير الويب، وتطوير تطبيقات الهاتف المحمول، وحلول الذكاء الاصطناعي، وهندسة السحاب، وDevOps، وبرمجيات المؤسسات، وتطوير إنترنت الأشياء (IoT)، والأنظمة المدمجة، وتصميم UI/UX، وتحسين محركات البحث (SEO)، وتطوير مواقع الوردبريس، واستشارات التحول الرقمي."
       },
       "1": {
         "q": "ما هي القطاعات التي تعملون معها؟",
@@ -3227,7 +3227,7 @@ export const translations: Record<string, Record<string, any>> = {
       "statsOperations": "コミュニケーション基準",
       "badge": "グローバル・デジタルトランスフォーメーション・パートナー",
       "title": "エンタープライズ・ソフトウェアと拡張可能なAIソリューションの構築",
-      "subtitle": "SkillForge Technologyは、世界中の先進的なビジネス向けに、プレミアムなカスタムソフトウェア、IoTプロトタイプ、高性能なWebアプリケーション、統合型AIエージェントを構築します。",
+      "subtitle": "SkillForge Technologiesは、世界中の先進的なビジネス向けに、プレミアムなカスタムソフトウェア、IoTプロトタイプ、高性能なWebアプリケーション、統合型AIエージェントを構築します。",
       "ctaPrimary": "無料個別相談を予約",
       "ctaSecondary": "開発事例を見る",
       "statsClients": "クライアントパートナーシップ",
@@ -3290,18 +3290,18 @@ export const translations: Record<string, Record<string, any>> = {
       "feedbackSuccessMsg": "Thank you! Your feedback has been verified and registered on our Firestore public records."
     },
     "footer": {
-      "desc": "SkillForge Technologyは、高品質なソフトウェアエンジニアリングとデジタルトランスフォーメーションを提供するグローバルなコンサルティング企業です。",
+      "desc": "SkillForge Technologiesは、高品質なソフトウェアエンジニアリングとデジタルトランスフォーメーションを提供するグローバルなコンサルティング企業です。",
       "services": "サービス",
       "industries": "業界分野",
       "company": "会社情報",
       "legal": "法的情報",
-      "rights": "© 2026 SkillForge Technology. All rights reserved."
+      "rights": "© 2026 SkillForge Technologies. All rights reserved."
     },
     "about": {
       "storyBadge": "Our Corporate Story",
       "titlePart1": "We engineer high-performance",
       "titlePart2": "digital systems globally",
-      "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
+      "subtitle": "SkillForge Technologies builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
       "values": [
         {
           "title": "Global Capabilities",
@@ -3548,8 +3548,8 @@ export const translations: Record<string, Record<string, any>> = {
     },
     "faq": {
       "0": {
-        "q": "SkillForge Technologyはどのようなサービスを提供していますか？",
-        "a": "SkillForge Technologyは、カスタムソフトウェア開発、Web開発、モバイルアプリ開発、AIソリューション、クラウドエンジニアリング、DevOps、エンタープライズソフトウェア、IoT開発、組み込みシステム、UI/UXデザイン、SEO、WordPress開発、デジタルトランスフォーメーション（DX）コンサルティングなど、エンドツーエンドのソフトウェアエンジニアリングサービスを提供しています。"
+        "q": "SkillForge Technologiesはどのようなサービスを提供していますか？",
+        "a": "SkillForge Technologiesは、カスタムソフトウェア開発、Web開発、モバイルアプリ開発、AIソリューション、クラウドエンジニアリング、DevOps、エンタープライズソフトウェア、IoT開発、組み込みシステム、UI/UXデザイン、SEO、WordPress開発、デジタルトランスフォーメーション（DX）コンサルティングなど、エンドツーエンドのソフトウェアエンジニアリングサービスを提供しています。"
       },
       "1": {
         "q": "どのような業界と取引実績がありますか？",
@@ -3759,7 +3759,7 @@ export const translations: Record<string, Record<string, any>> = {
       "storyBadge": "Our Corporate Story",
       "titlePart1": "We engineer high-performance",
       "titlePart2": "digital systems globally",
-      "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
+      "subtitle": "SkillForge Technologies builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
       "values": [
         {
           "title": "Global Capabilities",
@@ -4217,7 +4217,7 @@ export const translations: Record<string, Record<string, any>> = {
       "storyBadge": "Our Corporate Story",
       "titlePart1": "We engineer high-performance",
       "titlePart2": "digital systems globally",
-      "subtitle": "SkillForge Technology builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
+      "subtitle": "SkillForge Technologies builds premium custom software, IoT prototypes, high-performance web applications, and integrated AI agents for forward-thinking businesses worldwide.",
       "values": [
         {
           "title": "Global Capabilities",
