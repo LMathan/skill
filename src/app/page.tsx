@@ -37,10 +37,9 @@ export default function Page() {
       },
       "sameAs": [
         "https://www.linkedin.com/company/skillforgetech/",
-        "https://x.com/skillforge_tech",
-        "https://facebook.com/skillforgetechnology",
-        "https://youtube.com/@skillforgetechnology",
-        "https://www.instagram.com/skillforge_technologies/?igsh=MTN2MWd2Y2t0ZmpzMw=="
+        "https://www.facebook.com/share/1BWkyZ2pYd/",
+        "https://www.instagram.com/skillforge_technologies/?igsh=MTN2MWd2Y2t0ZmpzMw==",
+        "https://clutch.co/profile/skillforge-technologies"
       ]
     },
     {
@@ -64,10 +63,9 @@ export default function Page() {
       },
       "sameAs": [
         "https://www.linkedin.com/company/skillforgetech/",
-        "https://x.com/skillforge_tech",
-        "https://facebook.com/skillforgetechnology",
-        "https://youtube.com/@skillforgetechnology",
-        "https://www.instagram.com/skillforge_technologies/?igsh=MTN2MWd2Y2t0ZmpzMw=="
+        "https://www.facebook.com/share/1BWkyZ2pYd/",
+        "https://www.instagram.com/skillforge_technologies/?igsh=MTN2MWd2Y2t0ZmpzMw==",
+        "https://clutch.co/profile/skillforge-technologies"
       ]
     },
     {
@@ -81,12 +79,42 @@ export default function Page() {
       "priceRange": "$$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Perundurai Road",
         "addressLocality": "Erode",
         "addressRegion": "Tamil Nadu",
         "postalCode": "638052",
         "addressCountry": "IN"
       }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": "https://skillforgetechnology.app/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What software engineering services does SkillForge Technologies provide?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SkillForge Technologies delivers custom software engineering, enterprise web applications, AI integration solutions, Cloud DevOps, and digital transformation consulting globally."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does SkillForge Technologies serve international clients in the US, Europe, and UK?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, SkillForge Technologies is a global digital transformation partner serving clients across the United States, United Kingdom, Europe, Australia, UAE, and Singapore with full time-zone alignment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is SkillForge Technologies headquartered?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SkillForge Technologies is based in Erode, Tamil Nadu, India, delivering expert offshore and remote developer team services to startups and enterprises worldwide."
+          }
+        }
+      ]
     }
   ]
 

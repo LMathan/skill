@@ -29,7 +29,6 @@ export default function ServicesPage() {
       "telephone": "+919345518760",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Perundurai Road",
         "addressLocality": "Erode",
         "addressRegion": "Tamil Nadu",
         "postalCode": "638052",

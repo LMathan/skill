@@ -25,16 +25,36 @@ interface Feedback {
   message: string;
   rating: number;
   createdAt?: any;
+  source?: "site" | "google";
 }
 
 const DEFAULT_FEEDBACKS: Feedback[] = [
+  {
+    id: "google-1",
+    customerName: "Siddharth V.",
+    projectName: "Google Business Review",
+    message: "Top-tier custom software development agency. Very reliable delivery on complex web systems and AI integrations.",
+    rating: 5,
+    createdAt: { seconds: 1774000000 },
+    source: "google"
+  },
   {
     id: "default-1",
     customerName: "Karthik R.",
     projectName: "Healthcare Vitals Tracker",
     message: "Excellent implementation quality and timely updates throughout the project lifecycle.",
     rating: 5,
-    createdAt: { seconds: 1774000000 }
+    createdAt: { seconds: 1773950000 },
+    source: "site"
+  },
+  {
+    id: "google-2",
+    customerName: "Ananya S.",
+    projectName: "Google Business Review",
+    message: "Highly professional software engineers. Helped transform our legacy tools into a scalable next-gen platform.",
+    rating: 5,
+    createdAt: { seconds: 1773900000 },
+    source: "google"
   },
   {
     id: "default-2",
@@ -42,15 +62,8 @@ const DEFAULT_FEEDBACKS: Feedback[] = [
     projectName: "Automation IoT Hub",
     message: "The team delivered exactly as promised with professional support and detailed documentation.",
     rating: 5,
-    createdAt: { seconds: 1773900000 }
-  },
-  {
-    id: "default-3",
-    customerName: "Naveen S.",
-    projectName: "Predictive Analytics Engine",
-    message: "Strong technical expertise in IoT integration and cloud analytics. Highly recommended.",
-    rating: 4,
-    createdAt: { seconds: 1773800000 }
+    createdAt: { seconds: 1773850000 },
+    source: "site"
   }
 ]
 
@@ -87,7 +100,8 @@ export default function FeedbackPortalContent() {
           projectName: data.projectName || "Generic Project",
           message: data.message || "",
           rating: Number(data.rating) || 5,
-          createdAt: data.createdAt || null
+          createdAt: data.createdAt || null,
+          source: data.source || "site"
         } as Feedback
       })
 
@@ -475,10 +489,19 @@ export default function FeedbackPortalContent() {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-1 text-[8px] text-emerald-600 bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded font-extrabold shrink-0 select-none">
-                        <Shield size={8} className="fill-current" />
-                        <span>VERIFIED</span>
-                      </div>
+                      {fb.source === "google" ? (
+                        <div className="flex items-center gap-1 text-[8px] text-blue-600 bg-blue-50/50 border border-blue-100 px-1.5 py-0.5 rounded font-extrabold shrink-0 select-none">
+                          <svg className="w-2 h-2 fill-current text-blue-600" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12.24 10.285V13.4h6.887c-.275 1.565-1.88 4.604-6.887 4.604-4.33 0-7.859-3.579-7.859-7.989s3.53-7.99 7.859-7.99c2.46 0 4.105 1.025 5.047 1.926l2.427-2.334C17.955 2.192 15.34 1 12.24 1 5.48 1 0 6.48 0 13s5.48 12 12.24 12c7.05 0 11.75-4.96 11.75-11.96 0-.81-.08-1.425-.2-2.04H12.24z"/>
+                          </svg>
+                          <span>GOOGLE</span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-1 text-[8px] text-emerald-600 bg-emerald-50 border border-emerald-100 px-1.5 py-0.5 rounded font-extrabold shrink-0 select-none">
+                          <Shield size={8} className="fill-current" />
+                          <span>VERIFIED</span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
