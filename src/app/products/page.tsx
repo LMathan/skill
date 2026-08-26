@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import Link from "next/link"
-import { Cpu, Wallet, ArrowRight, Sparkles, Shield, CheckCircle2 } from "lucide-react"
+import { Cpu, Wallet, Navigation, ArrowRight, Sparkles, Shield, CheckCircle2 } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Flagship Products | SkillForge Technologies",
@@ -32,7 +32,7 @@ export default function ProductsHubPage() {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-left max-w-6xl mx-auto">
 
           {/* Product 1: Active Pulse */}
           <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-md flex flex-col justify-between space-y-6 hover:shadow-xl hover:border-blue-300 transition-all group">
@@ -107,6 +107,45 @@ export default function ProductsHubPage() {
                 className="inline-flex items-center gap-2 text-xs font-extrabold text-emerald-600 uppercase tracking-wider group-hover:gap-3 transition-all"
               >
                 <span>Explore ExpenseMate</span>
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Product 3: Mavio */}
+          <div className="p-8 rounded-3xl bg-white border border-slate-200/90 shadow-md flex flex-col justify-between space-y-6 hover:shadow-xl hover:border-indigo-300 transition-all group">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-600 flex items-center justify-center">
+                  <Navigation size={28} className="rotate-45" />
+                </div>
+                <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-mono font-bold border border-indigo-200">
+                  Campus Transit Platform
+                </span>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-extrabold font-display text-slate-900 group-hover:text-indigo-650 transition-colors">
+                  Mavio
+                </h2>
+                <p className="text-slate-600 text-sm leading-relaxed mt-2 font-medium">
+                  Smart campus transit &amp; fleet intelligence platform. Real-time GPS vehicle tracking, dynamic ETAs, offline resilience, and odometer-based maintenance.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 text-xs font-mono text-slate-600">
+                <span className="px-2.5 py-1 rounded bg-slate-100 font-semibold">Real-Time Telemetry</span>
+                <span className="px-2.5 py-1 rounded bg-slate-100 font-semibold">Dynamic ETA HUD</span>
+                <span className="px-2.5 py-1 rounded bg-slate-100 font-semibold">Fleet Caps Control</span>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-slate-100">
+              <Link
+                href="/products/mavio"
+                className="inline-flex items-center gap-2 text-xs font-extrabold text-indigo-600 uppercase tracking-wider group-hover:gap-3 transition-all"
+              >
+                <span>Explore Mavio</span>
                 <ArrowRight size={16} />
               </Link>
             </div>

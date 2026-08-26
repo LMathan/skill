@@ -241,6 +241,20 @@ export function Navbar() {
                                 Personal budget manager &amp; group bill splitter.
                               </span>
                             </Link>
+
+                            <Link
+                              href="/products/mavio"
+                              className="flex flex-col p-3 rounded-xl hover:bg-slate-50 transition-colors group"
+                              onClick={() => setIsProductsHovered(false)}
+                            >
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Mavio</span>
+                                <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-650 border border-indigo-100 font-bold">Transit &amp; Fleet Tech</span>
+                              </div>
+                              <span className="text-[10px] text-slate-500 line-clamp-1 mt-0.5">
+                                Smart campus transit &amp; fleet telemetry platform.
+                              </span>
+                            </Link>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -372,6 +386,13 @@ export function Navbar() {
                             className="py-1 text-xs text-slate-700 font-bold hover:text-blue-600 block"
                           >
                             ExpenseMate (Flutter &amp; Firebase)
+                          </Link>
+                          <Link
+                            href="/products/mavio"
+                            onClick={() => setIsMobileOpen(false)}
+                            className="py-1 text-xs text-slate-700 font-bold hover:text-blue-600 block"
+                          >
+                            Mavio (Transit &amp; Fleet Telemetry)
                           </Link>
                         </div>
                       )}

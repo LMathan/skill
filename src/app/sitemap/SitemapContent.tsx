@@ -133,6 +133,7 @@ export default function SitemapContent() {
       icon: <Briefcase size={20} />,
       color: "from-amber-500/10 to-orange-500/10 text-amber-600 border-amber-100",
       links: [
+        { name: "Mavio Transit & Fleet Platform", href: "/products/mavio", badge: "New Platform" },
         { name: "ExpenseMate App (Personal Finance)", href: "/products/expense-mate", badge: "New App" },
         { name: "ExpenseMate Privacy Policy", href: "/privacy/expense-mate" },
         { name: "Active Pulse Workspace Device", href: "/products/active-pulse" },

@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/privacy/active-pulse",
     "/products/expense-mate",
     "/privacy/expense-mate",
+    "/products/mavio",
     "/services",
     "/industries",
     "/technologies",
