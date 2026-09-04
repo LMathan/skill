@@ -97,10 +97,8 @@ export default function MavioProductContent() {
 
   return (
     <div className="relative bg-slate-50/60 text-slate-800 font-sans overflow-x-hidden bg-dot-pattern pt-28 pb-24">
-      {/* Background Ambient Glow Orbs */}
-      <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[140px] pointer-events-none -z-10 animate-pulse" />
-      <div className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-blue-500/10 rounded-full blur-[160px] pointer-events-none -z-10" />
-      <div className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] bg-violet-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+      {/* Clean Ambient Background Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-indigo-500/10 via-blue-400/5 to-transparent rounded-full blur-[130px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -114,89 +112,84 @@ export default function MavioProductContent() {
         </div>
 
         {/* ── HERO SECTION ────────────────────────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-28">
-          <div className="lg:col-span-5 space-y-6 text-left">
-            {/* Status Badge with Brand Logo */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="relative w-10 h-10 rounded-xl bg-white border border-slate-200/90 shadow-sm flex items-center justify-center p-1.5 shrink-0 overflow-hidden">
-                <Image
-                  src="/Product/mavio/logo.png"
-                  alt="Mavio Platform Logo"
-                  fill
-                  sizes="40px"
-                  className="object-contain p-1"
-                />
-              </div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-indigo-150 bg-indigo-50/50 backdrop-blur-md text-[11px] font-mono font-bold text-indigo-700 shadow-[0_2px_10px_-3px_rgba(79,70,229,0.1)]">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-650"></span>
-                </span>
-                <span>REAL-TIME TRANSIT COMMAND</span>
-                <span className="text-indigo-200">|</span>
-                <span className="text-slate-600 font-semibold">Zero Hardware Fleet Telemetry</span>
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-28 pt-4">
+          
+          {/* Left Column: Bold Typography & Clean CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="lg:col-span-6 space-y-7 text-left"
+          >
+            {/* Status Badge */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-indigo-150 bg-white/90 backdrop-blur-md shadow-xs text-xs">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-mono font-bold text-indigo-700 tracking-wider text-xs uppercase">MAVIO TRANSIT</span>
+              <span className="text-slate-300">|</span>
+              <span className="text-slate-600 font-semibold text-xs">Smart Fleet Intelligence</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl font-black tracking-tight font-display text-slate-900 leading-[1.08] sm:leading-[1.05]">
+            {/* Headline */}
+            <h1 className="text-4xl sm:text-6xl lg:text-[62px] font-black tracking-tight font-display text-slate-900 leading-[1.08]">
               Campus Transit, <br />
-              <span className="bg-gradient-to-r from-indigo-600 via-violet-650 to-blue-500 bg-clip-text text-transparent font-black drop-shadow-[0_2px_10px_rgba(99,102,241,0.08)]">
+              <span className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-blue-600 bg-clip-text text-transparent">
                 Re-engineered.
               </span>
             </h1>
 
-            <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium max-w-xl">
-              Mavio is an enterprise-grade transit safety and fleet intelligence ecosystem designed for universities, schools, and corporate campuses. Track fleets via drivers' smartphones and provide students and parents with high-refresh telemetry.
+            {/* Subheadline */}
+            <p className="text-slate-600 text-base sm:text-lg lg:text-xl leading-relaxed font-normal max-w-xl">
+              Enterprise fleet tracking, dynamic ETA alerts, and preventive maintenance designed for universities and corporate campuses — powered entirely by drivers' smartphones without expensive GPS hardware.
             </p>
 
-            {/* Quick Benefits Checklist Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              {[
-                { label: "Vector Maps", desc: "Live high-refresh tracking", icon: Map, color: "bg-indigo-50 text-indigo-700 border-indigo-100" },
-                { label: "Dynamic ETAs", desc: "Radial geofence alerts", icon: Clock, color: "bg-emerald-50 text-emerald-700 border-emerald-100" },
-                { label: "Automated Meters", desc: "Haversine odometer logs", icon: Gauge, color: "bg-violet-50 text-violet-700 border-violet-100" },
-                { label: "Hardware-Free", desc: "Zero GPS device costs", icon: Smartphone, color: "bg-amber-50 text-amber-700 border-amber-100" }
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 p-3 rounded-2xl border border-slate-100 bg-white shadow-[0_4px_15px_-3px_rgba(0,0,0,0.03)] hover:shadow-md transition-shadow">
-                  <div className={`p-2 rounded-xl border ${item.color} shrink-0`}>
-                    <item.icon size={16} />
-                  </div>
-                  <div className="text-left leading-tight">
-                    <div className="text-xs font-black text-slate-900 font-display">{item.label}</div>
-                    <div className="text-[10px] text-slate-500 font-semibold mt-0.5">{item.desc}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {/* Clean, Neat Hero CTAs */}
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              {/* Official Google Play Store Button */}
+              <a
+                href="https://play.google.com/store/apps/details?id=app.skillforge.mavio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 text-white shadow-xl border border-slate-800 hover:border-slate-700 transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <svg className="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.60889 1.77605C3.39343 2.00067 3.2666 2.34863 3.2666 2.78442V21.2154C3.2666 21.6512 3.39343 21.9992 3.60889 22.2238L3.68115 22.2891L13.8821 12.0881V11.9117L3.68115 1.71077L3.60889 1.77605Z" fill="#00A0FF" />
+                  <path d="M17.2831 15.4892L13.8821 12.0881V11.9117L17.2831 8.51068L17.3553 8.55246L21.3857 10.8466C22.5361 11.4988 22.5361 12.5606 21.3857 13.2128L17.3553 15.507L17.2831 15.4892Z" fill="#FFCC00" />
+                  <path d="M17.3553 15.4892L13.8821 12.0161L3.60889 22.2238C3.98779 22.6247 4.61914 22.6738 5.34033 22.2642L17.3553 15.4892Z" fill="#FF3A44" />
+                  <path d="M17.3553 8.51068L5.34033 1.73566C4.61914 1.32611 3.98779 1.37518 3.60889 1.77605L13.8821 11.9838L17.3553 8.51068Z" fill="#00E676" />
+                </svg>
 
-            {/* Hero CTAs */}
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+                <div className="flex flex-col text-left leading-none">
+                  <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">GET IT ON</span>
+                  <span className="text-sm font-extrabold text-white leading-tight font-display tracking-tight mt-0.5">Google Play</span>
+                </div>
+              </a>
+
+              {/* Primary Book a Tour Button */}
               <a
                 href="https://mavio.skillforgetechnology.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_10px_20px_-5px_rgba(79,70,229,0.3)] hover:shadow-[0_12px_25px_-5px_rgba(79,70,229,0.4)]"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_10px_25px_-5px_rgba(79,70,229,0.35)] hover:shadow-[0_14px_28px_-5px_rgba(79,70,229,0.45)] hover:scale-[1.02] active:scale-[0.98]"
               >
-                <span>Book a Tour</span>
+                <span>Book a Platform Tour</span>
                 <ArrowRight size={15} />
               </a>
-              <a
-                href="#features"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/90 font-bold text-xs uppercase tracking-wider transition-all shadow-sm"
-              >
-                <span>Explore Platform Features</span>
-                <ChevronRight size={16} />
-              </a>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Hero Video Media Visual inside Mockup Device */}
-          <div className="lg:col-span-7 relative flex justify-center items-center">
-            {/* Glowing Ambient Backdrop Orb behind Video Card */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gradient-to-tr from-indigo-500/20 via-blue-500/10 to-violet-500/15 rounded-full blur-[80px] pointer-events-none -z-10" />
+          {/* Right Column: Clean Premium Video Frame */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+            className="lg:col-span-6 relative flex justify-center items-center"
+          >
+            {/* Ambient Multi-Layer Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] bg-gradient-to-tr from-indigo-500/15 via-blue-500/10 to-violet-500/15 rounded-full blur-[80px] pointer-events-none -z-10" />
 
-            <div className="relative w-full max-w-[620px] shadow-[0_30px_70px_-10px_rgba(79,70,229,0.25)] rounded-3xl p-3 border border-indigo-100/40 bg-white/80 backdrop-blur-xl">
-              <div className="rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 aspect-[16/9] relative group">
+            {/* Showcase Device Card */}
+            <div className="relative w-full max-w-[600px] rounded-3xl p-3 bg-white/90 border border-slate-200/90 shadow-[0_25px_60px_-15px_rgba(79,70,229,0.18)] backdrop-blur-xl">
+              <div className="rounded-2xl overflow-hidden bg-slate-950 aspect-[16/9] relative shadow-inner border border-slate-100">
                 <video
                   className="object-cover w-full h-full"
                   src="/Product/mavio/hero-sec-video.mp4"
@@ -207,7 +200,8 @@ export default function MavioProductContent() {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
+
         </div>
 
         {/* ── BENTO GRID FEATURE SHOWCASE ───────────────────────────── */}
@@ -275,6 +269,23 @@ export default function MavioProductContent() {
                 <p className="text-slate-600 text-xs leading-relaxed font-medium">
                   Transform drivers' smartphones into telemetry boxes. Buffers GPS coordinates locally in low-signal zones and tunnels, uploading and syncing automatically.
                 </p>
+                <div className="pt-1">
+                  <a
+                    href="https://play.google.com/store/apps/details?id=app.skillforge.mavio"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-indigo-600 text-white text-[11px] font-mono font-bold transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.60889 1.77605C3.39343 2.00067 3.2666 2.34863 3.2666 2.78442V21.2154C3.2666 21.6512 3.39343 21.9992 3.60889 22.2238L3.68115 22.2891L13.8821 12.0881V11.9117L3.68115 1.71077L3.60889 1.77605Z" fill="#00A0FF" />
+                      <path d="M17.2831 15.4892L13.8821 12.0881V11.9117L17.2831 8.51068L17.3553 8.55246L21.3857 10.8466C22.5361 11.4988 22.5361 12.5606 21.3857 13.2128L17.3553 15.507L17.2831 15.4892Z" fill="#FFCC00" />
+                      <path d="M17.3553 15.4892L13.8821 12.0161L3.60889 22.2238C3.98779 22.6247 4.61914 22.6738 5.34033 22.2642L17.3553 15.4892Z" fill="#FF3A44" />
+                      <path d="M17.3553 8.51068L5.34033 1.73566C4.61914 1.32611 3.98779 1.37518 3.60889 1.77605L13.8821 11.9838L17.3553 8.51068Z" fill="#00E676" />
+                    </svg>
+                    <span>Get on Google Play</span>
+                    <ArrowRight size={12} />
+                  </a>
+                </div>
               </div>
 
               {/* Device Mockup */}
@@ -566,6 +577,25 @@ export default function MavioProductContent() {
               Equip fleet managers, commuters, and parents with Mavio's high-fidelity telemetry tracking. Launch in days with zero hardware investment.
             </p>
             <div className="pt-2 flex flex-wrap justify-center items-center gap-4">
+              <a
+                href="https://play.google.com/store/apps/details?id=app.skillforge.mavio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-slate-900/90 hover:bg-slate-900 text-white shadow-xl border border-slate-700/80 hover:border-slate-600 transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <svg className="w-5 h-5 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.60889 1.77605C3.39343 2.00067 3.2666 2.34863 3.2666 2.78442V21.2154C3.2666 21.6512 3.39343 21.9992 3.60889 22.2238L3.68115 22.2891L13.8821 12.0881V11.9117L3.68115 1.71077L3.60889 1.77605Z" fill="#00A0FF" />
+                  <path d="M17.2831 15.4892L13.8821 12.0881V11.9117L17.2831 8.51068L17.3553 8.55246L21.3857 10.8466C22.5361 11.4988 22.5361 12.5606 21.3857 13.2128L17.3553 15.507L17.2831 15.4892Z" fill="#FFCC00" />
+                  <path d="M17.3553 15.4892L13.8821 12.0161L3.60889 22.2238C3.98779 22.6247 4.61914 22.6738 5.34033 22.2642L17.3553 15.4892Z" fill="#FF3A44" />
+                  <path d="M17.3553 8.51068L5.34033 1.73566C4.61914 1.32611 3.98779 1.37518 3.60889 1.77605L13.8821 11.9838L17.3553 8.51068Z" fill="#00E676" />
+                </svg>
+
+                <div className="flex flex-col text-left leading-none">
+                  <span className="text-[8px] font-mono uppercase tracking-wider text-slate-400 font-bold">GET IT ON</span>
+                  <span className="text-xs font-extrabold text-white leading-tight font-display tracking-tight mt-0.5">Google Play</span>
+                </div>
+              </a>
+
               <a
                 href="https://mavio.skillforgetechnology.app/"
                 target="_blank"

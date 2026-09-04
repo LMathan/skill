@@ -72,6 +72,8 @@ const jsonLd = {
       "operatingSystem": "Android, iOS, Web",
       "applicationCategory": "BusinessApplication, MapsApplication",
       "description": "Zero-hardware campus transit manager featuring driver telemetry, offline buffer synchronizer, and commuter proximity alerts.",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=app.skillforge.mavio",
+      "installUrl": "https://play.google.com/store/apps/details?id=app.skillforge.mavio",
       "offers": {
         "@type": "Offer",
         "price": "0",
