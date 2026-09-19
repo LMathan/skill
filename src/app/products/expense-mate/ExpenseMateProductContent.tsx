@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -187,20 +187,54 @@ const DIFFERENTIATORS = [
 ]
 
 export default function ExpenseMateProductContent() {
-  const [activeSlide, setActiveSlide] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(true)
+  // Arced Focus Carousel State
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [dragOffset, setDragOffset] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const isDraggingRef = useRef(false)
+  const dragStartXRef = useRef(0)
+  const dragOffsetRef = useRef(0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [spacing, setSpacing] = useState(270)
 
   // Group spotlight sub-carousel index state
   const [groupSlideIndex, setGroupSlideIndex] = useState(0)
 
-  // Auto-play main carousel timer
+  // Responsive spacing and curvature calculation
   useEffect(() => {
-    if (!isPlaying) return
+    const handleResize = () => {
+      if (typeof window === "undefined") return
+      if (window.innerWidth < 640) {
+        setSpacing(185)
+      } else if (window.innerWidth < 1024) {
+        setSpacing(235)
+      } else if (window.innerWidth < 1440) {
+        setSpacing(270)
+      } else {
+        setSpacing(290)
+      }
+    }
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  const nextSlide = useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % APP_SCREENS.length)
+  }, [])
+
+  const prevSlide = useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + APP_SCREENS.length) % APP_SCREENS.length)
+  }, [])
+
+  // Auto-play timer loop
+  useEffect(() => {
+    if (!isAutoPlaying || isDragging) return
     const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % APP_SCREENS.length)
+      setActiveIndex((prev) => (prev + 1) % APP_SCREENS.length)
     }, 4000)
     return () => clearInterval(timer)
-  }, [isPlaying])
+  }, [isAutoPlaying, isDragging])
 
   // Auto-loop timer for Group Split Spotlight (3 screens transition)
   useEffect(() => {
@@ -210,15 +244,54 @@ export default function ExpenseMateProductContent() {
     return () => clearInterval(groupTimer)
   }, [])
 
-  const currentScreen = APP_SCREENS[activeSlide]
-
-  const nextSlide = () => {
-    setActiveSlide((prev) => (prev + 1) % APP_SCREENS.length)
+  // Pointer Drag Handlers with Instant 1:1 Tracking & Silky Release
+  const handlePointerDown = (clientX: number) => {
+    isDraggingRef.current = true
+    setIsDragging(true)
+    dragStartXRef.current = clientX
+    dragOffsetRef.current = 0
+    setDragOffset(0)
+    setIsAutoPlaying(false)
   }
 
-  const prevSlide = () => {
-    setActiveSlide((prev) => (prev - 1 + APP_SCREENS.length) % APP_SCREENS.length)
+  const handlePointerMove = (clientX: number) => {
+    if (!isDraggingRef.current) return
+    const deltaX = clientX - dragStartXRef.current
+    dragOffsetRef.current = deltaX
+    setDragOffset(deltaX)
   }
+
+  const handlePointerUp = () => {
+    if (!isDraggingRef.current) return
+    isDraggingRef.current = false
+    setIsDragging(false)
+    const currentOffset = dragOffsetRef.current
+    if (currentOffset < -40) {
+      nextSlide()
+    } else if (currentOffset > 40) {
+      prevSlide()
+    }
+    setDragOffset(0)
+    dragOffsetRef.current = 0
+  }
+
+  // Wheel horizontal swipe handler
+  const lastWheelTimeRef = useRef(0)
+  const handleWheel = (e: React.WheelEvent) => {
+    const now = Date.now()
+    if (now - lastWheelTimeRef.current < 350) return
+    if (Math.abs(e.deltaX) > 20 || Math.abs(e.deltaY) > 40) {
+      lastWheelTimeRef.current = now
+      setIsAutoPlaying(false)
+      if (e.deltaX > 0 || e.deltaY > 0) {
+        nextSlide()
+      } else {
+        prevSlide()
+      }
+    }
+  }
+
+  const currentScreen = APP_SCREENS[activeIndex]
 
   return (
     <div className="relative bg-slate-50/60 text-slate-800 font-sans overflow-x-hidden bg-dot-pattern pt-28 pb-24">
@@ -292,9 +365,14 @@ export default function ExpenseMateProductContent() {
 
             {/* Hero CTA */}
             <div className="pt-4 flex flex-wrap items-center gap-4">
-              {/* Official Google Play Store Badge */}
-              <div className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-slate-950 text-white shadow-xl border border-slate-800 hover:border-slate-700 transition-all">
-                <svg className="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Official Google Play Store Button */}
+              <a
+                href="https://play.google.com/store/apps/details?id=app.skillforge.expensemate"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 text-white shadow-xl border border-slate-800 hover:border-slate-700 transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <svg className="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M3.60889 1.77605C3.39343 2.00067 3.2666 2.34863 3.2666 2.78442V21.2154C3.2666 21.6512 3.39343 21.9992 3.60889 22.2238L3.68115 22.2891L13.8821 12.0881V11.9117L3.68115 1.71077L3.60889 1.77605Z" fill="#00A0FF" />
                   <path d="M17.2831 15.4892L13.8821 12.0881V11.9117L17.2831 8.51068L17.3553 8.55246L21.3857 10.8466C22.5361 11.4988 22.5361 12.5606 21.3857 13.2128L17.3553 15.507L17.2831 15.4892Z" fill="#FFCC00" />
                   <path d="M17.3553 15.4892L13.8821 12.0161L3.60889 22.2238C3.98779 22.6247 4.61914 22.6738 5.34033 22.2642L17.3553 15.4892Z" fill="#FF3A44" />
@@ -305,11 +383,7 @@ export default function ExpenseMateProductContent() {
                   <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">GET IT ON</span>
                   <span className="text-sm font-extrabold text-white leading-tight font-display tracking-tight mt-0.5">Google Play</span>
                 </div>
-
-                <span className="ml-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono font-bold border border-emerald-500/30">
-                  Launching Soon
-                </span>
-              </div>
+              </a>
               <a
                 href="#app-showcase"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200/90 font-bold text-xs uppercase tracking-wider transition-all shadow-sm"
@@ -457,155 +531,171 @@ export default function ExpenseMateProductContent() {
           </div>
         </div>
 
-        {/* ── ANIMATED INTERACTIVE SCREEN CAROUSEL SHOWCASE ────────── */}
-        <div id="app-showcase" className="mb-28 space-y-10 scroll-mt-28">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-xs font-mono font-bold text-blue-650">
-              <Sparkles size={14} />
-              <span>DYNAMIC INTERACTIVE CAROUSEL</span>
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-black font-display text-slate-900">
-              Explore ExpenseMate in Action
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base font-medium">
-              Watch real app interface screens transition smoothly or use the controls below to inspect each feature.
-            </p>
-          </div>
-
-          {/* Screen Thumbnails Navigation Bar */}
-          <div className="flex flex-wrap justify-center gap-2 font-mono text-xs max-w-5xl mx-auto">
-            {APP_SCREENS.map((screen, idx) => {
-              const isActive = idx === activeSlide
-              return (
-                <button
-                  key={screen.id}
-                  onClick={() => {
-                    setActiveSlide(idx)
-                    setIsPlaying(false)
-                  }}
-                  className={`px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl font-bold transition-all cursor-pointer flex items-center gap-1.5 ${isActive
-                      ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
-                      : "bg-white text-slate-600 border border-slate-200/90 hover:bg-slate-50"
-                    }`}
-                >
-                  <span className="text-[10px] opacity-75">{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
-                  <span>{screen.title}</span>
-                </button>
-              )
-            })}
-          </div>
-
-          {/* MAIN ANIMATED STAGE */}
+        {/* ── ARCED CURVED FOCUS CAROUSEL SHOWCASE ────────── */}
+        <div id="app-showcase" className="mb-28 space-y-8 scroll-mt-28">
+          
+          {/* Full-width edge-to-edge breakout stage to prevent any side clipping */}
           <div
-            className="p-6 sm:p-12 rounded-3xl bg-white border border-slate-200/90 shadow-xl relative overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
-            onMouseEnter={() => setIsPlaying(false)}
-            onMouseLeave={() => setIsPlaying(true)}
+            className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[520px] sm:h-[600px] md:h-[660px] select-none flex items-center justify-center overflow-x-clip cursor-grab active:cursor-grabbing touch-pan-y"
+            onMouseDown={(e) => handlePointerDown(e.clientX)}
+            onMouseMove={(e) => handlePointerMove(e.clientX)}
+            onMouseUp={handlePointerUp}
+            onMouseLeave={handlePointerUp}
+            onTouchStart={(e) => handlePointerDown(e.touches[0].clientX)}
+            onTouchMove={(e) => handlePointerMove(e.touches[0].clientX)}
+            onTouchEnd={handlePointerUp}
+            onWheel={handleWheel}
           >
-            {/* Left Context Information */}
-            <div className="lg:col-span-6 space-y-6 text-left">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentScreen.id + "-info"}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.35 }}
-                  className="space-y-4"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className="px-3 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-mono font-bold border border-blue-200">
-                      {currentScreen.category}
-                    </span>
-                    <span className="px-3 py-1 rounded-md bg-emerald-50 text-emerald-700 text-xs font-mono font-bold border border-emerald-200">
-                      {currentScreen.badge}
-                    </span>
-                  </div>
+            {/* Ambient Background Radial Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-gradient-to-r from-blue-500/10 via-indigo-500/15 to-teal-500/10 rounded-full blur-[130px] pointer-events-none -z-10" />
 
-                  <h3 className="text-2xl sm:text-4xl font-extrabold text-slate-900 font-display">
+            {/* Arced Phone Frames Container */}
+            <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
+              {APP_SCREENS.map((screen, idx) => {
+                const TOTAL = APP_SCREENS.length
+                let diff = idx - activeIndex
+                if (diff > TOTAL / 2) diff -= TOTAL
+                if (diff < -TOTAL / 2) diff += TOTAL
+
+                const fractionalDiff = diff + (dragOffset / spacing)
+                const isVisible = Math.abs(fractionalDiff) <= 4.2
+                if (!isVisible) return null
+
+                const isCenter = Math.abs(fractionalDiff) < 0.5
+                const x = fractionalDiff * spacing
+                const y = Math.pow(Math.abs(fractionalDiff), 1.55) * 32
+                const rotate = fractionalDiff * 12.8
+                const scale = Math.max(0.72, 1.05 - Math.abs(fractionalDiff) * 0.08)
+                const opacity = Math.max(0, 1 - Math.pow(Math.abs(fractionalDiff) / 4.0, 2.2))
+                const zIndex = Math.round(50 - Math.abs(fractionalDiff) * 5)
+
+                return (
+                  <div
+                    key={screen.id}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      if (!isCenter) {
+                        setActiveIndex(idx)
+                        setIsAutoPlaying(false)
+                      }
+                    }}
+                    style={{
+                      transform: `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) rotate(${rotate}deg) scale(${scale})`,
+                      opacity,
+                      zIndex,
+                      transition: isDragging
+                        ? "none"
+                        : "transform 700ms cubic-bezier(0.19, 1, 0.22, 1), opacity 500ms ease",
+                      willChange: "transform, opacity",
+                    }}
+                    className="absolute top-1/2 left-1/2 pointer-events-auto cursor-pointer"
+                  >
+                    {/* Mobile Phone Device Frame */}
+                    <div
+                      className={`relative w-[185px] sm:w-[225px] md:w-[255px] rounded-[36px] sm:rounded-[42px] bg-slate-950 p-2 sm:p-2.5 border-[4px] sm:border-[5px] transition-all duration-300 ${
+                        isCenter
+                          ? "border-slate-900 ring-4 ring-blue-500/40 shadow-[0_28px_70px_-10px_rgba(37,99,235,0.45)]"
+                          : "border-slate-900/90 shadow-2xl hover:border-slate-750"
+                      }`}
+                    >
+                      {/* Dynamic Island / Speaker Pill */}
+                      <div className="absolute top-3.5 left-1/2 -translate-x-1/2 w-16 h-3 bg-black rounded-full z-30 flex items-center justify-center">
+                        <div className="w-2 h-2 rounded-full bg-slate-900" />
+                      </div>
+
+                      {/* Screen Display */}
+                      <div className="rounded-[28px] sm:rounded-[34px] overflow-hidden bg-white aspect-[9/19.5] relative">
+                        <Image
+                          src={screen.image}
+                          alt={screen.title}
+                          width={340}
+                          height={740}
+                          className="object-cover w-full h-full pointer-events-none"
+                          priority={idx === activeIndex}
+                        />
+
+                        {/* Subtle Glass Surface Glare */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/15 pointer-events-none" />
+
+                        {/* Distant Card Dimming Overlay */}
+                        {!isCenter && (
+                          <div
+                            className="absolute inset-0 bg-slate-950/20 pointer-events-none transition-opacity duration-300"
+                          />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Arced Carousel Bottom Detail & Navigation Controls */}
+          <div className="max-w-2xl mx-auto text-center space-y-4 px-4">
+            {/* Title & Navigation Row */}
+            <div className="flex items-center justify-center gap-6 sm:gap-10">
+              <button
+                onClick={() => {
+                  prevSlide()
+                  setIsAutoPlaying(false)
+                }}
+                className="w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition-all flex items-center justify-center cursor-pointer shadow-xs active:scale-95 shrink-0"
+                aria-label="Previous Slide"
+              >
+                <ChevronLeft size={20} />
+              </button>
+
+              <div className="min-h-[70px] flex flex-col justify-center">
+                <motion.div
+                  key={currentScreen.id}
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-1"
+                >
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-display">
                     {currentScreen.title}
                   </h3>
-
-                  <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
+                  <p className="text-slate-600 text-xs sm:text-sm font-medium line-clamp-1 max-w-lg mx-auto">
                     {currentScreen.description}
                   </p>
-
-                  {/* Highlights List */}
-                  <div className="space-y-2 pt-2">
-                    <div className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Key Highlights</div>
-                    <div className="space-y-1.5 font-sans text-xs sm:text-sm font-semibold text-slate-700">
-                      {currentScreen.highlights.map((item, i) => (
-                        <div key={i} className="flex items-center gap-2">
-                          <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </motion.div>
-              </AnimatePresence>
-
-              {/* Controls & Progress Bar */}
-              <div className="pt-6 border-t border-slate-100 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={prevSlide}
-                    className="w-10 h-10 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 transition-all flex items-center justify-center cursor-pointer shadow-sm"
-                    aria-label="Previous Screen"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button
-                    onClick={nextSlide}
-                    className="w-10 h-10 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 transition-all flex items-center justify-center cursor-pointer shadow-sm"
-                    aria-label="Next Screen"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-                  <button
-                    onClick={() => setIsPlaying(!isPlaying)}
-                    className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all flex items-center justify-center cursor-pointer shadow-sm ml-2"
-                    aria-label={isPlaying ? "Pause Slideshow" : "Play Slideshow"}
-                  >
-                    {isPlaying ? <Pause size={16} /> : <Play size={16} />}
-                  </button>
-                </div>
-
-                <span className="text-xs font-mono font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
-                  {activeSlide + 1} / {APP_SCREENS.length}
-                </span>
               </div>
+
+              <button
+                onClick={() => {
+                  nextSlide()
+                  setIsAutoPlaying(false)
+                }}
+                className="w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition-all flex items-center justify-center cursor-pointer shadow-xs active:scale-95 shrink-0"
+                aria-label="Next Slide"
+              >
+                <ChevronRight size={20} />
+              </button>
             </div>
 
-            {/* Right Animated Mobile Phone Display */}
-            <div className="lg:col-span-6 flex justify-center items-center">
-              <div className="w-full max-w-[280px] sm:max-w-[300px]">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={currentScreen.id + "-phone"}
-                    initial={{ opacity: 0, scale: 0.92, y: 15 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.92, y: -15 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="rounded-[44px] bg-slate-950 p-2.5 border-[6px] border-slate-900 shadow-2xl overflow-hidden relative"
-                  >
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-24 h-3.5 bg-slate-950 rounded-full z-30 flex items-center justify-center">
-                      <div className="w-2.5 h-2.5 rounded-full bg-slate-900" />
-                    </div>
-
-                    <div className="rounded-[36px] overflow-hidden bg-white aspect-[9/19.5] relative">
-                      <Image
-                        src={currentScreen.image}
-                        alt={currentScreen.title}
-                        width={320}
-                        height={690}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+            {/* Dot Indicators */}
+            <div className="flex items-center justify-center gap-1.5 pt-2">
+              {APP_SCREENS.map((screen, idx) => {
+                const isActive = idx === activeIndex
+                return (
+                  <button
+                    key={screen.id}
+                    onClick={() => {
+                      setActiveIndex(idx)
+                      setIsAutoPlaying(false)
+                    }}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      isActive ? "w-6 bg-blue-600" : "w-2 bg-slate-300 hover:bg-slate-400"
+                    }`}
+                    aria-label={`Jump to screen ${idx + 1}`}
+                  />
+                )
+              })}
             </div>
           </div>
+
         </div>
 
         {/* ── DEEP FEATURE POSTER HIGHLIGHT CARDS ─────────────────── */}
@@ -732,12 +822,17 @@ export default function ExpenseMateProductContent() {
               Ready to Simplify Your Financial Life?
             </h2>
             <p className="text-blue-100 text-sm sm:text-base font-medium">
-              ExpenseMate is finishing Google Play Store certification. Stay tuned for official download availability!
+              ExpenseMate is now officially live on the Google Play Store! Download today for free and take full control of your finances.
             </p>
           </div>
           <div className="flex justify-center">
-            <div className="inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-slate-950 text-white shadow-2xl border border-slate-800">
-              <svg className="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <a
+              href="https://play.google.com/store/apps/details?id=app.skillforge.expensemate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-slate-950 hover:bg-slate-900 text-white shadow-2xl border border-slate-800 hover:border-slate-700 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <svg className="w-6 h-6 shrink-0 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.60889 1.77605C3.39343 2.00067 3.2666 2.34863 3.2666 2.78442V21.2154C3.2666 21.6512 3.39343 21.9992 3.60889 22.2238L3.68115 22.2891L13.8821 12.0881V11.9117L3.68115 1.71077L3.60889 1.77605Z" fill="#00A0FF" />
                 <path d="M17.2831 15.4892L13.8821 12.0881V11.9117L17.2831 8.51068L17.3553 8.55246L21.3857 10.8466C22.5361 11.4988 22.5361 12.5606 21.3857 13.2128L17.3553 15.507L17.2831 15.4892Z" fill="#FFCC00" />
                 <path d="M17.3553 15.4892L13.8821 12.0161L3.60889 22.2238C3.98779 22.6247 4.61914 22.6738 5.34033 22.2642L17.3553 15.4892Z" fill="#FF3A44" />
@@ -748,11 +843,7 @@ export default function ExpenseMateProductContent() {
                 <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">GET IT ON</span>
                 <span className="text-sm font-extrabold text-white leading-tight font-display tracking-tight mt-0.5">Google Play</span>
               </div>
-
-              <span className="ml-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono font-bold border border-emerald-500/30">
-                Launching Soon
-              </span>
-            </div>
+            </a>
           </div>
         </div>
 

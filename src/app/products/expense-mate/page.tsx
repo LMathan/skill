@@ -52,6 +52,8 @@ const jsonLd = {
   "name": "ExpenseMate",
   "operatingSystem": "Android, iOS",
   "applicationCategory": "FinanceApplication",
+  "downloadUrl": "https://play.google.com/store/apps/details?id=app.skillforge.expensemate",
+  "installUrl": "https://play.google.com/store/apps/details?id=app.skillforge.expensemate",
   "offers": {
     "@type": "Offer",
     "price": "0",
