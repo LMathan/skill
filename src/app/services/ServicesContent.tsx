@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react"
 import Link from "next/link"
 import { 
   Cpu, Globe, Smartphone, Brain, Cloud, TrendingUp, 
@@ -224,14 +223,14 @@ export default function ServicesContent() {
                   </div>
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bold tracking-tight font-display text-slate-900 leading-tight">
-                      {t(`services.${service.slug}.title` as any) || service.title}
+                      {t(`services.${service.slug}.title`) || service.title}
                     </h2>
                     <span className="text-xs font-semibold text-slate-400 block mt-0.5">{service.tagline}</span>
                   </div>
                 </div>
 
                 <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-sans">
-                  {t(`services.${service.slug}.desc` as any) || service.longDesc}
+                  {t(`services.${service.slug}.desc`) || service.longDesc}
                 </p>
 
                 {/* Sub-Services Bullets & Stacks Sub-Console */}

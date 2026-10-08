@@ -12,44 +12,44 @@ export default function TechnologiesContent() {
   const stacks = [
     {
       id: "frontend",
-      title: t("tech.stacks.0.title" as any) || "Frontend Engineering",
+      title: t("tech.stacks.0.title") || "Frontend Engineering",
       icon: <Globe size={24} className="text-blue-650" />,
-      desc: t("tech.stacks.0.desc" as any) || "Delivering responsive user interfaces using statically optimized frameworks to ensure quick loading times.",
+      desc: t("tech.stacks.0.desc") || "Delivering responsive user interfaces using statically optimized frameworks to ensure quick loading times.",
       tools: ["Next.js", "React", "Vue.js", "Blazor", "TypeScript", "Tailwind CSS", "Redux Toolkit", "GraphQL"]
     },
     {
       id: "backend",
-      title: t("tech.stacks.1.title" as any) || "Backend Architecting",
+      title: t("tech.stacks.1.title") || "Backend Architecting",
       icon: <Layers size={24} className="text-purple-650" />,
-      desc: t("tech.stacks.1.desc" as any) || "Architecting microservice backends, relational databases, cache levels, and asynchronous worker queues.",
+      desc: t("tech.stacks.1.desc") || "Architecting microservice backends, relational databases, cache levels, and asynchronous worker queues.",
       tools: ["Node.js", "Go", "Python", "C# (.NET Core)", "Laravel PHP", "gRPC", "REST APIs", "Redis", "RabbitMQ"]
     },
     {
       id: "mobile",
-      title: t("tech.stacks.2.title" as any) || "Mobile App Suites",
+      title: t("tech.stacks.2.title") || "Mobile App Suites",
       icon: <Smartphone size={24} className="text-pink-600" />,
-      desc: t("tech.stacks.2.desc" as any) || "Developing native-quality iOS and Android mobile solutions with local databases and device sensors syncing.",
+      desc: t("tech.stacks.2.desc") || "Developing native-quality iOS and Android mobile solutions with local databases and device sensors syncing.",
       tools: ["Flutter", "React Native", "Swift (iOS)", "Kotlin (Android)", "Dart", "Realm", "SQLite", "Firebase Streams"]
     },
     {
       id: "cloud",
-      title: t("tech.stacks.3.title" as any) || "Cloud & Infrastructure Operations",
+      title: t("tech.stacks.3.title") || "Cloud & Infrastructure Operations",
       icon: <Cloud size={24} className="text-sky-600" />,
-      desc: t("tech.stacks.3.desc" as any) || "Deploying secure server setups, scaling nodes container setups, and automating testing pipelines.",
+      desc: t("tech.stacks.3.desc") || "Deploying secure server setups, scaling nodes container setups, and automating testing pipelines.",
       tools: ["AWS Cloud", "Microsoft Azure", "Google Cloud", "Docker", "Kubernetes", "Terraform", "GitHub Actions", "Ansible"]
     },
     {
       id: "ai",
-      title: t("tech.stacks.4.title" as any) || "Artificial Intelligence & Stacks",
+      title: t("tech.stacks.4.title") || "Artificial Intelligence & Stacks",
       icon: <Brain size={24} className="text-violet-650" />,
-      desc: t("tech.stacks.4.desc" as any) || "Fine-tuning language models, document parsing models, and deploying high-performance computer vision.",
+      desc: t("tech.stacks.4.desc") || "Fine-tuning language models, document parsing models, and deploying high-performance computer vision.",
       tools: ["Python", "PyTorch", "TensorFlow", "LangChain", "OpenAI APIs", "Hugging Face", "YOLO v8", "OpenCV"]
     },
     {
       id: "iot",
-      title: t("tech.stacks.5.title" as any) || "IoT & Embedded Systems",
+      title: t("tech.stacks.5.title") || "IoT & Embedded Systems",
       icon: <Activity size={24} className="text-red-500" />,
-      desc: t("tech.stacks.5.desc" as any) || "Assembling custom multi-layer PCB circuits, writing firmware codes, and connecting devices via LoRa/MQTT.",
+      desc: t("tech.stacks.5.desc") || "Assembling custom multi-layer PCB circuits, writing firmware codes, and connecting devices via LoRa/MQTT.",
       tools: ["Embedded C/C++", "ESP32", "STM32 ARM", "Raspberry Pi", "Zephyr RTOS", "FreeRTOS", "Altium Designer", "MQTT / BLE"]
     }
   ]
@@ -76,12 +76,12 @@ export default function TechnologiesContent() {
       {/* Hero Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
         <div className="max-w-3xl mx-auto space-y-4">
-          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">{t("tech.badge" as any)}</span>
+          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">{t("tech.badge")}</span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-display text-slate-900">
-            {t("tech.titlePart1" as any)} <span className="text-gradient">{t("tech.titlePart2" as any)}</span>
+            {t("tech.titlePart1")} <span className="text-gradient">{t("tech.titlePart2")}</span>
           </h1>
           <p className="text-slate-500 text-sm sm:text-base leading-relaxed">
-            {t("tech.subtitle" as any)}
+            {t("tech.subtitle")}
           </p>
         </div>
       </section>
@@ -101,7 +101,7 @@ export default function TechnologiesContent() {
               <p className="text-xs text-slate-500 leading-relaxed">{stack.desc}</p>
               
               <div className="pt-4 border-t border-slate-100 space-y-2">
-                <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest block">{t("tech.toolsDeployLabel" as any)}</span>
+                <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-widest block">{t("tech.toolsDeployLabel")}</span>
                 <div className="flex flex-wrap gap-1.5">
                   {stack.tools.map((tool) => (
                     <span 
@@ -116,7 +116,7 @@ export default function TechnologiesContent() {
             </div>
             
             <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400 font-semibold">
-              <span>{t("tech.lintedCodeLabel" as any)}</span>
+              <span>{t("tech.lintedCodeLabel")}</span>
               <CheckCircle size={14} className="text-green-500" />
             </div>
           </div>
@@ -127,15 +127,15 @@ export default function TechnologiesContent() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 text-center">
         <div className="glass-card border border-slate-200/60 rounded-3xl p-10 max-w-4xl mx-auto space-y-6">
           <h2 className="text-xl sm:text-2xl font-bold font-display text-slate-900">
-            {t("tech.ctaTitle" as any)}
+            {t("tech.ctaTitle")}
           </h2>
           <p className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-            {t("tech.ctaSubtitle" as any)}
+            {t("tech.ctaSubtitle")}
           </p>
           <div className="flex justify-center">
             <Link href="/contact">
               <Button variant="gradient" className="font-bold text-xs py-3 px-6 shadow-sm flex items-center gap-1.5">
-                <span>{t("tech.ctaBtn" as any)}</span>
+                <span>{t("tech.ctaBtn")}</span>
                 <ArrowRight size={14} />
               </Button>
             </Link>

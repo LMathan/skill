@@ -1,7 +1,6 @@
 import { ReactNode } from "react"
 import { ArrowRightIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 
 export const BentoGrid = ({
   children,
@@ -29,7 +28,7 @@ export const BentoCard = ({
   name: string
   className?: string
   background?: ReactNode
-  Icon: any
+  Icon: React.ComponentType<{ className?: string; size?: number }>
   description: string
   href: string
   cta: string

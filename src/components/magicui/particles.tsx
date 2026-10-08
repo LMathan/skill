@@ -10,6 +10,19 @@ interface ParticlesProps {
   refresh?: boolean
 }
 
+interface Particle {
+  x: number
+  y: number
+  translateX: number
+  translateY: number
+  size: number
+  alpha: number
+  targetAlpha: number
+  dx: number
+  dy: number
+  magnetism: number
+}
+
 export function Particles({
   className,
   quantity = 30,
@@ -20,7 +33,7 @@ export function Particles({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const canvasContainerRef = useRef<HTMLDivElement>(null)
   const context = useRef<CanvasRenderingContext2D | null>(null)
-  const circles = useRef<any[]>([])
+  const circles = useRef<Particle[]>([])
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 })
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 })
   const requestRef = useRef<number | null>(null)
@@ -61,7 +74,7 @@ export function Particles({
     }
   }
 
-  function circleParams(): any {
+  function circleParams(): Particle {
     const x = Math.random() * canvasSize.current.w
     const y = Math.random() * canvasSize.current.h
     const translateX = 0
@@ -86,7 +99,7 @@ export function Particles({
     }
   }
 
-  function drawCircle(circle: any, update = false) {
+  function drawCircle(circle: Particle, update = false) {
     if (context.current) {
       const { x, y, translateX, translateY, size, alpha } = circle
       context.current.translate(translateX, translateY)
@@ -130,7 +143,7 @@ export function Particles({
 
   function animate() {
     clearContext()
-    circles.current.forEach((circle: any, i: number) => {
+    circles.current.forEach((circle: Particle, i: number) => {
       // Handle ease alpha
       const edge = [
         circle.x + circle.translateX - circle.size,

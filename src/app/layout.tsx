@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import FloatingWidgets from "@/components/FloatingWidgets"
 import AnimatedBackground from "@/components/AnimatedBackground"
+import Script from "next/script"
 import "./globals.css"
 
 const inter = Inter({
@@ -84,8 +85,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    // No `scroll-smooth` here: the Lenis smooth-scroll wrapper on the home
+    // page drives scrolling and CSS smooth-behavior conflicts with it.
+    <html lang="en">
       <body className={`${inter.variable} ${outfit.variable} font-sans min-h-screen flex flex-col bg-white text-slate-900`}>
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "yuc9cskwxl");
+          `}
+        </Script>
         <LanguageProvider>
           <ThemeProvider>
             {/* Global Animated Background */}

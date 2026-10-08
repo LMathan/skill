@@ -27,17 +27,17 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
 
   const t = (key: TranslationKey): string => {
     const keys = key.split(".")
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- walking an arbitrarily nested translation tree
     let current: any = translations["en"]
-    
+
     for (const k of keys) {
       if (current && current[k] !== undefined) {
         current = current[k]
       } else {
-        return undefined as any
+        return key
       }
     }
-    return typeof current === "string" ? current : (undefined as any)
+    return typeof current === "string" ? current : key
   }
 
   return (

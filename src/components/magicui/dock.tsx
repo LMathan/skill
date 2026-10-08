@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useRef } from "react"
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { MotionValue, motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface DockProps {
@@ -23,6 +23,7 @@ export function Dock({ className, children }: DockProps) {
     >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any -- injecting mouseX MotionValue into arbitrary DockIcon children
           return React.cloneElement(child, { mouseX } as any)
         }
         return child
@@ -39,12 +40,17 @@ export function DockIcon({
 }: {
   children: React.ReactNode
   className?: string
-  mouseX?: any
+  mouseX?: MotionValue<number>
   onClick?: () => void
 }) {
   const ref = useRef<HTMLDivElement>(null)
 
-  const distance = useTransform(mouseX || useMotionValue(Infinity), (val: number) => {
+  // Fallback motion value created unconditionally to respect the Rules of Hooks
+  // (the previous `mouseX || useMotionValue(Infinity)` could change hook order
+  // between renders and crash React).
+  const fallbackMouseX = useMotionValue(Infinity)
+
+  const distance = useTransform(mouseX ?? fallbackMouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 }
     return val - bounds.x - bounds.width / 2
   })

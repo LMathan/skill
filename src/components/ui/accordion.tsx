@@ -31,6 +31,7 @@ export const AccordionItem = ({ id, children, className }: { id: string; childre
     <div className={cn("rounded-2xl border bg-card/40 text-card-foreground overflow-hidden", className)}>
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any -- forwarding accordion id to arbitrary child
           return React.cloneElement(child, { id } as any)
         }
         return child

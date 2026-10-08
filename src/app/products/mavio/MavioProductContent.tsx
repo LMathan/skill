@@ -139,7 +139,7 @@ export default function MavioProductContent() {
 
             {/* Subheadline */}
             <p className="text-slate-600 text-base sm:text-lg lg:text-xl leading-relaxed font-normal max-w-xl">
-              Enterprise fleet tracking, dynamic ETA alerts, and preventive maintenance designed for universities and corporate campuses — powered entirely by drivers' smartphones without expensive GPS hardware.
+              Enterprise fleet tracking, dynamic ETA alerts, and preventive maintenance designed for universities and corporate campuses — powered entirely by drivers&apos; smartphones without expensive GPS hardware.
             </p>
 
             {/* Clean, Neat Hero CTAs */}
@@ -267,7 +267,7 @@ export default function MavioProductContent() {
                 <span className="text-[10px] font-mono font-black text-indigo-650 uppercase tracking-widest">DRIVER MOBILE HUD</span>
                 <h3 className="text-xl font-extrabold font-display text-slate-900">Driver Companion App</h3>
                 <p className="text-slate-600 text-xs leading-relaxed font-medium">
-                  Transform drivers' smartphones into telemetry boxes. Buffers GPS coordinates locally in low-signal zones and tunnels, uploading and syncing automatically.
+                  Transform drivers&apos; smartphones into telemetry boxes. Buffers GPS coordinates locally in low-signal zones and tunnels, uploading and syncing automatically.
                 </p>
                 <div className="pt-1">
                   <a
@@ -508,7 +508,7 @@ export default function MavioProductContent() {
                   <ShieldCheck size={24} />
                 </div>
                 <h3 className="text-xl font-extrabold text-slate-900 font-display">
-                  🛡️ Commuter Safety &amp; Parents' Peace of Mind
+                  🛡️ Commuter Safety &amp; Parents&apos; Peace of Mind
                 </h3>
                 <p className="text-slate-600 text-sm leading-relaxed font-medium">
                   Parents see exactly when the school bus will arrive at the stop. Eliminates school children standing outside during inclement weather, freezing mornings, or heavy rains. Route compliance alerts keep administrators in control.
@@ -574,7 +574,7 @@ export default function MavioProductContent() {
               Optimize Your Campus Transit Operations Today
             </h2>
             <p className="text-slate-300 text-sm sm:text-base font-medium leading-relaxed">
-              Equip fleet managers, commuters, and parents with Mavio's high-fidelity telemetry tracking. Launch in days with zero hardware investment.
+              Equip fleet managers, commuters, and parents with Mavio&apos;s high-fidelity telemetry tracking. Launch in days with zero hardware investment.
             </p>
             <div className="pt-2 flex flex-wrap justify-center items-center gap-4">
               <a

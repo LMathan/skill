@@ -1,7 +1,23 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useMemo } from "react"
 import { cn } from "@/lib/utils"
+
+/**
+ * Meteor positions are generated once per mount with a lazy initializer.
+ * Math.random() in a lazy state initializer still differs between server and
+ * client, but the component only renders spans after mount results exist…
+ * actually, to be hydration-safe we use a deterministic PRNG seeded per
+ * instance so server and client render identical HTML.
+ */
+function mulberry32(seed: number) {
+  return function () {
+    let t = (seed += 0x6d2b79f5)
+    t = Math.imul(t ^ (t >>> 15), t | 1)
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
+  }
+}
 
 export function Meteors({
   number = 20,
@@ -10,17 +26,21 @@ export function Meteors({
   number?: number
   className?: string
 }) {
-  const [meteorStyles, setMeteorStyles] = useState<Array<React.CSSProperties>>([])
-
-  useEffect(() => {
-    const styles = Array.from({ length: number }).map(() => ({
-      top: Math.floor(Math.random() * -20) + "px",
-      left: Math.floor(Math.random() * 800) + "px",
-      animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + "s",
-      animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + "s",
-    }))
-    setMeteorStyles(styles)
-  }, [number])
+  const meteorStyles = useMemo(
+    () =>
+      Array.from({ length: number }).map((_, i) => {
+        // Deterministic per-index seed: identical output on server & client,
+        // different instances still vary via the count prop.
+        const rand = mulberry32(42 + i * 7919)
+        return {
+          top: Math.floor(rand() * -20) + "px",
+          left: Math.floor(rand() * 800) + "px",
+          animationDelay: rand() * (0.8 - 0.2) + 0.2 + "s",
+          animationDuration: Math.floor(rand() * (10 - 2) + 2) + "s",
+        }
+      }),
+    [number]
+  )
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

@@ -12,6 +12,7 @@ export function Footer() {
   const [subscribed, setSubscribed] = useState(false)
   const [loading, setLoading] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
+  const [honeypot, setHoneypot] = useState("")
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -27,7 +28,7 @@ export function Footer() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, _gotcha: honeypot }),
       })
 
       const data = await response.json()
@@ -39,7 +40,7 @@ export function Footer() {
       } else {
         setErrorMsg(data.error || "Subscription failed. Please try again.")
       }
-    } catch (err: any) {
+    } catch (err) {
       setErrorMsg("An unexpected error occurred. Please try again.")
       console.error("Subscription submission error:", err)
     } finally {
@@ -162,6 +163,17 @@ export function Footer() {
 
             {/* Newsletter input */}
             <form onSubmit={handleSubscribe} className="space-y-2">
+              {/* Honeypot — hidden from humans, catches bots */}
+              <input
+                type="text"
+                name="_gotcha"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
               <span className="text-[10px] font-semibold text-slate-500 block">Subscribe to our Insights</span>
               <div className="flex gap-2">
                 <input

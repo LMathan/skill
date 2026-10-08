@@ -111,10 +111,10 @@ export function Navbar() {
                                       className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors"
                                     >
                                       <span className="text-xs font-bold text-slate-900 hover:text-blue-600 transition-colors">
-                                        {t(`services.${service.slug}.title` as any) || service.title}
+                                        {t(`services.${service.slug}.title`) || service.title}
                                       </span>
                                       <span className="text-[9px] text-slate-400 line-clamp-1 mt-0.5">
-                                        {t(`services.${service.slug}.desc` as any) || service.tagline}
+                                        {t(`services.${service.slug}.desc`) || service.tagline}
                                       </span>
                                     </Link>
                                   ))}
@@ -138,10 +138,10 @@ export function Navbar() {
                                       className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors"
                                     >
                                       <span className="text-xs font-bold text-slate-900 hover:text-blue-600 transition-colors">
-                                        {t(`services.${service.slug}.title` as any) || service.title}
+                                        {t(`services.${service.slug}.title`) || service.title}
                                       </span>
                                       <span className="text-[9px] text-slate-400 line-clamp-1 mt-0.5">
-                                        {t(`services.${service.slug}.desc` as any) || service.tagline}
+                                        {t(`services.${service.slug}.desc`) || service.tagline}
                                       </span>
                                     </Link>
                                   ))}
@@ -165,10 +165,10 @@ export function Navbar() {
                                       className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors"
                                     >
                                       <span className="text-xs font-bold text-slate-900 hover:text-blue-600 transition-colors">
-                                        {t(`services.${service.slug}.title` as any) || service.title}
+                                        {t(`services.${service.slug}.title`) || service.title}
                                       </span>
                                       <span className="text-[9px] text-slate-400 line-clamp-1 mt-0.5">
-                                        {t(`services.${service.slug}.desc` as any) || service.tagline}
+                                        {t(`services.${service.slug}.desc`) || service.tagline}
                                       </span>
                                     </Link>
                                   ))}
@@ -346,7 +346,7 @@ export function Navbar() {
                               onClick={() => setIsMobileOpen(false)}
                               className="py-1 text-xs text-slate-500 font-semibold hover:text-blue-600"
                             >
-                              {t(`services.${service.slug}.title` as any) || service.title}
+                              {t(`services.${service.slug}.title`) || service.title}
                             </Link>
                           ))}
                         </div>

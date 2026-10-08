@@ -10,27 +10,27 @@ export default function AboutContent() {
 
   const values = [
     {
-      title: t("about.values.0.title" as any),
-      desc: t("about.values.0.desc" as any),
+      title: t("about.values.0.title"),
+      desc: t("about.values.0.desc"),
       icon: <Globe className="text-blue-650" size={26} />
     },
     {
-      title: t("about.values.1.title" as any),
-      desc: t("about.values.1.desc" as any),
+      title: t("about.values.1.title"),
+      desc: t("about.values.1.desc"),
       icon: <Target className="text-purple-650" size={26} />
     },
     {
-      title: t("about.values.2.title" as any),
-      desc: t("about.values.2.desc" as any),
+      title: t("about.values.2.title"),
+      desc: t("about.values.2.desc"),
       icon: <Eye className="text-blue-600" size={26} />
     }
   ]
 
   const metrics = [
-    { value: "Global", label: t("about.metrics.0.label" as any) },
-    { value: "Agile", label: t("about.metrics.1.label" as any) },
-    { value: "Collaborative", label: t("about.metrics.2.label" as any) },
-    { value: "Reliable", label: t("about.metrics.3.label" as any) }
+    { value: "Global", label: t("about.metrics.0.label") },
+    { value: "Agile", label: t("about.metrics.1.label") },
+    { value: "Collaborative", label: t("about.metrics.2.label") },
+    { value: "Reliable", label: t("about.metrics.3.label") }
   ]
 
   return (
@@ -58,13 +58,13 @@ export default function AboutContent() {
       {/* Hero Header */}
       <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
         <div className="max-w-3xl mx-auto space-y-5">
-          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block">{t("about.storyBadge" as any)}</span>
+          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block">{t("about.storyBadge")}</span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-display text-slate-900 leading-tight">
-            {t("about.titlePart1" as any)} <br />
-            <span className="text-gradient">{t("about.titlePart2" as any)}</span>
+            {t("about.titlePart1")} <br />
+            <span className="text-gradient">{t("about.titlePart2")}</span>
           </h1>
           <p className="text-slate-555 text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
-            {t("about.subtitle" as any)}
+            {t("about.subtitle")}
           </p>
         </div>
       </section>
@@ -113,19 +113,19 @@ export default function AboutContent() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
             <div className="lg:col-span-6 space-y-6">
-              <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block">{t("about.techBadge" as any)}</span>
+              <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block">{t("about.techBadge")}</span>
               <h2 className="text-3xl font-bold tracking-tight font-display text-slate-900">
-                {t("about.techTitlePart1" as any)} <span className="text-gradient">{t("about.techTitlePart2" as any)}</span>
+                {t("about.techTitlePart1")} <span className="text-gradient">{t("about.techTitlePart2")}</span>
               </h2>
               <p className="text-slate-555 text-xs sm:text-sm leading-relaxed">
-                {t("about.techDesc" as any)}
+                {t("about.techDesc")}
               </p>
 
               <div className="space-y-3">
                 {[0, 1, 2, 3].map((idx) => (
                   <div key={idx} className="flex items-center gap-3">
                     <CheckCircle className="text-blue-650 shrink-0" size={16} />
-                    <span className="text-xs font-semibold text-slate-700">{t(`about.techBullets.${idx}` as any)}</span>
+                    <span className="text-xs font-semibold text-slate-700">{t(`about.techBullets.${idx}`)}</span>
                   </div>
                 ))}
               </div>
@@ -134,17 +134,17 @@ export default function AboutContent() {
             <div className="lg:col-span-6 space-y-5">
               <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm glass-card-premium relative overflow-hidden group">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-indigo-600" />
-                <span className="font-extrabold text-sm text-slate-900 block font-display">{t("about.cards.0.title" as any)}</span>
+                <span className="font-extrabold text-sm text-slate-900 block font-display">{t("about.cards.0.title")}</span>
                 <p className="text-xs text-slate-500 mt-2 leading-relaxed font-sans">
-                  {t("about.cards.0.desc" as any)}
+                  {t("about.cards.0.desc")}
                 </p>
                 <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-blue-500/5 rounded-full blur-xl group-hover:bg-blue-500/10 transition-colors" />
               </div>
               <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm glass-card-premium relative overflow-hidden group">
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 to-purple-600" />
-                <span className="font-extrabold text-sm text-slate-900 block font-display">{t("about.cards.1.title" as any)}</span>
+                <span className="font-extrabold text-sm text-slate-900 block font-display">{t("about.cards.1.title")}</span>
                 <p className="text-xs text-slate-500 mt-2 leading-relaxed font-sans">
-                  {t("about.cards.1.desc" as any)}
+                  {t("about.cards.1.desc")}
                 </p>
                 <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-purple-500/5 rounded-full blur-xl group-hover:bg-purple-500/10 transition-colors" />
               </div>
@@ -157,8 +157,8 @@ export default function AboutContent() {
       {/* Trust Badges */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 mb-10">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">{t("about.badgesBadge" as any)}</span>
-          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 font-display">{t("about.badgesTitle" as any)}</h2>
+          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">{t("about.badgesBadge")}</span>
+          <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 font-display">{t("about.badgesTitle")}</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -170,8 +170,8 @@ export default function AboutContent() {
               <div className="p-3 bg-blue-50/40 text-blue-655 rounded-xl w-fit mx-auto">
                 <Award size={22} />
               </div>
-              <h3 className="font-bold text-xs sm:text-sm text-slate-900 font-display">{t(`about.badges.${index}.title` as any)}</h3>
-              <p className="text-[11px] text-slate-500 leading-relaxed">{t(`about.badges.${index}.desc` as any)}</p>
+              <h3 className="font-bold text-xs sm:text-sm text-slate-900 font-display">{t(`about.badges.${index}.title`)}</h3>
+              <p className="text-[11px] text-slate-500 leading-relaxed">{t(`about.badges.${index}.desc`)}</p>
             </div>
           ))}
         </div>

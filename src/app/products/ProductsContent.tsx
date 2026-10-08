@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react"
 import Link from "next/link"
+
 import { motion, AnimatePresence } from "framer-motion"
 import {
   Cpu,
@@ -83,6 +84,7 @@ export default function ProductsContent({
   const [orderPhone, setOrderPhone] = useState("")
   const [orderAddress, setOrderAddress] = useState("")
   const [orderQuantity, setOrderQuantity] = useState(1)
+  const [orderHoneypot, setOrderHoneypot] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isPreRegisterLoading, setIsPreRegisterLoading] = useState(false)
   const [preRegisterError, setPreRegisterError] = useState("")
@@ -122,11 +124,14 @@ export default function ProductsContent({
   }, [isSlideHovered])
 
   useEffect(() => {
-    setWindowWidth(window.innerWidth)
     const handleResize = () => setWindowWidth(window.innerWidth)
+    // Initialize on the next frame rather than synchronously in the effect body
+    // (avoids cascading renders flagged by the React compiler lint).
+    const raf = requestAnimationFrame(handleResize)
     window.addEventListener("resize", handleResize, { passive: true })
-    
+
     return () => {
+      cancelAnimationFrame(raf)
       window.removeEventListener("resize", handleResize)
     }
   }, [])
@@ -1217,7 +1222,8 @@ export default function ProductsContent({
                           email,
                           phone: orderPhone,
                           address: orderAddress,
-                          quantity: orderQuantity
+                          quantity: orderQuantity,
+                          _gotcha: orderHoneypot
                         })
                       });
                       const data = await res.json();
@@ -1243,6 +1249,17 @@ export default function ProductsContent({
                   }}
                   className="space-y-4 text-left"
                 >
+                  {/* Honeypot — hidden from humans, catches bots */}
+                  <input
+                    type="text"
+                    name="_gotcha"
+                    value={orderHoneypot}
+                    onChange={(e) => setOrderHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                  />
                   {preRegisterError && (
                     <p className="text-xs text-rose-600 font-semibold text-center">{preRegisterError}</p>
                   )}

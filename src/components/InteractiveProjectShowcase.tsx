@@ -192,17 +192,25 @@ export default function InteractiveProjectShowcase() {
     return project.category === activeCategory
   })
 
-  // Reset active index when category changes
-  useEffect(() => {
+  // Reset active index/progress when category or pause state changes.
+  // Done during render (React's documented "adjusting state on prop change"
+  // pattern) instead of in an effect, avoiding cascading renders.
+  const [prevCategory, setPrevCategory] = useState(activeCategory)
+  const [prevPaused, setPrevPaused] = useState(isPaused)
+  if (prevCategory !== activeCategory) {
+    setPrevCategory(activeCategory)
     setActiveIndex(0)
     setProgress(0)
-  }, [activeCategory])
+  }
+  if (prevPaused !== isPaused) {
+    setPrevPaused(isPaused)
+    setProgress(0)
+  }
 
   // Fluid Auto-cycling timer with smooth progress bar
   useEffect(() => {
     if (isPaused || filteredProjects.length === 0) return
 
-    setProgress(0)
     const intervalTick = 40
     const totalDuration = 4500 // 4.5 seconds per project
     const increment = (intervalTick * 100) / totalDuration

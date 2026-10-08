@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState, useId, useRef } from "react"
+import React, { useEffect, useState, useId } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -27,32 +27,39 @@ export function GridPattern({
   ...props
 }: GridPatternProps) {
   const id = useId()
-  const [squares, setSquares] = useState<Array<{ id: number; x: number; y: number }>>([])
-  
-  // Set random squares on client side load
+  const [squares, setSquares] = useState<Array<{ id: number; x: number; y: number; duration: number }>>([])
+
+  // Generate random squares on the client only — never during render, so SSR
+  // and hydration output always match. State is set asynchronously (rAF +
+  // interval callbacks) rather than synchronously in the effect body.
   useEffect(() => {
-    const list = Array.from({ length: numSquares }).map((_, i) => ({
+    const makeSquare = (i: number) => ({
       id: i,
       x: Math.floor(Math.random() * 20) - 10,
       y: Math.floor(Math.random() * 20) - 10,
-    }))
-    setSquares(list)
+      // Random per-square animation duration, generated outside of render.
+      duration: Math.random() * 3 + 2,
+    })
+
+    const raf = requestAnimationFrame(() => {
+      setSquares(Array.from({ length: numSquares }).map((_, i) => makeSquare(i)))
+    })
 
     // Continuously swap some cells to make it animate
     const interval = setInterval(() => {
       setSquares((prev) => {
+        if (prev.length === 0) return prev
         const next = [...prev]
         const swapIdx = Math.floor(Math.random() * next.length)
-        next[swapIdx] = {
-          id: Date.now() + swapIdx,
-          x: Math.floor(Math.random() * 20) - 10,
-          y: Math.floor(Math.random() * 20) - 10,
-        }
+        next[swapIdx] = makeSquare(Date.now() + swapIdx)
         return next
       })
     }, 2000)
 
-    return () => clearInterval(interval)
+    return () => {
+      cancelAnimationFrame(raf)
+      clearInterval(interval)
+    }
   }, [numSquares])
 
   return (
@@ -82,12 +89,12 @@ export function GridPattern({
       </defs>
       <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${id})`} />
       <svg x={x} y={y} className="overflow-visible">
-        {squares.map(({ id: sqId, x: sqX, y: sqY }) => (
+        {squares.map(({ id: sqId, x: sqX, y: sqY, duration }) => (
           <motion.rect
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, maxOpacity, 0] }}
             transition={{
-              duration: Math.random() * 3 + 2,
+              duration,
               repeat: Infinity,
               repeatType: "reverse",
             }}

@@ -1,19 +1,21 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { 
   Award, Shield, CheckCircle2, Cpu, Code, Layers, 
   Sparkles, AlertCircle, Compass, Star, Loader2, Plus, X
 } from "lucide-react"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { useLanguage } from "@/context/LanguageContext"
+import { Card } from "@/components/ui/card"
 import Particles from "@/components/magicui/particles"
+import { Button } from "@/components/ui/button"
 
-// Firebase imports
-import { collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "firebase/firestore"
+import { useLanguage } from "@/context/LanguageContext"
+
+// Firestore is read-only from the client; writes go through the moderated
+// /api/feedback route so reviews require owner approval before publishing.
+import { collection, getDocs, query, orderBy } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 
 const LOCAL_KEY = "skillforge_feedbacks_v1"
@@ -24,7 +26,7 @@ interface Feedback {
   projectName: string;
   message: string;
   rating: number;
-  createdAt?: any;
+  createdAt?: { seconds?: number } | Date | string | null;
   source?: "site" | "google";
 }
 
@@ -82,6 +84,7 @@ export default function FeedbackPortalContent() {
   const [message, setMessage] = useState("")
   const [hoverRating, setHoverRating] = useState(0)
   const [submitting, setSubmitting] = useState(false)
+  const [honeypot, setHoneypot] = useState("")
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState("")
 
@@ -136,7 +139,10 @@ export default function FeedbackPortalContent() {
   }
 
   useEffect(() => {
-    fetchFeedbacks()
+    // Fire-and-forget async load: setState happens in the async callback,
+    // not synchronously in the effect body.
+    const timer = setTimeout(() => void fetchFeedbacks(), 0)
+    return () => clearTimeout(timer)
   }, [])
 
   // Submit new review to Firestore
@@ -160,63 +166,51 @@ export default function FeedbackPortalContent() {
     }
 
     try {
-      const ref = collection(db, "feedbacks")
-      await addDoc(ref, {
-        ...feedbackData,
-        createdAt: serverTimestamp()
+      const res = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerName: customerName.trim(),
+          projectName: projectName.trim(),
+          message: message.trim(),
+          rating,
+          _gotcha: honeypot,
+        }),
       })
 
+      if (!res.ok) {
+        const data = await res.json().catch(() => null)
+        throw new Error(data?.error || "Failed to submit review.")
+      }
+
       setSubmitSuccess(true)
-      
+
       // Reset fields
       setCustomerName("")
       setProjectName("")
       setRating(5)
       setMessage("")
 
-      // Reload list
-      await fetchFeedbacks()
-
       setTimeout(() => {
         setSubmitSuccess(false)
         setShowForm(false)
       }, 2500)
     } catch (error) {
-      console.error("Firebase write error, falling back locally:", error)
-      try {
-        const cached = localStorage.getItem(LOCAL_KEY)
-        let list: Feedback[] = cached ? JSON.parse(cached) : [...DEFAULT_FEEDBACKS]
-        const localFeedback = {
-          id: `local-${Date.now()}`,
-          ...feedbackData,
-          createdAt: { seconds: Math.floor(Date.now() / 1000) }
-        }
-        list.unshift(localFeedback)
-        localStorage.setItem(LOCAL_KEY, JSON.stringify(list))
-        setFeedbacks(list)
-
-        setSubmitSuccess(true)
-        setCustomerName("")
-        setProjectName("")
-        setRating(5)
-        setMessage("")
-
-        setTimeout(() => {
-          setSubmitSuccess(false)
-          setShowForm(false)
-        }, 2500)
-      } catch (err) {
-        setSubmitError("Failed to store review. Please check your credentials.")
-      }
+      console.error("Review submission error:", error)
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "Failed to submit review. Please try again."
+      )
     } finally {
       setSubmitting(false)
     }
   }
 
-  const formatDate = (createdAt: any) => {
+  const formatDate = (createdAt: Feedback["createdAt"]) => {
     if (!createdAt) return "Recent"
     let date: Date
-    if (createdAt.seconds) {
+    if (typeof createdAt === "object" && !(createdAt instanceof Date) && createdAt.seconds) {
       date = new Date(createdAt.seconds * 1000)
     } else if (createdAt instanceof Date) {
       date = createdAt
@@ -278,7 +272,7 @@ export default function FeedbackPortalContent() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 15 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as any } }
+    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" as const } }
   }
 
   return (
@@ -576,6 +570,17 @@ export default function FeedbackPortalContent() {
                 </div>
               ) : (
                 <form onSubmit={handleFeedbackSubmit} className="space-y-4 text-xs">
+                  {/* Honeypot — hidden from humans, catches bots */}
+                  <input
+                    type="text"
+                    name="_gotcha"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                  />
                   {submitError && (
                     <p className="text-red-500 font-semibold">{submitError}</p>
                   )}

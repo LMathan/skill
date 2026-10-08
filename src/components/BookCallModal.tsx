@@ -12,6 +12,7 @@ export default function BookCallModal() {
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
+  const [honeypot, setHoneypot] = useState("")
 
   // Detect open event triggers
   useEffect(() => {
@@ -100,7 +101,7 @@ export default function BookCallModal() {
       const res = await fetch("/api/book-call", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, date: formattedDate })
+        body: JSON.stringify({ email, date: formattedDate, _gotcha: honeypot })
       })
       const data = await res.json()
       if (res.ok && data.success) {
@@ -153,6 +154,17 @@ export default function BookCallModal() {
         <div className="flex-1 py-4 overflow-y-auto space-y-4">
           {!success ? (
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot — hidden from humans, catches bots */}
+              <input
+                type="text"
+                name="_gotcha"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
               
               {/* Calendar Container */}
               <div className="border border-slate-200/60 rounded-2xl p-4 bg-slate-50/50 space-y-3">

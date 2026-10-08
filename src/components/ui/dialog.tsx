@@ -38,6 +38,7 @@ export const DialogTrigger = ({ children, asChild }: { children: React.ReactNode
   }
 
   if (asChild && React.isValidElement(children)) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- attaching click handler to arbitrary child element
     return React.cloneElement(children, { onClick: handleClick } as any)
   }
 

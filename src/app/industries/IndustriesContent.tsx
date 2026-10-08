@@ -36,12 +36,12 @@ export default function IndustriesContent() {
       {/* Hero Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
         <div className="max-w-3xl mx-auto space-y-4">
-          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">{t("industries.badge" as any)}</span>
+          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">{t("industries.badge")}</span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-display text-slate-900">
-            {t("industries.titlePart1" as any)} <span className="text-gradient">{t("industries.titlePart2" as any)}</span>
+            {t("industries.titlePart1")} <span className="text-gradient">{t("industries.titlePart2")}</span>
           </h1>
           <p className="text-slate-500 text-sm sm:text-base leading-relaxed">
-            {t("industries.subtitle" as any)}
+            {t("industries.subtitle")}
           </p>
         </div>
       </section>
@@ -61,10 +61,10 @@ export default function IndustriesContent() {
                 </div>
                 <div className="space-y-2 text-left">
                   <h2 className="text-xl font-bold font-display text-slate-950">
-                    {t(`industries.${idx}.name` as any) || ind.name}
+                    {t(`industries.${idx}.name`) || ind.name}
                   </h2>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    {t(`industries.${idx}.desc` as any) || ind.desc}
+                    {t(`industries.${idx}.desc`) || ind.desc}
                   </p>
                 </div>
               </div>
@@ -72,11 +72,11 @@ export default function IndustriesContent() {
               <div className="flex flex-col sm:flex-row lg:flex-col gap-4 items-stretch lg:items-end w-full lg:w-auto pt-4 lg:pt-0 shrink-0 border-t border-slate-100 lg:border-t-0">
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-655 justify-center">
                   <CheckCircle2 size={14} className="text-green-500" />
-                  <span>{t("industries.protectLabel" as any)}</span>
+                  <span>{t("industries.protectLabel")}</span>
                 </div>
                 <Link href="/contact">
                   <Button variant="outline" className="text-xs font-bold border-slate-200 hover:bg-slate-50 py-2.5 px-4 w-full">
-                    <span>{t("industries.discussBtn" as any)}</span>
+                    <span>{t("industries.discussBtn")}</span>
                     <ArrowRight size={13} className="ml-1" />
                   </Button>
                 </Link>

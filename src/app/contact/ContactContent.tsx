@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, Suspense } from "react"
+import React, { useState, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
 import { Mail, Phone, MapPin, Send, Star, CheckCircle2, Loader2, Sparkles, Clock, MessageSquare, Heart, ChevronDown } from "lucide-react"
@@ -58,6 +58,8 @@ function ContactContentInner() {
   const [inqSubject, setInqSubject] = useState("Software Development")
   const [inqMessage, setInqMessage] = useState("")
   const [inqStatus, setInqStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [inqError, setInqError] = useState("")
+  const [inqHoneypot, setInqHoneypot] = useState("")
 
   // Testimonial Form State
   const [testName, setTestName] = useState("")
@@ -66,26 +68,49 @@ function ContactContentInner() {
   const [testFeedback, setTestFeedback] = useState("")
   const [testStatus, setTestStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
 
-  // Pre-fill query message from query parameters if present (e.g. from article page)
-  useEffect(() => {
-    const queryInq = searchParams.get("inquiry")
+  // Pre-fill query message from query parameters if present (e.g. from article page).
+  // Applied synchronously during render (React's documented state-adjustment
+  // pattern) instead of an effect to avoid a cascading render pass.
+  const [prevInquiryParam, setPrevInquiryParam] = useState(searchParams.get("inquiry"))
+  const queryInq = searchParams.get("inquiry")
+  if (queryInq !== prevInquiryParam) {
+    setPrevInquiryParam(queryInq)
     if (queryInq) {
       setInqMessage(queryInq)
       setInqSubject("Software Development")
     }
-  }, [searchParams])
+  }
 
   const handleInquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!inqName.trim() || !inqEmail.trim() || !inqPhone.trim() || !inqMessage.trim()) {
+      setInqError("Please fill out all required fields.")
       setInqStatus("error")
       return
     }
 
     setInqStatus("submitting")
+    setInqError("")
 
-    // Simulate backend logging
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: inqName.trim(),
+          email: inqEmail.trim(),
+          phone: inqPhone.trim(),
+          theme: inqSubject,
+          message: inqMessage.trim(),
+          _gotcha: inqHoneypot,
+        }),
+      })
+
+      const data = await res.json().catch(() => null)
+      if (!res.ok) {
+        throw new Error(data?.error || "Failed to send your inquiry. Please try again.")
+      }
+
       setInqStatus("success")
       setTimeout(() => {
         setInqName("")
@@ -94,7 +119,10 @@ function ContactContentInner() {
         setInqMessage("")
         setInqStatus("idle")
       }, 2500)
-    }, 1200)
+    } catch (err) {
+      setInqError(err instanceof Error ? err.message : "Failed to send your inquiry. Please try again.")
+      setInqStatus("error")
+    }
   }
 
   const handleTestimonialSubmit = async (e: React.FormEvent) => {
@@ -106,23 +134,29 @@ function ContactContentInner() {
 
     setTestStatus("submitting")
 
-    // Cache locally for demonstration
+    // Persist server-side via the moderated feedback endpoint (was localStorage-only).
     try {
-      const cached = localStorage.getItem("skillforge_feedbacks_v1")
-      const list = cached ? JSON.parse(cached) : []
-      list.unshift({
-        id: `local-${Date.now()}`,
-        customerName: testName.trim(),
-        projectName: testProject.trim(),
-        rating: testRating,
-        message: testFeedback.trim(),
-        createdAt: { seconds: Math.floor(Date.now() / 1000) }
+      const res = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customerName: testName.trim(),
+          projectName: testProject.trim(),
+          rating: testRating,
+          message: testFeedback.trim(),
+        }),
       })
-      localStorage.setItem("skillforge_feedbacks_v1", JSON.stringify(list))
+
+      const data = await res.json().catch(() => null)
+      if (!res.ok) {
+        throw new Error(data?.error || "Failed to submit your feedback. Please try again.")
+      }
+
       setTestStatus("success")
     } catch (err) {
       console.error(err)
       setTestStatus("error")
+      return
     }
 
     setTimeout(() => {
@@ -152,13 +186,13 @@ function ContactContentInner() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-100 bg-blue-50/40 text-blue-600 text-xs font-semibold uppercase tracking-wider mb-6">
             <Sparkles size={12} />
-            {t("contact.badge" as any)}
+            {t("contact.badge")}
           </div>
           <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-slate-900 mb-6">
-            {t("contact.titlePart1" as any)} <span className="text-gradient">{t("contact.titlePart2" as any)}</span>
+            {t("contact.titlePart1")} <span className="text-gradient">{t("contact.titlePart2")}</span>
           </h1>
           <p className="text-slate-500 text-sm max-w-2xl mx-auto leading-relaxed">
-            {t("contact.subtitle" as any)}
+            {t("contact.subtitle")}
           </p>
         </motion.div>
 
@@ -173,7 +207,7 @@ function ContactContentInner() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="lg:col-span-5 space-y-6"
           >
-            <h2 className="text-xl font-bold font-display text-slate-900 mb-4">{t("contact.detailsTitle" as any)}</h2>
+            <h2 className="text-xl font-bold font-display text-slate-900 mb-4">{t("contact.detailsTitle")}</h2>
 
             {/* Quick Cards */}
             <div className="space-y-4">
@@ -183,9 +217,9 @@ function ContactContentInner() {
                   <MapPin size={20} />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold font-display text-slate-900">{t("contact.details.0.title" as any)}</h4>
+                  <h4 className="text-sm font-bold font-display text-slate-900">{t("contact.details.0.title")}</h4>
                   <p className="text-slate-500 text-xs mt-1 leading-relaxed">
-                    {t("contact.details.0.desc" as any)}
+                    {t("contact.details.0.desc")}
                   </p>
                 </div>
               </div>
@@ -196,9 +230,9 @@ function ContactContentInner() {
                   <Phone size={20} />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold font-display text-slate-900">{t("contact.details.3.title" as any)}</h4>
+                  <h4 className="text-sm font-bold font-display text-slate-900">{t("contact.details.3.title")}</h4>
                   <a href="tel:+919345518760" className="text-slate-655 text-xs mt-1 hover:text-blue-600 transition-colors block font-semibold">
-                    {t("contact.details.3.desc" as any)}
+                    {t("contact.details.3.desc")}
                   </a>
                 </div>
               </div>
@@ -209,9 +243,9 @@ function ContactContentInner() {
                   <Mail size={20} />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold font-display text-slate-900">{t("contact.details.1.title" as any)}</h4>
+                  <h4 className="text-sm font-bold font-display text-slate-900">{t("contact.details.1.title")}</h4>
                   <a href="mailto:info@skillforgetechnology.app" className="text-slate-655 text-xs mt-1 hover:text-blue-600 transition-colors block break-all font-semibold">
-                    {t("contact.details.1.desc" as any)}
+                    {t("contact.details.1.desc")}
                   </a>
                 </div>
               </div>
@@ -221,10 +255,10 @@ function ContactContentInner() {
             <div className="bg-slate-50 border border-slate-200/60 rounded-2xl p-5 space-y-2">
               <span className="flex items-center gap-2 text-xs font-bold text-slate-700">
                 <Clock size={14} className="text-blue-600" />
-                <span>{t("contact.details.2.title" as any)}</span>
+                <span>{t("contact.details.2.title")}</span>
               </span>
               <p className="text-[11px] text-slate-500 leading-relaxed">
-                {t("contact.details.2.desc" as any)}
+                {t("contact.details.2.desc")}
               </p>
             </div>
           </motion.div>
@@ -239,9 +273,9 @@ function ContactContentInner() {
           >
             <Card className="bg-white border border-slate-200 rounded-3xl overflow-hidden relative shadow-sm">
               <CardHeader className="p-6 sm:p-8 border-b border-slate-100">
-                <CardTitle className="text-xl font-bold font-display text-slate-900">{t("contact.formTitle" as any)}</CardTitle>
+                <CardTitle className="text-xl font-bold font-display text-slate-900">{t("contact.formTitle")}</CardTitle>
                 <CardDescription className="text-slate-500 text-xs mt-1">
-                  {t("contact.formSubtitle" as any)}
+                  {t("contact.formSubtitle")}
                 </CardDescription>
               </CardHeader>
 
@@ -250,11 +284,11 @@ function ContactContentInner() {
                   <TabsList className="bg-slate-50 border border-slate-200 rounded-xl p-1 w-full mb-6 grid grid-cols-2">
                     <TabsTrigger value="inquiry" className="flex items-center justify-center gap-2 rounded-lg py-2 text-xs text-slate-600 data-[state=active]:bg-white data-[state=active]:text-slate-900 cursor-pointer">
                       <MessageSquare size={14} />
-                      <span>{t("contact.tabs.inquiry" as any)}</span>
+                      <span>{t("contact.tabs.inquiry")}</span>
                     </TabsTrigger>
                     <TabsTrigger value="feedback" className="flex items-center justify-center gap-2 rounded-lg py-2 text-xs text-slate-600 data-[state=active]:bg-white data-[state=active]:text-slate-900 cursor-pointer">
                       <Heart size={14} />
-                      <span>{t("contact.tabs.review" as any)}</span>
+                      <span>{t("contact.tabs.review")}</span>
                     </TabsTrigger>
                   </TabsList>
 
@@ -263,20 +297,31 @@ function ContactContentInner() {
                     {inqStatus === "success" ? (
                       <div className="flex flex-col items-center justify-center py-12 text-center">
                         <CheckCircle2 className="text-emerald-500 w-12 h-12 mb-4 animate-pulse" />
-                        <h3 className="text-base font-bold font-display text-slate-900 mb-2">{t("contact.successTitle" as any)}</h3>
+                        <h3 className="text-base font-bold font-display text-slate-900 mb-2">{t("contact.successTitle")}</h3>
                         <p className="text-slate-500 text-xs max-w-sm">
-                          {t("contact.successMsg" as any)}
+                          {t("contact.successMsg")}
                         </p>
                       </div>
                     ) : (
                       <form onSubmit={handleInquirySubmit} className="space-y-4">
+                        {/* Honeypot — hidden from humans, catches bots */}
+                        <input
+                          type="text"
+                          name="_gotcha"
+                          value={inqHoneypot}
+                          onChange={(e) => setInqHoneypot(e.target.value)}
+                          tabIndex={-1}
+                          autoComplete="off"
+                          aria-hidden="true"
+                          className="hidden"
+                        />
                         <div>
-                          <label htmlFor="inq-name-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formName" as any)}</label>
+                          <label htmlFor="inq-name-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formName")}</label>
                           <Input
                             id="inq-name-input"
                             required
                             type="text"
-                            placeholder={t("contact.formNamePlaceholder" as any)}
+                            placeholder={t("contact.formNamePlaceholder")}
                             value={inqName}
                             onChange={(e) => setInqName(e.target.value)}
                             className="bg-white border-slate-200 text-slate-900 rounded-xl focus:border-blue-650 text-xs"
@@ -285,24 +330,24 @@ function ContactContentInner() {
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
-                            <label htmlFor="inq-email-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formEmail" as any)}</label>
+                            <label htmlFor="inq-email-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formEmail")}</label>
                             <Input
                               id="inq-email-input"
                               required
                               type="email"
-                              placeholder={t("contact.formEmailPlaceholder" as any)}
+                              placeholder={t("contact.formEmailPlaceholder")}
                               value={inqEmail}
                               onChange={(e) => setInqEmail(e.target.value)}
                               className="bg-white border-slate-200 text-slate-900 rounded-xl focus:border-blue-650 text-xs"
                             />
                           </div>
                           <div>
-                            <label htmlFor="inq-phone-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formPhone" as any)}</label>
+                            <label htmlFor="inq-phone-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formPhone")}</label>
                             <Input
                               id="inq-phone-input"
                               required
                               type="tel"
-                              placeholder={t("contact.formPhonePlaceholder" as any)}
+                              placeholder={t("contact.formPhonePlaceholder")}
                               value={inqPhone}
                               onChange={(e) => setInqPhone(e.target.value)}
                               className="bg-white border-slate-200 text-slate-900 rounded-xl focus:border-blue-650 text-xs"
@@ -311,30 +356,30 @@ function ContactContentInner() {
                         </div>
 
                         <div>
-                          <label htmlFor="inq-scope-select" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formScope" as any)}</label>
+                          <label htmlFor="inq-scope-select" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formScope")}</label>
                           <select
                             id="inq-scope-select"
                             value={inqSubject}
                             onChange={(e) => setInqSubject(e.target.value)}
                             className="w-full bg-white border border-slate-200 text-slate-700 rounded-xl p-2.5 text-xs focus:outline-none focus:border-blue-650 transition-colors"
                           >
-                            <option value="Software Development">{t("services.software-development.title" as any)}</option>
-                            <option value="Web Development">{t("services.web-development.title" as any)}</option>
-                            <option value="Mobile App Development">{t("services.mobile-development.title" as any)}</option>
-                            <option value="AI Solutions">{t("services.ai-solutions.title" as any)}</option>
-                            <option value="Cloud & DevOps">{t("services.cloud-devops.title" as any)}</option>
-                            <option value="Real Estate Creative">{t("services.real-estate-creative.title" as any)}</option>
-                            <option value="Other">{t("contact.formScopeOther" as any)}</option>
+                            <option value="Software Development">{t("services.software-development.title")}</option>
+                            <option value="Web Development">{t("services.web-development.title")}</option>
+                            <option value="Mobile App Development">{t("services.mobile-development.title")}</option>
+                            <option value="AI Solutions">{t("services.ai-solutions.title")}</option>
+                            <option value="Cloud & DevOps">{t("services.cloud-devops.title")}</option>
+                            <option value="Real Estate Creative">{t("services.real-estate-creative.title")}</option>
+                            <option value="Other">{t("contact.formScopeOther")}</option>
                           </select>
                         </div>
 
                         <div>
-                          <label htmlFor="inq-message-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formMessage" as any)}</label>
+                          <label htmlFor="inq-message-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("contact.formMessage")}</label>
                           <textarea
                             id="inq-message-input"
                             required
                             rows={4}
-                            placeholder={t("contact.formMessagePlaceholder" as any)}
+                            placeholder={t("contact.formMessagePlaceholder")}
                             value={inqMessage}
                             onChange={(e) => setInqMessage(e.target.value)}
                             className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl p-3 text-xs focus:outline-none focus:border-blue-650 transition-colors"
@@ -343,7 +388,7 @@ function ContactContentInner() {
 
                         {inqStatus === "error" && (
                           <div className="text-red-500 text-xs">
-                            {t("contact.formError" as any)}
+                            {inqError || t("contact.formError")}
                           </div>
                         )}
 
@@ -355,12 +400,12 @@ function ContactContentInner() {
                           {inqStatus === "submitting" ? (
                             <>
                               <Loader2 size={14} className="animate-spin" />
-                              <span>{t("contact.sending" as any)}</span>
+                              <span>{t("contact.sending")}</span>
                             </>
                           ) : (
                             <>
                               <Send size={14} />
-                              <span>{t("contact.submit" as any)}</span>
+                              <span>{t("contact.submit")}</span>
                             </>
                           )}
                         </Button>
@@ -373,20 +418,20 @@ function ContactContentInner() {
                     {testStatus === "success" ? (
                       <div className="flex flex-col items-center justify-center py-12 text-center">
                         <CheckCircle2 className="text-emerald-500 w-12 h-12 mb-4 animate-pulse" />
-                        <h3 className="text-base font-bold font-display text-slate-900 mb-2">{t("contact.feedbackSuccessTitle" as any)}</h3>
+                        <h3 className="text-base font-bold font-display text-slate-900 mb-2">{t("contact.feedbackSuccessTitle")}</h3>
                         <p className="text-slate-500 text-xs max-w-sm">
-                          {t("contact.feedbackSuccessMsg" as any)}
+                          {t("contact.feedbackSuccessMsg")}
                         </p>
                       </div>
                     ) : (
                       <form onSubmit={handleTestimonialSubmit} className="space-y-4">
                         <div>
-                          <label htmlFor="test-name-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formName" as any)}</label>
+                          <label htmlFor="test-name-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formName")}</label>
                           <Input
                             id="test-name-input"
                             required
                             type="text"
-                            placeholder={t("reviews.formName" as any)}
+                            placeholder={t("reviews.formName")}
                             value={testName}
                             onChange={(e) => setTestName(e.target.value)}
                             className="bg-white border-slate-200 text-slate-900 rounded-xl focus:border-blue-650 text-xs"
@@ -394,12 +439,12 @@ function ContactContentInner() {
                         </div>
 
                         <div>
-                          <label htmlFor="test-project-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formProject" as any)}</label>
+                          <label htmlFor="test-project-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formProject")}</label>
                           <Input
                             id="test-project-input"
                             required
                             type="text"
-                            placeholder={t("reviews.formProjectPlaceholder" as any)}
+                            placeholder={t("reviews.formProjectPlaceholder")}
                             value={testProject}
                             onChange={(e) => setTestProject(e.target.value)}
                             className="bg-white border-slate-200 text-slate-900 rounded-xl focus:border-blue-650 text-xs"
@@ -407,7 +452,7 @@ function ContactContentInner() {
                         </div>
 
                         <div>
-                          <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formRating" as any)}</span>
+                          <span className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formRating")}</span>
                           <div className="flex items-center gap-1.5 mt-1">
                             {[1, 2, 3, 4, 5].map((star) => (
                               <button
@@ -431,12 +476,12 @@ function ContactContentInner() {
                         </div>
 
                         <div>
-                          <label htmlFor="test-feedback-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formMessage" as any)}</label>
+                          <label htmlFor="test-feedback-input" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">{t("reviews.formMessage")}</label>
                           <textarea
                             id="test-feedback-input"
                             required
                             rows={4}
-                            placeholder={t("reviews.formMessagePlaceholder" as any)}
+                            placeholder={t("reviews.formMessagePlaceholder")}
                             value={testFeedback}
                             onChange={(e) => setTestFeedback(e.target.value)}
                             className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl p-3 text-xs focus:outline-none focus:border-blue-650 transition-colors"
@@ -445,7 +490,7 @@ function ContactContentInner() {
 
                         {testStatus === "error" && (
                           <div className="text-red-500 text-xs">
-                            {t("reviews.formError" as any)}
+                            {t("reviews.formError")}
                           </div>
                         )}
 
@@ -457,12 +502,12 @@ function ContactContentInner() {
                           {testStatus === "submitting" ? (
                             <>
                               <Loader2 size={14} className="animate-spin" />
-                              <span>{t("reviews.sending" as any)}</span>
+                              <span>{t("reviews.sending")}</span>
                             </>
                           ) : (
                             <>
                               <Heart size={14} />
-                              <span>{t("reviews.submitBtn" as any)}</span>
+                              <span>{t("reviews.submitBtn")}</span>
                             </>
                           )}
                         </Button>
@@ -557,7 +602,7 @@ export default function ContactContent() {
     <Suspense fallback={
       <div className="min-h-screen bg-white flex items-center justify-center text-slate-500">
         <Loader2 size={24} className="animate-spin text-blue-600 mr-2" />
-        <span>{t("contact.loading" as any)}</span>
+        <span>{t("contact.loading")}</span>
       </div>
     }>
       <ContactContentInner />

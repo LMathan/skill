@@ -14,6 +14,7 @@ export default function ExpenseMatePrivacyContent() {
   const [customReasonDetails, setCustomReasonDetails] = useState("")
   const [confirmed, setConfirmed] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [deleteHoneypot, setDeleteHoneypot] = useState("")
   const [submitSuccess, setSubmitSuccess] = useState(false)
   const [submitError, setSubmitError] = useState("")
 
@@ -85,7 +86,8 @@ export default function ExpenseMatePrivacyContent() {
           displayName: displayName.trim(),
           reason: deleteReason,
           details: customReasonDetails.trim(),
-          confirmed: true
+          confirmed: true,
+          _gotcha: deleteHoneypot
         })
       })
 
@@ -96,8 +98,8 @@ export default function ExpenseMatePrivacyContent() {
       }
 
       setSubmitSuccess(true)
-    } catch (err: any) {
-      setSubmitError(err.message || "An unexpected error occurred. Please try again.")
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "An unexpected error occurred. Please try again.")
     } finally {
       setSubmitting(false)
     }
@@ -274,6 +276,17 @@ export default function ExpenseMatePrivacyContent() {
                 </div>
               ) : (
                 <form onSubmit={handleDeleteSubmit} className="space-y-5">
+                  {/* Honeypot — hidden from humans, catches bots */}
+                  <input
+                    type="text"
+                    name="_gotcha"
+                    value={deleteHoneypot}
+                    onChange={(e) => setDeleteHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                  />
                   {submitError && (
                     <div className="p-4 rounded-xl bg-red-100 border border-red-300 text-red-900 text-xs font-medium flex items-center gap-2">
                       <AlertTriangle size={16} className="shrink-0 text-red-600" />

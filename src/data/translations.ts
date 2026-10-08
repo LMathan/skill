@@ -1,5 +1,6 @@
 export type TranslationKey = string;
 
+/* eslint-disable @typescript-eslint/no-explicit-any -- deeply nested literal translation tree, structural typing not practical */
 export const translations: Record<string, Record<string, any>> = {
   "en": {
     "nav": {

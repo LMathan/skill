@@ -364,7 +364,7 @@ export default function SitemapContent() {
             <HelpCircle size={32} className="text-slate-400 mx-auto mb-3" />
             <h4 className="font-bold text-slate-800 text-sm font-display">No matching sitemap routes found</h4>
             <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
-              We couldn't find any divisions, resources, or pages matching "{searchQuery}". Try typing generic terms like "AI" or "Blog".
+              We couldn&apos;t find any divisions, resources, or pages matching &quot;{searchQuery}&quot;. Try typing generic terms like &quot;AI&quot; or &quot;Blog&quot;.
             </p>
           </motion.div>
         )}
@@ -377,7 +377,7 @@ export default function SitemapContent() {
 
             <div className="max-w-xl mx-auto space-y-6 relative z-10 font-sans">
               <h2 className="text-2xl sm:text-3xl font-extrabold font-display leading-tight">
-                Didn't find what you're looking for?
+                Didn&apos;t find what you&apos;re looking for?
               </h2>
               <p className="text-slate-100 text-xs sm:text-sm leading-relaxed font-sans">
                 Our solutions engineering team is always available to guide you. Book a discovery call or send an inquiry to detail your project specifications.

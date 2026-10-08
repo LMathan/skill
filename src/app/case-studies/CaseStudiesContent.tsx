@@ -15,6 +15,8 @@ export default function CaseStudiesContent() {
   }
 
   const getTranslation = (key: string, fallback: string) => {
+    // Keys are built dynamically so they cannot be a compile-time TranslationKey.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const value = t(key as any)
     return (!value || value === key) ? fallback : value
   }
@@ -29,12 +31,12 @@ export default function CaseStudiesContent() {
       {/* Hero Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
         <div className="max-w-3xl mx-auto space-y-4">
-          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">{t("caseStudies.badge" as any)}</span>
+          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">{t("caseStudies.badge")}</span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-display text-slate-900">
-            {t("caseStudies.titlePart1" as any)} <span className="text-gradient">{t("caseStudies.titlePart2" as any)}</span>
+            {t("caseStudies.titlePart1")} <span className="text-gradient">{t("caseStudies.titlePart2")}</span>
           </h1>
           <p className="text-slate-500 text-sm sm:text-base leading-relaxed">
-            {t("caseStudies.subtitle" as any)}
+            {t("caseStudies.subtitle")}
           </p>
         </div>
       </section>
@@ -96,7 +98,7 @@ export default function CaseStudiesContent() {
                       <div className="space-y-6 text-left">
                         <div className="space-y-2">
                           <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">
-                            01. {t("caseStudies.step1" as any)}
+                            01. {t("caseStudies.step1")}
                           </span>
                           <p className="text-slate-500 leading-relaxed text-xs">
                             {getTranslation(`caseStudies.${study.id}.challenge`, study.challenge)}
@@ -105,7 +107,7 @@ export default function CaseStudiesContent() {
 
                         <div className="space-y-2">
                           <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">
-                            02. {t("caseStudies.step2" as any)}
+                            02. {t("caseStudies.step2")}
                           </span>
                           <p className="text-slate-500 leading-relaxed text-xs">
                             {getTranslation(`caseStudies.${study.id}.research`, study.research)}
@@ -114,7 +116,7 @@ export default function CaseStudiesContent() {
 
                         <div className="space-y-2">
                           <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">
-                            03. {t("caseStudies.step3" as any)}
+                            03. {t("caseStudies.step3")}
                           </span>
                           <p className="text-slate-500 leading-relaxed text-xs">
                             {getTranslation(`caseStudies.${study.id}.design`, study.design)}
@@ -125,7 +127,7 @@ export default function CaseStudiesContent() {
                       <div className="space-y-6 text-left border-t md:border-t-0 md:border-l border-slate-200/80 pt-6 md:pt-0 md:pl-8">
                         <div className="space-y-2">
                           <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">
-                            04. {t("caseStudies.step4" as any)}
+                            04. {t("caseStudies.step4")}
                           </span>
                           <p className="text-slate-500 leading-relaxed text-xs">
                             {getTranslation(`caseStudies.${study.id}.development`, study.development)}
@@ -134,7 +136,7 @@ export default function CaseStudiesContent() {
 
                         <div className="space-y-2">
                           <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">
-                            05. {t("caseStudies.step5" as any)}
+                            05. {t("caseStudies.step5")}
                           </span>
                           <p className="text-slate-500 leading-relaxed text-xs">
                             {getTranslation(`caseStudies.${study.id}.deployment`, study.deployment)}
@@ -144,7 +146,7 @@ export default function CaseStudiesContent() {
                         <div className="space-y-2 bg-white p-4 border border-slate-100 rounded-2xl shadow-sm">
                           <span className="text-[10px] font-extrabold uppercase tracking-widest text-green-655 block font-display flex items-center gap-1">
                             <CheckCircle2 size={12} className="text-green-500" />
-                            <span>06. {t("caseStudies.step6" as any)}</span>
+                            <span>06. {t("caseStudies.step6")}</span>
                           </span>
                           <p className="text-slate-700 font-semibold leading-relaxed text-xs">
                             {getTranslation(`caseStudies.${study.id}.result`, study.result)}

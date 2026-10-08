@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react"
 import Link from "next/link"
-import Image from "next/image"
+
 import { 
   Home, Camera, Sparkles, Image as ImageIcon, Sliders, Layers, 
   Paintbrush, RefreshCw, Send, CheckCircle2, ChevronDown, Trash2, 
@@ -12,6 +12,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion"
 
 interface RealEstateLandingPageProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- heterogeneous service record from agencyData
   service: any
   localImages: string[]
 }
@@ -106,6 +107,7 @@ export default function RealEstateLandingPage({ service, localImages }: RealEsta
 
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [quoteHoneypot, setQuoteHoneypot] = useState("")
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -132,7 +134,8 @@ export default function RealEstateLandingPage({ service, localImages }: RealEsta
         body: JSON.stringify({
           email: quoteEmail,
           service: quoteService,
-          files: uploadedFiles
+          files: uploadedFiles,
+          _gotcha: quoteHoneypot
         })
       })
 
@@ -283,7 +286,7 @@ export default function RealEstateLandingPage({ service, localImages }: RealEsta
                 {/* Embedded Editing Workflow Overlay Card */}
                 <div className="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-md border border-slate-800 rounded-xl p-3.5 text-white text-left font-mono text-[9px] flex items-center justify-between">
                   <div className="space-y-1">
-                    <div className="text-blue-400 font-bold">// EDITING WORKFLOW ACTIVE</div>
+                    <div className="text-blue-400 font-bold">{"// "}EDITING WORKFLOW ACTIVE</div>
                     <div className="text-slate-400">Step: Ambient-Flash HDR Blending</div>
                   </div>
                   <div className="flex items-center gap-1 bg-emerald-500/25 border border-emerald-500/40 text-emerald-400 font-bold px-2 py-0.5 rounded">
@@ -339,7 +342,7 @@ export default function RealEstateLandingPage({ service, localImages }: RealEsta
                 <button
                   key={key}
                   onClick={() => {
-                    setActiveSliderTab(key as any)
+                    setActiveSliderTab(key as "hdr" | "sky" | "twilight" | "staging" | "removal")
                     setSliderPosition(50) // reset position
                   }}
                   className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
@@ -697,6 +700,17 @@ export default function RealEstateLandingPage({ service, localImages }: RealEsta
                   onSubmit={handleFormSubmit} 
                   className="space-y-6"
                 >
+                  {/* Honeypot — hidden from humans, catches bots */}
+                  <input
+                    type="text"
+                    name="_gotcha"
+                    value={quoteHoneypot}
+                    onChange={(e) => setQuoteHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                  />
                   <div className="space-y-4">
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Business Email</label>

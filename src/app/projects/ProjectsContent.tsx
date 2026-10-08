@@ -33,6 +33,7 @@ export default function ProjectsContent() {
   const [college, setCollege] = useState("")
   const [message, setMessage] = useState("")
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle")
+  const [honeypot, setHoneypot] = useState("")
 
   const filteredProjects = useMemo(() => {
     return projectsData.filter((project) => {
@@ -82,6 +83,7 @@ export default function ProjectsContent() {
           phone: phone.trim(),
           theme: `Project Inquiry: ${inquiryProject?.title || "General"}`,
           message: `${message.trim()}${college.trim() ? `\n\n(Organization: ${college.trim()})` : ""}`,
+          _gotcha: honeypot,
         }),
       })
 
@@ -356,6 +358,17 @@ export default function ProjectsContent() {
             </div>
           ) : (
             <form onSubmit={handleInquirySubmit} className="space-y-4 mt-2">
+              {/* Honeypot — hidden from humans, catches bots */}
+              <input
+                type="text"
+                name="_gotcha"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
               <div>
                 <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1">Full Name *</label>
                 <Input

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import Link from "next/link"
+
 import { Briefcase, MapPin, Clock, ChevronDown, Check } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -16,6 +16,7 @@ export default function CareersContent() {
 
   const [isApplying, setIsApplying] = useState(false)
   const [applyError, setApplyError] = useState("")
+  const [honeypot, setHoneypot] = useState("")
 
   const toggleJob = (id: string) => {
     setActiveJob(activeJob === id ? null : id)
@@ -27,6 +28,8 @@ export default function CareersContent() {
     setApplyError("")
     try {
       const formData = new FormData(e.currentTarget)
+      // Honeypot — server silently accepts when filled (bot detected).
+      formData.append("_gotcha", honeypot)
       const res = await fetch("/api/careers-apply", {
         method: "POST",
         body: formData
@@ -59,13 +62,13 @@ export default function CareersContent() {
       {/* Hero Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
         <div className="max-w-3xl mx-auto space-y-4">
-          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">{t("careers.badge" as any)}</span>
+          <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">{t("careers.badge")}</span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-display text-slate-900">
-            {t("careers.titlePart1" as any)} <br />
-            <span className="text-gradient">{t("careers.titlePart2" as any)}</span>
+            {t("careers.titlePart1")} <br />
+            <span className="text-gradient">{t("careers.titlePart2")}</span>
           </h1>
           <p className="text-slate-500 text-sm sm:text-base leading-relaxed">
-            {t("careers.subtitle" as any)}
+            {t("careers.subtitle")}
           </p>
         </div>
       </section>
@@ -73,7 +76,7 @@ export default function CareersContent() {
       {/* Open Roles list */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="border-b border-slate-200/60 pb-4 mb-8">
-          <h2 className="text-xl font-bold font-display text-slate-950">{t("careers.openRoles" as any)}</h2>
+          <h2 className="text-xl font-bold font-display text-slate-950">{t("careers.openRoles")}</h2>
         </div>
 
         {agencyCareers.map((job) => {
@@ -90,20 +93,20 @@ export default function CareersContent() {
               >
                 <div className="space-y-2 text-left">
                   <h3 className="font-bold text-slate-950 text-base font-display">
-                    {t(`careers.${job.id}.title` as any) || job.title}
+                    {t(`careers.${job.id}.title`) || job.title}
                   </h3>
                   <div className="flex flex-wrap gap-4 text-slate-400 text-xs font-semibold">
                     <span className="flex items-center gap-1">
                       <Briefcase size={13} />
-                      <span>{t(`careers.${job.id}.department` as any) || job.department}</span>
+                      <span>{t(`careers.${job.id}.department`) || job.department}</span>
                     </span>
                     <span className="flex items-center gap-1">
                       <MapPin size={13} />
-                      <span>{t(`careers.${job.id}.location` as any) || job.location}</span>
+                      <span>{t(`careers.${job.id}.location`) || job.location}</span>
                     </span>
                     <span className="flex items-center gap-1">
                       <Clock size={13} />
-                      <span>{t(`careers.${job.id}.type` as any) || job.type}</span>
+                      <span>{t(`careers.${job.id}.type`) || job.type}</span>
                     </span>
                   </div>
                 </div>
@@ -123,30 +126,30 @@ export default function CareersContent() {
                   >
                     <div className="p-6 sm:p-8 space-y-6 text-xs sm:text-sm">
                       <div className="space-y-2 text-left">
-                        <span className="font-extrabold uppercase tracking-widest text-[9px] text-slate-400 block font-display">{t("careers.summaryTitle" as any)}</span>
-                        <p className="text-slate-500 leading-relaxed">{t(`careers.${job.id}.summary` as any) || job.summary}</p>
+                        <span className="font-extrabold uppercase tracking-widest text-[9px] text-slate-400 block font-display">{t("careers.summaryTitle")}</span>
+                        <p className="text-slate-500 leading-relaxed">{t(`careers.${job.id}.summary`) || job.summary}</p>
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                         <div className="space-y-3">
-                          <span className="font-extrabold uppercase tracking-widest text-[9px] text-slate-400 block font-display">{t("careers.requirementsTitle" as any)}</span>
+                          <span className="font-extrabold uppercase tracking-widest text-[9px] text-slate-400 block font-display">{t("careers.requirementsTitle")}</span>
                           <ul className="space-y-2">
                             {job.requirements.map((req, idx) => (
                               <li key={idx} className="flex items-start gap-2 text-slate-655 font-medium leading-relaxed">
                                 <Check size={14} className="text-blue-650 shrink-0 mt-0.5" />
-                                <span>{t(`careers.${job.id}.requirements.${idx}` as any) || req}</span>
+                                <span>{t(`careers.${job.id}.requirements.${idx}`) || req}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
 
                         <div className="space-y-3">
-                          <span className="font-extrabold uppercase tracking-widest text-[9px] text-slate-400 block font-display">{t("careers.benefitsTitle" as any)}</span>
+                          <span className="font-extrabold uppercase tracking-widest text-[9px] text-slate-400 block font-display">{t("careers.benefitsTitle")}</span>
                           <ul className="space-y-2">
                             {job.benefits.map((ben, idx) => (
                               <li key={idx} className="flex items-start gap-2 text-slate-655 font-medium leading-relaxed">
                                 <Check size={14} className="text-green-500 shrink-0 mt-0.5" />
-                                <span>{t(`careers.${job.id}.benefits.${idx}` as any) || ben}</span>
+                                <span>{t(`careers.${job.id}.benefits.${idx}`) || ben}</span>
                               </li>
                             ))}
                           </ul>
@@ -154,11 +157,22 @@ export default function CareersContent() {
                       </div>
 
                       <form onSubmit={handleApply} className="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-sm space-y-4 text-left mt-6">
-                        <span className="font-bold text-slate-900 block font-display text-sm">{t("careers.formTitle" as any)}</span>
+                        {/* Honeypot — hidden from humans, catches bots */}
+                        <input
+                          type="text"
+                          name="_gotcha"
+                          value={honeypot}
+                          onChange={(e) => setHoneypot(e.target.value)}
+                          tabIndex={-1}
+                          autoComplete="off"
+                          aria-hidden="true"
+                          className="hidden"
+                        />
+                        <span className="font-bold text-slate-900 block font-display text-sm">{t("careers.formTitle")}</span>
                         
                         {/* Hidden inputs to pass job context */}
                         <input type="hidden" name="jobId" value={job.id} />
-                        <input type="hidden" name="jobTitle" value={t(`careers.${job.id}.title` as any) || job.title} />
+                        <input type="hidden" name="jobTitle" value={t(`careers.${job.id}.title`) || job.title} />
 
                         {applyError && (
                           <p className="text-xs text-rose-600 font-semibold text-left">{applyError}</p>
@@ -169,19 +183,19 @@ export default function CareersContent() {
                             type="text" 
                             required 
                             name="name"
-                            placeholder={t("careers.formNamePlaceholder" as any)}
+                            placeholder={t("careers.formNamePlaceholder")}
                             className="bg-slate-50 border border-slate-200/60 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:ring-1 focus:ring-blue-650 text-slate-900 placeholder:text-slate-400"
                           />
                           <input 
                             type="email" 
                             required 
                             name="email"
-                            placeholder={t("careers.formEmailPlaceholder" as any)}
+                            placeholder={t("careers.formEmailPlaceholder")}
                             className="bg-slate-50 border border-slate-200/60 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:ring-1 focus:ring-blue-650 text-slate-900 placeholder:text-slate-400"
                           />
                         </div>
                         <div className="flex flex-col gap-2">
-                          <label className="text-[10px] font-bold text-slate-400 block">{t("careers.formFileLabel" as any)}</label>
+                          <label className="text-[10px] font-bold text-slate-400 block">{t("careers.formFileLabel")}</label>
                           <input 
                             type="file" 
                             required 
@@ -198,10 +212,10 @@ export default function CareersContent() {
                             disabled={isApplying}
                             className="font-bold text-xs py-2 px-5 disabled:opacity-50"
                           >
-                            {isApplying ? "Submitting..." : t("careers.formSubmit" as any)}
+                            {isApplying ? "Submitting..." : t("careers.formSubmit")}
                           </Button>
                           {applied && (
-                            <span className="text-xs text-green-600 font-bold">{t("careers.formSuccess" as any)}</span>
+                            <span className="text-xs text-green-600 font-bold">{t("careers.formSuccess")}</span>
                           )}
                         </div>
                       </form>

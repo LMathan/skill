@@ -30,7 +30,7 @@ export default function BlogContent() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.4, ease: "easeOut" as any }
+      transition: { duration: 0.4, ease: "easeOut" as const }
     }
   }
 
@@ -73,13 +73,13 @@ export default function BlogContent() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-100 bg-blue-50/40 text-blue-600 text-xs font-semibold uppercase tracking-wider mb-6">
               <BookOpen size={12} />
-              {t("blog.badge" as any)}
+              {t("blog.badge")}
             </div>
             <h1 className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight text-slate-900 mb-6">
-              {t("blog.titlePart1" as any)} <span className="text-gradient">{t("blog.titlePart2" as any)}</span>
+              {t("blog.titlePart1")} <span className="text-gradient">{t("blog.titlePart2")}</span>
             </h1>
             <p className="text-slate-500 text-sm max-w-2xl mx-auto leading-relaxed">
-              {t("blog.subtitle" as any)}
+              {t("blog.subtitle")}
             </p>
           </motion.div>
 
@@ -91,7 +91,7 @@ export default function BlogContent() {
               </div>
               <Input
                 type="text"
-                placeholder={t("blog.searchPlaceholder" as any)}
+                placeholder={t("blog.searchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-12 pr-4 py-5 bg-white border border-slate-200 rounded-2xl w-full text-slate-900 placeholder:text-slate-400 focus-visible:ring-blue-500/50 text-xs"
@@ -108,7 +108,7 @@ export default function BlogContent() {
                     : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100"
                 }`}
               >
-                {t("blog.allTags" as any)}
+                {t("blog.allTags")}
               </button>
               {allTags.map(tag => (
                 <button
@@ -154,10 +154,10 @@ export default function BlogContent() {
                       </span>
                     </div>
                     <CardTitle className="text-lg font-bold font-display text-slate-900 group-hover:text-blue-650 transition-colors duration-300">
-                      {t(`blogArticles.${blog.id}.title` as any) || blog.title}
+                      {t(`blogArticles.${blog.id}.title`) || blog.title}
                     </CardTitle>
                     <CardDescription className="text-slate-500 mt-2 text-xs leading-relaxed">
-                      {t(`blogArticles.${blog.id}.summary` as any) || blog.summary}
+                      {t(`blogArticles.${blog.id}.summary`) || blog.summary}
                     </CardDescription>
                   </CardHeader>
 
@@ -175,12 +175,12 @@ export default function BlogContent() {
                   </CardContent>
 
                   <CardFooter className="p-6 pt-0 border-t border-slate-100 mt-auto flex items-center justify-between">
-                    <span className="text-[10px] text-slate-400 font-semibold">{t("blog.authorBy" as any)} {blog.author}</span>
+                    <span className="text-[10px] text-slate-400 font-semibold">{t("blog.authorBy")} {blog.author}</span>
                     <Link href={`/blog/${blog.id}`}>
                       <Button
                         className="rounded-xl bg-slate-50 hover:bg-blue-600 hover:text-white border border-slate-100 text-slate-700 text-xs py-2 px-3.5 flex items-center gap-1 group-hover:translate-x-0.5 transition-all cursor-pointer"
                       >
-                        <span>{t("blog.readBtn" as any)}</span>
+                        <span>{t("blog.readBtn")}</span>
                         <ArrowRight size={12} />
                       </Button>
                     </Link>
@@ -193,9 +193,9 @@ export default function BlogContent() {
           {filteredBlogs.length === 0 && (
             <div className="text-center py-20 bg-slate-50 border border-slate-200 rounded-3xl max-w-md mx-auto">
               <BookOpen className="mx-auto text-slate-400 mb-4" size={40} />
-              <h3 className="text-lg font-bold font-display text-slate-900 mb-2">{t("blog.noArticlesTitle" as any)}</h3>
+              <h3 className="text-lg font-bold font-display text-slate-900 mb-2">{t("blog.noArticlesTitle")}</h3>
               <p className="text-slate-500 text-xs">
-                {t("blog.noArticlesDesc" as any)} &quot;{searchQuery}&quot;.
+                {t("blog.noArticlesDesc")} &quot;{searchQuery}&quot;.
               </p>
             </div>
           )}

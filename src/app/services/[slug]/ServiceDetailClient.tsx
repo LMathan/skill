@@ -2,6 +2,8 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
+import RealEstateLandingPage from "./RealEstateLandingPage"
+
 import {
   Check, ArrowRight, ArrowLeft, Cpu, Globe, Smartphone, Brain,
   Cloud, TrendingUp, Code, Layers, ShieldAlert, Layout, Activity, Home,
@@ -12,13 +14,14 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/context/LanguageContext"
 import { galleryData } from "@/data/galleryData"
-import RealEstateLandingPage from "./RealEstateLandingPage"
 
 interface ServiceDetailClientProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- heterogeneous service records from agencyData/blogData
   service: any
   localImages: string[]
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- optional project record fields vary by source data
 function getProjectFeatures(project: any) {
   if (project.features) return project.features;
 
@@ -220,7 +223,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
   ])
 
   // PHP Laravel route inspector requests
-  const [phpResponse, setPhpResponse] = useState<any>({
+  const [phpResponse, setPhpResponse] = useState<{ status: string; body: string }>({
     status: "200 OK",
     body: JSON.stringify({ message: "Select route above to fetch database output payload" }, null, 2)
   })
@@ -474,7 +477,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
                     <button
                       type="button"
                       key={tab}
-                      onClick={() => setActiveMobileScreen(tab as any)}
+                      onClick={() => setActiveMobileScreen(tab as "login" | "chart" | "map")}
                       className={`px-2.5 py-1 rounded-full text-[8px] font-extrabold uppercase transition-all cursor-pointer ${activeMobileScreen === tab ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-500"
                         }`}
                     >
@@ -1213,12 +1216,12 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
               </div>
 
               <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight font-display text-slate-900 leading-tight">
-                {t(`services.${slug}.title` as any) || service.title} <br />
+                {t(`services.${slug}.title`) || service.title} <br />
                 <span className="text-gradient">Solutions Architecting</span>
               </h1>
 
               <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-sans">
-                {t(`services.${slug}.longDesc` as any) || service.longDesc}
+                {t(`services.${slug}.longDesc`) || service.longDesc}
               </p>
 
               <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
@@ -1341,7 +1344,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
               {service.subServices.map((sub: string, idx: number) => (
                 <div key={idx} className="bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm space-y-3 hover:border-blue-600 transition-colors group glass-card glass-card-hover">
                   <span className="font-bold text-xs sm:text-sm text-slate-900 font-display block group-hover:text-blue-655 transition-colors">
-                    {t(`services.${slug}.subServices.${idx}` as any) || sub}
+                    {t(`services.${slug}.subServices.${idx}`) || sub}
                   </span>
                   <p className="text-[11px] text-slate-500 leading-relaxed">
                     Custom modular capability configured for enterprise workloads, security parameters, and robust API endpoints.
@@ -1424,6 +1427,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any -- project records vary by service config */}
               {categoryProjects.map((proj: any, idx: number) => (
                 <div key={idx} className="bg-white border border-slate-200/60 p-6 rounded-2xl shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow glass-card glass-card-hover">
                   <div className="space-y-3">
@@ -1505,6 +1509,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
             <h2 className="text-2xl font-extrabold text-slate-900 font-display">Related Service Questions</h2>
           </div>
           <div className="space-y-6">
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any -- FAQ shape varies per service config */}
             {config.faqs.map((faq: any, index: number) => (
               <div key={index} className="bg-slate-50/50 border border-slate-200/60 p-5 rounded-2xl space-y-2 glass-card">
                 <span className="font-bold text-xs sm:text-sm text-slate-900 block font-display">{faq.q}</span>

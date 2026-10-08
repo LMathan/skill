@@ -14,10 +14,10 @@ export default function PortfolioContent() {
   const [activeFilter, setActiveFilter] = useState<string>("all")
 
   const categories = [
-    { id: "all", name: t("portfolio.tabAll" as any) },
-    { id: "web", name: t("portfolio.tabWeb" as any) },
-    { id: "mobile", name: t("portfolio.tabMobile" as any) },
-    { id: "iot", name: t("portfolio.tabIot" as any) }
+    { id: "all", name: t("portfolio.tabAll") },
+    { id: "web", name: t("portfolio.tabWeb") },
+    { id: "mobile", name: t("portfolio.tabMobile") },
+    { id: "iot", name: t("portfolio.tabIot") }
   ]
 
   const filteredItems = agencyCaseStudies.filter((item) => {
@@ -61,13 +61,13 @@ export default function PortfolioContent() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
         <div className="max-w-3xl mx-auto space-y-4">
           <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block font-display">
-            {t("portfolio.badge" as any)}
+            {t("portfolio.badge")}
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight font-display text-slate-900">
-            {t("portfolio.titlePart1" as any)} <span className="text-gradient">{t("portfolio.titlePart2" as any)}</span>
+            {t("portfolio.titlePart1")} <span className="text-gradient">{t("portfolio.titlePart2")}</span>
           </h1>
           <p className="text-slate-500 text-xs sm:text-sm leading-relaxed max-w-xl mx-auto">
-            {t("portfolio.subtitle" as any)}
+            {t("portfolio.subtitle")}
           </p>
         </div>
       </section>
@@ -152,7 +152,7 @@ export default function PortfolioContent() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100 text-xs">
                       <div className="space-y-1">
                         <span className="font-extrabold uppercase tracking-wider text-[9px] text-red-500">
-                          {t("portfolio.problemLabel" as any)}
+                          {t("portfolio.problemLabel")}
                         </span>
                         <p className="text-slate-500 leading-relaxed text-[11px] font-sans">
                           {item.challenge}
@@ -160,7 +160,7 @@ export default function PortfolioContent() {
                       </div>
                       <div className="space-y-1">
                         <span className="font-extrabold uppercase tracking-wider text-[9px] text-blue-600">
-                          {t("portfolio.solutionLabel" as any)}
+                          {t("portfolio.solutionLabel")}
                         </span>
                         <p className="text-slate-500 leading-relaxed text-[11px] font-sans">
                           {item.development.split(".")[0]}.
