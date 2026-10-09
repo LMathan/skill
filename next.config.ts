@@ -7,8 +7,8 @@ const isDev = process.env.NODE_ENV !== "production";
 // scripts (a nonce-based CSP would require middleware; revisit if Threat
 // Model demands it).
 const scriptSrc = isDev
-  ? "'self' 'unsafe-inline' 'unsafe-eval'"
-  : "'self' 'unsafe-inline'";
+  ? "'self' 'unsafe-inline' 'unsafe-eval' https://www.clarity.ms https://*.clarity.ms"
+  : "'self' 'unsafe-inline' https://www.clarity.ms https://*.clarity.ms";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
