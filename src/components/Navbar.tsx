@@ -3,11 +3,62 @@
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, ChevronDown, X, Send } from "lucide-react"
+import { Menu, ChevronDown, X, Send, Server, Globe, Smartphone, Sparkles, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import { useLanguage } from "@/context/LanguageContext"
 import { agencyServices } from "@/data/agencyData"
+
+const SERVICE_CATEGORIES = [
+  {
+    id: "cloud",
+    title: "Software & Cloud",
+    icon: Server,
+    iconBg: "bg-blue-50 text-blue-600 border border-blue-100/80",
+    services: [
+      { slug: "software-development", title: "Enterprise Software", tagline: "Custom architecture & ERP" },
+      { slug: "cloud-devops", title: "Cloud & DevOps", tagline: "AWS, GCP & Kubernetes" },
+      { slug: "saas-development", title: "SaaS Engineering", tagline: "Multi-tenant platforms" },
+      { slug: "enterprise-development", title: "Enterprise Solutions", tagline: "High-concurrency systems" },
+    ],
+  },
+  {
+    id: "web",
+    title: "Web & Frontend",
+    icon: Globe,
+    iconBg: "bg-indigo-50 text-indigo-600 border border-indigo-100/80",
+    services: [
+      { slug: "web-development", title: "Modern Web Apps", tagline: "Edge-rendered web platforms" },
+      { slug: "react-development", title: "React 19 & Next.js", tagline: "Dynamic high-speed apps" },
+      { slug: "ui-ux-design", title: "UI/UX & Design Systems", tagline: "Interactive product UX" },
+      { slug: "wordpress-development", title: "Headless CMS", tagline: "Custom content platforms" },
+    ],
+  },
+  {
+    id: "mobile",
+    title: "Mobile & Backend",
+    icon: Smartphone,
+    iconBg: "bg-purple-50 text-purple-600 border border-purple-100/80",
+    services: [
+      { slug: "mobile-development", title: "Native iOS & Android", tagline: "120 FPS native motion" },
+      { slug: "flutter-development", title: "Flutter Cross-Platform", tagline: "Multi-platform codebase" },
+      { slug: "dotnet-development", title: ".NET Enterprise Core", tagline: "High-performance APIs" },
+      { slug: "php-development", title: "PHP & Modern Laravel", tagline: "High-volume web backends" },
+    ],
+  },
+  {
+    id: "ai",
+    title: "AI & Emerging Tech",
+    icon: Sparkles,
+    iconBg: "bg-emerald-50 text-emerald-600 border border-emerald-100/80",
+    services: [
+      { slug: "ai-solutions", title: "Autonomous AI & RAG", tagline: "Neural agent pipelines" },
+      { slug: "iot-embedded", title: "Industrial IoT & Firmware", tagline: "ESP32 & telemetry sensors" },
+      { slug: "seo-marketing", title: "Technical SEO & Growth", tagline: "Core Web Vitals dominance" },
+      { slug: "real-estate-creative", title: "Real Estate Tech", tagline: "3D PropTech visualizations" },
+    ],
+  },
+]
 
 export function Navbar() {
   const pathname = usePathname()
@@ -18,6 +69,7 @@ export function Navbar() {
   const [isServicesHovered, setIsServicesHovered] = useState(false)
   const [isProductsHovered, setIsProductsHovered] = useState(false)
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false)
+  const [activeMobileCategory, setActiveMobileCategory] = useState<string | null>("cloud")
   const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false)
 
   useEffect(() => {
@@ -92,87 +144,57 @@ export function Navbar() {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 8 }}
                             transition={{ duration: 0.2 }}
-                            className={`absolute top-full ${isRTL ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} mt-2 w-[760px] bg-white border border-slate-200/60 rounded-3xl shadow-xl p-6 grid grid-cols-3 gap-6 z-50 text-left`}
+                            className={`absolute top-full ${isRTL ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} mt-2 w-[880px] bg-white/95 backdrop-blur-2xl border border-slate-200/80 rounded-3xl shadow-2xl p-6 grid grid-cols-4 gap-4 z-50 text-left`}
                           >
-                            {/* Column 1: Software & Cloud */}
-                            <div className="space-y-3">
-                              <div className="pb-1.5 border-b border-slate-100">
-                                <span className="text-[9px] font-extrabold uppercase tracking-widest text-blue-600">
-                                  Software &amp; Cloud
-                                </span>
-                              </div>
-                              <div className="space-y-1">
-                                {agencyServices
-                                  .filter(s => ["software-development", "enterprise-development", "saas-development", "cloud-devops", "dotnet-development", "php-development"].includes(s.slug))
-                                  .map((service) => (
+                            {SERVICE_CATEGORIES.map((cat) => (
+                              <div key={cat.id} className="space-y-2">
+                                <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
+                                  <div className={`p-1.5 rounded-lg ${cat.iconBg}`}>
+                                    <cat.icon className="w-3.5 h-3.5" />
+                                  </div>
+                                  <span className="text-xs font-bold text-slate-900 tracking-tight truncate">
+                                    {cat.title}
+                                  </span>
+                                </div>
+                                <div className="space-y-0.5">
+                                  {cat.services.map((service) => (
                                     <Link
                                       key={service.slug}
                                       href={`/services/${service.slug}`}
-                                      className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors"
+                                      onClick={() => setIsServicesHovered(false)}
+                                      className="group flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors"
                                     >
-                                      <span className="text-xs font-bold text-slate-900 hover:text-blue-600 transition-colors">
-                                        {t(`services.${service.slug}.title`) || service.title}
+                                      <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors truncate">
+                                        {service.title}
                                       </span>
-                                      <span className="text-[9px] text-slate-400 line-clamp-1 mt-0.5">
-                                        {t(`services.${service.slug}.desc`) || service.tagline}
+                                      <span className="text-[10px] text-slate-400 group-hover:text-slate-500 truncate mt-0.5">
+                                        {service.tagline}
                                       </span>
                                     </Link>
                                   ))}
+                                </div>
                               </div>
-                            </div>
+                            ))}
 
-                            {/* Column 2: Web & Mobile */}
-                            <div className="space-y-3">
-                              <div className="pb-1.5 border-b border-slate-100">
-                                <span className="text-[9px] font-extrabold uppercase tracking-widest text-indigo-650">
-                                  Web &amp; Mobile
-                                </span>
-                              </div>
-                              <div className="space-y-1">
-                                {agencyServices
-                                  .filter(s => ["web-development", "react-development", "wordpress-development", "mobile-development", "flutter-development", "ui-ux-design"].includes(s.slug))
-                                  .map((service) => (
-                                    <Link
-                                      key={service.slug}
-                                      href={`/services/${service.slug}`}
-                                      className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors"
-                                    >
-                                      <span className="text-xs font-bold text-slate-900 hover:text-blue-600 transition-colors">
-                                        {t(`services.${service.slug}.title`) || service.title}
-                                      </span>
-                                      <span className="text-[9px] text-slate-400 line-clamp-1 mt-0.5">
-                                        {t(`services.${service.slug}.desc`) || service.tagline}
-                                      </span>
-                                    </Link>
-                                  ))}
-                              </div>
-                            </div>
-
-                            {/* Column 3: Specialized & Marketing */}
-                            <div className="space-y-3">
-                              <div className="pb-1.5 border-b border-slate-100">
-                                <span className="text-[9px] font-extrabold uppercase tracking-widest text-emerald-600">
-                                  Specialized &amp; AI
-                                </span>
-                              </div>
-                              <div className="space-y-1">
-                                {agencyServices
-                                  .filter(s => ["ai-solutions", "iot-embedded", "seo-marketing", "real-estate-creative"].includes(s.slug))
-                                  .map((service) => (
-                                    <Link
-                                      key={service.slug}
-                                      href={`/services/${service.slug}`}
-                                      className="flex flex-col p-2 rounded-xl hover:bg-slate-50 transition-colors"
-                                    >
-                                      <span className="text-xs font-bold text-slate-900 hover:text-blue-600 transition-colors">
-                                        {t(`services.${service.slug}.title`) || service.title}
-                                      </span>
-                                      <span className="text-[9px] text-slate-400 line-clamp-1 mt-0.5">
-                                        {t(`services.${service.slug}.desc`) || service.tagline}
-                                      </span>
-                                    </Link>
-                                  ))}
-                              </div>
+                            {/* Bottom Spotlight Bar */}
+                            <div className="col-span-4 mt-2 pt-3 border-t border-slate-100 flex items-center justify-between text-xs px-1">
+                              <Link
+                                href="/services"
+                                onClick={() => setIsServicesHovered(false)}
+                                className="inline-flex items-center gap-1.5 font-bold text-blue-600 hover:text-blue-700 transition-colors"
+                              >
+                                <span>Browse All 16 Engineering Services</span>
+                                <ArrowRight size={13} />
+                              </Link>
+                              <button
+                                onClick={() => {
+                                  setIsServicesHovered(false)
+                                  window.dispatchEvent(new CustomEvent("open-book-call-modal"))
+                                }}
+                                className="text-slate-500 hover:text-slate-900 transition-colors cursor-pointer"
+                              >
+                                Need custom architecture? <span className="underline font-bold text-slate-700 hover:text-blue-600">Consult Our Engineers</span>
+                              </button>
                             </div>
                           </motion.div>
                         )}
@@ -328,7 +350,7 @@ export function Navbar() {
               {navLinks.map((link) => {
                 if (link.hasSubmenu) {
                   return (
-                    <div key={link.name} className="space-y-1">
+                    <div key={link.name} className="space-y-2">
                       <button
                         onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
                         className="w-full flex items-center justify-between py-2 text-[15px] font-bold text-slate-800"
@@ -338,17 +360,71 @@ export function Navbar() {
                       </button>
 
                       {isMobileServicesOpen && (
-                        <div className="pl-4 border-l border-slate-100 grid grid-cols-1 gap-1.5 py-1">
-                          {agencyServices.map((service) => (
-                            <Link
-                              key={service.slug}
-                              href={`/services/${service.slug}`}
-                              onClick={() => setIsMobileOpen(false)}
-                              className="py-1 text-xs text-slate-500 font-semibold hover:text-blue-600"
-                            >
-                              {t(`services.${service.slug}.title`) || service.title}
-                            </Link>
-                          ))}
+                        <div className="space-y-2 pt-1 pb-2">
+                          {/* Quick Browse All Hub Link */}
+                          <Link
+                            href="/services"
+                            onClick={() => setIsMobileOpen(false)}
+                            className="w-full py-2 px-3 rounded-xl bg-blue-50/80 text-blue-600 border border-blue-100/80 text-xs font-bold flex items-center justify-between hover:bg-blue-100 transition-colors"
+                          >
+                            <span>Browse All 16 Engineering Services</span>
+                            <ArrowRight size={13} />
+                          </Link>
+
+                          {/* 4 Clean Categorized Accordions */}
+                          <div className="space-y-1.5">
+                            {SERVICE_CATEGORIES.map((cat) => {
+                              const isCatOpen = activeMobileCategory === cat.id
+                              return (
+                                <div key={cat.id} className="rounded-xl border border-slate-100 overflow-hidden bg-slate-50/60">
+                                  <button
+                                    onClick={() => setActiveMobileCategory(isCatOpen ? null : cat.id)}
+                                    className="w-full flex items-center justify-between p-2.5 text-left transition-colors"
+                                  >
+                                    <div className="flex items-center gap-2">
+                                      <div className={`p-1.5 rounded-lg ${cat.iconBg}`}>
+                                        <cat.icon className="w-3.5 h-3.5" />
+                                      </div>
+                                      <span className="text-xs font-bold text-slate-800">{cat.title}</span>
+                                    </div>
+                                    <div className="flex items-center gap-1.5">
+                                      <span className="text-[10px] font-mono text-slate-400 bg-white px-1.5 py-0.5 rounded border border-slate-200/60 font-semibold">
+                                        {cat.services.length}
+                                      </span>
+                                      <ChevronDown
+                                        size={14}
+                                        className={`text-slate-400 transition-transform duration-200 ${isCatOpen ? "rotate-180" : ""}`}
+                                      />
+                                    </div>
+                                  </button>
+
+                                  <AnimatePresence>
+                                    {isCatOpen && (
+                                      <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: "auto" }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.2 }}
+                                        className="px-3 pb-2 pt-1 border-t border-slate-100 space-y-1 bg-white"
+                                      >
+                                        {cat.services.map((svc) => (
+                                          <Link
+                                            key={svc.slug}
+                                            href={`/services/${svc.slug}`}
+                                            onClick={() => setIsMobileOpen(false)}
+                                            className="flex flex-col py-1.5 border-b border-slate-50 last:border-0 hover:text-blue-600 transition-colors"
+                                          >
+                                            <span className="text-xs font-bold text-slate-800">{svc.title}</span>
+                                            <span className="text-[10px] text-slate-400">{svc.tagline}</span>
+                                          </Link>
+                                        ))}
+                                      </motion.div>
+                                    )}
+                                  </AnimatePresence>
+                                </div>
+                              )
+                            })}
+                          </div>
                         </div>
                       )}
                     </div>
