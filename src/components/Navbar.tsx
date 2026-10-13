@@ -41,11 +41,11 @@ export function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-350 ${
-        scrolled ? "glass-nav py-2 shadow-sm" : "bg-transparent py-5"
+        scrolled ? "glass-nav py-1.5 sm:py-2 shadow-sm" : "bg-transparent py-2.5 sm:py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex items-center justify-between transition-all duration-350 ${scrolled ? "h-14" : "h-20"}`}>
+        <div className={`flex items-center justify-between transition-all duration-350 ${scrolled ? "h-12 sm:h-14" : "h-14 sm:h-20"}`}>
 
           {/* Brand Logo */}
           <div className="flex-shrink-0">
@@ -55,7 +55,7 @@ export function Navbar() {
                 alt="SkillForge Technologies"
                 width={180}
                 height={60}
-                className={`transition-all duration-350 w-auto block ${scrolled ? "h-11" : "h-[60px]"}`}
+                className={`transition-all duration-350 w-auto block ${scrolled ? "h-8 sm:h-11" : "h-10 sm:h-[60px]"}`}
               />
             </Link>
           </div>

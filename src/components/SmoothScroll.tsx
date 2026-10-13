@@ -18,14 +18,42 @@ declare global {
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // Detect mobile or touch devices — NEVER hijack native touch momentum scrolling
+    const isTouchOrMobile =
+      typeof window !== "undefined" &&
+      (window.innerWidth < 1024 ||
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0)
+
+    if (isTouchOrMobile) {
+      // Provide safe fallback interface
+      window.__lenis = {
+        stop: () => {},
+        start: () => {},
+        scrollTo: (target: number | string | HTMLElement) => {
+          if (typeof target === "number") {
+            window.scrollTo({ top: target, behavior: "smooth" })
+          } else if (typeof target === "string") {
+            const el = document.querySelector(target)
+            el?.scrollIntoView({ behavior: "smooth" })
+          } else if (target instanceof HTMLElement) {
+            target.scrollIntoView({ behavior: "smooth" })
+          }
+        },
+      } as unknown as Lenis
+      return () => {
+        window.__lenis = undefined
+      }
+    }
+
     const lenis = new Lenis({
-      duration: 0.85,
+      duration: 0.8,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1.1,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 0, // Never hijack touch
     })
 
     window.__lenis = lenis

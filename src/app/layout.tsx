@@ -5,7 +5,6 @@ import { LanguageProvider } from "@/context/LanguageContext"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import FloatingWidgets from "@/components/FloatingWidgets"
-import AnimatedBackground from "@/components/AnimatedBackground"
 import Script from "next/script"
 import "./globals.css"
 
@@ -85,10 +84,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    // No `scroll-smooth` here: the Lenis smooth-scroll wrapper on the home
-    // page drives scrolling and CSS smooth-behavior conflicts with it.
-    <html lang="en">
-      <body className={`${inter.variable} ${outfit.variable} font-sans min-h-screen flex flex-col bg-white text-slate-900`}>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} ${outfit.variable} font-sans min-h-screen flex flex-col bg-white text-slate-900 overflow-x-hidden`}>
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){
@@ -100,9 +97,6 @@ export default function RootLayout({
         </Script>
         <LanguageProvider>
           <ThemeProvider>
-            {/* Global Animated Background */}
-            <AnimatedBackground />
-
             {/* Header */}
             <Navbar />
 

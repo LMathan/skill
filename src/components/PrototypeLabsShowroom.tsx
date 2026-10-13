@@ -284,20 +284,20 @@ export default function PrototypeLabsShowroom() {
             <h3 className="font-extrabold text-slate-900 text-lg font-display">Active Prototypes</h3>
           </div>
 
-          <div className="space-y-2.5">
+          <div className="flex overflow-x-auto no-scrollbar gap-2.5 lg:flex-col lg:space-y-2.5 lg:overflow-visible pb-2 lg:pb-0">
             {prototypesData.map(proto => {
               const isActive = activeProto === proto.id
               return (
                 <button
                   key={proto.id}
                   onClick={() => setActiveProto(proto.id)}
-                  className={`w-full text-left p-4.5 rounded-2xl border transition-all duration-300 relative group flex gap-4 items-center cursor-pointer ${
+                  className={`shrink-0 min-w-[200px] sm:min-w-[240px] lg:min-w-0 w-auto lg:w-full text-left p-3.5 sm:p-4.5 rounded-2xl border transition-all duration-300 relative group flex gap-3 sm:gap-4 items-center cursor-pointer ${
                     isActive 
                       ? "bg-slate-900 border-slate-900 text-white shadow-lg shadow-slate-900/10" 
                       : "bg-white/60 border-slate-200/60 text-slate-700 hover:bg-slate-100/80 hover:border-slate-300/50"
                   }`}
                 >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border shadow-inner ${
+                  <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 border shadow-inner ${
                     isActive 
                       ? "bg-slate-800 border-slate-700 text-blue-400" 
                       : "bg-slate-50 border-slate-200 text-slate-600"

@@ -41,7 +41,7 @@ export default function ServicesPage() {
   return (
     <div className="relative bg-transparent pt-24 select-none bg-dot-pattern overflow-hidden">
       {/* Background glowing circles and 3D shapes */}
-      <div className="absolute top-10 right-10 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" />
+      <div className="absolute top-10 right-10 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-1/3 left-10 w-[350px] h-[350px] bg-purple-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
       
       {/* 3D-style gear isometric tech shape */}

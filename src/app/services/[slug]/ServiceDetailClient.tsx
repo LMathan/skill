@@ -1185,7 +1185,7 @@ export default function ServiceDetailClient({ service, localImages }: ServiceDet
     <div className="relative bg-transparent pt-24 pb-20 select-none text-slate-800 text-left font-sans bg-dot-pattern" dir={isRTL ? "rtl" : "ltr"}>
 
       {/* Background colorful blurred blobs */}
-      <div className="absolute top-10 right-10 w-[300px] h-[300px] bg-blue-500/8 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse" />
+      <div className="absolute top-10 right-10 w-[300px] h-[300px] bg-blue-500/8 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute top-1/3 left-10 w-[300px] h-[300px] bg-purple-500/8 rounded-full blur-3xl pointer-events-none -z-10" />
 
       {/* Back button */}

@@ -228,7 +228,7 @@ export default function RealEstateLandingPage({ service, localImages }: RealEsta
       </div>
 
       {/* Ambient background decoration */}
-      <div className="absolute top-10 left-1/4 w-[350px] h-[350px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none -z-10 animate-pulse" />
+      <div className="absolute top-10 left-1/4 w-[350px] h-[350px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none -z-10" />
       <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none -z-10" />
 
       {/* ================= HERO SECTION ================= */}

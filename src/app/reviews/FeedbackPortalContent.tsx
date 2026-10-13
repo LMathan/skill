@@ -8,7 +8,6 @@ import {
   Sparkles, AlertCircle, Compass, Star, Loader2, Plus, X
 } from "lucide-react"
 import { Card } from "@/components/ui/card"
-import Particles from "@/components/magicui/particles"
 import { Button } from "@/components/ui/button"
 
 import { useLanguage } from "@/context/LanguageContext"
@@ -277,9 +276,6 @@ export default function FeedbackPortalContent() {
 
   return (
     <div className="relative min-h-screen bg-white text-slate-900 overflow-hidden py-24 px-4 sm:px-6 lg:px-8 bg-dot-pattern" dir={isRTL ? "rtl" : "ltr"}>
-      
-      {/* Background patterns */}
-      <Particles className="absolute inset-0 z-0 opacity-40 pointer-events-none" quantity={60} staticity={50} />
 
       {/* Floating background gradient circles for visual depth */}
       <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />

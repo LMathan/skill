@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
-import Particles from "@/components/magicui/particles"
 import BorderBeam from "@/components/magicui/border-beam"
 import Spotlight from "@/components/magicui/spotlight"
 import { SEOPageData } from "@/data/seoLandingData"
@@ -103,8 +102,6 @@ export default function LocalLandingClient({ content, slug }: LocalLandingClient
 
   return (
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
-      {/* Background patterns */}
-      <Particles className="absolute inset-0 z-0 opacity-40 pointer-events-none" quantity={60} staticity={50} />
 
       {/* Glow shapes */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] pointer-events-none" />

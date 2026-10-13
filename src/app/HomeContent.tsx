@@ -32,11 +32,7 @@ export default function HomeContent() {
   // Stack explorer active tab
   const [activeStackTab, setActiveStackTab] = useState<string>("frontend")
 
-  // Interactive capabilities simulator states
-  const [activeServiceTab, setActiveServiceTab] = useState<string>("software-development")
-
-  // Floating dock & progress bar
-  const [showDock, setShowDock] = useState(false)
+  // Read progress bar
   const [readProgress, setReadProgress] = useState(0)
 
   // Firebase Live Client Reviews State & Auto-Loop (4 at a time)
@@ -129,7 +125,6 @@ export default function HomeContent() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowDock(window.scrollY > 500)
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight
       if (totalHeight > 0) {
         setReadProgress((window.scrollY / totalHeight) * 100)
@@ -138,14 +133,6 @@ export default function HomeContent() {
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
-
-  const handleDockNavigation = (tabId: string) => {
-    setActiveServiceTab(tabId)
-    const element = document.getElementById("capabilities-section")
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
 
   const triggerBookModal = () => {
     if (typeof window !== "undefined") {
@@ -321,7 +308,7 @@ export default function HomeContent() {
         <section
           ref={heroRef}
           onMouseMove={handleHeroMouseMove}
-          className="relative w-full pt-32 pb-24 md:pt-40 md:pb-40 flex flex-col justify-center items-center overflow-hidden bg-white"
+          className="relative w-full pt-28 pb-16 sm:pt-32 sm:pb-24 md:pt-40 md:pb-40 flex flex-col justify-center items-center overflow-hidden bg-white"
         >
           {/* Layer 1: High-Resolution Background Image Layout */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -343,44 +330,44 @@ export default function HomeContent() {
 
             {/* Top Engineering Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="flex justify-center mb-6"
             >
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-900 text-white text-xs font-semibold tracking-wider uppercase shadow-md">
-                <span className="relative flex h-2 w-2">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-[11px] sm:text-xs font-semibold tracking-wider uppercase shadow-md max-w-full truncate">
+                <span className="relative flex h-2 w-2 shrink-0">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                 </span>
-                <span>SKILLFORGE ENGINEERING LABS</span>
-                <span className="text-slate-500">•</span>
-                <span className="text-blue-400 font-mono">PRODUCT ARCHITECTURE</span>
+                <span className="truncate">SKILLFORGE ENGINEERING LABS</span>
+                <span className="text-slate-500 hidden xs:inline">•</span>
+                <span className="text-blue-400 font-mono hidden xs:inline">PRODUCT ARCHITECTURE</span>
               </div>
             </motion.div>
 
             {/* Main Editorial Headline (100% Crisp, High-Contrast Readability) */}
-            <div className="text-center max-w-5xl mx-auto mb-12">
+            <div className="text-center max-w-5xl mx-auto mb-10 sm:mb-12">
               <motion.h1
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight text-slate-950 leading-[1.05] drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)]"
+                transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+                className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight text-slate-950 leading-[1.08] sm:leading-[1.05]"
               >
                 We Engineer <br className="hidden sm:block" />
-                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-700 bg-clip-text text-transparent drop-shadow-sm">
+                <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-700 bg-clip-text text-transparent">
                   High-Performance
                 </span>{" "}
                 Digital Products.
               </motion.h1>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-8 max-w-3xl mx-auto"
+                transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-6 sm:mt-8 max-w-3xl mx-auto"
               >
-                <p className="text-base sm:text-lg md:text-xl text-slate-900 font-medium leading-relaxed bg-white/80 backdrop-blur-md px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl border border-white/90 shadow-xl shadow-slate-900/5 drop-shadow-xs">
+                <p className="text-sm sm:text-base md:text-xl text-slate-900 font-medium leading-relaxed bg-white/85 backdrop-blur-md px-4 sm:px-8 py-3 sm:py-4 rounded-2xl border border-white/90 shadow-lg shadow-slate-900/5">
                   From cloud-native SaaS platforms and enterprise AI agents to edge
                   IoT firmware and real-time mobile apps — we build mission-critical
                   digital architecture for forward-thinking enterprises.
@@ -489,7 +476,7 @@ export default function HomeContent() {
         {/* ========================================================================= */}
         <section
           id="capabilities-section"
-          className="relative py-8 border-t border-slate-100 bg-slate-50/50 overflow-hidden"
+          className="relative bg-slate-950 text-white scroll-mt-20 border-y border-slate-800"
         >
           <SplitScreenServiceScroll />
         </section>
@@ -697,57 +684,7 @@ export default function HomeContent() {
           </div>
         </section>
 
-        {/* Floating Quick Navigation Dock */}
-        <AnimatePresence>
-          {showDock && (
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 30 }}
-              transition={{ duration: 0.3 }}
-              className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-full bg-slate-900/90 text-white backdrop-blur-xl border border-slate-800 shadow-2xl flex items-center gap-3"
-            >
-              <span className="text-xs font-mono text-slate-400 hidden sm:inline">SKILLFORGE DOCK</span>
-              <div className="h-4 w-[1px] bg-slate-700 hidden sm:block" />
-              <button
-                onClick={() => handleDockNavigation("software-development")}
-                className="text-xs text-slate-300 hover:text-white transition-colors"
-              >
-                Software
-              </button>
-              <button
-                onClick={() => handleDockNavigation("ai-solutions")}
-                className="text-xs text-slate-300 hover:text-white transition-colors"
-              >
-                AI
-              </button>
-              <button
-                onClick={() => handleDockNavigation("iot-embedded")}
-                className="text-xs text-slate-300 hover:text-white transition-colors"
-              >
-                IoT
-              </button>
-              <button
-                onClick={() => handleDockNavigation("mobile-development")}
-                className="text-xs text-slate-300 hover:text-white transition-colors hidden md:inline-block"
-              >
-                Mobile
-              </button>
-              <button
-                onClick={() => handleDockNavigation("cloud-devops")}
-                className="text-xs text-slate-300 hover:text-white transition-colors hidden md:inline-block"
-              >
-                Cloud
-              </button>
-              <button
-                onClick={triggerBookModal}
-                className="ml-2 px-3.5 py-1 rounded-full bg-blue-600 text-white text-xs font-semibold hover:bg-blue-500 transition-colors shadow-xs"
-              >
-                Audit
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+
 
       </div>
     </SmoothScroll>

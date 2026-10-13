@@ -305,7 +305,7 @@ export default function InteractiveProjectShowcase() {
       </div>
 
       {/* Horizontal Stepper Tabs */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 border-b border-slate-200/60 pb-4">
+      <div className="flex overflow-x-auto no-scrollbar gap-2.5 sm:grid sm:grid-cols-4 lg:grid-cols-8 border-b border-slate-200/60 pb-3">
         {filteredProjects.map((p, idx) => {
           const isActive = activeIndex === idx
           return (
@@ -315,9 +315,9 @@ export default function InteractiveProjectShowcase() {
                 setActiveIndex(idx)
                 setProgress(0)
               }}
-              className="text-left group flex flex-col justify-between h-14 relative outline-none select-none cursor-pointer"
+              className="text-left group flex flex-col justify-between h-13 shrink-0 min-w-[125px] sm:min-w-0 relative outline-none select-none cursor-pointer"
             >
-              <div className="space-y-1">
+              <div className="space-y-0.5">
                 <span className={`text-[9px] font-extrabold block tracking-wider ${isActive ? "text-blue-600" : "text-slate-400 group-hover:text-slate-600"}`}>
                   PROJECT {p.number}
                 </span>
@@ -327,7 +327,7 @@ export default function InteractiveProjectShowcase() {
               </div>
 
               {/* Progress Bar Indicator */}
-              <div className="w-full h-[3px] bg-slate-200/60 rounded-full overflow-hidden mt-2">
+              <div className="w-full h-[3px] bg-slate-200/60 rounded-full overflow-hidden mt-1.5">
                 {isActive ? (
                   <div 
                     className="h-full bg-blue-600 transition-all duration-75 ease-linear"
@@ -360,11 +360,11 @@ export default function InteractiveProjectShowcase() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -15, scale: 0.98 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full flex flex-col lg:flex-row gap-10 items-center justify-between text-left px-6 lg:px-10"
+              className="w-full flex flex-col lg:flex-row gap-8 lg:gap-10 items-center justify-between text-left px-4 sm:px-6 lg:px-10"
             >
               
               {/* Left Column: Project Details */}
-              <div className="w-full lg:w-5/12 space-y-6">
+              <div className="w-full lg:w-5/12 space-y-5 sm:space-y-6">
                 <div className="flex items-center gap-3">
                   <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-mono font-bold tracking-wider uppercase border border-blue-100">
                     SPECIFICATION {activeProject.number}
@@ -375,34 +375,34 @@ export default function InteractiveProjectShowcase() {
                 </div>
 
                 <div>
-                  <h3 className="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 tracking-tight leading-tight">
+                  <h3 className="text-2xl sm:text-4xl font-display font-extrabold text-slate-900 tracking-tight leading-tight">
                     {activeProject.title}
                   </h3>
-                  <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed">
+                  <p className="mt-2.5 text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed">
                     {activeProject.description}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {activeProject.technologies.map((tech, idx) => (
-                    <span key={idx} className="px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 text-xs font-mono font-semibold shadow-2xs">
+                    <span key={idx} className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 text-xs font-mono font-semibold shadow-2xs">
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <div className="pt-2 flex items-center gap-6">
-                  <div className="p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center gap-3">
+                <div className="pt-2 flex flex-wrap items-center gap-4 sm:gap-6">
+                  <div className="p-3 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center gap-3">
                     <div>
                       <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">{activeProject.metricLabel}</div>
-                      <div className="text-xl font-bold font-mono text-slate-900 mt-0.5">{activeProject.metric}</div>
+                      <div className="text-lg sm:text-xl font-bold font-mono text-slate-900 mt-0.5">{activeProject.metric}</div>
                     </div>
                     <span className="w-2 h-2 rounded-full bg-emerald-500" />
                   </div>
 
                   <Link
                     href={activeProject.url}
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
                   >
                     <span>View Case Study</span>
                     <ArrowUpRight size={16} />
@@ -440,8 +440,8 @@ export default function InteractiveProjectShowcase() {
                   </div>
                 </div>
 
-                {/* Overlapping Telemetry Badge */}
-                <div className="absolute -top-4 right-6 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-slate-200 shadow-lg flex items-center gap-2 text-[11px] font-mono font-semibold text-slate-700">
+                {/* Overlapping Telemetry Badge - hidden on mobile to avoid overflow */}
+                <div className="hidden sm:flex absolute -top-4 right-6 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-slate-200 shadow-lg items-center gap-2 text-[11px] font-mono font-semibold text-slate-700">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span>{activeProject.telemetryText}</span>
                 </div>

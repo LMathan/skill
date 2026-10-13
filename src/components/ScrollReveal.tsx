@@ -13,18 +13,19 @@ interface ScrollRevealProps {
   once?: boolean
 }
 
-// Ultra-fast GPU accelerated scroll reveal (60fps/120fps)
+// Ultra-fast responsive scroll reveal with lookahead margin (no delay on scroll)
 export function ScrollReveal({
   children,
   className = "",
   delay = 0,
-  duration = 0.5,
+  duration = 0.3,
   direction = "up",
-  distance = 24,
+  distance = 12,
   once = true,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once, margin: "-5% 0px -5% 0px" })
+  // Positive lookahead margin so elements trigger 150px BEFORE reaching viewport
+  const isInView = useInView(ref, { once, margin: "150px 0px 50px 0px" })
 
   const getOffset = () => {
     switch (direction) {
@@ -61,8 +62,8 @@ export function ScrollReveal({
         }
         transition={{
           duration,
-          delay,
-          ease: [0.21, 0.47, 0.32, 0.98],
+          delay: Math.min(delay, 0.15),
+          ease: [0.16, 1, 0.3, 1],
         }}
       >
         {children}
@@ -81,7 +82,7 @@ export function TextReveal({
   delay?: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-5% 0px" })
+  const isInView = useInView(ref, { once: true, margin: "150px 0px 50px 0px" })
 
   const words = text.split(" ")
 
@@ -90,12 +91,12 @@ export function TextReveal({
       {words.map((word, idx) => (
         <span key={idx} className="inline-block overflow-hidden pb-1">
           <motion.span
-            initial={{ y: "100%", opacity: 0 }}
-            animate={isInView ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0 }}
+            initial={{ y: "40%", opacity: 0 }}
+            animate={isInView ? { y: "0%", opacity: 1 } : { y: "40%", opacity: 0 }}
             transition={{
-              duration: 0.45,
-              delay: delay + idx * 0.02,
-              ease: [0.21, 0.47, 0.32, 0.98],
+              duration: 0.25,
+              delay: Math.min(delay + idx * 0.015, 0.12),
+              ease: [0.16, 1, 0.3, 1],
             }}
             className="inline-block"
           >
@@ -110,14 +111,14 @@ export function TextReveal({
 export function StaggerContainer({
   children,
   className = "",
-  staggerDelay = 0.08,
+  staggerDelay = 0.03,
 }: {
   children: React.ReactNode
   className?: string
   staggerDelay?: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-5% 0px" })
+  const isInView = useInView(ref, { once: true, margin: "150px 0px 50px 0px" })
 
   return (
     <motion.div
@@ -130,7 +131,7 @@ export function StaggerContainer({
           opacity: 1,
           transition: {
             staggerChildren: staggerDelay,
-            delayChildren: 0.05,
+            delayChildren: 0,
           },
         },
       }}
@@ -151,13 +152,13 @@ export function StaggerItem({
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0, y: 10 },
         visible: {
           opacity: 1,
           y: 0,
           transition: {
-            duration: 0.45,
-            ease: [0.21, 0.47, 0.32, 0.98],
+            duration: 0.25,
+            ease: [0.16, 1, 0.3, 1],
           },
         },
       }}

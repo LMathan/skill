@@ -13,7 +13,6 @@ import { CaseStudy } from "@/data/agencyData"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { useLanguage } from "@/context/LanguageContext"
-import Particles from "@/components/magicui/particles"
 
 interface Props {
   study: CaseStudy
@@ -49,7 +48,6 @@ export default function CaseStudyDetailClient({ study }: Props) {
     <div className="relative min-h-screen bg-white text-slate-900 overflow-hidden py-24 px-4 sm:px-6 lg:px-8 bg-dot-pattern" dir={isRTL ? "rtl" : "ltr"}>
       
       {/* Background elements */}
-      <Particles className="absolute inset-0 z-0 opacity-40 pointer-events-none" quantity={60} staticity={50} />
       <div className="absolute top-10 right-10 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
       <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
 
