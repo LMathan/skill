@@ -5,9 +5,11 @@ import { getSeoMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = getSeoMetadata({
   title: "Careers | Join Our Team of Developers & Solutions Architects",
-  description: "Explore career opportunities at SkillForge Technologies. We are looking for talented React frontend engineers, Flutter developers, and IoT firmware experts.",
+  description: "Explore career opportunities at SkillForge Technologies. We are hiring for Junior Business Development Executive, Senior Backend Engineers, and Lead UI/UX Designers.",
   keywords: [
     "Software Engineering Jobs",
+    "Junior Business Development Executive",
+    "Business Development Executive Jobs",
     "Join SkillForge Technologies",
     "Offshore Developer Vacancies",
     "React Native Careers",

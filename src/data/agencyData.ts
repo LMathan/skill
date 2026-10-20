@@ -54,6 +54,7 @@ export interface CareerOpportunity {
   type: string
   experience: string
   summary: string
+  responsibilities?: string[]
   requirements: string[]
   benefits: string[]
 }
@@ -746,6 +747,38 @@ export const agencyIndustries = [
 
 export const agencyCareers: CareerOpportunity[] = [
   {
+    id: "junior-bde",
+    title: "Junior Business Development Executive",
+    department: "Business Development",
+    location: "Perundurai (Erode), Tamil Nadu / Remote",
+    type: "Full-time",
+    experience: "Fresher – 1 year",
+    summary: "We are looking for a motivated and enthusiastic Junior Business Development Executive to help our company identify potential clients, generate business leads, and build strong client relationships. The ideal candidate should have good communication skills, a willingness to learn, and an interest in sales and business growth.",
+    responsibilities: [
+      "Identify and research potential clients and business opportunities.",
+      "Generate leads through LinkedIn, email outreach, calls, and other channels.",
+      "Reach out to prospective clients and introduce our company's services.",
+      "Schedule meetings and follow up with potential clients.",
+      "Understand client requirements and coordinate with the internal team.",
+      "Maintain lead information and follow up regularly using spreadsheets or CRM tools.",
+      "Support the team in achieving business development and client acquisition goals."
+    ],
+    requirements: [
+      "Bachelor's degree in Business Administration, Marketing, or a related field (preferred).",
+      "Freshers are welcome to apply.",
+      "Good verbal and written communication skills.",
+      "Basic knowledge of LinkedIn, email communication, and online research.",
+      "Confidence in communicating with clients and conducting follow-ups.",
+      "Self-motivated, proactive, and eager to learn."
+    ],
+    benefits: [
+      "Hands-on experience in business development and client acquisition.",
+      "Opportunities to learn sales, marketing, and client relationship management.",
+      "A supportive and growth-oriented work environment.",
+      "Career development opportunities based on performance."
+    ]
+  },
+  {
     id: "sr-backend",
     title: "Senior Backend Engineer (.NET / Core)",
     department: "Engineering",
@@ -753,6 +786,12 @@ export const agencyCareers: CareerOpportunity[] = [
     type: "Full-Time",
     experience: "5+ Years",
     summary: "We are seeking a Senior Backend Engineer to lead the design of microservice APIs, enterprise billing engines, and Azure cloud integrations.",
+    responsibilities: [
+      "Architect and implement robust microservices, RESTful APIs, and cloud services",
+      "Lead database schema designs, SQL Server/PostgreSQL query tuning, and caching strategies",
+      "Collaborate with product and frontend engineering teams to deliver mission-critical software",
+      "Implement automated unit and integration tests to ensure enterprise-grade stability"
+    ],
     requirements: [
       "Strong proficiency in C#, .NET Core, ASP.NET Core, and Entity Framework",
       "Experience designing relational databases (SQL Server, PostgreSQL) and Redis caching layers",
@@ -774,6 +813,12 @@ export const agencyCareers: CareerOpportunity[] = [
     type: "Full-Time",
     experience: "6+ Years",
     summary: "Join us to lead design systems, interactive wireframe prototypes, and style layouts for enterprise SaaS client platforms.",
+    responsibilities: [
+      "Architect and maintain scalable design systems, token structures, and Figma component libraries",
+      "Design high-fidelity user flows, responsive layouts, and interactive micro-interactions",
+      "Conduct user research, journey mapping, and usability testing to validate product concepts",
+      "Partner with engineering leads to ensure design fidelity and responsive precision across platforms"
+    ],
     requirements: [
       "Stunning portfolio showcasing modern, minimal SaaS UI styling and design systems",
       "Complete expertise in Figma (components, autolayout, responsive properties)",

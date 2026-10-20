@@ -186,6 +186,7 @@ export const translations: Record<string, Record<string, any>> = {
       "openRoles": "Active Engineering Opportunities",
       "applyBtn": "Apply to Sprint Squad",
       "summaryTitle": "Role Summary",
+      "responsibilitiesTitle": "Key Responsibilities",
       "requirementsTitle": "Technical Requirements",
       "benefitsTitle": "Workspace Benefits",
       "formTitle": "Submit Candidacy Profile",
